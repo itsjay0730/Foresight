@@ -1,0 +1,282 @@
+[
+  {
+    "id": "37756",
+    "lat": 41.75654782391807,
+    "lng": -87.64386327857898,
+    "neighborhood": "ENGLEWOOD",
+    "zip": "60620",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "B1-2"
+  },
+  {
+    "id": "8947",
+    "lat": 41.891993539915006,
+    "lng": -87.72262337281994,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "58725",
+    "lat": 41.867174702009,
+    "lng": -87.73696513733313,
+    "neighborhood": "NORTH LAWNDALE",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "M2-2"
+  },
+  {
+    "id": "36518",
+    "lat": 41.78970436565455,
+    "lng": -87.66048889509541,
+    "neighborhood": "WEST ENGLEWOOD",
+    "zip": "60636",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "8191",
+    "lat": 41.900716723815016,
+    "lng": -87.72293506329427,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60651",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "24455",
+    "lat": 41.693650660718724,
+    "lng": -87.63215724444655,
+    "neighborhood": "ROSELAND",
+    "zip": "60628",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "16109",
+    "lat": 41.823586956634486,
+    "lng": -87.60432230879749,
+    "neighborhood": "OAKLAND",
+    "zip": "60653",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RM-5"
+  },
+  {
+    "id": "50670",
+    "lat": 41.67587538651602,
+    "lng": -87.63497051121821,
+    "neighborhood": "WEST PULLMAN",
+    "zip": "60628",
+    "parcel_size": 3075,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "19665",
+    "lat": 41.75109345398283,
+    "lng": -87.55324870345193,
+    "neighborhood": "SOUTH CHICAGO",
+    "zip": "60617",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "C1-2"
+  },
+  {
+    "id": "19589",
+    "lat": 41.73765810096648,
+    "lng": -87.5656731440233,
+    "neighborhood": "SOUTH CHICAGO",
+    "zip": "60617",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "34339",
+    "lat": 41.65121204392156,
+    "lng": -87.60535532025513,
+    "neighborhood": "RIVERDALE",
+    "zip": "60827",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-2"
+  },
+  {
+    "id": "35245",
+    "lat": 41.89385728946573,
+    "lng": -87.72041320086409,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "36653",
+    "lat": 41.800670630471494,
+    "lng": -87.67241424373661,
+    "neighborhood": "NEW CITY",
+    "zip": "60609",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "19505",
+    "lat": 41.74483594473508,
+    "lng": -87.6597997988371,
+    "neighborhood": "AUBURN GRESHAM",
+    "zip": "60620",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "35396",
+    "lat": 41.777707143534506,
+    "lng": -87.67351351348495,
+    "neighborhood": "WEST ENGLEWOOD",
+    "zip": "60636",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "59403",
+    "lat": 41.8104306715045,
+    "lng": -87.61482207300874,
+    "neighborhood": "GRAND BOULEVARD",
+    "zip": "60653",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RM-5"
+  },
+  {
+    "id": "58818",
+    "lat": 41.89275197812359,
+    "lng": -87.72023597773659,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "8771",
+    "lat": 41.89385822556417,
+    "lng": -87.72028530282613,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-4"
+  },
+  {
+    "id": "20523",
+    "lat": 41.76935077769723,
+    "lng": -87.6460896664575,
+    "neighborhood": "ENGLEWOOD",
+    "zip": "60621",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "34273",
+    "lat": 41.892317458842314,
+    "lng": -87.71830714095819,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "23989",
+    "lat": 41.72654653465606,
+    "lng": -87.62672288201742,
+    "neighborhood": "ROSELAND",
+    "zip": "60620",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-2"
+  },
+  {
+    "id": "37225",
+    "lat": 41.879003371657504,
+    "lng": -87.73581569092116,
+    "neighborhood": "WEST GARFIELD PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-4"
+  },
+  {
+    "id": "62419",
+    "lat": 41.79627432700558,
+    "lng": -87.62713196133157,
+    "neighborhood": "WASHINGTON PARK",
+    "zip": "60609",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-4"
+  },
+  {
+    "id": "9617",
+    "lat": 41.86661288645532,
+    "lng": -87.71405473196708,
+    "neighborhood": "NORTH LAWNDALE",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "B3-3"
+  },
+  {
+    "id": "37546",
+    "lat": 41.74562225812267,
+    "lng": -87.60103490114405,
+    "neighborhood": "CHATHAM",
+    "zip": "60619",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-4"
+  },
+  {
+    "id": "18694",
+    "lat": 41.79610870709449,
+    "lng": -87.62712699483926,
+    "neighborhood": "WASHINGTON PARK",
+    "zip": "60609",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-4"
+  },
+  {
+    "id": "8915",
+    "lat": 41.89245195880656,
+    "lng": -87.7239042788536,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "9616",
+    "lat": 41.866611868338424,
+    "lng": -87.7141407599288,
+    "neighborhood": "NORTH LAWNDALE",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "B3-3"
+  }
+]
