@@ -20,26 +20,6 @@
     "zoning": "RS-3"
   },
   {
-    "id": "35050",
-    "lat": 41.893299947536285,
-    "lng": -87.72322440479832,
-    "neighborhood": "HUMBOLDT PARK",
-    "zip": "60624",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RS-3"
-  },
-  {
-    "id": "35245",
-    "lat": 41.89385728946573,
-    "lng": -87.72041320086409,
-    "neighborhood": "HUMBOLDT PARK",
-    "zip": "60624",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RS-3"
-  },
-  {
     "id": "58725",
     "lat": 41.867174702009,
     "lng": -87.73696513733313,
@@ -48,16 +28,6 @@
     "parcel_size": 0,
     "property_type": "opportunity_site",
     "zoning": "M2-2"
-  },
-  {
-    "id": "62821",
-    "lat": 41.81635800969871,
-    "lng": -87.62045281388649,
-    "neighborhood": "GRAND BOULEVARD",
-    "zip": "60653",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "B3-3"
   },
   {
     "id": "36518",
@@ -70,11 +40,21 @@
     "zoning": "RS-3"
   },
   {
-    "id": "58818",
-    "lat": 41.89275197812359,
-    "lng": -87.72023597773659,
+    "id": "8191",
+    "lat": 41.900716723815016,
+    "lng": -87.72293506329427,
     "neighborhood": "HUMBOLDT PARK",
-    "zip": "60624",
+    "zip": "60651",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "24455",
+    "lat": 41.693650660718724,
+    "lng": -87.63215724444655,
+    "neighborhood": "ROSELAND",
+    "zip": "60628",
     "parcel_size": 0,
     "property_type": "opportunity_site",
     "zoning": "RS-3"
@@ -100,34 +80,44 @@
     "zoning": "RS-3"
   },
   {
-    "id": "19505",
-    "lat": 41.74483594473508,
-    "lng": -87.6597997988371,
-    "neighborhood": "AUBURN GRESHAM",
-    "zip": "60620",
+    "id": "19665",
+    "lat": 41.75109345398283,
+    "lng": -87.55324870345193,
+    "neighborhood": "SOUTH CHICAGO",
+    "zip": "60617",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "C1-2"
+  },
+  {
+    "id": "19589",
+    "lat": 41.73765810096648,
+    "lng": -87.5656731440233,
+    "neighborhood": "SOUTH CHICAGO",
+    "zip": "60617",
     "parcel_size": 0,
     "property_type": "opportunity_site",
     "zoning": "RS-3"
   },
   {
-    "id": "59403",
-    "lat": 41.8104306715045,
-    "lng": -87.61482207300874,
-    "neighborhood": "GRAND BOULEVARD",
-    "zip": "60653",
+    "id": "34339",
+    "lat": 41.65121204392156,
+    "lng": -87.60535532025513,
+    "neighborhood": "RIVERDALE",
+    "zip": "60827",
     "parcel_size": 0,
     "property_type": "opportunity_site",
-    "zoning": "RM-5"
+    "zoning": "RS-2"
   },
   {
-    "id": "8771",
-    "lat": 41.89385822556417,
-    "lng": -87.72028530282613,
+    "id": "35245",
+    "lat": 41.89385728946573,
+    "lng": -87.72041320086409,
     "neighborhood": "HUMBOLDT PARK",
     "zip": "60624",
     "parcel_size": 0,
     "property_type": "opportunity_site",
-    "zoning": "RT-4"
+    "zoning": "RS-3"
   },
   {
     "id": "36653",
@@ -135,6 +125,16 @@
     "lng": -87.67241424373661,
     "neighborhood": "NEW CITY",
     "zip": "60609",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "19505",
+    "lat": 41.74483594473508,
+    "lng": -87.6597997988371,
+    "neighborhood": "AUBURN GRESHAM",
+    "zip": "60620",
     "parcel_size": 0,
     "property_type": "opportunity_site",
     "zoning": "RS-3"
@@ -150,9 +150,19 @@
     "zoning": "RS-3"
   },
   {
-    "id": "34273",
-    "lat": 41.892317458842314,
-    "lng": -87.71830714095819,
+    "id": "59403",
+    "lat": 41.8104306715045,
+    "lng": -87.61482207300874,
+    "neighborhood": "GRAND BOULEVARD",
+    "zip": "60653",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RM-5"
+  },
+  {
+    "id": "58818",
+    "lat": 41.89275197812359,
+    "lng": -87.72023597773659,
     "neighborhood": "HUMBOLDT PARK",
     "zip": "60624",
     "parcel_size": 0,
@@ -160,9 +170,9 @@
     "zoning": "RS-3"
   },
   {
-    "id": "34360",
-    "lat": 41.89268322344416,
-    "lng": -87.72023391679944,
+    "id": "8771",
+    "lat": 41.89385822556417,
+    "lng": -87.72028530282613,
     "neighborhood": "HUMBOLDT PARK",
     "zip": "60624",
     "parcel_size": 0,
@@ -180,21 +190,11 @@
     "zoning": "RS-3"
   },
   {
-    "id": "22900",
-    "lat": 41.7348607537722,
-    "lng": -87.54481150691862,
-    "neighborhood": "SOUTH CHICAGO",
-    "zip": "60617",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RT-3.5"
-  },
-  {
-    "id": "50945",
-    "lat": 41.88171489428408,
-    "lng": -87.7566892976597,
-    "neighborhood": "AUSTIN",
-    "zip": "60644",
+    "id": "34273",
+    "lat": 41.892317458842314,
+    "lng": -87.71830714095819,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
     "parcel_size": 0,
     "property_type": "opportunity_site",
     "zoning": "RS-3"
@@ -210,24 +210,24 @@
     "zoning": "RS-2"
   },
   {
-    "id": "34268",
-    "lat": 41.892243050523106,
-    "lng": -87.71830484352442,
-    "neighborhood": "HUMBOLDT PARK",
+    "id": "37225",
+    "lat": 41.879003371657504,
+    "lng": -87.73581569092116,
+    "neighborhood": "WEST GARFIELD PARK",
     "zip": "60624",
     "parcel_size": 0,
     "property_type": "opportunity_site",
-    "zoning": "RS-3"
+    "zoning": "RT-4"
   },
   {
-    "id": "37132",
-    "lat": 41.80202838511218,
-    "lng": -87.65422097015947,
-    "neighborhood": "NEW CITY",
+    "id": "62419",
+    "lat": 41.79627432700558,
+    "lng": -87.62713196133157,
+    "neighborhood": "WASHINGTON PARK",
     "zip": "60609",
     "parcel_size": 0,
     "property_type": "opportunity_site",
-    "zoning": "RS-3"
+    "zoning": "RT-4"
   },
   {
     "id": "9617",
@@ -245,6 +245,16 @@
     "lng": -87.60103490114405,
     "neighborhood": "CHATHAM",
     "zip": "60619",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-4"
+  },
+  {
+    "id": "18694",
+    "lat": 41.79610870709449,
+    "lng": -87.62712699483926,
+    "neighborhood": "WASHINGTON PARK",
+    "zip": "60609",
     "parcel_size": 0,
     "property_type": "opportunity_site",
     "zoning": "RT-4"
@@ -268,15 +278,5 @@
     "parcel_size": 0,
     "property_type": "opportunity_site",
     "zoning": "B3-3"
-  },
-  {
-    "id": "8965",
-    "lat": 41.893115369968875,
-    "lng": -87.71833184406393,
-    "neighborhood": "HUMBOLDT PARK",
-    "zip": "60624",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RT-4"
   }
 ]
