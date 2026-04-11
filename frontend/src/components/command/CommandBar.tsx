@@ -67,9 +67,13 @@ export default function CommandBar({
           style={{ background: "linear-gradient(140deg, #3b82f6 0%, #06b6d4 50%, #22c55e 100%)", boxShadow: "0 2px 12px rgba(59,130,246,0.3)" }}>
           F
         </div>
-        <div className="leading-none">
-          <div className="text-[15px] font-bold tracking-[0.3px] text-t-primary">Foresight</div>
-          <div className="text-[8.5px] font-normal text-t-muted uppercase tracking-[1.5px]">Geospatial Investment Intelligence</div>
+        <div className="flex flex-col justify-center gap-[2.5px] min-w-0">
+          <div className="text-[15px] font-bold leading-[1.05] tracking-[0.3px] text-t-primary">
+            Foresight
+          </div>
+          <div className="text-[8.5px] font-normal leading-[1.15] text-t-muted uppercase tracking-[1.2px] whitespace-nowrap">
+            Geospatial Investment Intelligence
+          </div>
         </div>
       </div>
 
