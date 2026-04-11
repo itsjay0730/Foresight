@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @import "./components.css";
-
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 
 :root {
@@ -35,11 +34,22 @@
 html,
 body {
   height: 100%;
-  overflow: hidden;
   background: var(--bg-void);
   color: #eaf0fa;
   font-family: "Outfit", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+body {
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  html,
+  body {
+    overflow: hidden;
+    touch-action: manipulation;
+  }
 }
 
 /* ═══ Glass surfaces ═══ */
@@ -62,15 +72,28 @@ body {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.05) transparent;
 }
+
 .custom-scroll::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
 }
+
 .custom-scroll::-webkit-scrollbar-track {
   background: transparent;
 }
+
 .custom-scroll::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.06);
   border-radius: 4px;
+}
+
+/* Hide scrollbar visually where horizontal tabs are used */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 /* ═══ Leaflet overrides ═══ */
@@ -78,16 +101,19 @@ body {
 .leaflet-control-attribution {
   display: none !important;
 }
+
 .leaflet-container {
   background: var(--bg-void) !important;
   font-family: "Outfit", sans-serif !important;
 }
+
 .leaflet-tooltip.foresight-tip {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
   padding: 0 !important;
 }
+
 .leaflet-tooltip.foresight-tip::before {
   display: none !important;
 }
@@ -112,15 +138,19 @@ body {
   background-position: right 9px center;
   transition: all 0.2s;
   white-space: nowrap;
+  min-width: 0;
 }
+
 .cb-select:hover {
   border-color: var(--glass-border-hover);
   background: rgba(255, 255, 255, 0.05);
 }
+
 .cb-select:focus {
   border-color: var(--blue);
   box-shadow: 0 0 0 2px var(--blue-dim);
 }
+
 .cb-select option {
   background: #0b0f18;
   color: #eaf0fa;

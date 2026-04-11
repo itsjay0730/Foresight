@@ -15,12 +15,8 @@ import { MapControls, Legend, BottomTray, Notification } from "@/components/ui/O
 const MapView = dynamic(() => import("@/components/map/MapView"), { ssr: false });
 
 export default function ForesightApp() {
-  // Use `any` here because L.Map type is not available without importing
-  // leaflet at the top level, which breaks SSR. The actual map instance
-  // is created inside MapView (client-only).
   const mapRef = useRef<any>(null);
 
-  // ── Filters ──
   const [filters, setFilters] = useState<FilterState>({
     investmentType: "",
     timeline: "3",
@@ -29,22 +25,22 @@ export default function ForesightApp() {
     searchQuery: "",
   });
 
-  // ── Selection ──
-  const [selection, setSelection] = useState<SelectionState>({ type: "hood", hoodId: "west-loop" });
+  const [selection, setSelection] = useState<SelectionState>({
+    type: "hood",
+    hoodId: "west-loop",
+  });
 
-  // ── Modals ──
   const [scenarioOpen, setScenarioOpen] = useState(false);
   const [compareOpen, setCompareOpen] = useState(false);
   const [memoOpen, setMemoOpen] = useState(false);
 
-  // ── Notification ──
   const [notif, setNotif] = useState({ message: "", visible: false });
+
   const notify = useCallback((msg: string) => {
     setNotif({ message: msg, visible: true });
     setTimeout(() => setNotif(prev => ({ ...prev, visible: false })), 2800);
   }, []);
 
-  // ── Handlers ──
   const handleFilterChange = useCallback((partial: Partial<FilterState>) => {
     setFilters(prev => ({ ...prev, ...partial }));
   }, []);
@@ -68,7 +64,13 @@ export default function ForesightApp() {
   const handleReset = useCallback(() => {
     mapRef.current?.flyTo([41.8781, -87.6298], 12, { duration: 0.7 });
     setSelection({ type: "hood", hoodId: "west-loop" });
-    setFilters({ investmentType: "", timeline: "3", scoreLayer: "opportunity", riskLevel: "", searchQuery: "" });
+    setFilters({
+      investmentType: "",
+      timeline: "3",
+      scoreLayer: "opportunity",
+      riskLevel: "",
+      searchQuery: "",
+    });
   }, []);
 
   const handleGenerateInsight = useCallback(() => {
@@ -83,12 +85,18 @@ export default function ForesightApp() {
     notify("PDF exported · Check your downloads");
   }, [notify]);
 
-  // ── Tray stats ──
   const trayStats = useMemo(() => {
-    let total = 0, buy = 0, build = 0, watch = 0, avoid = 0;
+    let total = 0;
+    let buy = 0;
+    let build = 0;
+    let watch = 0;
+    let avoid = 0;
+
     properties.forEach(p => {
       let show = true;
+
       if (filters.investmentType && p.type !== filters.investmentType) show = false;
+
       if (filters.riskLevel) {
         if (filters.riskLevel === "low" && p.risk !== "low") show = false;
         if (filters.riskLevel === "moderate" && p.risk !== "moderate") show = false;
@@ -96,6 +104,7 @@ export default function ForesightApp() {
         if (filters.riskLevel === "emerging" && p.risk !== "emerging") show = false;
         if (filters.riskLevel === "avoid" && p.risk !== "avoid") show = false;
       }
+
       if (show) {
         total++;
         if (p.rec === "BUY") buy++;
@@ -104,6 +113,7 @@ export default function ForesightApp() {
         else avoid++;
       }
     });
+
     return { total, buy, build, watch, avoid, pipeline: "$284M" };
   }, [filters]);
 
