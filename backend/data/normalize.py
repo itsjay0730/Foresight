@@ -25,7 +25,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from utils import ensure_required_fields, safe_float, safe_int
+from utils import ensureRequiredFields, safeFloat, safeInt
 
 
 REQUIRED_BASE_FIELDS = [
@@ -40,11 +40,11 @@ REQUIRED_BASE_FIELDS = [
 ]
 
 
-def _normalize_one_plot(plot: dict[str, Any]) -> dict[str, Any] | None:
+def _normalizeOnePlot(plot: dict[str, Any]) -> dict[str, Any] | None:
     """
     Flatten one enriched plot into the final output schema.
     """
-    if not ensure_required_fields(plot, REQUIRED_BASE_FIELDS):
+    if not ensureRequiredFields(plot, REQUIRED_BASE_FIELDS):
         return None
 
     crime = plot.get("crime", {}) or {}
@@ -55,47 +55,49 @@ def _normalize_one_plot(plot: dict[str, Any]) -> dict[str, Any] | None:
 
     normalized = {
         "id": str(plot.get("id")),
-        "lat": safe_float(plot.get("lat")),
-        "lng": safe_float(plot.get("lng")),
+        "lat": safeFloat(plot.get("lat")),
+        "lng": safeFloat(plot.get("lng")),
         "neighborhood": str(plot.get("neighborhood")),
         "zip": str(plot.get("zip")),
         "property_type": str(plot.get("property_type")),
-        "parcel_size": safe_int(plot.get("parcel_size"), default=0),
+        "parcel_size": safeInt(plot.get("parcel_size"), default=0),
         "zoning": str(plot.get("zoning")),
-
-        "crime_trend": safe_float(crime.get("crime_trend")),
-        "permit_activity": safe_float(permits.get("permit_activity")),
-        "income": safe_int(income.get("income")),
-        "population_growth": safe_float(population.get("population_growth")),
-        "transit_distance": safe_float(transit.get("transit_distance")),
-
+        "crime_trend": safeFloat(crime.get("crime_trend")),
+        "permit_activity": safeFloat(permits.get("permit_activity")),
+        "income": safeInt(income.get("income")),
+        "population_growth": safeFloat(population.get("population_growth")),
+        "transit_distance": safeFloat(transit.get("transit_distance")),
         # helpful extra fields for debugging / future use
-        "crime_count_nearby": safe_int(crime.get("crime_count_nearby"), default=0),
-        "violent_crime_count_nearby": safe_int(crime.get("violent_crime_count_nearby"), default=0),
-        "permit_count_nearby": safe_int(permits.get("permit_count_nearby"), default=0),
+        "crime_count_nearby": safeInt(crime.get("crime_count_nearby"), default=0),
+        "violent_crime_count_nearby": safeInt(
+            crime.get("violent_crime_count_nearby"), default=0
+        ),
+        "permit_count_nearby": safeInt(permits.get("permit_count_nearby"), default=0),
         "nearest_station": transit.get("nearest_station"),
-        "transit_stop_count_nearby": safe_int(transit.get("transit_stop_count_nearby"), default=0),
+        "transit_stop_count_nearby": safeInt(
+            transit.get("transit_stop_count_nearby"), default=0
+        ),
     }
 
     return normalized
 
 
-def normalize(plots: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def normalizePlots(plots: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """
     Normalize a list of enriched plots into the final flat dataset.
     """
-    final_plots: list[dict[str, Any]] = []
+    finalPlots: list[dict[str, Any]] = []
 
     for plot in plots:
-        normalized = _normalize_one_plot(plot)
+        normalized = _normalizeOnePlot(plot)
         if normalized is not None:
-            final_plots.append(normalized)
+            finalPlots.append(normalized)
 
-    return final_plots
+    return finalPlots
 
 
 if __name__ == "__main__":
-    sample_plot = {
+    samplePlot = {
         "id": "plot_001",
         "lat": 41.923,
         "lng": -87.685,
@@ -126,5 +128,5 @@ if __name__ == "__main__":
         },
     }
 
-    result = normalize([sample_plot])
+    result = normalizePlots([samplePlot])
     print(result[0])

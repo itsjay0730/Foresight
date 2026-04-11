@@ -21,16 +21,16 @@ ACS_POP_2021_API = "https://api.census.gov/data/2021/acs/acs5"
 ACS_TOTAL_POP_VAR = "B01003_001E"
 
 
-def _fetch_population_by_zip(api_url: str, zip_code: str) -> int | None:
+def _fetchPopulationByZip(apiUrl: str, zipCode: str) -> int | None:
     params = {
         "get": f"NAME,{ACS_TOTAL_POP_VAR}",
-        "for": f"zip code tabulation area:{zip_code}",
+        "for": f"zip code tabulation area:{zipCode}",
     }
 
     if CENSUS_API_KEY:
         params["key"] = CENSUS_API_KEY
 
-    response = requests.get(api_url, params=params, timeout=REQUEST_TIMEOUT)
+    response = requests.get(apiUrl, params=params, timeout=REQUEST_TIMEOUT)
     response.raise_for_status()
     data = response.json()
 
@@ -49,7 +49,7 @@ def _fetch_population_by_zip(api_url: str, zip_code: str) -> int | None:
     return int(value)
 
 
-def fetch_population(plot: dict[str, Any]) -> dict[str, Any]:
+def fetchPopulation(plot: dict[str, Any]) -> dict[str, Any]:
     """
     Fetch population growth for a plot's ZIP area.
 
@@ -58,36 +58,36 @@ def fetch_population(plot: dict[str, Any]) -> dict[str, Any]:
         "population_growth": float | None
     }
 
-    population_growth = (pop_2022 - pop_2021) / pop_2021
+    population_growth = (pop2022 - pop2021) / pop2021
     """
-    zip_code = str(plot.get("zip", "")).strip()
+    zipCode = str(plot.get("zip", "")).strip()
 
-    if not zip_code or zip_code == "Unknown":
+    if not zipCode or zipCode == "Unknown":
         return {"population_growth": None}
 
     try:
-        pop_2022 = _fetch_population_by_zip(ACS_POP_2022_API, zip_code)
-        pop_2021 = _fetch_population_by_zip(ACS_POP_2021_API, zip_code)
+        pop2022 = _fetchPopulationByZip(ACS_POP_2022_API, zipCode)
+        pop2021 = _fetchPopulationByZip(ACS_POP_2021_API, zipCode)
 
-        if pop_2022 is None or pop_2021 is None:
+        if pop2022 is None or pop2021 is None:
             return {"population_growth": None}
 
-        if pop_2021 == 0:
-            growth = 0.0 if pop_2022 == 0 else 1.0
+        if pop2021 == 0:
+            growth = 0.0 if pop2022 == 0 else 1.0
         else:
-            growth = (pop_2022 - pop_2021) / pop_2021
+            growth = (pop2022 - pop2021) / pop2021
 
         return {"population_growth": round(growth, 4)}
 
     except Exception as exc:
-        print(f"[fetch_population] Census API failed for ZIP {zip_code}: {exc}")
+        print(f"[fetchPopulation] Census API failed for ZIP {zipCode}: {exc}")
         return {"population_growth": None}
 
 
 if __name__ == "__main__":
-    sample_plot = {
+    samplePlot = {
         "id": "test_plot",
         "zip": "60647",
     }
-    result = fetch_population(sample_plot)
+    result = fetchPopulation(samplePlot)
     print(result)

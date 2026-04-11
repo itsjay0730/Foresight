@@ -10,14 +10,14 @@ import requests
 from config import REQUEST_TIMEOUT, SOCRATA_APP_TOKEN
 
 
-def get_headers() -> dict[str, str]:
+def getHeaders() -> dict[str, str]:
     headers: dict[str, str] = {}
     if SOCRATA_APP_TOKEN:
         headers["X-App-Token"] = SOCRATA_APP_TOKEN
     return headers
 
 
-def safe_get(url: str, params: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+def safeGet(url: str, params: dict[str, Any] | None = None) -> list[dict[str, Any]]:
     """
     Simple wrapper for GET requests that returns JSON list data.
     If the request fails, return an empty list instead of crashing.
@@ -26,7 +26,7 @@ def safe_get(url: str, params: dict[str, Any] | None = None) -> list[dict[str, A
         response = requests.get(
             url,
             params=params,
-            headers=get_headers(),
+            headers=getHeaders(),
             timeout=REQUEST_TIMEOUT,
         )
         response.raise_for_status()
@@ -38,14 +38,14 @@ def safe_get(url: str, params: dict[str, Any] | None = None) -> list[dict[str, A
             return [data]
         return []
     except requests.RequestException as exc:
-        print(f"[safe_get] Request failed: {exc}")
+        print(f"[safeGet] Request failed: {exc}")
         return []
     except ValueError as exc:
-        print(f"[safe_get] Invalid JSON response: {exc}")
+        print(f"[safeGet] Invalid JSON response: {exc}")
         return []
 
 
-def safe_float(value: Any, default: float | None = None) -> float | None:
+def safeFloat(value: Any, default: float | None = None) -> float | None:
     try:
         if value is None or value == "":
             return default
@@ -54,7 +54,7 @@ def safe_float(value: Any, default: float | None = None) -> float | None:
         return default
 
 
-def safe_int(value: Any, default: int | None = None) -> int | None:
+def safeInt(value: Any, default: int | None = None) -> int | None:
     try:
         if value is None or value == "":
             return default
@@ -63,42 +63,42 @@ def safe_int(value: Any, default: int | None = None) -> int | None:
         return default
 
 
-def haversine_miles(lat1: float, lng1: float, lat2: float, lng2: float) -> float:
+def haversineMiles(lat1: float, lng1: float, lat2: float, lng2: float) -> float:
     """
     Distance between two lat/lng points in miles.
     """
     r = 3958.8  # Earth radius in miles
 
-    lat1_rad = math.radians(lat1)
-    lat2_rad = math.radians(lat2)
+    lat1Rad = math.radians(lat1)
+    lat2Rad = math.radians(lat2)
     dlat = math.radians(lat2 - lat1)
     dlng = math.radians(lng2 - lng1)
 
     a = (
         math.sin(dlat / 2) ** 2
-        + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlng / 2) ** 2
+        + math.cos(lat1Rad) * math.cos(lat2Rad) * math.sin(dlng / 2) ** 2
     )
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     return r * c
 
 
-def save_json(data: Any, filepath: str | Path) -> None:
-    path = Path(filepath)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as f:
+def saveJson(data: Any, filepath: str | Path) -> None:
+    filePath = Path(filepath)
+    filePath.parent.mkdir(parents=True, exist_ok=True)
+    with filePath.open("w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
 
 
-def load_json(filepath: str | Path) -> Any:
-    path = Path(filepath)
-    if not path.exists():
+def loadJson(filepath: str | Path) -> Any:
+    filePath = Path(filepath)
+    if not filePath.exists():
         return None
-    with path.open("r", encoding="utf-8") as f:
+    with filePath.open("r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def ensure_required_fields(record: dict[str, Any], required_fields: list[str]) -> bool:
-    for field in required_fields:
+def ensureRequiredFields(record: dict[str, Any], requiredFields: list[str]) -> bool:
+    for field in requiredFields:
         if field not in record or record[field] in (None, ""):
             return False
     return True

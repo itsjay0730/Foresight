@@ -1,63 +1,74 @@
+# What this file does
+
+# This file:
+# 	•	pulls Chicago building permits
+# 	•	checks permits near a plot
+# 	•	compares recent 90 days vs previous 90 days
+# 	•	returns a clean permit activity summarypython -m data.fetch_permits
+
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from config import CHICAGO_BUILDING_PERMITS_API, SEARCH_RADIUS_MILES
-from utils import haversine_miles, safe_float, safe_get
+from utils import haversineMiles, safeFloat, safeGet
 
 
-def _fetch_permit_window(
-    days_back_start: int,
-    days_back_end: int,
+def _fetchPermitWindow(
+    daysBackStart: int,
+    daysBackEnd: int,
     limit: int = 2000,
 ) -> list[dict[str, Any]]:
     """
     Fetch permit records in a time window.
     Example:
-    days_back_start=90, days_back_end=0 -> last 90 days
-    days_back_start=180, days_back_end=90 -> previous 90-day period
+    daysBackStart=90, daysBackEnd=0 -> last 90 days
+    daysBackStart=180, daysBackEnd=90 -> previous 90-day period
     """
     now = datetime.now(timezone.utc)
-    start_dt = now - timedelta(days=days_back_start)
-    end_dt = now - timedelta(days=days_back_end)
+    startDt = now - timedelta(days=daysBackStart)
+    endDt = now - timedelta(days=daysBackEnd)
 
     params = {
         "$select": "id,issue_date,latitude,longitude,permit_type,work_description",
         "$where": (
-            f"issue_date >= '{start_dt.strftime('%Y-%m-%dT%H:%M:%S')}' "
-            f"AND issue_date < '{end_dt.strftime('%Y-%m-%dT%H:%M:%S')}' "
+            f"issue_date >= '{startDt.strftime('%Y-%m-%dT%H:%M:%S')}' "
+            f"AND issue_date < '{endDt.strftime('%Y-%m-%dT%H:%M:%S')}' "
             f"AND latitude IS NOT NULL "
             f"AND longitude IS NOT NULL"
         ),
         "$limit": limit,
     }
 
-    return safe_get(CHICAGO_BUILDING_PERMITS_API, params=params)
+    return safeGet(CHICAGO_BUILDING_PERMITS_API, params=params)
 
 
-def _count_nearby_permits(
+def _countNearbyPermits(
     permits: list[dict[str, Any]],
     lat: float,
     lng: float,
-    radius_miles: float,
+    radiusMiles: float,
 ) -> int:
     count = 0
 
     for permit in permits:
-        permit_lat = safe_float(permit.get("latitude"))
-        permit_lng = safe_float(permit.get("longitude"))
-        if permit_lat is None or permit_lng is None:
+        permitLat = safeFloat(permit.get("latitude"))
+        permitLng = safeFloat(permit.get("longitude"))
+        if permitLat is None or permitLng is None:
             continue
 
-        distance = haversine_miles(lat, lng, permit_lat, permit_lng)
-        if distance <= radius_miles:
+        distance = haversineMiles(lat, lng, permitLat, permitLng)
+        if distance <= radiusMiles:
             count += 1
 
     return count
 
 
-def fetch_permits(plot: dict[str, Any], radius_miles: float = SEARCH_RADIUS_MILES) -> dict[str, Any]:
+def fetchPermits(
+    plot: dict[str, Any],
+    radiusMiles: float = SEARCH_RADIUS_MILES,
+) -> dict[str, Any]:
     """
     Fetch nearby permit/development activity for a plot.
 
@@ -67,8 +78,8 @@ def fetch_permits(plot: dict[str, Any], radius_miles: float = SEARCH_RADIUS_MILE
         "permit_count_nearby": int
     }
     """
-    lat = safe_float(plot.get("lat"))
-    lng = safe_float(plot.get("lng"))
+    lat = safeFloat(plot.get("lat"))
+    lng = safeFloat(plot.get("lng"))
 
     if lat is None or lng is None:
         return {
@@ -77,24 +88,24 @@ def fetch_permits(plot: dict[str, Any], radius_miles: float = SEARCH_RADIUS_MILE
         }
 
     try:
-        recent_permits = _fetch_permit_window(90, 0)
-        previous_permits = _fetch_permit_window(180, 90)
+        recentPermits = _fetchPermitWindow(90, 0)
+        previousPermits = _fetchPermitWindow(180, 90)
 
-        recent_count = _count_nearby_permits(recent_permits, lat, lng, radius_miles)
-        previous_count = _count_nearby_permits(previous_permits, lat, lng, radius_miles)
+        recentCount = _countNearbyPermits(recentPermits, lat, lng, radiusMiles)
+        previousCount = _countNearbyPermits(previousPermits, lat, lng, radiusMiles)
 
-        if previous_count == 0:
-            permit_activity = 0.0 if recent_count == 0 else 1.0
+        if previousCount == 0:
+            permitActivity = 0.0 if recentCount == 0 else 1.0
         else:
-            permit_activity = (recent_count - previous_count) / previous_count
+            permitActivity = (recentCount - previousCount) / previousCount
 
         return {
-            "permit_activity": round(permit_activity, 4),
-            "permit_count_nearby": recent_count,
+            "permit_activity": round(permitActivity, 4),
+            "permit_count_nearby": recentCount,
         }
 
     except Exception as exc:
-        print(f"[fetch_permits] Failed for plot {plot.get('id')}: {exc}")
+        print(f"[fetchPermits] Failed for plot {plot.get('id')}: {exc}")
         return {
             "permit_activity": None,
             "permit_count_nearby": 0,
@@ -102,10 +113,10 @@ def fetch_permits(plot: dict[str, Any], radius_miles: float = SEARCH_RADIUS_MILE
 
 
 if __name__ == "__main__":
-    sample_plot = {
+    samplePlot = {
         "id": "test_plot",
         "lat": 41.8781,
         "lng": -87.6298,
     }
-    result = fetch_permits(sample_plot)
+    result = fetchPermits(samplePlot)
     print(result)

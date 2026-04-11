@@ -14,25 +14,25 @@ from __future__ import annotations
 from typing import Any
 
 from config import CHICAGO_PLOTS_API, PIPELINE_LIMIT, RAW_PLOTS_FILE
-from utils import safe_float, safe_get, safe_int, save_json
+from utils import safeFloat, safeGet, safeInt, saveJson
 
 
-def _normalize_plot(raw: dict[str, Any], idx: int) -> dict[str, Any] | None:
+def _normalizePlot(raw: dict[str, Any], idx: int) -> dict[str, Any] | None:
     """
     Normalize one raw plot/property record into the base plot schema.
     This is intentionally defensive because Chicago open data fields can vary.
     """
 
     lat = (
-        safe_float(raw.get("latitude"))
-        or safe_float(raw.get("lat"))
-        or safe_float(raw.get("y"))
+        safeFloat(raw.get("latitude"))
+        or safeFloat(raw.get("lat"))
+        or safeFloat(raw.get("y"))
     )
     lng = (
-        safe_float(raw.get("longitude"))
-        or safe_float(raw.get("lng"))
-        or safe_float(raw.get("lon"))
-        or safe_float(raw.get("x"))
+        safeFloat(raw.get("longitude"))
+        or safeFloat(raw.get("lng"))
+        or safeFloat(raw.get("lon"))
+        or safeFloat(raw.get("x"))
     )
 
     if lat is None or lng is None:
@@ -45,21 +45,21 @@ def _normalize_plot(raw: dict[str, Any], idx: int) -> dict[str, Any] | None:
         or "Unknown"
     )
 
-    zip_code = (
+    zipCode = (
         raw.get("zip")
         or raw.get("zip_code")
         or raw.get("postal_code")
         or "Unknown"
     )
 
-    parcel_size = (
-        safe_int(raw.get("sq_ft"))
-        or safe_int(raw.get("square_feet"))
-        or safe_int(raw.get("parcel_size"))
+    parcelSize = (
+        safeInt(raw.get("sq_ft"))
+        or safeInt(raw.get("square_feet"))
+        or safeInt(raw.get("parcel_size"))
         or 0
     )
 
-    property_type = (
+    propertyType = (
         raw.get("property_type")
         or raw.get("building_type")
         or raw.get("land_use")
@@ -74,7 +74,7 @@ def _normalize_plot(raw: dict[str, Any], idx: int) -> dict[str, Any] | None:
         or "unknown"
     )
 
-    record_id = (
+    recordId = (
         raw.get("id")
         or raw.get("pin")
         or raw.get("parcel_id")
@@ -82,18 +82,18 @@ def _normalize_plot(raw: dict[str, Any], idx: int) -> dict[str, Any] | None:
     )
 
     return {
-        "id": str(record_id),
+        "id": str(recordId),
         "lat": lat,
         "lng": lng,
         "neighborhood": str(neighborhood),
-        "zip": str(zip_code),
-        "parcel_size": parcel_size,
-        "property_type": str(property_type),
+        "zip": str(zipCode),
+        "parcel_size": parcelSize,
+        "property_type": str(propertyType),
         "zoning": str(zoning),
     }
 
 
-def fetch_plots(limit: int = PIPELINE_LIMIT) -> list[dict[str, Any]]:
+def fetchPlots(limit: int = PIPELINE_LIMIT) -> list[dict[str, Any]]:
     """
     Fetch base opportunity plots/sites for Chicago.
 
@@ -107,20 +107,20 @@ def fetch_plots(limit: int = PIPELINE_LIMIT) -> list[dict[str, Any]]:
         "$limit": limit,
     }
 
-    raw_records = safe_get(CHICAGO_PLOTS_API, params=params)
+    rawRecords = safeGet(CHICAGO_PLOTS_API, params=params)
 
     plots: list[dict[str, Any]] = []
-    for idx, raw in enumerate(raw_records, start=1):
-        normalized = _normalize_plot(raw, idx)
+    for idx, raw in enumerate(rawRecords, start=1):
+        normalized = _normalizePlot(raw, idx)
         if normalized is not None:
             plots.append(normalized)
 
-    save_json(plots, RAW_PLOTS_FILE)
+    saveJson(plots, RAW_PLOTS_FILE)
     return plots
 
 
 if __name__ == "__main__":
-    plots = fetch_plots()
+    plots = fetchPlots()
     print(f"Fetched {len(plots)} plots")
     if plots:
         print(plots[0])

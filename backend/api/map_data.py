@@ -2,16 +2,16 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
-from utils import load_json
+from utils import loadJson
 
 
 router = APIRouter()
 
 
 @router.get("/map-data")
-def get_map_data():
-    data = load_json("output/final_plots.json")
+def getMapData():
+    mapData = loadJson("output/final_plots.json")
     return {
-        "count": len(data) if data else 0,
-        "results": data or [],
+        "count": len(mapData) if mapData else 0,
+        "results": mapData or [],
     }

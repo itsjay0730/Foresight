@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from fastapi import FastAPI
 
-from api.map_data import router as map_data_router
-from data.run_pipeline import run_pipeline
+from api.map_data import router as mapDataRouter
+from data.run_pipeline import runPipeline
 
 
 app = FastAPI(title="Foresight Data Pipeline API")
@@ -24,8 +24,8 @@ def health():
 
 
 @app.post("/run-pipeline")
-def run_pipeline_endpoint():
-    results = run_pipeline()
+def runPipelineEndpoint():
+    results = runPipeline()
     return {
         "status": "success",
         "count": len(results),
@@ -33,4 +33,4 @@ def run_pipeline_endpoint():
     }
 
 
-app.include_router(map_data_router)
+app.include_router(mapDataRouter)

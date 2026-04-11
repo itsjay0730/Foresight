@@ -1,13 +1,3 @@
-
-# ⸻
-
-# What this file does
-
-# This file:
-# 	•	reads the plot ZIP code
-# 	•	queries the Census ACS API for median household income
-# 	•	returns a clean, consistent result:
-
 from __future__ import annotations
 
 from typing import Any
@@ -36,13 +26,13 @@ ZIP_TO_INCOME: dict[str, int] = {
 }
 
 
-def _fetch_income_by_zip(zip_code: str) -> int | None:
+def _fetchIncomeByZip(zipCode: str) -> int | None:
     """
     Fetch median household income for a ZIP Code Tabulation Area from ACS.
     """
     params = {
         "get": f"NAME,{ACS_MEDIAN_INCOME_VAR}",
-        "for": f"zip code tabulation area:{zip_code}",
+        "for": f"zip code tabulation area:{zipCode}",
     }
 
     if CENSUS_API_KEY:
@@ -67,7 +57,7 @@ def _fetch_income_by_zip(zip_code: str) -> int | None:
     return int(value)
 
 
-def fetch_income(plot: dict[str, Any]) -> dict[str, Any]:
+def fetchIncome(plot: dict[str, Any]) -> dict[str, Any]:
     """
     Fetch area income for a plot.
 
@@ -76,27 +66,27 @@ def fetch_income(plot: dict[str, Any]) -> dict[str, Any]:
         "income": int | None
     }
     """
-    zip_code = str(plot.get("zip", "")).strip()
+    zipCode = str(plot.get("zip", "")).strip()
 
-    if not zip_code or zip_code == "Unknown":
+    if not zipCode or zipCode == "Unknown":
         return {"income": None}
 
     try:
-        income = _fetch_income_by_zip(zip_code)
+        income = _fetchIncomeByZip(zipCode)
         if income is not None:
             return {"income": income}
     except Exception as exc:
-        print(f"[fetch_income] Census API failed for ZIP {zip_code}: {exc}")
+        print(f"[fetchIncome] Census API failed for ZIP {zipCode}: {exc}")
 
     # Fallback for MVP so the pipeline still works with realistic values
-    fallback_income = ZIP_TO_INCOME.get(zip_code)
-    return {"income": fallback_income}
+    fallbackIncome = ZIP_TO_INCOME.get(zipCode)
+    return {"income": fallbackIncome}
 
 
 if __name__ == "__main__":
-    sample_plot = {
+    samplePlot = {
         "id": "test_plot",
         "zip": "60647",
     }
-    result = fetch_income(sample_plot)
+    result = fetchIncome(samplePlot)
     print(result)

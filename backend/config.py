@@ -12,7 +12,7 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 # General settings
 # -----------------------------
 REQUEST_TIMEOUT = 20
-PIPELINE_LIMIT = 30   # target 20–50 sites for MVP
+PIPELINE_LIMIT = 30  # target 20–50 sites for MVP
 SEARCH_RADIUS_MILES = 0.5
 
 # -----------------------------

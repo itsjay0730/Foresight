@@ -14,20 +14,20 @@ from __future__ import annotations
 from typing import Any
 
 from config import SEARCH_RADIUS_MILES
-from utils import haversine_miles, safe_float, safe_get
+from utils import haversineMiles, safeFloat, safeGet
 
 
 CTA_STOPS_API = "https://data.cityofchicago.org/resource/qs84-j7wh.json"
 
 
-def _fetch_all_stops(limit: int = 5000) -> list[dict[str, Any]]:
+def _fetchAllStops(limit: int = 5000) -> list[dict[str, Any]]:
     params = {
         "$limit": limit,
     }
-    return safe_get(CTA_STOPS_API, params=params)
+    return safeGet(CTA_STOPS_API, params=params)
 
 
-def _extract_stop_lat_lng(stop: dict[str, Any]) -> tuple[float | None, float | None]:
+def _extractStopLatLng(stop: dict[str, Any]) -> tuple[float | None, float | None]:
     """
     Chicago CTA bus stops dataset stores coordinates in:
     stop["the_geom"]["coordinates"] = [lng, lat]
@@ -36,14 +36,14 @@ def _extract_stop_lat_lng(stop: dict[str, Any]) -> tuple[float | None, float | N
     if isinstance(geom, dict):
         coords = geom.get("coordinates")
         if isinstance(coords, list) and len(coords) >= 2:
-            lng = safe_float(coords[0])
-            lat = safe_float(coords[1])
+            lng = safeFloat(coords[0])
+            lat = safeFloat(coords[1])
             return lat, lng
 
     return None, None
 
 
-def _extract_stop_name(stop: dict[str, Any]) -> str:
+def _extractStopName(stop: dict[str, Any]) -> str:
     return str(
         stop.get("public_nam")
         or stop.get("stop_name")
@@ -52,9 +52,9 @@ def _extract_stop_name(stop: dict[str, Any]) -> str:
     )
 
 
-def fetch_transit(
+def fetchTransit(
     plot: dict[str, Any],
-    radius_miles: float = SEARCH_RADIUS_MILES,
+    radiusMiles: float = SEARCH_RADIUS_MILES,
 ) -> dict[str, Any]:
     """
     Fetch nearest CTA transit stop distance for a plot.
@@ -66,8 +66,8 @@ def fetch_transit(
         "transit_stop_count_nearby": int
     }
     """
-    lat = safe_float(plot.get("lat"))
-    lng = safe_float(plot.get("lng"))
+    lat = safeFloat(plot.get("lat"))
+    lng = safeFloat(plot.get("lng"))
 
     if lat is None or lng is None:
         return {
@@ -77,34 +77,34 @@ def fetch_transit(
         }
 
     try:
-        stops = _fetch_all_stops()
+        stops = _fetchAllStops()
 
-        nearest_distance: float | None = None
-        nearest_station: str | None = None
-        nearby_count = 0
+        nearestDistance: float | None = None
+        nearestStation: str | None = None
+        nearbyCount = 0
 
         for stop in stops:
-            stop_lat, stop_lng = _extract_stop_lat_lng(stop)
-            if stop_lat is None or stop_lng is None:
+            stopLat, stopLng = _extractStopLatLng(stop)
+            if stopLat is None or stopLng is None:
                 continue
 
-            distance = haversine_miles(lat, lng, stop_lat, stop_lng)
+            distance = haversineMiles(lat, lng, stopLat, stopLng)
 
-            if distance <= radius_miles:
-                nearby_count += 1
+            if distance <= radiusMiles:
+                nearbyCount += 1
 
-            if nearest_distance is None or distance < nearest_distance:
-                nearest_distance = distance
-                nearest_station = _extract_stop_name(stop)
+            if nearestDistance is None or distance < nearestDistance:
+                nearestDistance = distance
+                nearestStation = _extractStopName(stop)
 
         return {
-            "transit_distance": round(nearest_distance, 4) if nearest_distance is not None else None,
-            "nearest_station": nearest_station,
-            "transit_stop_count_nearby": nearby_count,
+            "transit_distance": round(nearestDistance, 4) if nearestDistance is not None else None,
+            "nearest_station": nearestStation,
+            "transit_stop_count_nearby": nearbyCount,
         }
 
     except Exception as exc:
-        print(f"[fetch_transit] Failed for plot {plot.get('id')}: {exc}")
+        print(f"[fetchTransit] Failed for plot {plot.get('id')}: {exc}")
         return {
             "transit_distance": None,
             "nearest_station": None,
@@ -113,10 +113,10 @@ def fetch_transit(
 
 
 if __name__ == "__main__":
-    sample_plot = {
+    samplePlot = {
         "id": "test_plot",
         "lat": 41.8781,
         "lng": -87.6298,
     }
-    result = fetch_transit(sample_plot)
+    result = fetchTransit(samplePlot)
     print(result)

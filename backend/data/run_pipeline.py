@@ -12,38 +12,37 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 from typing import Any
 
 import pandas as pd
 
 from config import ENRICHED_PLOTS_FILE, FINAL_PLOTS_CSV, FINAL_PLOTS_FILE
-from data.fetch_crime import fetch_crime
-from data.fetch_income import fetch_income
-from data.fetch_permits import fetch_permits
-from data.fetch_plots import fetch_plots
-from data.fetch_population import fetch_population
-from data.fetch_transit import fetch_transit
-from data.normalize import normalize
-from utils import save_json
+from data.fetch_crime import fetchCrime
+from data.fetch_income import fetchIncome
+from data.fetch_permits import fetchPermits
+from data.fetch_plots import fetchPlots
+from data.fetch_population import fetchPopulation
+from data.fetch_transit import fetchTransit
+from data.normalize import normalizePlots
+from utils import saveJson
 
 
-def enrich_plot(plot: dict[str, Any]) -> dict[str, Any]:
+def enrichPlot(plot: dict[str, Any]) -> dict[str, Any]:
     """
     Attach all sub-data to one plot.
     """
     enriched = dict(plot)
 
-    enriched["crime"] = fetch_crime(enriched)
-    enriched["permits"] = fetch_permits(enriched)
-    enriched["income"] = fetch_income(enriched)
-    enriched["population"] = fetch_population(enriched)
-    enriched["transit"] = fetch_transit(enriched)
+    enriched["crime"] = fetchCrime(enriched)
+    enriched["permits"] = fetchPermits(enriched)
+    enriched["income"] = fetchIncome(enriched)
+    enriched["population"] = fetchPopulation(enriched)
+    enriched["transit"] = fetchTransit(enriched)
 
     return enriched
 
 
-def run_pipeline() -> list[dict[str, Any]]:
+def runPipeline() -> list[dict[str, Any]]:
     """
     Full pipeline flow:
     1. Fetch plots
@@ -52,34 +51,34 @@ def run_pipeline() -> list[dict[str, Any]]:
     4. Normalize into final flat dataset
     5. Save final JSON + CSV
     """
-    plots = fetch_plots()
-    print(f"[run_pipeline] Fetched {len(plots)} base plots")
+    plots = fetchPlots()
+    print(f"[runPipeline] Fetched {len(plots)} base plots")
 
-    enriched_plots: list[dict[str, Any]] = []
+    enrichedPlots: list[dict[str, Any]] = []
     total = len(plots)
 
     for idx, plot in enumerate(plots, start=1):
-        print(f"[run_pipeline] Enriching plot {idx}/{total} -> {plot.get('id')}")
-        enriched = enrich_plot(plot)
-        enriched_plots.append(enriched)
+        print(f"[runPipeline] Enriching plot {idx}/{total} -> {plot.get('id')}")
+        enriched = enrichPlot(plot)
+        enrichedPlots.append(enriched)
 
-    save_json(enriched_plots, ENRICHED_PLOTS_FILE)
-    print(f"[run_pipeline] Saved enriched plots to {ENRICHED_PLOTS_FILE}")
+    saveJson(enrichedPlots, ENRICHED_PLOTS_FILE)
+    print(f"[runPipeline] Saved enriched plots to {ENRICHED_PLOTS_FILE}")
 
-    final_plots = normalize(enriched_plots)
-    save_json(final_plots, FINAL_PLOTS_FILE)
-    print(f"[run_pipeline] Saved final JSON to {FINAL_PLOTS_FILE}")
+    finalPlots = normalizePlots(enrichedPlots)
+    saveJson(finalPlots, FINAL_PLOTS_FILE)
+    print(f"[runPipeline] Saved final JSON to {FINAL_PLOTS_FILE}")
 
-    df = pd.DataFrame(final_plots)
+    df = pd.DataFrame(finalPlots)
     df.to_csv(FINAL_PLOTS_CSV, index=False)
-    print(f"[run_pipeline] Saved final CSV to {FINAL_PLOTS_CSV}")
+    print(f"[runPipeline] Saved final CSV to {FINAL_PLOTS_CSV}")
 
-    print(f"[run_pipeline] Final normalized plot count: {len(final_plots)}")
-    return final_plots
+    print(f"[runPipeline] Final normalized plot count: {len(finalPlots)}")
+    return finalPlots
 
 
 if __name__ == "__main__":
-    results = run_pipeline()
+    results = runPipeline()
     if results:
-        print("[run_pipeline] Sample final record:")
+        print("[runPipeline] Sample final record:")
         print(json.dumps(results[0], indent=2))
