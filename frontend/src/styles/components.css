@@ -1,0 +1,67 @@
+/* Additional component styles that complement Tailwind */
+
+/* Command bar button variants */
+.cb-btn {
+  height: 34px;
+  width: 34px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  color: #8494b2;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cb-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #eaf0fa;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.cb-btn-text {
+  height: 34px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  color: #8494b2;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "Outfit", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.cb-btn-text:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #eaf0fa;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.cb-btn-accent {
+  height: 34px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
+  color: #06b6d4;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: "Outfit", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.cb-btn-accent:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(6, 182, 212, 0.25));
+  color: #fff;
+}
