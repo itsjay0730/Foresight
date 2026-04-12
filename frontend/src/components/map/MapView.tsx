@@ -6,7 +6,7 @@ import type { MapRef } from "react-map-gl/mapbox";
 import type { Map as MapboxMap, FillExtrusionLayer } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import { getProperties } from "@/data/api";
+import { properties } from "@/data/properties";
 import { FilterState } from "@/data/types";
 import { scoreColor } from "@/lib/utils";
 
@@ -23,90 +23,19 @@ function isFiniteNumber(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value);
 }
 
-function clamp01(value: number) {
-  return Math.max(0, Math.min(1, value));
-}
-
-function normalize(value: number, min: number, max: number) {
-  if (!Number.isFinite(value)) return 0;
-  if (max <= min) return 0;
-  return clamp01((value - min) / (max - min));
-}
-
-function getHousingModeScore(plot: any, timeline: string) {
-  const rentLevel = Number(plot?.zip_rent_index_latest ?? 0);
-  const zipRentGrowth = Number(plot?.zip_rent_growth_1y ?? 0);
-  const metroRentGrowth = Number(plot?.metro_rent_growth_1y ?? 0);
-  const salesGrowth = Number(plot?.sales_count_growth_1y ?? 0);
-
-  const rentLevelScore = normalize(rentLevel, 1200, 3200);
-  const zipGrowthScore = normalize(zipRentGrowth, -0.05, 0.12);
-  const metroGrowthScore = normalize(metroRentGrowth, -0.05, 0.12);
-  const salesMomentumScore = normalize(salesGrowth, -0.2, 0.2);
-
-  const base =
-    0.4 * rentLevelScore +
-    0.3 * zipGrowthScore +
-    0.15 * metroGrowthScore +
-    0.15 * salesMomentumScore;
-
-  const multiplier = timeline === "1" ? 0.97 : timeline === "5" ? 1.05 : 1.0;
-
-  return Math.max(0, Math.min(100, Math.round((60 + base * 35) * multiplier)));
-}
-
-function getTimelineAdjustedScore(
-  baseScore: number,
-  timeline: string,
-  forecastScores?: {
-    "1y"?: { finalScore?: number; opportunity?: number };
-    "3y"?: { finalScore?: number; opportunity?: number };
-    "5y"?: { finalScore?: number; opportunity?: number };
-  }
-) {
-  const timelineKey = `${timeline}y` as "1y" | "3y" | "5y";
-  const forecastScore = forecastScores?.[timelineKey]?.finalScore;
-
-  if (typeof forecastScore === "number") {
-    return Math.max(0, Math.min(100, Math.round(forecastScore)));
-  }
-
-  const multipliers: Record<string, number> = {
-    "1": 0.94,
-    "3": 1,
-    "5": 1.08,
-  };
-
-  const multiplier = multipliers[timeline] ?? 1;
-  return Math.max(0, Math.min(100, Math.round(baseScore * multiplier)));
-}
-
-function getModeScore(
-  plot: any,
-  timeline: string,
-  housingType: "investment" | "housing"
-) {
-  if (housingType === "housing") {
-    return getHousingModeScore(plot, timeline);
-  }
-
-  return getTimelineAdjustedScore(plot.score, timeline, plot?.forecast_scores);
-}
-
 function add3DBuildings(map: MapboxMap) {
-  if (!map.getStyle() || !map.getStyle().layers) return;
+  const style = map.getStyle();
+  if (!style || !style.layers) return;
   if (map.getLayer(BUILDINGS_LAYER_ID)) return;
   if (!map.getSource("composite")) return;
 
-  const labelLayerId = map
-    .getStyle()
-    .layers?.find(
-      (layer) =>
-        layer.type === "symbol" &&
-        "layout" in layer &&
-        layer.layout &&
-        (layer.layout as Record<string, unknown>)["text-field"]
-    )?.id;
+  const labelLayerId = style.layers.find(
+    (layer) =>
+      layer.type === "symbol" &&
+      "layout" in layer &&
+      layer.layout &&
+      (layer.layout as Record<string, unknown>)["text-field"]
+  )?.id;
 
   const buildingsLayer: FillExtrusionLayer = {
     id: BUILDINGS_LAYER_ID,
@@ -161,7 +90,7 @@ export default function MapView({
   mapRef,
 }: MapViewProps) {
   const internalMapRef = useRef<MapRef | null>(null);
-  const [mapLoaded, setMapLoaded] = useState(false);
+  const [styleReady, setStyleReady] = useState(false);
 
   useEffect(() => {
     mapRef.current = {
@@ -203,61 +132,41 @@ export default function MapView({
 
     return () => {
       mapRef.current = null;
-      setMapLoaded(false);
     };
   }, [mapRef]);
 
-  const properties = getProperties();
-
   const visibleProperties = useMemo(() => {
-    return properties
-      .filter((p) => {
-        if (!isFiniteNumber(p.lat) || !isFiniteNumber(p.lng)) return false;
+    return properties.filter((p) => {
+      if (!isFiniteNumber(p.lat) || !isFiniteNumber(p.lng)) return false;
 
+      if (filters.investmentType && p.type !== filters.investmentType) {
+        return false;
+      }
+
+      if (filters.riskLevel) {
+        if (filters.riskLevel === "low" && p.risk !== "low") return false;
+        if (filters.riskLevel === "moderate" && p.risk !== "moderate") return false;
         if (
-          filters.investmentType &&
-          filters.investmentType !== "investment" &&
-          filters.investmentType !== "housing" &&
-          p.type !== filters.investmentType
+          filters.riskLevel === "high" &&
+          !["emerging", "high"].includes(p.risk)
         ) {
           return false;
         }
-
-        if (filters.riskLevel) {
-          if (filters.riskLevel === "low" && p.risk !== "low") return false;
-          if (filters.riskLevel === "moderate" && p.risk !== "moderate") {
-            return false;
-          }
-          if (
-            filters.riskLevel === "high" &&
-            !["emerging", "high"].includes(p.risk)
-          ) {
-            return false;
-          }
-          if (filters.riskLevel === "emerging" && p.risk !== "emerging") {
-            return false;
-          }
-          if (filters.riskLevel === "avoid" && p.risk !== "avoid") {
-            return false;
-          }
+        if (filters.riskLevel === "emerging" && p.risk !== "emerging") {
+          return false;
         }
+        if (filters.riskLevel === "avoid" && p.risk !== "avoid") return false;
+      }
 
-        return true;
-      })
-      .map((p) => ({
-        ...p,
-        mapDisplayScore: getModeScore(p, filters.timeline, filters.housingType),
-      }))
-      .sort((a, b) => b.mapDisplayScore - a.mapDisplayScore);
-  }, [filters, properties]);
+      if (filters.searchQuery) {
+        const q = filters.searchQuery.toLowerCase().trim();
+        const haystack = `${p.name} ${p.hood} ${p.type}`.toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
 
-  const safeVisibleProperties = useMemo(() => {
-    if (!mapLoaded) return [];
-
-    return visibleProperties.filter(
-      (p) => isFiniteNumber(p.lat) && isFiniteNumber(p.lng)
-    );
-  }, [mapLoaded, visibleProperties]);
+      return true;
+    });
+  }, [filters]);
 
   const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
@@ -294,44 +203,57 @@ export default function MapView({
         mapStyle="mapbox://styles/mapbox/dark-v11"
         attributionControl={false}
         style={{ width: "100%", height: "100%" }}
-        onLoad={(e) => {
-          add3DBuildings(e.target);
-          setMapLoaded(true);
+        onLoad={() => {
+          const map = internalMapRef.current?.getMap();
+          if (!map) return;
+
+          const waitForStyle = () => {
+            if (map.isStyleLoaded()) {
+              add3DBuildings(map);
+              setStyleReady(true);
+            } else {
+              requestAnimationFrame(waitForStyle);
+            }
+          };
+
+          waitForStyle();
         }}
         onStyleData={() => {
           const map = internalMapRef.current?.getMap();
-          if (map) {
+          if (!map) return;
+
+          if (map.isStyleLoaded()) {
             add3DBuildings(map);
-            const style = map.getStyle();
-            if (style?.layers?.length) {
-              setMapLoaded(true);
-            }
+            setStyleReady(true);
           }
         }}
       >
-        {safeVisibleProperties.map((p) => (
-          <Marker
-            key={p.id}
-            longitude={p.lng}
-            latitude={p.lat}
-            anchor="center"
-            onClick={(e) => {
-              e.originalEvent.stopPropagation();
-              onSelectProperty(p.id);
-            }}
-          >
-            <button
-              type="button"
-              className="pointer-events-auto rounded-full border border-white/35"
-              style={{
-                width: 10,
-                height: 10,
-                background: scoreColor(p.mapDisplayScore),
-              }}
-              aria-label={p.name}
-            />
-          </Marker>
-        ))}
+        {styleReady
+          ? visibleProperties.map((p) => (
+              <Marker
+                key={p.id}
+                longitude={p.lng}
+                latitude={p.lat}
+                anchor="center"
+              >
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectProperty(p.id);
+                  }}
+                  className="pointer-events-auto rounded-full border border-white/35 shadow-[0_0_10px_rgba(0,0,0,0.35)]"
+                  style={{
+                    width: 10,
+                    height: 10,
+                    background: scoreColor(p.score),
+                  }}
+                  aria-label={p.name}
+                  title={p.name}
+                />
+              </Marker>
+            ))
+          : null}
       </Map>
     </div>
   );

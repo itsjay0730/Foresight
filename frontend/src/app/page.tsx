@@ -226,36 +226,36 @@ export default function ForesightApp() {
   const [notif, setNotif] = useState({ message: "", visible: false });
 
   useEffect(() => {
-    let mounted = true;
+  let mounted = true;
 
-    setDataReady(false);
+  setDataReady(false);
 
-    fetchAndGetData("investment")
-      .then((data) => {
-        if (!mounted) return;
-        setApiNeighborhoods(data.neighborhoods ?? {});
-        setApiNeighborhoodList(data.neighborhoodList ?? []);
-        setApiProperties(data.properties ?? []);
-        setActiveHoodId(undefined);
-        setPanelOpen(false);
-        setHoodPopupOpen(false);
-        setDataReady(true);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setApiNeighborhoods({});
-        setApiNeighborhoodList([]);
-        setApiProperties([]);
-        setActiveHoodId(undefined);
-        setPanelOpen(false);
-        setHoodPopupOpen(false);
-        setDataReady(true);
-      });
+  fetchAndGetData()
+    .then((data) => {
+      if (!mounted) return;
+      setApiNeighborhoods(data.neighborhoods ?? {});
+      setApiNeighborhoodList(data.neighborhoodList ?? []);
+      setApiProperties(data.properties ?? []);
+      setActiveHoodId(undefined);
+      setPanelOpen(false);
+      setHoodPopupOpen(false);
+      setDataReady(true);
+    })
+    .catch(() => {
+      if (!mounted) return;
+      setApiNeighborhoods({});
+      setApiNeighborhoodList([]);
+      setApiProperties([]);
+      setActiveHoodId(undefined);
+      setPanelOpen(false);
+      setHoodPopupOpen(false);
+      setDataReady(true);
+    });
 
-    return () => {
-      mounted = false;
-    };
-  }, [filters.housingType]);
+  return () => {
+    mounted = false;
+  };
+}, [filters.housingType]);
 
   const notify = useCallback((msg: string) => {
     setNotif({ message: msg, visible: true });

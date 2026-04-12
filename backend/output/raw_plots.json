@@ -1,172 +1,106 @@
 [
   {
-    "id": "13133230450000",
-    "pin": "13133230450000",
-    "lat": 41.95592797825666,
-    "lng": -87.69865221855252,
-    "neighborhood": "JEFFERSON PARK",
+    "id": "2563584-20260916",
+    "lat": 41.8893542519,
+    "lng": -87.6241024562,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60611",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "1904803-20260516",
+    "lat": 41.8831927007,
+    "lng": -87.650962974,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "28592-20260516",
+    "lat": 41.8880742811,
+    "lng": -87.6349552029,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60654",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2677091-20260516",
+    "lat": 41.88184063,
+    "lng": -87.6332550894,
+    "neighborhood": "LOOP",
+    "zip": "60602",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Retail Food Establishment"
+  },
+  {
+    "id": "31153-20260516",
+    "lat": 41.8860483674,
+    "lng": -87.6511329281,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2840926-20260516",
+    "lat": 41.9524438778,
+    "lng": -87.6773953526,
+    "neighborhood": "NORTH CENTER",
+    "zip": "60613",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Animal Care License"
+  },
+  {
+    "id": "2446496-20260516",
+    "lat": 41.9540911429,
+    "lng": -87.6753412254,
+    "neighborhood": "NORTH CENTER",
+    "zip": "60613",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Tobacco"
+  },
+  {
+    "id": "2967376-20260516",
+    "lat": 41.9448215398,
+    "lng": -87.6638091163,
+    "neighborhood": "LAKE VIEW",
+    "zip": "60657",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2846138-20260516",
+    "lat": 41.9614094982,
+    "lng": -87.6906584419,
+    "neighborhood": "LINCOLN SQUARE",
     "zip": "60618",
     "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "212"
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
   },
   {
-    "id": "13133280210000",
-    "pin": "13133280210000",
-    "lat": 41.95516043489768,
-    "lng": -87.70229393303123,
-    "neighborhood": "JEFFERSON PARK",
-    "zip": "60618",
+    "id": "2712488-20260516",
+    "lat": 41.9541141437,
+    "lng": -87.6546816274,
+    "neighborhood": "LAKE VIEW",
+    "zip": "60613",
     "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "202"
+    "property_type": "business_candidate",
+    "zoning": "Package Goods"
   },
   {
-    "id": "13134040350000",
-    "pin": "13134040350000",
-    "lat": 41.95974105478768,
-    "lng": -87.69041244764037,
-    "neighborhood": "JEFFERSON PARK",
-    "zip": "60618",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "203"
-  },
-  {
-    "id": "13143330321005",
-    "pin": "13143330321005",
-    "lat": 41.95449736773211,
-    "lng": -87.71818587274028,
-    "neighborhood": "JEFFERSON PARK",
-    "zip": "60618",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "399"
-  },
-  {
-    "id": "13144280060000",
-    "pin": "13144280060000",
-    "lat": 41.95546369813925,
-    "lng": -87.7121635408187,
-    "neighborhood": "JEFFERSON PARK",
-    "zip": "60618",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "203"
-  },
-  {
-    "id": "13252260120000",
-    "pin": "13252260120000",
-    "lat": 41.9328997098246,
-    "lng": -87.69362459416577,
-    "neighborhood": "WEST TOWN",
-    "zip": "60618",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "211"
-  },
-  {
-    "id": "11321050110000",
-    "pin": "11321050110000",
-    "lat": 42.011303294478594,
-    "lng": -87.66644908300782,
-    "neighborhood": "ROGERS PARK",
-    "zip": "60626",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "EX"
-  },
-  {
-    "id": "11322000351005",
-    "pin": "11322000351005",
-    "lat": 42.00836173483099,
-    "lng": -87.6608756058313,
-    "neighborhood": "ROGERS PARK",
-    "zip": "60626",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "399"
-  },
-  {
-    "id": "11323060171009",
-    "pin": "11323060171009",
-    "lat": 42.00377988402272,
-    "lng": -87.66384548059871,
-    "neighborhood": "ROGERS PARK",
-    "zip": "60626",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "299"
-  },
-  {
-    "id": "11323080210000",
-    "pin": "11323080210000",
-    "lat": 42.00328260138211,
-    "lng": -87.66966816222124,
-    "neighborhood": "ROGERS PARK",
-    "zip": "60626",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "205"
-  },
-  {
-    "id": "13253020230000",
-    "pin": "13253020230000",
-    "lat": 41.930823863829886,
-    "lng": -87.70459543638479,
-    "neighborhood": "WEST TOWN",
-    "zip": "60647",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "203"
-  },
-  {
-    "id": "13254070390000",
-    "pin": "13254070390000",
-    "lat": 41.930770281697015,
-    "lng": -87.68824544076004,
-    "neighborhood": "WEST TOWN",
-    "zip": "60647",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "211"
-  },
-  {
-    "id": "13363030371001",
-    "pin": "13363030371001",
-    "lat": 41.91714875823406,
-    "lng": -87.70344790914875,
-    "neighborhood": "WEST TOWN",
-    "zip": "60647",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "299"
-  },
-  {
-    "id": "13364130080000",
-    "pin": "13364130080000",
-    "lat": 41.91546396418252,
-    "lng": -87.69143337145485,
-    "neighborhood": "WEST TOWN",
-    "zip": "60647",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "211"
-  },
-  {
-    "id": "13364130270000",
-    "pin": "13364130270000",
-    "lat": 41.91507717356949,
-    "lng": -87.69160647419491,
-    "neighborhood": "WEST TOWN",
-    "zip": "60647",
-    "parcel_size": 0,
-    "property_type": "parcel_candidate",
-    "zoning": "278"
-  },
-  {
-    "id": "20283000120000",
-    "pin": "20283000120000",
+    "id": "37756",
     "lat": 41.75654782391807,
     "lng": -87.64386327857898,
     "neighborhood": "ENGLEWOOD",
@@ -176,8 +110,47 @@
     "zoning": "B1-2"
   },
   {
-    "id": "20033030260000",
-    "pin": "20033030260000",
+    "id": "8947",
+    "lat": 41.891993539915006,
+    "lng": -87.72262337281994,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "35050",
+    "lat": 41.893299947536285,
+    "lng": -87.72322440479832,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "35245",
+    "lat": 41.89385728946573,
+    "lng": -87.72041320086409,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "58725",
+    "lat": 41.867174702009,
+    "lng": -87.73696513733313,
+    "neighborhood": "NORTH LAWNDALE",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "M2-2"
+  },
+  {
+    "id": "62821",
     "lat": 41.81635800969871,
     "lng": -87.62045281388649,
     "neighborhood": "GRAND BOULEVARD",
@@ -187,8 +160,7 @@
     "zoning": "B3-3"
   },
   {
-    "id": "20171190100000",
-    "pin": "20171190100000",
+    "id": "36518",
     "lat": 41.78970436565455,
     "lng": -87.66048889509541,
     "neighborhood": "WEST ENGLEWOOD",
@@ -198,8 +170,17 @@
     "zoning": "RS-3"
   },
   {
-    "id": "20021030040000",
-    "pin": "20021030040000",
+    "id": "58818",
+    "lat": 41.89275197812359,
+    "lng": -87.72023597773659,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "16109",
     "lat": 41.823586956634486,
     "lng": -87.60432230879749,
     "neighborhood": "OAKLAND",
@@ -209,8 +190,7 @@
     "zoning": "RM-5"
   },
   {
-    "id": "25281130250000",
-    "pin": "25281130250000",
+    "id": "50670",
     "lat": 41.67587538651602,
     "lng": -87.63497051121821,
     "neighborhood": "WEST PULLMAN",
@@ -218,5 +198,805 @@
     "parcel_size": 3075,
     "property_type": "opportunity_site",
     "zoning": "RS-3"
+  },
+  {
+    "id": "19505",
+    "lat": 41.74483594473508,
+    "lng": -87.6597997988371,
+    "neighborhood": "AUBURN GRESHAM",
+    "zip": "60620",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "59403",
+    "lat": 41.8104306715045,
+    "lng": -87.61482207300874,
+    "neighborhood": "GRAND BOULEVARD",
+    "zip": "60653",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RM-5"
+  },
+  {
+    "id": "8771",
+    "lat": 41.89385822556417,
+    "lng": -87.72028530282613,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-4"
+  },
+  {
+    "id": "22900",
+    "lat": 41.7348607537722,
+    "lng": -87.54481150691862,
+    "neighborhood": "SOUTH CHICAGO",
+    "zip": "60617",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-3.5"
+  },
+  {
+    "id": "23989",
+    "lat": 41.72654653465606,
+    "lng": -87.62672288201742,
+    "neighborhood": "ROSELAND",
+    "zip": "60620",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-2"
+  },
+  {
+    "id": "22901",
+    "lat": 41.73479207976941,
+    "lng": -87.5448098190493,
+    "neighborhood": "SOUTH CHICAGO",
+    "zip": "60617",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-3.5"
+  },
+  {
+    "id": "65660",
+    "lat": 41.73253836838667,
+    "lng": -87.65705615590763,
+    "neighborhood": "WASHINGTON HEIGHTS",
+    "zip": "60643",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "63304",
+    "lat": 41.7918255239407,
+    "lng": -87.68800037464345,
+    "neighborhood": "GAGE PARK",
+    "zip": "60629",
+    "parcel_size": 5162,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3"
+  },
+  {
+    "id": "11330",
+    "lat": 41.88137933289834,
+    "lng": -87.69191926979119,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "C2-2"
+  },
+  {
+    "id": "62816",
+    "lat": 41.88169091949103,
+    "lng": -87.66983656786506,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "PD 522"
+  },
+  {
+    "id": "2906537-20260516",
+    "lat": 41.9015515657,
+    "lng": -87.6345374449,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60610",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Raffles"
+  },
+  {
+    "id": "2510900-20260516",
+    "lat": 41.884281738,
+    "lng": -87.6618616199,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Regulated Business License"
+  },
+  {
+    "id": "2208091-20260516",
+    "lat": 41.8924452824,
+    "lng": -87.6327553744,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60654",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Regulated Business License"
+  },
+  {
+    "id": "2967398-20260516",
+    "lat": 41.8818224938,
+    "lng": -87.635436571,
+    "neighborhood": "LOOP",
+    "zip": "60606",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "27729-20260516",
+    "lat": 41.8695310894,
+    "lng": -87.6438815301,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Filling Station"
+  },
+  {
+    "id": "1096426-20260516",
+    "lat": 41.8673194053,
+    "lng": -87.639056746,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Retail Food Establishment"
+  },
+  {
+    "id": "2873398-20260516",
+    "lat": 41.89569596,
+    "lng": -87.6347605209,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60654",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2595660-20260516",
+    "lat": 41.8920941369,
+    "lng": -87.6115698839,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60611",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2124528-20260516",
+    "lat": 41.884821249,
+    "lng": -87.6531394021,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Wholesale Food Establishment"
+  },
+  {
+    "id": "2578438-20260516",
+    "lat": 41.8917281777,
+    "lng": -87.6317258192,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60654",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Tavern"
+  },
+  {
+    "id": "1718677-20260516",
+    "lat": 41.8843278017,
+    "lng": -87.658457243,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Tobacco"
+  },
+  {
+    "id": "2138507-20260516",
+    "lat": 41.8874660026,
+    "lng": -87.6613909907,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Tobacco"
+  },
+  {
+    "id": "2284401-20260516",
+    "lat": 41.8677692743,
+    "lng": -87.6323464929,
+    "neighborhood": "LOOP",
+    "zip": "60605",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2846201-20260516",
+    "lat": 41.8818862275,
+    "lng": -87.6366183305,
+    "neighborhood": "LOOP",
+    "zip": "60606",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "1845067-20260516",
+    "lat": 41.879259703,
+    "lng": -87.6512478262,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "1305125-20260516",
+    "lat": 41.8829393219,
+    "lng": -87.6528236842,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2836006-20260516",
+    "lat": 41.8868761594,
+    "lng": -87.6326377117,
+    "neighborhood": "LOOP",
+    "zip": "60601",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Consumption on Premises - Incidental Activity"
+  },
+  {
+    "id": "2206795-20260516",
+    "lat": 41.878018745,
+    "lng": -87.6496408244,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Regulated Business License"
+  },
+  {
+    "id": "1888186-20260516",
+    "lat": 41.8937901574,
+    "lng": -87.641310504,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60610",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "1970072-20260516",
+    "lat": 41.880524949,
+    "lng": -87.6516927154,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2293433-20260516",
+    "lat": 41.8893285936,
+    "lng": -87.630547851,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60654",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Consumption on Premises - Incidental Activity"
+  },
+  {
+    "id": "2043015-20260516",
+    "lat": 41.8790107233,
+    "lng": -87.657200592,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Tobacco"
+  },
+  {
+    "id": "2683624-20260516",
+    "lat": 41.88053925,
+    "lng": -87.6345924635,
+    "neighborhood": "LOOP",
+    "zip": "60606",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Tobacco"
+  },
+  {
+    "id": "2583414-20260516",
+    "lat": 41.8868893057,
+    "lng": -87.6488227918,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Outdoor Patio"
+  },
+  {
+    "id": "1694390-20260516",
+    "lat": 41.8640292109,
+    "lng": -87.646975451,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Package Goods"
+  },
+  {
+    "id": "2594599-20260516",
+    "lat": 41.89038185,
+    "lng": -87.6341848345,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60654",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2595805-20260516",
+    "lat": 41.8822243258,
+    "lng": -87.6260714358,
+    "neighborhood": "LOOP",
+    "zip": "60602",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Regulated Business License"
+  },
+  {
+    "id": "47510-20260516",
+    "lat": 41.8765183366,
+    "lng": -87.6501172361,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "1681221-20260516",
+    "lat": 41.8828264256,
+    "lng": -87.6597383167,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2073932-20260516",
+    "lat": 41.881492415,
+    "lng": -87.6579076087,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "9922-20260516",
+    "lat": 41.8856433761,
+    "lng": -87.6551470117,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2017860-20260516",
+    "lat": 41.879047715,
+    "lng": -87.6508362701,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2616929-20260516",
+    "lat": 41.8800164539,
+    "lng": -87.632162307,
+    "neighborhood": "LOOP",
+    "zip": "60603",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "33416-20260516",
+    "lat": 41.878043475,
+    "lng": -87.6481802109,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2830890-20260516",
+    "lat": 41.8673484125,
+    "lng": -87.6409730241,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Regulated Business License"
+  },
+  {
+    "id": "2053963-20260516",
+    "lat": 41.8880849563,
+    "lng": -87.6311818508,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60654",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2589440-20260516",
+    "lat": 41.8695837179,
+    "lng": -87.6532585248,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Retail Food Establishment"
+  },
+  {
+    "id": "21500-20260516",
+    "lat": 41.8695753051,
+    "lng": -87.6537591314,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Retail Food Establishment"
+  },
+  {
+    "id": "2827300-20260516",
+    "lat": 41.8831116866,
+    "lng": -87.6258509892,
+    "neighborhood": "LOOP",
+    "zip": "60602",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Shared Housing Unit Operator"
+  },
+  {
+    "id": "2966497-20260516",
+    "lat": 41.8900449575,
+    "lng": -87.6376280638,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60654",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Retail Food Establishment"
+  },
+  {
+    "id": "1904335-20260516",
+    "lat": 41.8855444065,
+    "lng": -87.6613752762,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2476670-20260516",
+    "lat": 41.9033912144,
+    "lng": -87.6443242536,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60610",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Package Goods"
+  },
+  {
+    "id": "1579603-20260516",
+    "lat": 41.8691415902,
+    "lng": -87.6566003171,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2971736-20260516",
+    "lat": 41.88974388,
+    "lng": -87.6323965296,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60654",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2952255-20260516",
+    "lat": 41.8650256903,
+    "lng": -87.6256298244,
+    "neighborhood": "NEAR SOUTH SIDE",
+    "zip": "60605",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Regulated Business License"
+  },
+  {
+    "id": "2595357-20260516",
+    "lat": 41.8832503522,
+    "lng": -87.6545516125,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "4169-20260516",
+    "lat": 41.9101297869,
+    "lng": -87.6348252838,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60610",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Retail Food Establishment"
+  },
+  {
+    "id": "2469387-20260516",
+    "lat": 41.8892616234,
+    "lng": -87.635182056,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60654",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Retail Food Establishment"
+  },
+  {
+    "id": "2967377-20260516",
+    "lat": 41.8841734123,
+    "lng": -87.6544911083,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2609045-20260516",
+    "lat": 41.8695307152,
+    "lng": -87.6564298654,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Tobacco"
+  },
+  {
+    "id": "3041644-20260516",
+    "lat": 41.8780256553,
+    "lng": -87.6320622863,
+    "neighborhood": "LOOP",
+    "zip": "60604",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Tobacco"
+  },
+  {
+    "id": "2583358-20260516",
+    "lat": 41.8862821168,
+    "lng": -87.6485147797,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Caterer's Liquor License"
+  },
+  {
+    "id": "2967381-20260516",
+    "lat": 41.8844286593,
+    "lng": -87.6525149715,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2977164-20260516",
+    "lat": 41.9019055542,
+    "lng": -87.6284930761,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60610",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2967379-20260516",
+    "lat": 41.8966120637,
+    "lng": -87.6248722312,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60611",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "1494384-20260516",
+    "lat": 41.8851605193,
+    "lng": -87.6487732237,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Wholesale Food Establishment"
+  },
+  {
+    "id": "2535956-20260516",
+    "lat": 41.877975138,
+    "lng": -87.638422171,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60606",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "1742665-20260516",
+    "lat": 41.871889044,
+    "lng": -87.6416536608,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "1931981-20260516",
+    "lat": 41.8767392416,
+    "lng": -87.6500362229,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2589115-20260516",
+    "lat": 41.8805954605,
+    "lng": -87.6477748224,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Regulated Business License"
+  },
+  {
+    "id": "10845-20260516",
+    "lat": 41.8790115526,
+    "lng": -87.6531288666,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "14380-20260516",
+    "lat": 41.8694111034,
+    "lng": -87.6640178343,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Retail Food Establishment"
+  },
+  {
+    "id": "2845106-20260516",
+    "lat": 41.8965175596,
+    "lng": -87.6318281632,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60654",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "1923014-20260516",
+    "lat": 41.8817604989,
+    "lng": -87.6553242489,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Consumption on Premises - Incidental Activity"
+  },
+  {
+    "id": "2313649-20260516",
+    "lat": 41.8949836069,
+    "lng": -87.6241061965,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60611",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Regulated Business License"
+  },
+  {
+    "id": "1821706-20260516",
+    "lat": 41.8866698466,
+    "lng": -87.6489050081,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Retail Food Establishment"
+  },
+  {
+    "id": "2496159-20260516",
+    "lat": 41.9000878952,
+    "lng": -87.6259142793,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60611",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "2971555-20260516",
+    "lat": 41.8838302167,
+    "lng": -87.6510701592,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Retail Food Establishment"
+  },
+  {
+    "id": "3056909-20260516",
+    "lat": 41.9014996944,
+    "lng": -87.6250603457,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60611",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Regulated Business License"
+  },
+  {
+    "id": "2901853-20260516",
+    "lat": 41.8880060014,
+    "lng": -87.6520606393,
+    "neighborhood": "NEAR WEST SIDE",
+    "zip": "60607",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
   }
 ]

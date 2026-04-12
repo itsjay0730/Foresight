@@ -74,7 +74,7 @@ export type InvestmentType =
 
 export type HousingType = "investment" | "housing";
 
-export type TimelineValue = "1" | "3" | "5";
+export type TimelineValue = "0" |"1" | "3" | "5";
 export type ScoreLayerKey = keyof ScoreSet;
 export interface FilterState {
   investmentType: string;
