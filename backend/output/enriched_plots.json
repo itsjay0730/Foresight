@@ -1,0 +1,842 @@
+[
+  {
+    "id": "37756",
+    "lat": 41.75654782391807,
+    "lng": -87.64386327857898,
+    "neighborhood": "ENGLEWOOD",
+    "zip": "60620",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "B1-2",
+    "crime": {
+      "crime_trend": 0.0909,
+      "crime_count_nearby": 12,
+      "violent_crime_count_nearby": 6
+    },
+    "permits": {
+      "permit_activity": 1.25,
+      "permit_count_nearby": 9
+    },
+    "income": {
+      "income": 46472
+    },
+    "population": {
+      "population_growth": -0.0148
+    },
+    "transit": {
+      "transit_distance": 0.0327,
+      "nearest_station": "Halsted & 76th Street",
+      "transit_stop_count_nearby": 23
+    }
+  },
+  {
+    "id": "8947",
+    "lat": 41.891993539915006,
+    "lng": -87.72262337281994,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": -0.2778,
+      "crime_count_nearby": 13,
+      "violent_crime_count_nearby": 6
+    },
+    "permits": {
+      "permit_activity": 1.75,
+      "permit_count_nearby": 11
+    },
+    "income": {
+      "income": 31768
+    },
+    "population": {
+      "population_growth": -0.0357
+    },
+    "transit": {
+      "transit_distance": 0.1764,
+      "nearest_station": "Pulaski & Erie",
+      "transit_stop_count_nearby": 13
+    }
+  },
+  {
+    "id": "58725",
+    "lat": 41.867174702009,
+    "lng": -87.73696513733313,
+    "neighborhood": "NORTH LAWNDALE",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "M2-2",
+    "crime": {
+      "crime_trend": 0.2857,
+      "crime_count_nearby": 9,
+      "violent_crime_count_nearby": 3
+    },
+    "permits": {
+      "permit_activity": -0.5,
+      "permit_count_nearby": 2
+    },
+    "income": {
+      "income": 31768
+    },
+    "population": {
+      "population_growth": -0.0357
+    },
+    "transit": {
+      "transit_distance": 0.0774,
+      "nearest_station": "Roosevelt & Kilbourn",
+      "transit_stop_count_nearby": 16
+    }
+  },
+  {
+    "id": "36518",
+    "lat": 41.78970436565455,
+    "lng": -87.66048889509541,
+    "neighborhood": "WEST ENGLEWOOD",
+    "zip": "60636",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": 0.4286,
+      "crime_count_nearby": 10,
+      "violent_crime_count_nearby": 4
+    },
+    "permits": {
+      "permit_activity": 0.2222,
+      "permit_count_nearby": 11
+    },
+    "income": {
+      "income": 30451
+    },
+    "population": {
+      "population_growth": -0.019
+    },
+    "transit": {
+      "transit_distance": 0.2021,
+      "nearest_station": "Ashland & 57th Street",
+      "transit_stop_count_nearby": 28
+    }
+  },
+  {
+    "id": "8191",
+    "lat": 41.900716723815016,
+    "lng": -87.72293506329427,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60651",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": -0.2381,
+      "crime_count_nearby": 16,
+      "violent_crime_count_nearby": 8
+    },
+    "permits": {
+      "permit_activity": 3.0,
+      "permit_count_nearby": 16
+    },
+    "income": {
+      "income": 48532
+    },
+    "population": {
+      "population_growth": 0.0091
+    },
+    "transit": {
+      "transit_distance": 0.1518,
+      "nearest_station": "Division & Hamlin",
+      "transit_stop_count_nearby": 19
+    }
+  },
+  {
+    "id": "24455",
+    "lat": 41.693650660718724,
+    "lng": -87.63215724444655,
+    "neighborhood": "ROSELAND",
+    "zip": "60628",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": -0.8333,
+      "crime_count_nearby": 2,
+      "violent_crime_count_nearby": 0
+    },
+    "permits": {
+      "permit_activity": 0.6,
+      "permit_count_nearby": 8
+    },
+    "income": {
+      "income": 48601
+    },
+    "population": {
+      "population_growth": -0.0476
+    },
+    "transit": {
+      "transit_distance": 0.0798,
+      "nearest_station": "111th Street & Stewart",
+      "transit_stop_count_nearby": 7
+    }
+  },
+  {
+    "id": "16109",
+    "lat": 41.823586956634486,
+    "lng": -87.60432230879749,
+    "neighborhood": "OAKLAND",
+    "zip": "60653",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RM-5",
+    "crime": {
+      "crime_trend": -0.2222,
+      "crime_count_nearby": 7,
+      "violent_crime_count_nearby": 1
+    },
+    "permits": {
+      "permit_activity": 0.25,
+      "permit_count_nearby": 5
+    },
+    "income": {
+      "income": 35136
+    },
+    "population": {
+      "population_growth": -0.0045
+    },
+    "transit": {
+      "transit_distance": 0.0374,
+      "nearest_station": "Ellis & Oakwood",
+      "transit_stop_count_nearby": 16
+    }
+  },
+  {
+    "id": "50670",
+    "lat": 41.67587538651602,
+    "lng": -87.63497051121821,
+    "neighborhood": "WEST PULLMAN",
+    "zip": "60628",
+    "parcel_size": 3075,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": 0.0,
+      "crime_count_nearby": 10,
+      "violent_crime_count_nearby": 5
+    },
+    "permits": {
+      "permit_activity": 1.0,
+      "permit_count_nearby": 8
+    },
+    "income": {
+      "income": 48601
+    },
+    "population": {
+      "population_growth": -0.0476
+    },
+    "transit": {
+      "transit_distance": 0.1358,
+      "nearest_station": "119th Street & Normal",
+      "transit_stop_count_nearby": 13
+    }
+  },
+  {
+    "id": "19665",
+    "lat": 41.75109345398283,
+    "lng": -87.55324870345193,
+    "neighborhood": "SOUTH CHICAGO",
+    "zip": "60617",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "C1-2",
+    "crime": {
+      "crime_trend": -0.4118,
+      "crime_count_nearby": 10,
+      "violent_crime_count_nearby": 4
+    },
+    "permits": {
+      "permit_activity": 3.0,
+      "permit_count_nearby": 12
+    },
+    "income": {
+      "income": 51203
+    },
+    "population": {
+      "population_growth": -0.0119
+    },
+    "transit": {
+      "transit_distance": 0.0532,
+      "nearest_station": "79th Street & Exchange",
+      "transit_stop_count_nearby": 12
+    }
+  },
+  {
+    "id": "19589",
+    "lat": 41.73765810096648,
+    "lng": -87.5656731440233,
+    "neighborhood": "SOUTH CHICAGO",
+    "zip": "60617",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": 1.6667,
+      "crime_count_nearby": 8,
+      "violent_crime_count_nearby": 4
+    },
+    "permits": {
+      "permit_activity": 0.1667,
+      "permit_count_nearby": 7
+    },
+    "income": {
+      "income": 51203
+    },
+    "population": {
+      "population_growth": -0.0119
+    },
+    "transit": {
+      "transit_distance": 0.0376,
+      "nearest_station": "87th Street & South Chicago",
+      "transit_stop_count_nearby": 13
+    }
+  },
+  {
+    "id": "34339",
+    "lat": 41.65121204392156,
+    "lng": -87.60535532025513,
+    "neighborhood": "RIVERDALE",
+    "zip": "60827",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-2",
+    "crime": {
+      "crime_trend": 0.0,
+      "crime_count_nearby": 1,
+      "violent_crime_count_nearby": 1
+    },
+    "permits": {
+      "permit_activity": 1.0,
+      "permit_count_nearby": 3
+    },
+    "income": {
+      "income": 35835
+    },
+    "population": {
+      "population_growth": -0.0181
+    },
+    "transit": {
+      "transit_distance": 0.1106,
+      "nearest_station": "133rd Place & Langley",
+      "transit_stop_count_nearby": 6
+    }
+  },
+  {
+    "id": "35245",
+    "lat": 41.89385728946573,
+    "lng": -87.72041320086409,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": -0.0526,
+      "crime_count_nearby": 18,
+      "violent_crime_count_nearby": 8
+    },
+    "permits": {
+      "permit_activity": 6.5,
+      "permit_count_nearby": 15
+    },
+    "income": {
+      "income": 31768
+    },
+    "population": {
+      "population_growth": -0.0357
+    },
+    "transit": {
+      "transit_distance": 0.1056,
+      "nearest_station": "Chicago & Hamlin",
+      "transit_stop_count_nearby": 15
+    }
+  },
+  {
+    "id": "36653",
+    "lat": 41.800670630471494,
+    "lng": -87.67241424373661,
+    "neighborhood": "NEW CITY",
+    "zip": "60609",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": -0.3333,
+      "crime_count_nearby": 8,
+      "violent_crime_count_nearby": 4
+    },
+    "permits": {
+      "permit_activity": -0.4,
+      "permit_count_nearby": 3
+    },
+    "income": {
+      "income": 47209
+    },
+    "population": {
+      "population_growth": 0.0223
+    },
+    "transit": {
+      "transit_distance": 0.1083,
+      "nearest_station": "51st Street & Damen",
+      "transit_stop_count_nearby": 17
+    }
+  },
+  {
+    "id": "19505",
+    "lat": 41.74483594473508,
+    "lng": -87.6597997988371,
+    "neighborhood": "AUBURN GRESHAM",
+    "zip": "60620",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": -0.1,
+      "crime_count_nearby": 9,
+      "violent_crime_count_nearby": 2
+    },
+    "permits": {
+      "permit_activity": 0.1667,
+      "permit_count_nearby": 7
+    },
+    "income": {
+      "income": 46472
+    },
+    "population": {
+      "population_growth": -0.0148
+    },
+    "transit": {
+      "transit_distance": 0.2151,
+      "nearest_station": "Ashland & 83rd Street",
+      "transit_stop_count_nearby": 19
+    }
+  },
+  {
+    "id": "35396",
+    "lat": 41.777707143534506,
+    "lng": -87.67351351348495,
+    "neighborhood": "WEST ENGLEWOOD",
+    "zip": "60636",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": -0.1,
+      "crime_count_nearby": 9,
+      "violent_crime_count_nearby": 1
+    },
+    "permits": {
+      "permit_activity": 0.5,
+      "permit_count_nearby": 6
+    },
+    "income": {
+      "income": 30451
+    },
+    "population": {
+      "population_growth": -0.019
+    },
+    "transit": {
+      "transit_distance": 0.0228,
+      "nearest_station": "Damen & 64th Street",
+      "transit_stop_count_nearby": 12
+    }
+  },
+  {
+    "id": "59403",
+    "lat": 41.8104306715045,
+    "lng": -87.61482207300874,
+    "neighborhood": "GRAND BOULEVARD",
+    "zip": "60653",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RM-5",
+    "crime": {
+      "crime_trend": -0.25,
+      "crime_count_nearby": 9,
+      "violent_crime_count_nearby": 1
+    },
+    "permits": {
+      "permit_activity": -0.0909,
+      "permit_count_nearby": 10
+    },
+    "income": {
+      "income": 35136
+    },
+    "population": {
+      "population_growth": -0.0045
+    },
+    "transit": {
+      "transit_distance": 0.0859,
+      "nearest_station": "47th Street & Vincennes",
+      "transit_stop_count_nearby": 27
+    }
+  },
+  {
+    "id": "58818",
+    "lat": 41.89275197812359,
+    "lng": -87.72023597773659,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": -0.1111,
+      "crime_count_nearby": 16,
+      "violent_crime_count_nearby": 6
+    },
+    "permits": {
+      "permit_activity": 5.5,
+      "permit_count_nearby": 13
+    },
+    "income": {
+      "income": 31768
+    },
+    "population": {
+      "population_growth": -0.0357
+    },
+    "transit": {
+      "transit_distance": 0.1822,
+      "nearest_station": "Chicago & Hamlin",
+      "transit_stop_count_nearby": 14
+    }
+  },
+  {
+    "id": "8771",
+    "lat": 41.89385822556417,
+    "lng": -87.72028530282613,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-4",
+    "crime": {
+      "crime_trend": -0.0526,
+      "crime_count_nearby": 18,
+      "violent_crime_count_nearby": 8
+    },
+    "permits": {
+      "permit_activity": 6.5,
+      "permit_count_nearby": 15
+    },
+    "income": {
+      "income": 31768
+    },
+    "population": {
+      "population_growth": -0.0357
+    },
+    "transit": {
+      "transit_distance": 0.1074,
+      "nearest_station": "Chicago & Hamlin",
+      "transit_stop_count_nearby": 15
+    }
+  },
+  {
+    "id": "20523",
+    "lat": 41.76935077769723,
+    "lng": -87.6460896664575,
+    "neighborhood": "ENGLEWOOD",
+    "zip": "60621",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": -0.375,
+      "crime_count_nearby": 5,
+      "violent_crime_count_nearby": 2
+    },
+    "permits": {
+      "permit_activity": -0.3333,
+      "permit_count_nearby": 6
+    },
+    "income": {
+      "income": 30163
+    },
+    "population": {
+      "population_growth": 0.0173
+    },
+    "transit": {
+      "transit_distance": 0.0643,
+      "nearest_station": "69th Street & Peoria",
+      "transit_stop_count_nearby": 22
+    }
+  },
+  {
+    "id": "34273",
+    "lat": 41.892317458842314,
+    "lng": -87.71830714095819,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": 0.0,
+      "crime_count_nearby": 16,
+      "violent_crime_count_nearby": 6
+    },
+    "permits": {
+      "permit_activity": 3.0,
+      "permit_count_nearby": 12
+    },
+    "income": {
+      "income": 31768
+    },
+    "population": {
+      "population_growth": -0.0357
+    },
+    "transit": {
+      "transit_distance": 0.2392,
+      "nearest_station": "Chicago & Central Park",
+      "transit_stop_count_nearby": 16
+    }
+  },
+  {
+    "id": "23989",
+    "lat": 41.72654653465606,
+    "lng": -87.62672288201742,
+    "neighborhood": "ROSELAND",
+    "zip": "60620",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-2",
+    "crime": {
+      "crime_trend": -0.125,
+      "crime_count_nearby": 7,
+      "violent_crime_count_nearby": 3
+    },
+    "permits": {
+      "permit_activity": -0.6667,
+      "permit_count_nearby": 1
+    },
+    "income": {
+      "income": 46472
+    },
+    "population": {
+      "population_growth": -0.0148
+    },
+    "transit": {
+      "transit_distance": 0.1052,
+      "nearest_station": "Lafayette & 93rd Street",
+      "transit_stop_count_nearby": 15
+    }
+  },
+  {
+    "id": "37225",
+    "lat": 41.879003371657504,
+    "lng": -87.73581569092116,
+    "neighborhood": "WEST GARFIELD PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-4",
+    "crime": {
+      "crime_trend": 0.5,
+      "crime_count_nearby": 21,
+      "violent_crime_count_nearby": 7
+    },
+    "permits": {
+      "permit_activity": -0.1,
+      "permit_count_nearby": 9
+    },
+    "income": {
+      "income": 31768
+    },
+    "population": {
+      "population_growth": -0.0357
+    },
+    "transit": {
+      "transit_distance": 0.1379,
+      "nearest_station": "Jackson & Kostner",
+      "transit_stop_count_nearby": 23
+    }
+  },
+  {
+    "id": "62419",
+    "lat": 41.79627432700558,
+    "lng": -87.62713196133157,
+    "neighborhood": "WASHINGTON PARK",
+    "zip": "60609",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-4",
+    "crime": {
+      "crime_trend": 1.0,
+      "crime_count_nearby": 14,
+      "violent_crime_count_nearby": 9
+    },
+    "permits": {
+      "permit_activity": -0.2727,
+      "permit_count_nearby": 8
+    },
+    "income": {
+      "income": 47209
+    },
+    "population": {
+      "population_growth": 0.0223
+    },
+    "transit": {
+      "transit_distance": 0.0694,
+      "nearest_station": "State & 54th Street",
+      "transit_stop_count_nearby": 29
+    }
+  },
+  {
+    "id": "9617",
+    "lat": 41.86661288645532,
+    "lng": -87.71405473196708,
+    "neighborhood": "NORTH LAWNDALE",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "B3-3",
+    "crime": {
+      "crime_trend": -0.2,
+      "crime_count_nearby": 24,
+      "violent_crime_count_nearby": 9
+    },
+    "permits": {
+      "permit_activity": 0.7778,
+      "permit_count_nearby": 16
+    },
+    "income": {
+      "income": 31768
+    },
+    "population": {
+      "population_growth": -0.0357
+    },
+    "transit": {
+      "transit_distance": 0.0625,
+      "nearest_station": "Roosevelt & St. Louis",
+      "transit_stop_count_nearby": 17
+    }
+  },
+  {
+    "id": "37546",
+    "lat": 41.74562225812267,
+    "lng": -87.60103490114405,
+    "neighborhood": "CHATHAM",
+    "zip": "60619",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-4",
+    "crime": {
+      "crime_trend": -0.28,
+      "crime_count_nearby": 18,
+      "violent_crime_count_nearby": 7
+    },
+    "permits": {
+      "permit_activity": -0.6,
+      "permit_count_nearby": 4
+    },
+    "income": {
+      "income": 42802
+    },
+    "population": {
+      "population_growth": -0.0479
+    },
+    "transit": {
+      "transit_distance": 0.2011,
+      "nearest_station": "Cottage Grove & 82nd Street",
+      "transit_stop_count_nearby": 10
+    }
+  },
+  {
+    "id": "18694",
+    "lat": 41.79610870709449,
+    "lng": -87.62712699483926,
+    "neighborhood": "WASHINGTON PARK",
+    "zip": "60609",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RT-4",
+    "crime": {
+      "crime_trend": 1.1429,
+      "crime_count_nearby": 15,
+      "violent_crime_count_nearby": 10
+    },
+    "permits": {
+      "permit_activity": -0.3636,
+      "permit_count_nearby": 7
+    },
+    "income": {
+      "income": 47209
+    },
+    "population": {
+      "population_growth": 0.0223
+    },
+    "transit": {
+      "transit_distance": 0.0732,
+      "nearest_station": "State & 54th Street",
+      "transit_stop_count_nearby": 27
+    }
+  },
+  {
+    "id": "8915",
+    "lat": 41.89245195880656,
+    "lng": -87.7239042788536,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "RS-3",
+    "crime": {
+      "crime_trend": -0.2941,
+      "crime_count_nearby": 12,
+      "violent_crime_count_nearby": 6
+    },
+    "permits": {
+      "permit_activity": 1.5,
+      "permit_count_nearby": 10
+    },
+    "income": {
+      "income": 31768
+    },
+    "population": {
+      "population_growth": -0.0357
+    },
+    "transit": {
+      "transit_distance": 0.1047,
+      "nearest_station": "Pulaski & Erie",
+      "transit_stop_count_nearby": 14
+    }
+  },
+  {
+    "id": "9616",
+    "lat": 41.866611868338424,
+    "lng": -87.7141407599288,
+    "neighborhood": "NORTH LAWNDALE",
+    "zip": "60624",
+    "parcel_size": 0,
+    "property_type": "opportunity_site",
+    "zoning": "B3-3",
+    "crime": {
+      "crime_trend": -0.1786,
+      "crime_count_nearby": 23,
+      "violent_crime_count_nearby": 9
+    },
+    "permits": {
+      "permit_activity": 0.7778,
+      "permit_count_nearby": 16
+    },
+    "income": {
+      "income": 31768
+    },
+    "population": {
+      "population_growth": -0.0357
+    },
+    "transit": {
+      "transit_distance": 0.0668,
+      "nearest_station": "Roosevelt & St. Louis",
+      "transit_stop_count_nearby": 17
+    }
+  }
+]
