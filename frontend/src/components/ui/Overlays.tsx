@@ -76,7 +76,6 @@ export function Legend() {
 interface TrayStats {
   total: number;
   buy: number;
-  build: number;
   watch: number;
   avoid: number;
 }
@@ -95,7 +94,6 @@ export function BottomTray({ stats }: { stats: TrayStats }) {
         {[
           { val: stats.total, label: "Sites", color: "#eaf0fa" },
           { val: stats.buy, label: "Buy", color: "#22c55e" },
-          { val: stats.build, label: "Build", color: "#3b82f6" },
           { val: stats.watch, label: "Watch", color: "#f59e0b" },
           { val: stats.avoid, label: "Avoid", color: "#ef4444" },
         ].map((s) => (

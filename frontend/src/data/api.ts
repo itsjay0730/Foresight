@@ -136,9 +136,8 @@ function toHoodId(name: string): string {
 }
 
 function scoreToRec(score: number): Recommendation {
-  if (score >= 80) return "BUY";
-  if (score >= 72) return "WATCH";
-  if (score >= 65) return "BUILD";
+  if (score >= 83) return "BUY";
+  if (score >= 70) return "WATCH";
   return "AVOID";
 }
 
