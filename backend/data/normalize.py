@@ -66,6 +66,9 @@ def _normalizeOnePlot(plot: dict[str, Any]) -> dict[str, Any] | None:
         "permit_activity": safeFloat(permits.get("permit_activity")),
         "income": safeInt(income.get("income")),
         "population_growth": safeFloat(population.get("population_growth")),
+        "crime_history": crime.get("crime_history", []),
+        "permit_history": permits.get("permit_history", []),
+        "population_history": population.get("population_history", []),
         "transit_distance": safeFloat(transit.get("transit_distance")),
         # helpful extra fields for debugging / future use
         "crime_count_nearby": safeInt(crime.get("crime_count_nearby"), default=0),
