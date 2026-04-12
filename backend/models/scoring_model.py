@@ -31,7 +31,7 @@ def toDisplayBand(score: float) -> int:
 # widen score distribution while keeping values aligned
 
 def stretchScore(score: float) -> float:
-    stretched = (score - 0.43) * 2.3 + 0.5
+    stretched = (score - 0.4) * 2.3 + 0.45
     return clamp(stretched)
 
 
