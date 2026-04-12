@@ -11,17 +11,67 @@
     "crime": {
       "crime_trend": 0.0909,
       "crime_count_nearby": 12,
-      "violent_crime_count_nearby": 6
+      "violent_crime_count_nearby": 6,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 36,
+          "violent_crime_count": 12
+        },
+        {
+          "year": 2023,
+          "crime_count": 41,
+          "violent_crime_count": 11
+        },
+        {
+          "year": 2024,
+          "crime_count": 42,
+          "violent_crime_count": 17
+        },
+        {
+          "year": 2025,
+          "crime_count": 44,
+          "violent_crime_count": 16
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 1.25,
-      "permit_count_nearby": 9
+      "permit_activity": 2.6667,
+      "permit_count_nearby": 11,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 16
+        },
+        {
+          "year": 2023,
+          "permit_count": 18
+        },
+        {
+          "year": 2024,
+          "permit_count": 17
+        },
+        {
+          "year": 2025,
+          "permit_count": 18
+        }
+      ]
     },
     "income": {
       "income": 46472
     },
     "population": {
-      "population_growth": -0.0148
+      "population_growth": -0.0148,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 69357
+        },
+        {
+          "year": 2022,
+          "population": 68330
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0327,
@@ -39,19 +89,69 @@
     "property_type": "opportunity_site",
     "zoning": "RS-3",
     "crime": {
-      "crime_trend": -0.2778,
-      "crime_count_nearby": 13,
-      "violent_crime_count_nearby": 6
+      "crime_trend": -0.1765,
+      "crime_count_nearby": 14,
+      "violent_crime_count_nearby": 7,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 24,
+          "violent_crime_count": 11
+        },
+        {
+          "year": 2023,
+          "crime_count": 35,
+          "violent_crime_count": 20
+        },
+        {
+          "year": 2024,
+          "crime_count": 41,
+          "violent_crime_count": 10
+        },
+        {
+          "year": 2025,
+          "crime_count": 47,
+          "violent_crime_count": 10
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 1.75,
-      "permit_count_nearby": 11
+      "permit_activity": 1.5,
+      "permit_count_nearby": 10,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 15
+        },
+        {
+          "year": 2023,
+          "permit_count": 22
+        },
+        {
+          "year": 2024,
+          "permit_count": 14
+        },
+        {
+          "year": 2025,
+          "permit_count": 18
+        }
+      ]
     },
     "income": {
       "income": 31768
     },
     "population": {
-      "population_growth": -0.0357
+      "population_growth": -0.0357,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 36986
+        },
+        {
+          "year": 2022,
+          "population": 35664
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.1764,
@@ -71,17 +171,67 @@
     "crime": {
       "crime_trend": 0.2857,
       "crime_count_nearby": 9,
-      "violent_crime_count_nearby": 3
+      "violent_crime_count_nearby": 3,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 18,
+          "violent_crime_count": 5
+        },
+        {
+          "year": 2023,
+          "crime_count": 17,
+          "violent_crime_count": 9
+        },
+        {
+          "year": 2024,
+          "crime_count": 25,
+          "violent_crime_count": 10
+        },
+        {
+          "year": 2025,
+          "crime_count": 22,
+          "violent_crime_count": 7
+        }
+      ]
     },
     "permits": {
       "permit_activity": -0.5,
-      "permit_count_nearby": 2
+      "permit_count_nearby": 2,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 11
+        },
+        {
+          "year": 2023,
+          "permit_count": 6
+        },
+        {
+          "year": 2024,
+          "permit_count": 5
+        },
+        {
+          "year": 2025,
+          "permit_count": 18
+        }
+      ]
     },
     "income": {
       "income": 31768
     },
     "population": {
-      "population_growth": -0.0357
+      "population_growth": -0.0357,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 36986
+        },
+        {
+          "year": 2022,
+          "population": 35664
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0774,
@@ -101,17 +251,67 @@
     "crime": {
       "crime_trend": 0.4286,
       "crime_count_nearby": 10,
-      "violent_crime_count_nearby": 4
+      "violent_crime_count_nearby": 4,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 33,
+          "violent_crime_count": 15
+        },
+        {
+          "year": 2023,
+          "crime_count": 22,
+          "violent_crime_count": 9
+        },
+        {
+          "year": 2024,
+          "crime_count": 29,
+          "violent_crime_count": 13
+        },
+        {
+          "year": 2025,
+          "crime_count": 33,
+          "violent_crime_count": 9
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 0.2222,
-      "permit_count_nearby": 11
+      "permit_activity": 0.3333,
+      "permit_count_nearby": 12,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 14
+        },
+        {
+          "year": 2023,
+          "permit_count": 21
+        },
+        {
+          "year": 2024,
+          "permit_count": 13
+        },
+        {
+          "year": 2025,
+          "permit_count": 19
+        }
+      ]
     },
     "income": {
       "income": 30451
     },
     "population": {
-      "population_growth": -0.019
+      "population_growth": -0.019,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 30412
+        },
+        {
+          "year": 2022,
+          "population": 29833
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.2021,
@@ -131,17 +331,67 @@
     "crime": {
       "crime_trend": -0.2381,
       "crime_count_nearby": 16,
-      "violent_crime_count_nearby": 8
+      "violent_crime_count_nearby": 8,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 40,
+          "violent_crime_count": 16
+        },
+        {
+          "year": 2023,
+          "crime_count": 43,
+          "violent_crime_count": 21
+        },
+        {
+          "year": 2024,
+          "crime_count": 52,
+          "violent_crime_count": 17
+        },
+        {
+          "year": 2025,
+          "crime_count": 48,
+          "violent_crime_count": 8
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 3.0,
-      "permit_count_nearby": 16
+      "permit_activity": 2.75,
+      "permit_count_nearby": 15,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 27
+        },
+        {
+          "year": 2023,
+          "permit_count": 26
+        },
+        {
+          "year": 2024,
+          "permit_count": 26
+        },
+        {
+          "year": 2025,
+          "permit_count": 30
+        }
+      ]
     },
     "income": {
       "income": 48532
     },
     "population": {
-      "population_growth": 0.0091
+      "population_growth": 0.0091,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 64638
+        },
+        {
+          "year": 2022,
+          "population": 65229
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.1518,
@@ -161,17 +411,67 @@
     "crime": {
       "crime_trend": -0.8333,
       "crime_count_nearby": 2,
-      "violent_crime_count_nearby": 0
+      "violent_crime_count_nearby": 0,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 25,
+          "violent_crime_count": 11
+        },
+        {
+          "year": 2023,
+          "crime_count": 24,
+          "violent_crime_count": 12
+        },
+        {
+          "year": 2024,
+          "crime_count": 18,
+          "violent_crime_count": 4
+        },
+        {
+          "year": 2025,
+          "crime_count": 14,
+          "violent_crime_count": 2
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 0.6,
-      "permit_count_nearby": 8
+      "permit_activity": 1.25,
+      "permit_count_nearby": 9,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 16
+        },
+        {
+          "year": 2023,
+          "permit_count": 20
+        },
+        {
+          "year": 2024,
+          "permit_count": 16
+        },
+        {
+          "year": 2025,
+          "permit_count": 13
+        }
+      ]
     },
     "income": {
       "income": 48601
     },
     "population": {
-      "population_growth": -0.0476
+      "population_growth": -0.0476,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 64489
+        },
+        {
+          "year": 2022,
+          "population": 61419
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0798,
@@ -189,19 +489,69 @@
     "property_type": "opportunity_site",
     "zoning": "RM-5",
     "crime": {
-      "crime_trend": -0.2222,
+      "crime_trend": -0.125,
       "crime_count_nearby": 7,
-      "violent_crime_count_nearby": 1
+      "violent_crime_count_nearby": 1,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 16,
+          "violent_crime_count": 7
+        },
+        {
+          "year": 2023,
+          "crime_count": 14,
+          "violent_crime_count": 4
+        },
+        {
+          "year": 2024,
+          "crime_count": 25,
+          "violent_crime_count": 6
+        },
+        {
+          "year": 2025,
+          "crime_count": 14,
+          "violent_crime_count": 3
+        }
+      ]
     },
     "permits": {
       "permit_activity": 0.25,
-      "permit_count_nearby": 5
+      "permit_count_nearby": 5,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 11
+        },
+        {
+          "year": 2023,
+          "permit_count": 6
+        },
+        {
+          "year": 2024,
+          "permit_count": 17
+        },
+        {
+          "year": 2025,
+          "permit_count": 18
+        }
+      ]
     },
     "income": {
       "income": 35136
     },
     "population": {
-      "population_growth": -0.0045
+      "population_growth": -0.0045,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 34519
+        },
+        {
+          "year": 2022,
+          "population": 34364
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0374,
@@ -221,17 +571,67 @@
     "crime": {
       "crime_trend": 0.0,
       "crime_count_nearby": 10,
-      "violent_crime_count_nearby": 5
+      "violent_crime_count_nearby": 5,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 22,
+          "violent_crime_count": 9
+        },
+        {
+          "year": 2023,
+          "crime_count": 17,
+          "violent_crime_count": 5
+        },
+        {
+          "year": 2024,
+          "crime_count": 24,
+          "violent_crime_count": 6
+        },
+        {
+          "year": 2025,
+          "crime_count": 20,
+          "violent_crime_count": 6
+        }
+      ]
     },
     "permits": {
       "permit_activity": 1.0,
-      "permit_count_nearby": 8
+      "permit_count_nearby": 8,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 23
+        },
+        {
+          "year": 2023,
+          "permit_count": 17
+        },
+        {
+          "year": 2024,
+          "permit_count": 11
+        },
+        {
+          "year": 2025,
+          "permit_count": 16
+        }
+      ]
     },
     "income": {
       "income": 48601
     },
     "population": {
-      "population_growth": -0.0476
+      "population_growth": -0.0476,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 64489
+        },
+        {
+          "year": 2022,
+          "population": 61419
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.1358,
@@ -249,19 +649,69 @@
     "property_type": "opportunity_site",
     "zoning": "C1-2",
     "crime": {
-      "crime_trend": -0.4118,
-      "crime_count_nearby": 10,
-      "violent_crime_count_nearby": 4
+      "crime_trend": -0.5,
+      "crime_count_nearby": 9,
+      "violent_crime_count_nearby": 4,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 42,
+          "violent_crime_count": 22
+        },
+        {
+          "year": 2023,
+          "crime_count": 47,
+          "violent_crime_count": 15
+        },
+        {
+          "year": 2024,
+          "crime_count": 28,
+          "violent_crime_count": 9
+        },
+        {
+          "year": 2025,
+          "crime_count": 43,
+          "violent_crime_count": 18
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 3.0,
-      "permit_count_nearby": 12
+      "permit_activity": 1.2,
+      "permit_count_nearby": 11,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 14
+        },
+        {
+          "year": 2023,
+          "permit_count": 13
+        },
+        {
+          "year": 2024,
+          "permit_count": 15
+        },
+        {
+          "year": 2025,
+          "permit_count": 30
+        }
+      ]
     },
     "income": {
       "income": 51203
     },
     "population": {
-      "population_growth": -0.0119
+      "population_growth": -0.0119,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 84193
+        },
+        {
+          "year": 2022,
+          "population": 83188
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0532,
@@ -279,19 +729,69 @@
     "property_type": "opportunity_site",
     "zoning": "RS-3",
     "crime": {
-      "crime_trend": 1.6667,
-      "crime_count_nearby": 8,
-      "violent_crime_count_nearby": 4
+      "crime_trend": 2.0,
+      "crime_count_nearby": 9,
+      "violent_crime_count_nearby": 4,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 22,
+          "violent_crime_count": 7
+        },
+        {
+          "year": 2023,
+          "crime_count": 14,
+          "violent_crime_count": 5
+        },
+        {
+          "year": 2024,
+          "crime_count": 10,
+          "violent_crime_count": 3
+        },
+        {
+          "year": 2025,
+          "crime_count": 18,
+          "violent_crime_count": 7
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 0.1667,
-      "permit_count_nearby": 7
+      "permit_activity": 0.3333,
+      "permit_count_nearby": 8,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 21
+        },
+        {
+          "year": 2023,
+          "permit_count": 14
+        },
+        {
+          "year": 2024,
+          "permit_count": 10
+        },
+        {
+          "year": 2025,
+          "permit_count": 15
+        }
+      ]
     },
     "income": {
       "income": 51203
     },
     "population": {
-      "population_growth": -0.0119
+      "population_growth": -0.0119,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 84193
+        },
+        {
+          "year": 2022,
+          "population": 83188
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0376,
@@ -311,17 +811,67 @@
     "crime": {
       "crime_trend": 0.0,
       "crime_count_nearby": 1,
-      "violent_crime_count_nearby": 1
+      "violent_crime_count_nearby": 1,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 12,
+          "violent_crime_count": 3
+        },
+        {
+          "year": 2023,
+          "crime_count": 18,
+          "violent_crime_count": 4
+        },
+        {
+          "year": 2024,
+          "crime_count": 8,
+          "violent_crime_count": 7
+        },
+        {
+          "year": 2025,
+          "crime_count": 9,
+          "violent_crime_count": 3
+        }
+      ]
     },
     "permits": {
       "permit_activity": 1.0,
-      "permit_count_nearby": 3
+      "permit_count_nearby": 4,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 8
+        },
+        {
+          "year": 2023,
+          "permit_count": 4
+        },
+        {
+          "year": 2024,
+          "permit_count": 0
+        },
+        {
+          "year": 2025,
+          "permit_count": 4
+        }
+      ]
     },
     "income": {
       "income": 35835
     },
     "population": {
-      "population_growth": -0.0181
+      "population_growth": -0.0181,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 26010
+        },
+        {
+          "year": 2022,
+          "population": 25538
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.1106,
@@ -339,19 +889,69 @@
     "property_type": "opportunity_site",
     "zoning": "RS-3",
     "crime": {
-      "crime_trend": -0.0526,
-      "crime_count_nearby": 18,
-      "violent_crime_count_nearby": 8
+      "crime_trend": 0.0556,
+      "crime_count_nearby": 19,
+      "violent_crime_count_nearby": 9,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 32,
+          "violent_crime_count": 12
+        },
+        {
+          "year": 2023,
+          "crime_count": 46,
+          "violent_crime_count": 22
+        },
+        {
+          "year": 2024,
+          "crime_count": 64,
+          "violent_crime_count": 15
+        },
+        {
+          "year": 2025,
+          "crime_count": 65,
+          "violent_crime_count": 13
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 6.5,
-      "permit_count_nearby": 15
+      "permit_activity": 4.0,
+      "permit_count_nearby": 15,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 19
+        },
+        {
+          "year": 2023,
+          "permit_count": 28
+        },
+        {
+          "year": 2024,
+          "permit_count": 22
+        },
+        {
+          "year": 2025,
+          "permit_count": 27
+        }
+      ]
     },
     "income": {
       "income": 31768
     },
     "population": {
-      "population_growth": -0.0357
+      "population_growth": -0.0357,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 36986
+        },
+        {
+          "year": 2022,
+          "population": 35664
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.1056,
@@ -369,19 +969,69 @@
     "property_type": "opportunity_site",
     "zoning": "RS-3",
     "crime": {
-      "crime_trend": -0.3333,
-      "crime_count_nearby": 8,
-      "violent_crime_count_nearby": 4
+      "crime_trend": -0.1818,
+      "crime_count_nearby": 9,
+      "violent_crime_count_nearby": 4,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 19,
+          "violent_crime_count": 11
+        },
+        {
+          "year": 2023,
+          "crime_count": 20,
+          "violent_crime_count": 9
+        },
+        {
+          "year": 2024,
+          "crime_count": 15,
+          "violent_crime_count": 9
+        },
+        {
+          "year": 2025,
+          "crime_count": 25,
+          "violent_crime_count": 8
+        }
+      ]
     },
     "permits": {
       "permit_activity": -0.4,
-      "permit_count_nearby": 3
+      "permit_count_nearby": 3,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 18
+        },
+        {
+          "year": 2023,
+          "permit_count": 8
+        },
+        {
+          "year": 2024,
+          "permit_count": 7
+        },
+        {
+          "year": 2025,
+          "permit_count": 14
+        }
+      ]
     },
     "income": {
       "income": 47209
     },
     "population": {
-      "population_growth": 0.0223
+      "population_growth": 0.0223,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 61861
+        },
+        {
+          "year": 2022,
+          "population": 63241
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.1083,
@@ -399,19 +1049,69 @@
     "property_type": "opportunity_site",
     "zoning": "RS-3",
     "crime": {
-      "crime_trend": -0.1,
+      "crime_trend": 0.0,
       "crime_count_nearby": 9,
-      "violent_crime_count_nearby": 2
+      "violent_crime_count_nearby": 2,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 37,
+          "violent_crime_count": 17
+        },
+        {
+          "year": 2023,
+          "crime_count": 35,
+          "violent_crime_count": 14
+        },
+        {
+          "year": 2024,
+          "crime_count": 30,
+          "violent_crime_count": 11
+        },
+        {
+          "year": 2025,
+          "crime_count": 30,
+          "violent_crime_count": 12
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 0.1667,
-      "permit_count_nearby": 7
+      "permit_activity": -0.25,
+      "permit_count_nearby": 6,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 19
+        },
+        {
+          "year": 2023,
+          "permit_count": 21
+        },
+        {
+          "year": 2024,
+          "permit_count": 20
+        },
+        {
+          "year": 2025,
+          "permit_count": 21
+        }
+      ]
     },
     "income": {
       "income": 46472
     },
     "population": {
-      "population_growth": -0.0148
+      "population_growth": -0.0148,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 69357
+        },
+        {
+          "year": 2022,
+          "population": 68330
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.2151,
@@ -429,19 +1129,69 @@
     "property_type": "opportunity_site",
     "zoning": "RS-3",
     "crime": {
-      "crime_trend": -0.1,
-      "crime_count_nearby": 9,
-      "violent_crime_count_nearby": 1
+      "crime_trend": -0.1111,
+      "crime_count_nearby": 8,
+      "violent_crime_count_nearby": 0,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 25,
+          "violent_crime_count": 6
+        },
+        {
+          "year": 2023,
+          "crime_count": 29,
+          "violent_crime_count": 8
+        },
+        {
+          "year": 2024,
+          "crime_count": 15,
+          "violent_crime_count": 8
+        },
+        {
+          "year": 2025,
+          "crime_count": 16,
+          "violent_crime_count": 5
+        }
+      ]
     },
     "permits": {
       "permit_activity": 0.5,
-      "permit_count_nearby": 6
+      "permit_count_nearby": 6,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 8
+        },
+        {
+          "year": 2023,
+          "permit_count": 13
+        },
+        {
+          "year": 2024,
+          "permit_count": 10
+        },
+        {
+          "year": 2025,
+          "permit_count": 13
+        }
+      ]
     },
     "income": {
       "income": 30451
     },
     "population": {
-      "population_growth": -0.019
+      "population_growth": -0.019,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 30412
+        },
+        {
+          "year": 2022,
+          "population": 29833
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0228,
@@ -459,19 +1209,69 @@
     "property_type": "opportunity_site",
     "zoning": "RM-5",
     "crime": {
-      "crime_trend": -0.25,
+      "crime_trend": -0.3571,
       "crime_count_nearby": 9,
-      "violent_crime_count_nearby": 1
+      "violent_crime_count_nearby": 1,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 35,
+          "violent_crime_count": 8
+        },
+        {
+          "year": 2023,
+          "crime_count": 31,
+          "violent_crime_count": 9
+        },
+        {
+          "year": 2024,
+          "crime_count": 37,
+          "violent_crime_count": 14
+        },
+        {
+          "year": 2025,
+          "crime_count": 64,
+          "violent_crime_count": 14
+        }
+      ]
     },
     "permits": {
-      "permit_activity": -0.0909,
-      "permit_count_nearby": 10
+      "permit_activity": 0.0,
+      "permit_count_nearby": 10,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 39
+        },
+        {
+          "year": 2023,
+          "permit_count": 19
+        },
+        {
+          "year": 2024,
+          "permit_count": 24
+        },
+        {
+          "year": 2025,
+          "permit_count": 25
+        }
+      ]
     },
     "income": {
       "income": 35136
     },
     "population": {
-      "population_growth": -0.0045
+      "population_growth": -0.0045,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 34519
+        },
+        {
+          "year": 2022,
+          "population": 34364
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0859,
@@ -489,19 +1289,69 @@
     "property_type": "opportunity_site",
     "zoning": "RS-3",
     "crime": {
-      "crime_trend": -0.1111,
-      "crime_count_nearby": 16,
-      "violent_crime_count_nearby": 6
+      "crime_trend": 0.0,
+      "crime_count_nearby": 17,
+      "violent_crime_count_nearby": 7,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 32,
+          "violent_crime_count": 13
+        },
+        {
+          "year": 2023,
+          "crime_count": 43,
+          "violent_crime_count": 19
+        },
+        {
+          "year": 2024,
+          "crime_count": 63,
+          "violent_crime_count": 13
+        },
+        {
+          "year": 2025,
+          "crime_count": 60,
+          "violent_crime_count": 11
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 5.5,
-      "permit_count_nearby": 13
+      "permit_activity": 3.3333,
+      "permit_count_nearby": 13,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 18
+        },
+        {
+          "year": 2023,
+          "permit_count": 27
+        },
+        {
+          "year": 2024,
+          "permit_count": 16
+        },
+        {
+          "year": 2025,
+          "permit_count": 22
+        }
+      ]
     },
     "income": {
       "income": 31768
     },
     "population": {
-      "population_growth": -0.0357
+      "population_growth": -0.0357,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 36986
+        },
+        {
+          "year": 2022,
+          "population": 35664
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.1822,
@@ -519,19 +1369,69 @@
     "property_type": "opportunity_site",
     "zoning": "RT-4",
     "crime": {
-      "crime_trend": -0.0526,
-      "crime_count_nearby": 18,
-      "violent_crime_count_nearby": 8
+      "crime_trend": 0.0556,
+      "crime_count_nearby": 19,
+      "violent_crime_count_nearby": 9,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 33,
+          "violent_crime_count": 12
+        },
+        {
+          "year": 2023,
+          "crime_count": 46,
+          "violent_crime_count": 21
+        },
+        {
+          "year": 2024,
+          "crime_count": 65,
+          "violent_crime_count": 16
+        },
+        {
+          "year": 2025,
+          "crime_count": 65,
+          "violent_crime_count": 13
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 6.5,
-      "permit_count_nearby": 15
+      "permit_activity": 4.0,
+      "permit_count_nearby": 15,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 18
+        },
+        {
+          "year": 2023,
+          "permit_count": 28
+        },
+        {
+          "year": 2024,
+          "permit_count": 21
+        },
+        {
+          "year": 2025,
+          "permit_count": 26
+        }
+      ]
     },
     "income": {
       "income": 31768
     },
     "population": {
-      "population_growth": -0.0357
+      "population_growth": -0.0357,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 36986
+        },
+        {
+          "year": 2022,
+          "population": 35664
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.1074,
@@ -549,19 +1449,69 @@
     "property_type": "opportunity_site",
     "zoning": "RS-3",
     "crime": {
-      "crime_trend": -0.375,
+      "crime_trend": -0.4444,
       "crime_count_nearby": 5,
-      "violent_crime_count_nearby": 2
+      "violent_crime_count_nearby": 2,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 36,
+          "violent_crime_count": 23
+        },
+        {
+          "year": 2023,
+          "crime_count": 45,
+          "violent_crime_count": 14
+        },
+        {
+          "year": 2024,
+          "crime_count": 30,
+          "violent_crime_count": 11
+        },
+        {
+          "year": 2025,
+          "crime_count": 35,
+          "violent_crime_count": 13
+        }
+      ]
     },
     "permits": {
-      "permit_activity": -0.3333,
-      "permit_count_nearby": 6
+      "permit_activity": -0.4545,
+      "permit_count_nearby": 6,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 21
+        },
+        {
+          "year": 2023,
+          "permit_count": 27
+        },
+        {
+          "year": 2024,
+          "permit_count": 22
+        },
+        {
+          "year": 2025,
+          "permit_count": 23
+        }
+      ]
     },
     "income": {
       "income": 30163
     },
     "population": {
-      "population_growth": 0.0173
+      "population_growth": 0.0173,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 26538
+        },
+        {
+          "year": 2022,
+          "population": 26997
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0643,
@@ -579,19 +1529,69 @@
     "property_type": "opportunity_site",
     "zoning": "RS-3",
     "crime": {
-      "crime_trend": 0.0,
-      "crime_count_nearby": 16,
-      "violent_crime_count_nearby": 6
+      "crime_trend": 0.0625,
+      "crime_count_nearby": 17,
+      "violent_crime_count_nearby": 7,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 31,
+          "violent_crime_count": 13
+        },
+        {
+          "year": 2023,
+          "crime_count": 46,
+          "violent_crime_count": 18
+        },
+        {
+          "year": 2024,
+          "crime_count": 66,
+          "violent_crime_count": 15
+        },
+        {
+          "year": 2025,
+          "crime_count": 62,
+          "violent_crime_count": 12
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 3.0,
-      "permit_count_nearby": 12
+      "permit_activity": 1.4,
+      "permit_count_nearby": 12,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 17
+        },
+        {
+          "year": 2023,
+          "permit_count": 25
+        },
+        {
+          "year": 2024,
+          "permit_count": 18
+        },
+        {
+          "year": 2025,
+          "permit_count": 25
+        }
+      ]
     },
     "income": {
       "income": 31768
     },
     "population": {
-      "population_growth": -0.0357
+      "population_growth": -0.0357,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 36986
+        },
+        {
+          "year": 2022,
+          "population": 35664
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.2392,
@@ -609,19 +1609,69 @@
     "property_type": "opportunity_site",
     "zoning": "RS-2",
     "crime": {
-      "crime_trend": -0.125,
-      "crime_count_nearby": 7,
-      "violent_crime_count_nearby": 3
+      "crime_trend": -0.25,
+      "crime_count_nearby": 6,
+      "violent_crime_count_nearby": 3,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 11,
+          "violent_crime_count": 6
+        },
+        {
+          "year": 2023,
+          "crime_count": 14,
+          "violent_crime_count": 2
+        },
+        {
+          "year": 2024,
+          "crime_count": 21,
+          "violent_crime_count": 6
+        },
+        {
+          "year": 2025,
+          "crime_count": 20,
+          "violent_crime_count": 7
+        }
+      ]
     },
     "permits": {
       "permit_activity": -0.6667,
-      "permit_count_nearby": 1
+      "permit_count_nearby": 1,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 6
+        },
+        {
+          "year": 2023,
+          "permit_count": 5
+        },
+        {
+          "year": 2024,
+          "permit_count": 12
+        },
+        {
+          "year": 2025,
+          "permit_count": 14
+        }
+      ]
     },
     "income": {
       "income": 46472
     },
     "population": {
-      "population_growth": -0.0148
+      "population_growth": -0.0148,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 69357
+        },
+        {
+          "year": 2022,
+          "population": 68330
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.1052,
@@ -639,19 +1689,69 @@
     "property_type": "opportunity_site",
     "zoning": "RT-4",
     "crime": {
-      "crime_trend": 0.5,
+      "crime_trend": 0.4,
       "crime_count_nearby": 21,
-      "violent_crime_count_nearby": 7
+      "violent_crime_count_nearby": 7,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 49,
+          "violent_crime_count": 19
+        },
+        {
+          "year": 2023,
+          "crime_count": 55,
+          "violent_crime_count": 12
+        },
+        {
+          "year": 2024,
+          "crime_count": 57,
+          "violent_crime_count": 20
+        },
+        {
+          "year": 2025,
+          "crime_count": 47,
+          "violent_crime_count": 17
+        }
+      ]
     },
     "permits": {
       "permit_activity": -0.1,
-      "permit_count_nearby": 9
+      "permit_count_nearby": 9,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 17
+        },
+        {
+          "year": 2023,
+          "permit_count": 19
+        },
+        {
+          "year": 2024,
+          "permit_count": 17
+        },
+        {
+          "year": 2025,
+          "permit_count": 35
+        }
+      ]
     },
     "income": {
       "income": 31768
     },
     "population": {
-      "population_growth": -0.0357
+      "population_growth": -0.0357,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 36986
+        },
+        {
+          "year": 2022,
+          "population": 35664
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.1379,
@@ -669,19 +1769,69 @@
     "property_type": "opportunity_site",
     "zoning": "RT-4",
     "crime": {
-      "crime_trend": 1.0,
+      "crime_trend": 0.75,
       "crime_count_nearby": 14,
-      "violent_crime_count_nearby": 9
+      "violent_crime_count_nearby": 8,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 25,
+          "violent_crime_count": 10
+        },
+        {
+          "year": 2023,
+          "crime_count": 32,
+          "violent_crime_count": 12
+        },
+        {
+          "year": 2024,
+          "crime_count": 32,
+          "violent_crime_count": 8
+        },
+        {
+          "year": 2025,
+          "crime_count": 25,
+          "violent_crime_count": 8
+        }
+      ]
     },
     "permits": {
-      "permit_activity": -0.2727,
-      "permit_count_nearby": 8
+      "permit_activity": -0.3636,
+      "permit_count_nearby": 7,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 15
+        },
+        {
+          "year": 2023,
+          "permit_count": 8
+        },
+        {
+          "year": 2024,
+          "permit_count": 15
+        },
+        {
+          "year": 2025,
+          "permit_count": 15
+        }
+      ]
     },
     "income": {
       "income": 47209
     },
     "population": {
-      "population_growth": 0.0223
+      "population_growth": 0.0223,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 61861
+        },
+        {
+          "year": 2022,
+          "population": 63241
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0694,
@@ -699,19 +1849,69 @@
     "property_type": "opportunity_site",
     "zoning": "B3-3",
     "crime": {
-      "crime_trend": -0.2,
+      "crime_trend": -0.2258,
       "crime_count_nearby": 24,
-      "violent_crime_count_nearby": 9
+      "violent_crime_count_nearby": 9,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 48,
+          "violent_crime_count": 13
+        },
+        {
+          "year": 2023,
+          "crime_count": 50,
+          "violent_crime_count": 20
+        },
+        {
+          "year": 2024,
+          "crime_count": 57,
+          "violent_crime_count": 24
+        },
+        {
+          "year": 2025,
+          "crime_count": 57,
+          "violent_crime_count": 18
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 0.7778,
-      "permit_count_nearby": 16
+      "permit_activity": 0.6,
+      "permit_count_nearby": 16,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 15
+        },
+        {
+          "year": 2023,
+          "permit_count": 31
+        },
+        {
+          "year": 2024,
+          "permit_count": 14
+        },
+        {
+          "year": 2025,
+          "permit_count": 19
+        }
+      ]
     },
     "income": {
       "income": 31768
     },
     "population": {
-      "population_growth": -0.0357
+      "population_growth": -0.0357,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 36986
+        },
+        {
+          "year": 2022,
+          "population": 35664
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0625,
@@ -729,19 +1929,69 @@
     "property_type": "opportunity_site",
     "zoning": "RT-4",
     "crime": {
-      "crime_trend": -0.28,
+      "crime_trend": -0.25,
       "crime_count_nearby": 18,
-      "violent_crime_count_nearby": 7
+      "violent_crime_count_nearby": 7,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 50,
+          "violent_crime_count": 17
+        },
+        {
+          "year": 2023,
+          "crime_count": 74,
+          "violent_crime_count": 24
+        },
+        {
+          "year": 2024,
+          "crime_count": 55,
+          "violent_crime_count": 18
+        },
+        {
+          "year": 2025,
+          "crime_count": 45,
+          "violent_crime_count": 19
+        }
+      ]
     },
     "permits": {
-      "permit_activity": -0.6,
-      "permit_count_nearby": 4
+      "permit_activity": -0.5556,
+      "permit_count_nearby": 4,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 24
+        },
+        {
+          "year": 2023,
+          "permit_count": 10
+        },
+        {
+          "year": 2024,
+          "permit_count": 16
+        },
+        {
+          "year": 2025,
+          "permit_count": 28
+        }
+      ]
     },
     "income": {
       "income": 42802
     },
     "population": {
-      "population_growth": -0.0479
+      "population_growth": -0.0479,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 63481
+        },
+        {
+          "year": 2022,
+          "population": 60443
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.2011,
@@ -759,19 +2009,69 @@
     "property_type": "opportunity_site",
     "zoning": "RT-4",
     "crime": {
-      "crime_trend": 1.1429,
+      "crime_trend": 0.875,
       "crime_count_nearby": 15,
-      "violent_crime_count_nearby": 10
+      "violent_crime_count_nearby": 9,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 25,
+          "violent_crime_count": 10
+        },
+        {
+          "year": 2023,
+          "crime_count": 33,
+          "violent_crime_count": 12
+        },
+        {
+          "year": 2024,
+          "crime_count": 31,
+          "violent_crime_count": 7
+        },
+        {
+          "year": 2025,
+          "crime_count": 25,
+          "violent_crime_count": 8
+        }
+      ]
     },
     "permits": {
-      "permit_activity": -0.3636,
-      "permit_count_nearby": 7
+      "permit_activity": -0.4545,
+      "permit_count_nearby": 6,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 15
+        },
+        {
+          "year": 2023,
+          "permit_count": 8
+        },
+        {
+          "year": 2024,
+          "permit_count": 18
+        },
+        {
+          "year": 2025,
+          "permit_count": 15
+        }
+      ]
     },
     "income": {
       "income": 47209
     },
     "population": {
-      "population_growth": 0.0223
+      "population_growth": 0.0223,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 61861
+        },
+        {
+          "year": 2022,
+          "population": 63241
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0732,
@@ -789,19 +2089,69 @@
     "property_type": "opportunity_site",
     "zoning": "RS-3",
     "crime": {
-      "crime_trend": -0.2941,
-      "crime_count_nearby": 12,
-      "violent_crime_count_nearby": 6
+      "crime_trend": -0.1875,
+      "crime_count_nearby": 13,
+      "violent_crime_count_nearby": 7,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 22,
+          "violent_crime_count": 10
+        },
+        {
+          "year": 2023,
+          "crime_count": 30,
+          "violent_crime_count": 18
+        },
+        {
+          "year": 2024,
+          "crime_count": 34,
+          "violent_crime_count": 9
+        },
+        {
+          "year": 2025,
+          "crime_count": 40,
+          "violent_crime_count": 8
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 1.5,
-      "permit_count_nearby": 10
+      "permit_activity": 1.25,
+      "permit_count_nearby": 9,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 14
+        },
+        {
+          "year": 2023,
+          "permit_count": 20
+        },
+        {
+          "year": 2024,
+          "permit_count": 14
+        },
+        {
+          "year": 2025,
+          "permit_count": 19
+        }
+      ]
     },
     "income": {
       "income": 31768
     },
     "population": {
-      "population_growth": -0.0357
+      "population_growth": -0.0357,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 36986
+        },
+        {
+          "year": 2022,
+          "population": 35664
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.1047,
@@ -819,19 +2169,69 @@
     "property_type": "opportunity_site",
     "zoning": "B3-3",
     "crime": {
-      "crime_trend": -0.1786,
+      "crime_trend": -0.2069,
       "crime_count_nearby": 23,
-      "violent_crime_count_nearby": 9
+      "violent_crime_count_nearby": 9,
+      "crime_history": [
+        {
+          "year": 2022,
+          "crime_count": 47,
+          "violent_crime_count": 13
+        },
+        {
+          "year": 2023,
+          "crime_count": 50,
+          "violent_crime_count": 20
+        },
+        {
+          "year": 2024,
+          "crime_count": 55,
+          "violent_crime_count": 22
+        },
+        {
+          "year": 2025,
+          "crime_count": 56,
+          "violent_crime_count": 18
+        }
+      ]
     },
     "permits": {
-      "permit_activity": 0.7778,
-      "permit_count_nearby": 16
+      "permit_activity": 0.7,
+      "permit_count_nearby": 17,
+      "permit_history": [
+        {
+          "year": 2022,
+          "permit_count": 15
+        },
+        {
+          "year": 2023,
+          "permit_count": 31
+        },
+        {
+          "year": 2024,
+          "permit_count": 14
+        },
+        {
+          "year": 2025,
+          "permit_count": 22
+        }
+      ]
     },
     "income": {
       "income": 31768
     },
     "population": {
-      "population_growth": -0.0357
+      "population_growth": -0.0357,
+      "population_history": [
+        {
+          "year": 2021,
+          "population": 36986
+        },
+        {
+          "year": 2022,
+          "population": 35664
+        }
+      ]
     },
     "transit": {
       "transit_distance": 0.0668,

@@ -67,7 +67,7 @@ def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
     return scores
 
 #build scores for all plots
-def buildScoresBath(plots):
+def buildScoresAll(plots):
     results = []
 
     for plot in plots:

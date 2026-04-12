@@ -1,11 +1,10 @@
 from __future__ import annotations
-from typing import Any, List, Dict
-from utils import saveJson, loadJson
-from pipelines.feature_builder import buildFeaturesAll
-from pipelines.scoring_model import buildScoresAll
-from pipelines.forecast_model import forecastAllPlots
+from typing import Any, Dict, List
 from config import FINAL_PLOTS_FILE, OUTPUT_DIR
-
+from models.feature_builder import buildFeaturesAll
+from models.forecast_model import forecastAllPlots
+from models.scoring_model import buildScoresAll
+from utils import loadJson, saveJson
 #where predictions will be saved
 PREDICTIONS_FILE = OUTPUT_DIR / "predicted_plots.json"
 

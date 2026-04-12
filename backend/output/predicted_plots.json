@@ -67,7 +67,37 @@
     "violent_crime_count_nearby": 6,
     "permit_count_nearby": 11,
     "nearest_station": "Halsted & 76th Street",
-    "transit_stop_count_nearby": 23
+    "transit_stop_count_nearby": 23,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 47.0,
+        "3y": 52.0,
+        "5y": 57.0
+      },
+      "permit_forecast": {
+        "1y": 18.5,
+        "3y": 19.5,
+        "5y": 20.5
+      },
+      "population_forecast": {
+        "1y": 67303.0,
+        "3y": 65249.0,
+        "5y": 63195.0
+      }
+    }
   },
   {
     "id": "8947",
@@ -137,7 +167,37 @@
     "violent_crime_count_nearby": 7,
     "permit_count_nearby": 10,
     "nearest_station": "Pulaski & Erie",
-    "transit_stop_count_nearby": 13
+    "transit_stop_count_nearby": 13,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 55.5,
+        "3y": 70.5,
+        "5y": 85.5
+      },
+      "permit_forecast": {
+        "1y": 17.5,
+        "3y": 17.69999999999999,
+        "5y": 17.899999999999977
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
   },
   {
     "id": "58725",
@@ -207,7 +267,37 @@
     "violent_crime_count_nearby": 3,
     "permit_count_nearby": 2,
     "nearest_station": "Roosevelt & Kilbourn",
-    "transit_stop_count_nearby": 16
+    "transit_stop_count_nearby": 16,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 25.5,
+        "3y": 29.5,
+        "5y": 33.5
+      },
+      "permit_forecast": {
+        "1y": 15.0,
+        "3y": 19.0,
+        "5y": 23.0
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
   },
   {
     "id": "36518",
@@ -277,7 +367,37 @@
     "violent_crime_count_nearby": 4,
     "permit_count_nearby": 12,
     "nearest_station": "Ashland & 57th Street",
-    "transit_stop_count_nearby": 28
+    "transit_stop_count_nearby": 28,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 31.0,
+        "3y": 32.40000000000009,
+        "5y": 33.80000000000018
+      },
+      "permit_forecast": {
+        "1y": 18.5,
+        "3y": 19.90000000000009,
+        "5y": 21.300000000000182
+      },
+      "population_forecast": {
+        "1y": 29254.0,
+        "3y": 28096.0,
+        "5y": 26938.0
+      }
+    }
   },
   {
     "id": "8191",
@@ -347,7 +467,37 @@
     "violent_crime_count_nearby": 8,
     "permit_count_nearby": 15,
     "nearest_station": "Division & Hamlin",
-    "transit_stop_count_nearby": 19
+    "transit_stop_count_nearby": 19,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 54.0,
+        "3y": 60.600000000000364,
+        "5y": 67.20000000000073
+      },
+      "permit_forecast": {
+        "1y": 29.5,
+        "3y": 31.299999999999955,
+        "5y": 33.09999999999991
+      },
+      "population_forecast": {
+        "1y": 65820.0,
+        "3y": 67002.0,
+        "5y": 68184.0
+      }
+    }
   },
   {
     "id": "24455",
@@ -417,7 +567,37 @@
     "violent_crime_count_nearby": 0,
     "permit_count_nearby": 9,
     "nearest_station": "111th Street & Stewart",
-    "transit_stop_count_nearby": 7
+    "transit_stop_count_nearby": 7,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 10.5,
+        "3y": 2.699999999999818,
+        "5y": -5.100000000000364
+      },
+      "permit_forecast": {
+        "1y": 13.0,
+        "3y": 10.400000000000091,
+        "5y": 7.800000000000182
+      },
+      "population_forecast": {
+        "1y": 58349.0,
+        "3y": 52209.0,
+        "5y": 46069.0
+      }
+    }
   },
   {
     "id": "16109",
@@ -487,7 +667,37 @@
     "violent_crime_count_nearby": 1,
     "permit_count_nearby": 5,
     "nearest_station": "Ellis & Oakwood",
-    "transit_stop_count_nearby": 16
+    "transit_stop_count_nearby": 16,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 18.5,
+        "3y": 19.5,
+        "5y": 20.5
+      },
+      "permit_forecast": {
+        "1y": 21.0,
+        "3y": 27.399999999999636,
+        "5y": 33.79999999999927
+      },
+      "population_forecast": {
+        "1y": 34209.0,
+        "3y": 33899.0,
+        "5y": 33589.0
+      }
+    }
   },
   {
     "id": "50670",
@@ -557,7 +767,37 @@
     "violent_crime_count_nearby": 5,
     "permit_count_nearby": 8,
     "nearest_station": "119th Street & Normal",
-    "transit_stop_count_nearby": 13
+    "transit_stop_count_nearby": 13,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 21.0,
+        "3y": 21.19999999999999,
+        "5y": 21.399999999999977
+      },
+      "permit_forecast": {
+        "1y": 10.0,
+        "3y": 4.600000000000364,
+        "5y": -0.7999999999992724
+      },
+      "population_forecast": {
+        "1y": 58349.0,
+        "3y": 52209.0,
+        "5y": 46069.0
+      }
+    }
   },
   {
     "id": "19665",
@@ -627,7 +867,37 @@
     "violent_crime_count_nearby": 4,
     "permit_count_nearby": 11,
     "nearest_station": "79th Street & Exchange",
-    "transit_stop_count_nearby": 12
+    "transit_stop_count_nearby": 12,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 36.0,
+        "3y": 32.80000000000018,
+        "5y": 29.600000000000364
+      },
+      "permit_forecast": {
+        "1y": 30.5,
+        "3y": 40.5,
+        "5y": 50.5
+      },
+      "population_forecast": {
+        "1y": 82183.0,
+        "3y": 80173.0,
+        "5y": 78163.0
+      }
+    }
   },
   {
     "id": "19589",
@@ -697,7 +967,37 @@
     "violent_crime_count_nearby": 4,
     "permit_count_nearby": 8,
     "nearest_station": "87th Street & South Chicago",
-    "transit_stop_count_nearby": 13
+    "transit_stop_count_nearby": 13,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 12.0,
+        "3y": 8.800000000000182,
+        "5y": 5.600000000000364
+      },
+      "permit_forecast": {
+        "1y": 9.5,
+        "3y": 5.100000000000364,
+        "5y": 0.7000000000007276
+      },
+      "population_forecast": {
+        "1y": 82183.0,
+        "3y": 80173.0,
+        "5y": 78163.0
+      }
+    }
   },
   {
     "id": "34339",
@@ -767,7 +1067,37 @@
     "violent_crime_count_nearby": 1,
     "permit_count_nearby": 4,
     "nearest_station": "133rd Place & Langley",
-    "transit_stop_count_nearby": 6
+    "transit_stop_count_nearby": 6,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 7.0,
+        "3y": 3.199999999999818,
+        "5y": -0.6000000000003638
+      },
+      "permit_forecast": {
+        "1y": 0.0,
+        "3y": -3.199999999999818,
+        "5y": -6.399999999999636
+      },
+      "population_forecast": {
+        "1y": 25066.0,
+        "3y": 24122.0,
+        "5y": 23178.0
+      }
+    }
   },
   {
     "id": "35245",
@@ -837,7 +1167,37 @@
     "violent_crime_count_nearby": 9,
     "permit_count_nearby": 15,
     "nearest_station": "Chicago & Hamlin",
-    "transit_stop_count_nearby": 15
+    "transit_stop_count_nearby": 15,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 81.0,
+        "3y": 104.40000000000146,
+        "5y": 127.80000000000291
+      },
+      "permit_forecast": {
+        "1y": 28.5,
+        "3y": 32.09999999999991,
+        "5y": 35.69999999999982
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
   },
   {
     "id": "36653",
@@ -907,7 +1267,37 @@
     "violent_crime_count_nearby": 4,
     "permit_count_nearby": 3,
     "nearest_station": "51st Street & Damen",
-    "transit_stop_count_nearby": 17
+    "transit_stop_count_nearby": 17,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 23.0,
+        "3y": 25.59999999999991,
+        "5y": 28.199999999999818
+      },
+      "permit_forecast": {
+        "1y": 8.5,
+        "3y": 5.900000000000091,
+        "5y": 3.300000000000182
+      },
+      "population_forecast": {
+        "1y": 64621.0,
+        "3y": 67381.0,
+        "5y": 70141.0
+      }
+    }
   },
   {
     "id": "19505",
@@ -977,7 +1367,37 @@
     "violent_crime_count_nearby": 2,
     "permit_count_nearby": 6,
     "nearest_station": "Ashland & 83rd Street",
-    "transit_stop_count_nearby": 19
+    "transit_stop_count_nearby": 19,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 26.5,
+        "3y": 21.300000000000182,
+        "5y": 16.100000000000364
+      },
+      "permit_forecast": {
+        "1y": 21.5,
+        "3y": 22.5,
+        "5y": 23.5
+      },
+      "population_forecast": {
+        "1y": 67303.0,
+        "3y": 65249.0,
+        "5y": 63195.0
+      }
+    }
   },
   {
     "id": "35396",
@@ -1047,7 +1467,37 @@
     "violent_crime_count_nearby": 0,
     "permit_count_nearby": 6,
     "nearest_station": "Damen & 64th Street",
-    "transit_stop_count_nearby": 12
+    "transit_stop_count_nearby": 12,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 11.0,
+        "3y": 2.7999999999992724,
+        "5y": -5.400000000001455
+      },
+      "permit_forecast": {
+        "1y": 14.0,
+        "3y": 16.40000000000009,
+        "5y": 18.800000000000182
+      },
+      "population_forecast": {
+        "1y": 29254.0,
+        "3y": 28096.0,
+        "5y": 26938.0
+      }
+    }
   },
   {
     "id": "59403",
@@ -1117,7 +1567,37 @@
     "violent_crime_count_nearby": 1,
     "permit_count_nearby": 10,
     "nearest_station": "47th Street & Vincennes",
-    "transit_stop_count_nearby": 27
+    "transit_stop_count_nearby": 27,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 65.0,
+        "3y": 83.59999999999854,
+        "5y": 102.19999999999709
+      },
+      "permit_forecast": {
+        "1y": 17.5,
+        "3y": 10.100000000000364,
+        "5y": 2.7000000000007276
+      },
+      "population_forecast": {
+        "1y": 34209.0,
+        "3y": 33899.0,
+        "5y": 33589.0
+      }
+    }
   },
   {
     "id": "58818",
@@ -1187,7 +1667,37 @@
     "violent_crime_count_nearby": 7,
     "permit_count_nearby": 13,
     "nearest_station": "Chicago & Hamlin",
-    "transit_stop_count_nearby": 14
+    "transit_stop_count_nearby": 14,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 75.5,
+        "3y": 96.29999999999927,
+        "5y": 117.09999999999854
+      },
+      "permit_forecast": {
+        "1y": 21.0,
+        "3y": 21.19999999999999,
+        "5y": 21.399999999999977
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
   },
   {
     "id": "8771",
@@ -1257,7 +1767,37 @@
     "violent_crime_count_nearby": 9,
     "permit_count_nearby": 15,
     "nearest_station": "Chicago & Hamlin",
-    "transit_stop_count_nearby": 15
+    "transit_stop_count_nearby": 15,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 81.0,
+        "3y": 104.0,
+        "5y": 127.0
+      },
+      "permit_forecast": {
+        "1y": 27.5,
+        "3y": 30.90000000000009,
+        "5y": 34.30000000000018
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
   },
   {
     "id": "20523",
@@ -1327,7 +1867,37 @@
     "violent_crime_count_nearby": 2,
     "permit_count_nearby": 6,
     "nearest_station": "69th Street & Peoria",
-    "transit_stop_count_nearby": 22
+    "transit_stop_count_nearby": 22,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 32.0,
+        "3y": 28.40000000000009,
+        "5y": 24.800000000000182
+      },
+      "permit_forecast": {
+        "1y": 23.5,
+        "3y": 23.69999999999999,
+        "5y": 23.899999999999977
+      },
+      "population_forecast": {
+        "1y": 27456.0,
+        "3y": 28374.0,
+        "5y": 29292.0
+      }
+    }
   },
   {
     "id": "34273",
@@ -1397,7 +1967,37 @@
     "violent_crime_count_nearby": 7,
     "permit_count_nearby": 12,
     "nearest_station": "Chicago & Central Park",
-    "transit_stop_count_nearby": 16
+    "transit_stop_count_nearby": 16,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 79.5,
+        "3y": 102.09999999999854,
+        "5y": 124.69999999999709
+      },
+      "permit_forecast": {
+        "1y": 25.5,
+        "3y": 28.90000000000009,
+        "5y": 32.30000000000018
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
   },
   {
     "id": "23989",
@@ -1467,7 +2067,37 @@
     "violent_crime_count_nearby": 3,
     "permit_count_nearby": 1,
     "nearest_station": "Lafayette & 93rd Street",
-    "transit_stop_count_nearby": 15
+    "transit_stop_count_nearby": 15,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 25.0,
+        "3y": 31.800000000000182,
+        "5y": 38.600000000000364
+      },
+      "permit_forecast": {
+        "1y": 17.0,
+        "3y": 23.199999999999818,
+        "5y": 29.399999999999636
+      },
+      "population_forecast": {
+        "1y": 67303.0,
+        "3y": 65249.0,
+        "5y": 63195.0
+      }
+    }
   },
   {
     "id": "37225",
@@ -1537,7 +2167,37 @@
     "violent_crime_count_nearby": 7,
     "permit_count_nearby": 9,
     "nearest_station": "Jackson & Kostner",
-    "transit_stop_count_nearby": 23
+    "transit_stop_count_nearby": 23,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 51.0,
+        "3y": 50.200000000000045,
+        "5y": 49.40000000000009
+      },
+      "permit_forecast": {
+        "1y": 35.0,
+        "3y": 45.399999999999636,
+        "5y": 55.79999999999927
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
   },
   {
     "id": "62419",
@@ -1607,7 +2267,37 @@
     "violent_crime_count_nearby": 8,
     "permit_count_nearby": 7,
     "nearest_station": "State & 54th Street",
-    "transit_stop_count_nearby": 29
+    "transit_stop_count_nearby": 29,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 28.5,
+        "3y": 28.5,
+        "5y": 28.5
+      },
+      "permit_forecast": {
+        "1y": 15.0,
+        "3y": 16.40000000000009,
+        "5y": 17.800000000000182
+      },
+      "population_forecast": {
+        "1y": 64621.0,
+        "3y": 67381.0,
+        "5y": 70141.0
+      }
+    }
   },
   {
     "id": "9617",
@@ -1677,7 +2367,37 @@
     "violent_crime_count_nearby": 9,
     "permit_count_nearby": 16,
     "nearest_station": "Roosevelt & St. Louis",
-    "transit_stop_count_nearby": 17
+    "transit_stop_count_nearby": 17,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 61.5,
+        "3y": 68.30000000000018,
+        "5y": 75.10000000000036
+      },
+      "permit_forecast": {
+        "1y": 18.5,
+        "3y": 17.5,
+        "5y": 16.5
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
   },
   {
     "id": "37546",
@@ -1747,7 +2467,37 @@
     "violent_crime_count_nearby": 7,
     "permit_count_nearby": 4,
     "nearest_station": "Cottage Grove & 82nd Street",
-    "transit_stop_count_nearby": 10
+    "transit_stop_count_nearby": 10,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 47.5,
+        "3y": 40.69999999999982,
+        "5y": 33.899999999999636
+      },
+      "permit_forecast": {
+        "1y": 24.0,
+        "3y": 27.59999999999991,
+        "5y": 31.199999999999818
+      },
+      "population_forecast": {
+        "1y": 57405.0,
+        "3y": 51329.0,
+        "5y": 45253.0
+      }
+    }
   },
   {
     "id": "18694",
@@ -1817,7 +2567,37 @@
     "violent_crime_count_nearby": 9,
     "permit_count_nearby": 6,
     "nearest_station": "State & 54th Street",
-    "transit_stop_count_nearby": 27
+    "transit_stop_count_nearby": 27,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 28.0,
+        "3y": 27.600000000000023,
+        "5y": 27.200000000000045
+      },
+      "permit_forecast": {
+        "1y": 16.5,
+        "3y": 18.5,
+        "5y": 20.5
+      },
+      "population_forecast": {
+        "1y": 64621.0,
+        "3y": 67381.0,
+        "5y": 70141.0
+      }
+    }
   },
   {
     "id": "8915",
@@ -1887,7 +2667,37 @@
     "violent_crime_count_nearby": 7,
     "permit_count_nearby": 9,
     "nearest_station": "Pulaski & Erie",
-    "transit_stop_count_nearby": 14
+    "transit_stop_count_nearby": 14,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 46.0,
+        "3y": 57.600000000000364,
+        "5y": 69.20000000000073
+      },
+      "permit_forecast": {
+        "1y": 19.0,
+        "3y": 20.799999999999955,
+        "5y": 22.59999999999991
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
   },
   {
     "id": "9616",
@@ -1957,6 +2767,36 @@
     "violent_crime_count_nearby": 9,
     "permit_count_nearby": 17,
     "nearest_station": "Roosevelt & St. Louis",
-    "transit_stop_count_nearby": 17
+    "transit_stop_count_nearby": 17,
+    "features": {
+      "crimeTrend": 0,
+      "permitGrowth": 0,
+      "transitScore": 0.5,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 40,
+      "growthScore": 50,
+      "riskScore": 50,
+      "finalScore": 46
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 60.0,
+        "3y": 66.39999999999964,
+        "5y": 72.79999999999927
+      },
+      "permit_forecast": {
+        "1y": 21.5,
+        "3y": 22.299999999999955,
+        "5y": 23.09999999999991
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
   }
 ]

@@ -8,7 +8,6 @@
 from __future__ import annotations
 
 from typing import Any
-from datetime import datetime
 
 import requests
 
@@ -17,10 +16,8 @@ from config import CENSUS_API_KEY, REQUEST_TIMEOUT
 
 # Total population
 ACS_TOTAL_POP_VAR = "B01003_001E"
-
-
-def _buildPopulationApi(year: int) -> str:
-    return f"https://api.census.gov/data/{year}/acs/acs5"
+ACS_POP_2022_API = "https://api.census.gov/data/2022/acs/acs5"
+ACS_POP_2021_API = "https://api.census.gov/data/2021/acs/acs5"
 
 
 def _fetchPopulationByZip(apiUrl: str, zipCode: str) -> int | None:
@@ -71,45 +68,34 @@ def fetchPopulation(plot: dict[str, Any]) -> dict[str, Any]:
         }
 
     try:
-        # Census data typically lags by ~1 year
-        currentYear = datetime.now().year - 1
-        years = [
-            currentYear - 3,
-            currentYear - 2,
-            currentYear - 1,
-            currentYear
+        pop2022 = _fetchPopulationByZip(ACS_POP_2022_API, zipCode)
+        pop2021 = _fetchPopulationByZip(ACS_POP_2021_API, zipCode)
+
+        populationHistory = [
+            {
+                "year": 2021,
+                "population": pop2021,
+            },
+            {
+                "year": 2022,
+                "population": pop2022,
+            },
         ]
 
-        populationHistory = []
-
-        for year in years:
-            api = _buildPopulationApi(year)
-            population = _fetchPopulationByZip(api, zipCode)
-
-            populationHistory.append({
-                "year": year,
-                "population": population
-            })
-
-        validYears = [p for p in populationHistory if p["population"] is not None]
-
-        if len(validYears) < 2:
+        if pop2022 is None or pop2021 is None:
             return {
                 "population_growth": None,
-                "population_history": populationHistory
+                "population_history": populationHistory,
             }
 
-        first = validYears[0]["population"]
-        last = validYears[-1]["population"]
-
-        if first == 0:
-            growth = 0.0 if last == 0 else 1.0
+        if pop2021 == 0:
+            growth = 0.0 if pop2022 == 0 else 1.0
         else:
-            growth = (last - first) / first
+            growth = (pop2022 - pop2021) / pop2021
 
         return {
             "population_growth": round(growth, 4),
-            "population_history": populationHistory
+            "population_history": populationHistory,
         }
 
     except Exception as exc:
@@ -118,8 +104,6 @@ def fetchPopulation(plot: dict[str, Any]) -> dict[str, Any]:
             "population_growth": None,
             "population_history": []
         }
-
-
 if __name__ == "__main__":
     samplePlot = {
         "id": "test_plot",
