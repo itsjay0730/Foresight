@@ -1,6 +1,5 @@
 from typing import Dict, Any
 
-# Keep value between 0 and 1
 def clamp(value: float) -> float:
     if value < 0:
         return 0
@@ -8,24 +7,25 @@ def clamp(value: float) -> float:
         return 1
     return value
 
-# Map a raw 0-1 score to the realistic 60-95 display range.
-# A poor area (0.0) → 60, an average area (0.5) → 77, an excellent area (1.0) → 95.
+# Map realistic score range [0.25, 0.75] → display range [60, 95].
+# Scores outside that band are clamped to the floor/ceiling.
+# This amplifies real differences instead of cramming everything into a narrow slice.
 def toDisplayRange(score: float) -> float:
-    return 0.60 + clamp(score) * 0.35
+    LOW_RAW, HIGH_RAW   = 0.25, 0.75   # expected realistic input band
+    LOW_DISP, HIGH_DISP = 0.60, 0.95   # target display range
+    normalized = (score - LOW_RAW) / (HIGH_RAW - LOW_RAW)
+    return LOW_DISP + clamp(normalized) * (HIGH_DISP - LOW_DISP)
 
-# Turn crime trend into a risk score.
-# Higher crime trend = higher risk (worse for investment).
 def computeRiskScore(crimeTrend: float) -> float:
     return clamp((crimeTrend + 1) / 2)
 
-# Score how investable the area looks right now.
 def computeInvestmentScore(
     incomeScore: float,
     permitGrowth: float,
     populationGrowth: float,
-    transitScore: float
+    transitScore: float,
 ) -> float:
-    normalizedPermit = clamp((permitGrowth + 1) / 2)
+    normalizedPermit     = clamp((permitGrowth + 1) / 2)
     normalizedPopulation = clamp((populationGrowth + 1) / 2)
     score = (
         0.30 * incomeScore +
@@ -35,32 +35,25 @@ def computeInvestmentScore(
     )
     return clamp(score)
 
-# Score how much future growth potential the area has.
 def computeGrowthScore(permitGrowth: float, populationGrowth: float) -> float:
-    normalizedPermit = clamp((permitGrowth + 1) / 2)
+    normalizedPermit     = clamp((permitGrowth + 1) / 2)
     normalizedPopulation = clamp((populationGrowth + 1) / 2)
-    score = (0.55 * normalizedPermit + 0.45 * normalizedPopulation)
-    return clamp(score)
+    return clamp(0.55 * normalizedPermit + 0.45 * normalizedPopulation)
 
-# Combine all raw 0-1 scores into one final 0-1 score.
-# No artificial inflation — honest weighted average.
 def computeFinalScore(
     investmentScore: float,
     growthScore: float,
-    riskScore: float
+    riskScore: float,
 ) -> float:
-    score = (
+    return clamp(
         0.45 * investmentScore +
         0.40 * growthScore +
-        0.15 * (1 - riskScore)   # lower crime = better
+        0.15 * (1 - riskScore)
     )
-    return clamp(score)
 
-# Convert 0-1 score to display integer in the 60-95 range.
 def toPercent(score: float) -> int:
     return round(toDisplayRange(score) * 100)
 
-# Build all scores for one plot.
 def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
     features = plot.get("features", {})
 
@@ -70,7 +63,6 @@ def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
     incomeScore      = features.get("incomeScore", 0)
     populationGrowth = features.get("populationGrowth", 0)
 
-    # Compute raw honest 0-1 scores — no stretching
     riskScore       = computeRiskScore(crimeTrend)
     investmentScore = computeInvestmentScore(incomeScore, permitGrowth, populationGrowth, transitScore)
     growthScore     = computeGrowthScore(permitGrowth, populationGrowth)
@@ -83,7 +75,6 @@ def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
         "finalScore":      toPercent(finalScore),
     }
 
-# Build scores for all plots.
 def buildScoresAll(plots):
     results = []
 
@@ -127,8 +118,7 @@ def buildScoresAll(plots):
                         (populationForecast - lastPopulation) / max(lastPopulation, 1)
                     )
 
-                tempPlot = {**plot, "features": tempFeatures}
-                forecastScores[horizon] = buildScores(tempPlot)
+                forecastScores[horizon] = buildScores({**plot, "features": tempFeatures})
 
         results.append({**plot, "scores": scores, "forecast_scores": forecastScores})
 

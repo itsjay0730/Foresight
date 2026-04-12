@@ -76,29 +76,29 @@
       "populationGrowth": 0.019819454892656675
     },
     "scores": {
-      "investmentScore": 83,
-      "growthScore": 76,
-      "riskScore": 74,
-      "finalScore": 80
+      "investmentScore": 89,
+      "growthScore": 75,
+      "riskScore": 70,
+      "finalScore": 83
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
-        "growthScore": 80,
+        "investmentScore": 92,
+        "growthScore": 82,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 86
       },
       "3y": {
-        "investmentScore": 86,
-        "growthScore": 83,
+        "investmentScore": 95,
+        "growthScore": 88,
         "riskScore": 77,
-        "finalScore": 83
+        "finalScore": 89
       },
       "5y": {
-        "investmentScore": 87,
-        "growthScore": 85,
+        "investmentScore": 95,
+        "growthScore": 93,
         "riskScore": 77,
-        "finalScore": 85
+        "finalScore": 93
       }
     },
     "forecast": {
@@ -196,29 +196,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 83,
+      "investmentScore": 89,
       "growthScore": 78,
-      "riskScore": 83,
-      "finalScore": 79
+      "riskScore": 89,
+      "finalScore": 81
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -316,29 +316,29 @@
       "populationGrowth": 0.07392835902831786
     },
     "scores": {
-      "investmentScore": 85,
+      "investmentScore": 93,
       "growthScore": 78,
       "riskScore": 77,
-      "finalScore": 81
+      "finalScore": 85
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
-        "growthScore": 78,
-        "riskScore": 78,
-        "finalScore": 81
+        "investmentScore": 93,
+        "growthScore": 79,
+        "riskScore": 79,
+        "finalScore": 85
       },
       "3y": {
-        "investmentScore": 86,
-        "growthScore": 79,
-        "riskScore": 78,
-        "finalScore": 82
+        "investmentScore": 94,
+        "growthScore": 81,
+        "riskScore": 79,
+        "finalScore": 86
       },
       "5y": {
-        "investmentScore": 86,
-        "growthScore": 80,
-        "riskScore": 78,
-        "finalScore": 82
+        "investmentScore": 95,
+        "growthScore": 83,
+        "riskScore": 79,
+        "finalScore": 87
       }
     },
     "forecast": {
@@ -436,29 +436,29 @@
       "populationGrowth": -0.1786339754816112
     },
     "scores": {
-      "investmentScore": 86,
-      "growthScore": 75,
-      "riskScore": 80,
-      "finalScore": 80
+      "investmentScore": 95,
+      "growthScore": 73,
+      "riskScore": 82,
+      "finalScore": 83
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 88,
+        "investmentScore": 95,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 87
       },
       "3y": {
-        "investmentScore": 88,
-        "growthScore": 77,
-        "riskScore": 78,
-        "finalScore": 82
-      },
-      "5y": {
-        "investmentScore": 88,
+        "investmentScore": 95,
         "growthScore": 77,
         "riskScore": 79,
-        "finalScore": 82
+        "finalScore": 86
+      },
+      "5y": {
+        "investmentScore": 95,
+        "growthScore": 77,
+        "riskScore": 81,
+        "finalScore": 86
       }
     },
     "forecast": {
@@ -556,29 +556,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 83,
-      "growthScore": 80,
-      "riskScore": 84,
-      "finalScore": 80
+      "investmentScore": 89,
+      "growthScore": 82,
+      "riskScore": 91,
+      "finalScore": 83
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -676,29 +676,29 @@
       "populationGrowth": -0.024792612889906536
     },
     "scores": {
-      "investmentScore": 79,
-      "growthScore": 76,
-      "riskScore": 72,
-      "finalScore": 78
+      "investmentScore": 81,
+      "growthScore": 74,
+      "riskScore": 66,
+      "finalScore": 79
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 81,
-        "growthScore": 78,
+        "investmentScore": 84,
+        "growthScore": 79,
         "riskScore": 77,
-        "finalScore": 79
+        "finalScore": 81
       },
       "3y": {
-        "investmentScore": 81,
-        "growthScore": 78,
+        "investmentScore": 84,
+        "growthScore": 79,
         "riskScore": 77,
-        "finalScore": 79
+        "finalScore": 81
       },
       "5y": {
-        "investmentScore": 81,
-        "growthScore": 78,
+        "investmentScore": 84,
+        "growthScore": 79,
         "riskScore": 77,
-        "finalScore": 79
+        "finalScore": 81
       }
     },
     "forecast": {
@@ -796,29 +796,29 @@
       "populationGrowth": -0.024792612889906536
     },
     "scores": {
-      "investmentScore": 80,
+      "investmentScore": 83,
       "growthScore": 77,
-      "riskScore": 80,
-      "finalScore": 78
+      "riskScore": 82,
+      "finalScore": 79
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 80,
+        "investmentScore": 83,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 79
+        "finalScore": 80
       },
       "3y": {
-        "investmentScore": 80,
+        "investmentScore": 83,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 79
+        "finalScore": 80
       },
       "5y": {
-        "investmentScore": 80,
+        "investmentScore": 83,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 79
+        "finalScore": 80
       }
     },
     "forecast": {
@@ -916,29 +916,29 @@
       "populationGrowth": -0.012771622314977882
     },
     "scores": {
-      "investmentScore": 82,
-      "growthScore": 80,
-      "riskScore": 81,
-      "finalScore": 80
+      "investmentScore": 87,
+      "growthScore": 82,
+      "riskScore": 84,
+      "finalScore": 83
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 81,
+        "investmentScore": 85,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 79
+        "finalScore": 81
       },
       "3y": {
-        "investmentScore": 81,
+        "investmentScore": 85,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 79
+        "finalScore": 81
       },
       "5y": {
-        "investmentScore": 81,
+        "investmentScore": 85,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 79
+        "finalScore": 81
       }
     },
     "forecast": {
@@ -1036,29 +1036,29 @@
       "populationGrowth": -0.029901764866740992
     },
     "scores": {
-      "investmentScore": 81,
+      "investmentScore": 85,
       "growthScore": 77,
-      "riskScore": 80,
-      "finalScore": 79
+      "riskScore": 82,
+      "finalScore": 80
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 86,
         "growthScore": 77,
-        "riskScore": 81,
-        "finalScore": 79
+        "riskScore": 85,
+        "finalScore": 80
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 86,
         "growthScore": 77,
-        "riskScore": 88,
+        "riskScore": 95,
         "finalScore": 78
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 86,
         "growthScore": 78,
         "riskScore": 95,
-        "finalScore": 77
+        "finalScore": 76
       }
     },
     "forecast": {
@@ -1156,29 +1156,29 @@
       "populationGrowth": -0.024792612889906536
     },
     "scores": {
-      "investmentScore": 82,
-      "growthScore": 79,
-      "riskScore": 79,
-      "finalScore": 80
+      "investmentScore": 86,
+      "growthScore": 80,
+      "riskScore": 81,
+      "finalScore": 82
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 81,
+        "investmentScore": 85,
         "growthScore": 78,
         "riskScore": 77,
-        "finalScore": 79
+        "finalScore": 81
       },
       "3y": {
-        "investmentScore": 82,
-        "growthScore": 79,
+        "investmentScore": 86,
+        "growthScore": 81,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "5y": {
-        "investmentScore": 83,
-        "growthScore": 81,
-        "riskScore": 78,
-        "finalScore": 81
+        "investmentScore": 88,
+        "growthScore": 84,
+        "riskScore": 79,
+        "finalScore": 84
       }
     },
     "forecast": {
@@ -1278,26 +1278,26 @@
     "scores": {
       "investmentScore": 77,
       "growthScore": 78,
-      "riskScore": 78,
+      "riskScore": 79,
       "finalScore": 77
     },
     "forecast_scores": {
       "1y": {
         "investmentScore": 77,
         "growthScore": 78,
-        "riskScore": 79,
+        "riskScore": 80,
         "finalScore": 77
       },
       "3y": {
         "investmentScore": 77,
-        "growthScore": 78,
-        "riskScore": 81,
+        "growthScore": 79,
+        "riskScore": 84,
         "finalScore": 77
       },
       "5y": {
         "investmentScore": 78,
-        "growthScore": 79,
-        "riskScore": 83,
+        "growthScore": 80,
+        "riskScore": 88,
         "finalScore": 77
       }
     },
@@ -1396,29 +1396,29 @@
       "populationGrowth": -0.035743254204293515
     },
     "scores": {
-      "investmentScore": 76,
-      "growthScore": 80,
-      "riskScore": 80,
+      "investmentScore": 74,
+      "growthScore": 82,
+      "riskScore": 83,
       "finalScore": 77
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 75,
+        "investmentScore": 72,
         "growthScore": 77,
-        "riskScore": 81,
-        "finalScore": 76
+        "riskScore": 84,
+        "finalScore": 74
       },
       "3y": {
-        "investmentScore": 75,
+        "investmentScore": 72,
         "growthScore": 77,
-        "riskScore": 86,
-        "finalScore": 75
+        "riskScore": 95,
+        "finalScore": 72
       },
       "5y": {
-        "investmentScore": 75,
+        "investmentScore": 72,
         "growthScore": 77,
-        "riskScore": 92,
-        "finalScore": 74
+        "riskScore": 95,
+        "finalScore": 71
       }
     },
     "forecast": {
@@ -1516,29 +1516,29 @@
       "populationGrowth": -0.035743254204293515
     },
     "scores": {
-      "investmentScore": 77,
-      "growthScore": 81,
-      "riskScore": 80,
+      "investmentScore": 76,
+      "growthScore": 84,
+      "riskScore": 83,
       "finalScore": 78
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 75,
+        "investmentScore": 73,
         "growthScore": 77,
-        "riskScore": 80,
-        "finalScore": 76
+        "riskScore": 82,
+        "finalScore": 75
       },
       "3y": {
-        "investmentScore": 75,
+        "investmentScore": 73,
         "growthScore": 78,
-        "riskScore": 84,
-        "finalScore": 76
+        "riskScore": 91,
+        "finalScore": 74
       },
       "5y": {
-        "investmentScore": 75,
-        "growthScore": 79,
-        "riskScore": 89,
-        "finalScore": 75
+        "investmentScore": 73,
+        "growthScore": 80,
+        "riskScore": 95,
+        "finalScore": 73
       }
     },
     "forecast": {
@@ -1636,29 +1636,29 @@
       "populationGrowth": -0.035743254204293515
     },
     "scores": {
-      "investmentScore": 76,
-      "growthScore": 79,
+      "investmentScore": 75,
+      "growthScore": 81,
       "riskScore": 78,
       "finalScore": 78
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 75,
-        "growthScore": 78,
-        "riskScore": 82,
-        "finalScore": 76
+        "investmentScore": 73,
+        "growthScore": 79,
+        "riskScore": 86,
+        "finalScore": 75
       },
       "3y": {
-        "investmentScore": 76,
-        "growthScore": 79,
-        "riskScore": 88,
-        "finalScore": 76
+        "investmentScore": 75,
+        "growthScore": 81,
+        "riskScore": 95,
+        "finalScore": 74
       },
       "5y": {
-        "investmentScore": 77,
-        "growthScore": 81,
-        "riskScore": 94,
-        "finalScore": 76
+        "investmentScore": 76,
+        "growthScore": 84,
+        "riskScore": 95,
+        "finalScore": 74
       }
     },
     "forecast": {
@@ -1756,29 +1756,29 @@
       "populationGrowth": -0.035743254204293515
     },
     "scores": {
-      "investmentScore": 80,
-      "growthScore": 87,
-      "riskScore": 75,
-      "finalScore": 83
+      "investmentScore": 82,
+      "growthScore": 95,
+      "riskScore": 73,
+      "finalScore": 88
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 75,
+        "investmentScore": 73,
         "growthScore": 77,
-        "riskScore": 80,
-        "finalScore": 76
+        "riskScore": 83,
+        "finalScore": 75
       },
       "3y": {
-        "investmentScore": 76,
-        "growthScore": 78,
-        "riskScore": 83,
-        "finalScore": 76
+        "investmentScore": 74,
+        "growthScore": 79,
+        "riskScore": 89,
+        "finalScore": 74
       },
       "5y": {
-        "investmentScore": 77,
-        "growthScore": 80,
-        "riskScore": 87,
-        "finalScore": 77
+        "investmentScore": 76,
+        "growthScore": 83,
+        "riskScore": 95,
+        "finalScore": 76
       }
     },
     "forecast": {
@@ -1877,28 +1877,28 @@
     },
     "scores": {
       "investmentScore": 77,
-      "growthScore": 82,
-      "riskScore": 89,
+      "growthScore": 86,
+      "riskScore": 95,
       "finalScore": 77
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 75,
+        "investmentScore": 73,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 76
+        "finalScore": 75
       },
       "3y": {
-        "investmentScore": 75,
+        "investmentScore": 73,
         "growthScore": 77,
-        "riskScore": 79,
-        "finalScore": 76
+        "riskScore": 80,
+        "finalScore": 75
       },
       "5y": {
-        "investmentScore": 75,
+        "investmentScore": 73,
         "growthScore": 77,
-        "riskScore": 82,
-        "finalScore": 76
+        "riskScore": 86,
+        "finalScore": 74
       }
     },
     "forecast": {
@@ -1996,29 +1996,29 @@
       "populationGrowth": -0.019038537419439696
     },
     "scores": {
-      "investmentScore": 77,
-      "growthScore": 82,
-      "riskScore": 80,
-      "finalScore": 78
+      "investmentScore": 76,
+      "growthScore": 86,
+      "riskScore": 82,
+      "finalScore": 79
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 75,
+        "investmentScore": 72,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 76
+        "finalScore": 75
       },
       "3y": {
-        "investmentScore": 75,
+        "investmentScore": 72,
         "growthScore": 78,
         "riskScore": 77,
-        "finalScore": 76
+        "finalScore": 75
       },
       "5y": {
-        "investmentScore": 75,
-        "growthScore": 79,
+        "investmentScore": 73,
+        "growthScore": 80,
         "riskScore": 78,
-        "finalScore": 77
+        "finalScore": 76
       }
     },
     "forecast": {
@@ -2116,29 +2116,29 @@
       "populationGrowth": -0.035743254204293515
     },
     "scores": {
-      "investmentScore": 76,
-      "growthScore": 81,
-      "riskScore": 77,
-      "finalScore": 78
+      "investmentScore": 75,
+      "growthScore": 84,
+      "riskScore": 76,
+      "finalScore": 79
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 75,
+        "investmentScore": 72,
         "growthScore": 77,
-        "riskScore": 82,
-        "finalScore": 76
+        "riskScore": 87,
+        "finalScore": 74
       },
       "3y": {
-        "investmentScore": 75,
+        "investmentScore": 72,
         "growthScore": 77,
-        "riskScore": 88,
-        "finalScore": 75
+        "riskScore": 95,
+        "finalScore": 72
       },
       "5y": {
-        "investmentScore": 75,
+        "investmentScore": 72,
         "growthScore": 77,
-        "riskScore": 94,
-        "finalScore": 74
+        "riskScore": 95,
+        "finalScore": 70
       }
     },
     "forecast": {
@@ -2236,29 +2236,29 @@
       "populationGrowth": -0.004490280714968568
     },
     "scores": {
-      "investmentScore": 76,
-      "growthScore": 78,
-      "riskScore": 70,
-      "finalScore": 78
+      "investmentScore": 75,
+      "growthScore": 79,
+      "riskScore": 62,
+      "finalScore": 79
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 77,
-        "growthScore": 79,
-        "riskScore": 83,
-        "finalScore": 77
+        "investmentScore": 76,
+        "growthScore": 81,
+        "riskScore": 89,
+        "finalScore": 76
       },
       "3y": {
-        "investmentScore": 78,
-        "growthScore": 83,
-        "riskScore": 84,
-        "finalScore": 79
+        "investmentScore": 79,
+        "growthScore": 88,
+        "riskScore": 91,
+        "finalScore": 80
       },
       "5y": {
-        "investmentScore": 80,
-        "growthScore": 86,
-        "riskScore": 86,
-        "finalScore": 81
+        "investmentScore": 82,
+        "growthScore": 94,
+        "riskScore": 94,
+        "finalScore": 84
       }
     },
     "forecast": {
@@ -2356,29 +2356,29 @@
       "populationGrowth": -0.04760501791003117
     },
     "scores": {
-      "investmentScore": 78,
-      "growthScore": 82,
-      "riskScore": 75,
-      "finalScore": 80
+      "investmentScore": 79,
+      "growthScore": 86,
+      "riskScore": 72,
+      "finalScore": 82
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 77,
+        "investmentScore": 76,
         "growthScore": 77,
-        "riskScore": 78,
-        "finalScore": 77
+        "riskScore": 79,
+        "finalScore": 76
       },
       "3y": {
-        "investmentScore": 77,
+        "investmentScore": 76,
         "growthScore": 77,
-        "riskScore": 79,
-        "finalScore": 77
+        "riskScore": 80,
+        "finalScore": 76
       },
       "5y": {
-        "investmentScore": 77,
+        "investmentScore": 76,
         "growthScore": 77,
-        "riskScore": 79,
-        "finalScore": 77
+        "riskScore": 80,
+        "finalScore": 76
       }
     },
     "forecast": {
@@ -2476,27 +2476,27 @@
       "populationGrowth": -0.014807445535418198
     },
     "scores": {
-      "investmentScore": 76,
+      "investmentScore": 75,
       "growthScore": 78,
       "riskScore": 77,
       "finalScore": 77
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 76,
+        "investmentScore": 75,
         "growthScore": 78,
         "riskScore": 77,
-        "finalScore": 77
+        "finalScore": 76
       },
       "3y": {
-        "investmentScore": 76,
-        "growthScore": 78,
+        "investmentScore": 75,
+        "growthScore": 79,
         "riskScore": 77,
         "finalScore": 77
       },
       "5y": {
-        "investmentScore": 76,
-        "growthScore": 79,
+        "investmentScore": 75,
+        "growthScore": 80,
         "riskScore": 77,
         "finalScore": 77
       }
@@ -2596,29 +2596,29 @@
       "populationGrowth": -0.004490280714968568
     },
     "scores": {
-      "investmentScore": 76,
+      "investmentScore": 74,
       "growthScore": 78,
-      "riskScore": 90,
-      "finalScore": 75
+      "riskScore": 95,
+      "finalScore": 72
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 76,
+        "investmentScore": 74,
         "growthScore": 77,
         "riskScore": 78,
-        "finalScore": 77
-      },
-      "3y": {
-        "investmentScore": 76,
-        "growthScore": 77,
-        "riskScore": 83,
         "finalScore": 76
       },
-      "5y": {
-        "investmentScore": 76,
+      "3y": {
+        "investmentScore": 74,
         "growthScore": 77,
         "riskScore": 88,
-        "finalScore": 75
+        "finalScore": 74
+      },
+      "5y": {
+        "investmentScore": 74,
+        "growthScore": 77,
+        "riskScore": 95,
+        "finalScore": 73
       }
     },
     "forecast": {
@@ -2716,29 +2716,29 @@
       "populationGrowth": -0.035743254204293515
     },
     "scores": {
-      "investmentScore": 76,
-      "growthScore": 80,
+      "investmentScore": 75,
+      "growthScore": 82,
       "riskScore": 77,
       "finalScore": 78
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 75,
-        "growthScore": 78,
-        "riskScore": 82,
-        "finalScore": 76
+        "investmentScore": 73,
+        "growthScore": 79,
+        "riskScore": 86,
+        "finalScore": 75
       },
       "3y": {
-        "investmentScore": 76,
-        "growthScore": 79,
-        "riskScore": 88,
-        "finalScore": 76
+        "investmentScore": 75,
+        "growthScore": 81,
+        "riskScore": 95,
+        "finalScore": 74
       },
       "5y": {
-        "investmentScore": 77,
-        "growthScore": 81,
-        "riskScore": 94,
-        "finalScore": 76
+        "investmentScore": 76,
+        "growthScore": 84,
+        "riskScore": 95,
+        "finalScore": 74
       }
     },
     "forecast": {
@@ -2837,8 +2837,8 @@
     },
     "scores": {
       "investmentScore": 78,
-      "growthScore": 79,
-      "riskScore": 82,
+      "growthScore": 80,
+      "riskScore": 87,
       "finalScore": 77
     },
     "forecast_scores": {
@@ -2851,14 +2851,14 @@
       "3y": {
         "investmentScore": 77,
         "growthScore": 77,
-        "riskScore": 80,
-        "finalScore": 77
+        "riskScore": 83,
+        "finalScore": 76
       },
       "5y": {
         "investmentScore": 77,
         "growthScore": 77,
-        "riskScore": 83,
-        "finalScore": 76
+        "riskScore": 89,
+        "finalScore": 75
       }
     },
     "forecast": {
@@ -2957,28 +2957,28 @@
     },
     "scores": {
       "investmentScore": 77,
-      "growthScore": 79,
-      "riskScore": 77,
-      "finalScore": 78
+      "growthScore": 80,
+      "riskScore": 76,
+      "finalScore": 79
     },
     "forecast_scores": {
       "1y": {
         "investmentScore": 77,
-        "growthScore": 80,
-        "riskScore": 82,
+        "growthScore": 82,
+        "riskScore": 86,
         "finalScore": 78
       },
       "3y": {
-        "investmentScore": 79,
-        "growthScore": 84,
-        "riskScore": 88,
-        "finalScore": 79
+        "investmentScore": 81,
+        "growthScore": 90,
+        "riskScore": 95,
+        "finalScore": 81
       },
       "5y": {
-        "investmentScore": 81,
-        "growthScore": 87,
-        "riskScore": 94,
-        "finalScore": 80
+        "investmentScore": 84,
+        "growthScore": 95,
+        "riskScore": 95,
+        "finalScore": 83
       }
     },
     "forecast": {
@@ -3078,8 +3078,8 @@
     "scores": {
       "investmentScore": 77,
       "growthScore": 77,
-      "riskScore": 82,
-      "finalScore": 77
+      "riskScore": 87,
+      "finalScore": 76
     },
     "forecast_scores": {
       "1y": {
@@ -3091,14 +3091,14 @@
       "3y": {
         "investmentScore": 77,
         "growthScore": 78,
-        "riskScore": 82,
-        "finalScore": 77
+        "riskScore": 86,
+        "finalScore": 76
       },
       "5y": {
         "investmentScore": 77,
         "growthScore": 78,
-        "riskScore": 85,
-        "finalScore": 76
+        "riskScore": 93,
+        "finalScore": 75
       }
     },
     "forecast": {
@@ -3187,10 +3187,10 @@
       "populationGrowth": 0
     },
     "scores": {
-      "investmentScore": 80,
-      "growthScore": 87,
-      "riskScore": 77,
-      "finalScore": 83
+      "investmentScore": 83,
+      "growthScore": 95,
+      "riskScore": 76,
+      "finalScore": 88
     },
     "forecast_scores": {},
     "forecast": {
@@ -3283,29 +3283,29 @@
       "populationGrowth": 0.014048210481267502
     },
     "scores": {
-      "investmentScore": 75,
-      "growthScore": 74,
-      "riskScore": 70,
-      "finalScore": 76
+      "investmentScore": 73,
+      "growthScore": 71,
+      "riskScore": 62,
+      "finalScore": 75
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 79,
-        "growthScore": 81,
-        "riskScore": 85,
-        "finalScore": 78
-      },
-      "3y": {
-        "investmentScore": 79,
-        "growthScore": 82,
-        "riskScore": 89,
-        "finalScore": 79
-      },
-      "5y": {
         "investmentScore": 80,
-        "growthScore": 83,
+        "growthScore": 85,
         "riskScore": 92,
         "finalScore": 79
+      },
+      "3y": {
+        "investmentScore": 81,
+        "growthScore": 87,
+        "riskScore": 95,
+        "finalScore": 80
+      },
+      "5y": {
+        "investmentScore": 82,
+        "growthScore": 89,
+        "riskScore": 95,
+        "finalScore": 80
       }
     },
     "forecast": {
@@ -3394,10 +3394,10 @@
       "populationGrowth": 0
     },
     "scores": {
-      "investmentScore": 78,
-      "growthScore": 82,
-      "riskScore": 79,
-      "finalScore": 80
+      "investmentScore": 79,
+      "growthScore": 87,
+      "riskScore": 80,
+      "finalScore": 82
     },
     "forecast_scores": {},
     "forecast": {
@@ -3481,10 +3481,10 @@
       "populationGrowth": 0
     },
     "scores": {
-      "investmentScore": 76,
-      "growthScore": 74,
-      "riskScore": 72,
-      "finalScore": 76
+      "investmentScore": 74,
+      "growthScore": 71,
+      "riskScore": 67,
+      "finalScore": 75
     },
     "forecast_scores": {},
     "forecast": {
@@ -3577,29 +3577,29 @@
       "populationGrowth": 0.011362029135825751
     },
     "scores": {
-      "investmentScore": 82,
+      "investmentScore": 86,
       "growthScore": 78,
       "riskScore": 77,
-      "finalScore": 80
+      "finalScore": 82
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 86,
         "growthScore": 78,
-        "riskScore": 79,
-        "finalScore": 79
+        "riskScore": 81,
+        "finalScore": 81
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 86,
         "growthScore": 78,
-        "riskScore": 82,
-        "finalScore": 79
+        "riskScore": 87,
+        "finalScore": 80
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 86,
         "growthScore": 78,
-        "riskScore": 85,
-        "finalScore": 79
+        "riskScore": 92,
+        "finalScore": 80
       }
     },
     "forecast": {
@@ -3697,29 +3697,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 85,
-      "growthScore": 83,
-      "riskScore": 74,
-      "finalScore": 83
+      "investmentScore": 92,
+      "growthScore": 88,
+      "riskScore": 70,
+      "finalScore": 89
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
-        "riskScore": 80,
-        "finalScore": 79
+        "riskScore": 82,
+        "finalScore": 81
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
-        "riskScore": 79,
-        "finalScore": 79
+        "riskScore": 81,
+        "finalScore": 81
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
-        "riskScore": 79,
-        "finalScore": 80
+        "riskScore": 80,
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -3817,29 +3817,29 @@
       "populationGrowth": 0.07392835902831786
     },
     "scores": {
-      "investmentScore": 85,
+      "investmentScore": 92,
       "growthScore": 77,
-      "riskScore": 75,
-      "finalScore": 81
+      "riskScore": 73,
+      "finalScore": 84
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
-        "growthScore": 79,
-        "riskScore": 77,
-        "finalScore": 81
-      },
-      "3y": {
-        "investmentScore": 86,
+        "investmentScore": 93,
         "growthScore": 80,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 85
+      },
+      "3y": {
+        "investmentScore": 95,
+        "growthScore": 82,
+        "riskScore": 77,
+        "finalScore": 87
       },
       "5y": {
-        "investmentScore": 87,
-        "growthScore": 81,
+        "investmentScore": 95,
+        "growthScore": 84,
         "riskScore": 77,
-        "finalScore": 83
+        "finalScore": 89
       }
     },
     "forecast": {
@@ -3937,29 +3937,29 @@
       "populationGrowth": 0.06519102486355367
     },
     "scores": {
-      "investmentScore": 84,
+      "investmentScore": 91,
       "growthScore": 77,
-      "riskScore": 81,
-      "finalScore": 80
+      "riskScore": 84,
+      "finalScore": 82
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
+        "investmentScore": 92,
         "growthScore": 78,
         "riskScore": 78,
-        "finalScore": 81
+        "finalScore": 84
       },
       "3y": {
-        "investmentScore": 85,
-        "growthScore": 79,
-        "riskScore": 79,
-        "finalScore": 81
-      },
-      "5y": {
-        "investmentScore": 86,
+        "investmentScore": 93,
         "growthScore": 80,
         "riskScore": 81,
-        "finalScore": 82
+        "finalScore": 85
+      },
+      "5y": {
+        "investmentScore": 94,
+        "growthScore": 82,
+        "riskScore": 85,
+        "finalScore": 86
       }
     },
     "forecast": {
@@ -4057,29 +4057,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 87,
-      "growthScore": 87,
-      "riskScore": 81,
-      "finalScore": 85
+      "investmentScore": 95,
+      "growthScore": 95,
+      "riskScore": 85,
+      "finalScore": 93
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
-        "riskScore": 80,
-        "finalScore": 80
+        "riskScore": 82,
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
-        "riskScore": 83,
-        "finalScore": 79
+        "riskScore": 88,
+        "finalScore": 81
       }
     },
     "forecast": {
@@ -4177,29 +4177,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 87,
-      "growthScore": 87,
-      "riskScore": 87,
-      "finalScore": 84
+      "investmentScore": 95,
+      "growthScore": 95,
+      "riskScore": 95,
+      "finalScore": 90
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 78,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
-        "riskScore": 80,
-        "finalScore": 79
+        "riskScore": 82,
+        "finalScore": 81
       }
     },
     "forecast": {
@@ -4297,29 +4297,29 @@
       "populationGrowth": 0.07392835902831786
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 77,
-      "riskScore": 73,
-      "finalScore": 81
+      "investmentScore": 91,
+      "growthScore": 76,
+      "riskScore": 69,
+      "finalScore": 84
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
-        "growthScore": 78,
-        "riskScore": 79,
-        "finalScore": 81
+        "investmentScore": 93,
+        "growthScore": 79,
+        "riskScore": 80,
+        "finalScore": 84
       },
       "3y": {
-        "investmentScore": 86,
-        "growthScore": 79,
+        "investmentScore": 94,
+        "growthScore": 81,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 86
       },
       "5y": {
-        "investmentScore": 86,
-        "growthScore": 80,
+        "investmentScore": 95,
+        "growthScore": 83,
         "riskScore": 77,
-        "finalScore": 83
+        "finalScore": 88
       }
     },
     "forecast": {
@@ -4417,29 +4417,29 @@
       "populationGrowth": 0.019819454892656675
     },
     "scores": {
-      "investmentScore": 84,
+      "investmentScore": 90,
       "growthScore": 77,
-      "riskScore": 71,
-      "finalScore": 81
+      "riskScore": 64,
+      "finalScore": 85
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
-        "growthScore": 80,
+        "investmentScore": 93,
+        "growthScore": 82,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 86
       },
       "3y": {
-        "investmentScore": 86,
-        "growthScore": 83,
+        "investmentScore": 95,
+        "growthScore": 88,
         "riskScore": 77,
-        "finalScore": 84
+        "finalScore": 90
       },
       "5y": {
-        "investmentScore": 88,
-        "growthScore": 86,
+        "investmentScore": 95,
+        "growthScore": 94,
         "riskScore": 77,
-        "finalScore": 85
+        "finalScore": 93
       }
     },
     "forecast": {
@@ -4537,29 +4537,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 80,
-      "riskScore": 79,
-      "finalScore": 81
+      "investmentScore": 90,
+      "growthScore": 83,
+      "riskScore": 81,
+      "finalScore": 85
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -4657,29 +4657,29 @@
       "populationGrowth": 0.07392835902831786
     },
     "scores": {
-      "investmentScore": 85,
+      "investmentScore": 92,
       "growthScore": 77,
-      "riskScore": 75,
-      "finalScore": 81
+      "riskScore": 72,
+      "finalScore": 85
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
-        "growthScore": 78,
+        "investmentScore": 93,
+        "growthScore": 79,
         "riskScore": 77,
-        "finalScore": 81
+        "finalScore": 85
       },
       "3y": {
-        "investmentScore": 86,
-        "growthScore": 80,
+        "investmentScore": 95,
+        "growthScore": 82,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 87
       },
       "5y": {
-        "investmentScore": 87,
-        "growthScore": 81,
+        "investmentScore": 95,
+        "growthScore": 85,
         "riskScore": 77,
-        "finalScore": 83
+        "finalScore": 89
       }
     },
     "forecast": {
@@ -4777,29 +4777,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 85,
-      "growthScore": 84,
-      "riskScore": 79,
-      "finalScore": 83
+      "investmentScore": 93,
+      "growthScore": 91,
+      "riskScore": 81,
+      "finalScore": 89
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -4897,29 +4897,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 86,
-      "growthScore": 86,
-      "riskScore": 72,
-      "finalScore": 85
+      "investmentScore": 94,
+      "growthScore": 94,
+      "riskScore": 67,
+      "finalScore": 93
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
-        "riskScore": 81,
-        "finalScore": 79
+        "riskScore": 85,
+        "finalScore": 80
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
-        "riskScore": 80,
-        "finalScore": 79
+        "riskScore": 82,
+        "finalScore": 81
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 78,
-        "finalScore": 79
+        "finalScore": 81
       }
     },
     "forecast": {
@@ -5017,29 +5017,29 @@
       "populationGrowth": 0.06973844187424011
     },
     "scores": {
-      "investmentScore": 83,
-      "growthScore": 77,
-      "riskScore": 85,
-      "finalScore": 78
+      "investmentScore": 88,
+      "growthScore": 76,
+      "riskScore": 93,
+      "finalScore": 79
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 84,
-        "growthScore": 78,
-        "riskScore": 77,
-        "finalScore": 81
-      },
-      "3y": {
-        "investmentScore": 84,
+        "investmentScore": 90,
         "growthScore": 79,
         "riskScore": 77,
-        "finalScore": 81
+        "finalScore": 84
+      },
+      "3y": {
+        "investmentScore": 91,
+        "growthScore": 81,
+        "riskScore": 77,
+        "finalScore": 85
       },
       "5y": {
-        "investmentScore": 85,
-        "growthScore": 80,
+        "investmentScore": 92,
+        "growthScore": 83,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 86
       }
     },
     "forecast": {
@@ -5137,29 +5137,29 @@
       "populationGrowth": 0.06519102486355367
     },
     "scores": {
-      "investmentScore": 84,
+      "investmentScore": 91,
       "growthScore": 77,
-      "riskScore": 81,
-      "finalScore": 80
+      "riskScore": 84,
+      "finalScore": 82
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 84,
+        "investmentScore": 91,
         "growthScore": 78,
         "riskScore": 77,
-        "finalScore": 81
+        "finalScore": 84
       },
       "3y": {
-        "investmentScore": 85,
-        "growthScore": 79,
+        "investmentScore": 92,
+        "growthScore": 80,
         "riskScore": 78,
-        "finalScore": 81
+        "finalScore": 85
       },
       "5y": {
-        "investmentScore": 85,
-        "growthScore": 80,
-        "riskScore": 79,
-        "finalScore": 82
+        "investmentScore": 93,
+        "growthScore": 82,
+        "riskScore": 80,
+        "finalScore": 86
       }
     },
     "forecast": {
@@ -5257,29 +5257,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 80,
-      "riskScore": 88,
-      "finalScore": 80
+      "investmentScore": 90,
+      "growthScore": 82,
+      "riskScore": 95,
+      "finalScore": 82
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -5377,29 +5377,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 81,
-      "riskScore": 82,
-      "finalScore": 81
+      "investmentScore": 91,
+      "growthScore": 84,
+      "riskScore": 86,
+      "finalScore": 85
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -5497,29 +5497,29 @@
       "populationGrowth": 0.10767360172926237
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 79,
+      "investmentScore": 90,
+      "growthScore": 80,
       "riskScore": 77,
-      "finalScore": 81
+      "finalScore": 84
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
-        "growthScore": 78,
-        "riskScore": 79,
-        "finalScore": 80
+        "investmentScore": 89,
+        "growthScore": 79,
+        "riskScore": 80,
+        "finalScore": 83
       },
       "3y": {
-        "investmentScore": 84,
-        "growthScore": 80,
-        "riskScore": 80,
-        "finalScore": 81
+        "investmentScore": 91,
+        "growthScore": 82,
+        "riskScore": 82,
+        "finalScore": 85
       },
       "5y": {
-        "investmentScore": 85,
-        "growthScore": 82,
-        "riskScore": 81,
-        "finalScore": 82
+        "investmentScore": 93,
+        "growthScore": 86,
+        "riskScore": 84,
+        "finalScore": 87
       }
     },
     "forecast": {
@@ -5617,29 +5617,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 83,
+      "investmentScore": 89,
       "growthScore": 78,
-      "riskScore": 86,
-      "finalScore": 79
+      "riskScore": 94,
+      "finalScore": 80
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -5737,29 +5737,29 @@
       "populationGrowth": 0.011362029135825751
     },
     "scores": {
-      "investmentScore": 80,
-      "growthScore": 75,
-      "riskScore": 82,
+      "investmentScore": 83,
+      "growthScore": 73,
+      "riskScore": 86,
       "finalScore": 77
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 81,
+        "investmentScore": 85,
         "growthScore": 78,
-        "riskScore": 78,
-        "finalScore": 79
+        "riskScore": 79,
+        "finalScore": 81
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 86,
         "growthScore": 78,
-        "riskScore": 81,
-        "finalScore": 79
+        "riskScore": 84,
+        "finalScore": 80
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 86,
         "growthScore": 78,
-        "riskScore": 83,
-        "finalScore": 79
+        "riskScore": 88,
+        "finalScore": 80
       }
     },
     "forecast": {
@@ -5857,29 +5857,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 81,
-      "riskScore": 82,
-      "finalScore": 81
+      "investmentScore": 91,
+      "growthScore": 84,
+      "riskScore": 86,
+      "finalScore": 85
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       }
     },
     "forecast": {
@@ -5977,29 +5977,29 @@
       "populationGrowth": 0.07392835902831786
     },
     "scores": {
-      "investmentScore": 85,
-      "growthScore": 78,
-      "riskScore": 75,
-      "finalScore": 82
+      "investmentScore": 93,
+      "growthScore": 79,
+      "riskScore": 73,
+      "finalScore": 86
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
-        "growthScore": 78,
-        "riskScore": 78,
-        "finalScore": 81
+        "investmentScore": 93,
+        "growthScore": 79,
+        "riskScore": 79,
+        "finalScore": 85
       },
       "3y": {
-        "investmentScore": 86,
-        "growthScore": 80,
+        "investmentScore": 95,
+        "growthScore": 83,
         "riskScore": 78,
-        "finalScore": 82
+        "finalScore": 87
       },
       "5y": {
-        "investmentScore": 87,
-        "growthScore": 82,
+        "investmentScore": 95,
+        "growthScore": 86,
         "riskScore": 77,
-        "finalScore": 84
+        "finalScore": 90
       }
     },
     "forecast": {
@@ -6097,29 +6097,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 83,
+      "investmentScore": 88,
       "growthScore": 78,
-      "riskScore": 81,
-      "finalScore": 79
+      "riskScore": 84,
+      "finalScore": 81
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -6217,29 +6217,29 @@
       "populationGrowth": 0.06519102486355367
     },
     "scores": {
-      "investmentScore": 84,
+      "investmentScore": 91,
       "growthScore": 77,
-      "riskScore": 80,
-      "finalScore": 80
+      "riskScore": 82,
+      "finalScore": 83
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
+        "investmentScore": 92,
         "growthScore": 78,
         "riskScore": 77,
-        "finalScore": 81
+        "finalScore": 84
       },
       "3y": {
-        "investmentScore": 85,
-        "growthScore": 79,
-        "riskScore": 78,
-        "finalScore": 81
-      },
-      "5y": {
-        "investmentScore": 86,
+        "investmentScore": 93,
         "growthScore": 80,
         "riskScore": 79,
-        "finalScore": 82
+        "finalScore": 85
+      },
+      "5y": {
+        "investmentScore": 94,
+        "growthScore": 82,
+        "riskScore": 80,
+        "finalScore": 86
       }
     },
     "forecast": {
@@ -6337,29 +6337,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 83,
-      "growthScore": 78,
-      "riskScore": 85,
-      "finalScore": 79
+      "investmentScore": 89,
+      "growthScore": 79,
+      "riskScore": 93,
+      "finalScore": 81
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -6457,29 +6457,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 85,
-      "growthScore": 83,
-      "riskScore": 90,
-      "finalScore": 81
+      "investmentScore": 93,
+      "growthScore": 88,
+      "riskScore": 95,
+      "finalScore": 85
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 84,
-        "growthScore": 79,
-        "riskScore": 82,
-        "finalScore": 80
+        "investmentScore": 90,
+        "growthScore": 80,
+        "riskScore": 86,
+        "finalScore": 83
       },
       "5y": {
-        "investmentScore": 84,
-        "growthScore": 81,
-        "riskScore": 86,
-        "finalScore": 81
+        "investmentScore": 91,
+        "growthScore": 84,
+        "riskScore": 95,
+        "finalScore": 84
       }
     },
     "forecast": {
@@ -6577,29 +6577,29 @@
       "populationGrowth": 0.07392835902831786
     },
     "scores": {
-      "investmentScore": 85,
-      "growthScore": 78,
-      "riskScore": 75,
-      "finalScore": 81
+      "investmentScore": 92,
+      "growthScore": 79,
+      "riskScore": 73,
+      "finalScore": 85
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
-        "growthScore": 78,
+        "investmentScore": 93,
+        "growthScore": 79,
         "riskScore": 78,
-        "finalScore": 81
+        "finalScore": 85
       },
       "3y": {
-        "investmentScore": 86,
-        "growthScore": 80,
-        "riskScore": 77,
-        "finalScore": 82
-      },
-      "5y": {
-        "investmentScore": 87,
+        "investmentScore": 94,
         "growthScore": 82,
         "riskScore": 77,
-        "finalScore": 83
+        "finalScore": 87
+      },
+      "5y": {
+        "investmentScore": 95,
+        "growthScore": 86,
+        "riskScore": 77,
+        "finalScore": 89
       }
     },
     "forecast": {
@@ -6697,29 +6697,29 @@
       "populationGrowth": -0.1786339754816112
     },
     "scores": {
-      "investmentScore": 87,
-      "growthScore": 75,
-      "riskScore": 78,
-      "finalScore": 81
+      "investmentScore": 95,
+      "growthScore": 73,
+      "riskScore": 79,
+      "finalScore": 84
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 88,
-        "growthScore": 78,
-        "riskScore": 79,
-        "finalScore": 82
-      },
-      "3y": {
-        "investmentScore": 89,
+        "investmentScore": 95,
         "growthScore": 79,
         "riskScore": 80,
-        "finalScore": 83
+        "finalScore": 87
+      },
+      "3y": {
+        "investmentScore": 95,
+        "growthScore": 81,
+        "riskScore": 83,
+        "finalScore": 88
       },
       "5y": {
-        "investmentScore": 89,
-        "growthScore": 80,
-        "riskScore": 82,
-        "finalScore": 83
+        "investmentScore": 95,
+        "growthScore": 83,
+        "riskScore": 86,
+        "finalScore": 89
       }
     },
     "forecast": {
@@ -6817,29 +6817,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 82,
-      "growthScore": 75,
-      "riskScore": 85,
+      "investmentScore": 86,
+      "growthScore": 72,
+      "riskScore": 92,
       "finalScore": 77
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 84,
-        "growthScore": 78,
+        "investmentScore": 90,
+        "growthScore": 79,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       }
     },
     "forecast": {
@@ -6937,29 +6937,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 81,
-      "riskScore": 79,
-      "finalScore": 82
+      "investmentScore": 91,
+      "growthScore": 85,
+      "riskScore": 81,
+      "finalScore": 86
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -7057,29 +7057,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 85,
-      "growthScore": 82,
-      "riskScore": 79,
-      "finalScore": 82
+      "investmentScore": 93,
+      "growthScore": 86,
+      "riskScore": 81,
+      "finalScore": 87
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       }
     },
     "forecast": {
@@ -7177,29 +7177,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 82,
-      "riskScore": 75,
-      "finalScore": 82
+      "investmentScore": 90,
+      "growthScore": 86,
+      "riskScore": 73,
+      "finalScore": 87
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 86,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 86,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 86,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -7297,29 +7297,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 79,
-      "riskScore": 88,
-      "finalScore": 79
+      "investmentScore": 90,
+      "growthScore": 80,
+      "riskScore": 95,
+      "finalScore": 81
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -7417,29 +7417,29 @@
       "populationGrowth": -0.12941176470588237
     },
     "scores": {
-      "investmentScore": 83,
-      "growthScore": 76,
-      "riskScore": 79,
-      "finalScore": 79
+      "investmentScore": 88,
+      "growthScore": 74,
+      "riskScore": 81,
+      "finalScore": 80
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 84,
+        "investmentScore": 90,
         "growthScore": 77,
         "riskScore": 78,
-        "finalScore": 80
+        "finalScore": 83
       },
       "3y": {
-        "investmentScore": 84,
+        "investmentScore": 90,
         "growthScore": 77,
-        "riskScore": 79,
-        "finalScore": 80
+        "riskScore": 80,
+        "finalScore": 83
       },
       "5y": {
-        "investmentScore": 84,
+        "investmentScore": 90,
         "growthScore": 77,
-        "riskScore": 79,
-        "finalScore": 80
+        "riskScore": 81,
+        "finalScore": 83
       }
     },
     "forecast": {
@@ -7537,29 +7537,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 82,
-      "growthScore": 75,
-      "riskScore": 86,
+      "investmentScore": 87,
+      "growthScore": 73,
+      "riskScore": 94,
       "finalScore": 77
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       }
     },
     "forecast": {
@@ -7657,29 +7657,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 87,
-      "growthScore": 87,
-      "riskScore": 82,
-      "finalScore": 85
+      "investmentScore": 95,
+      "growthScore": 95,
+      "riskScore": 87,
+      "finalScore": 92
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -7777,29 +7777,29 @@
       "populationGrowth": 0.07392835902831786
     },
     "scores": {
-      "investmentScore": 85,
-      "growthScore": 79,
-      "riskScore": 76,
-      "finalScore": 82
+      "investmentScore": 93,
+      "growthScore": 80,
+      "riskScore": 75,
+      "finalScore": 86
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
-        "growthScore": 78,
+        "investmentScore": 93,
+        "growthScore": 79,
         "riskScore": 78,
-        "finalScore": 81
+        "finalScore": 85
       },
       "3y": {
-        "investmentScore": 86,
-        "growthScore": 79,
-        "riskScore": 77,
-        "finalScore": 82
-      },
-      "5y": {
-        "investmentScore": 87,
+        "investmentScore": 94,
         "growthScore": 81,
         "riskScore": 77,
-        "finalScore": 83
+        "finalScore": 86
+      },
+      "5y": {
+        "investmentScore": 95,
+        "growthScore": 84,
+        "riskScore": 77,
+        "finalScore": 88
       }
     },
     "forecast": {
@@ -7897,29 +7897,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 80,
-      "growthScore": 71,
-      "riskScore": 84,
-      "finalScore": 75
+      "investmentScore": 83,
+      "growthScore": 65,
+      "riskScore": 91,
+      "finalScore": 73
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 79,
-        "finalScore": 86
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 80,
+        "finalScore": 94
       },
       "3y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 83,
-        "finalScore": 85
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 88,
+        "finalScore": 93
       },
       "5y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 87,
-        "finalScore": 84
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 95,
+        "finalScore": 91
       }
     },
     "forecast": {
@@ -8017,29 +8017,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 81,
-      "growthScore": 71,
-      "riskScore": 82,
-      "finalScore": 76
+      "investmentScore": 84,
+      "growthScore": 65,
+      "riskScore": 87,
+      "finalScore": 74
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 79,
-        "finalScore": 86
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 81,
+        "finalScore": 94
       },
       "3y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 84,
-        "finalScore": 85
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 90,
+        "finalScore": 93
       },
       "5y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 89,
-        "finalScore": 84
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 95,
+        "finalScore": 91
       }
     },
     "forecast": {
@@ -8137,29 +8137,29 @@
       "populationGrowth": -0.1786339754816112
     },
     "scores": {
-      "investmentScore": 87,
-      "growthScore": 76,
-      "riskScore": 78,
-      "finalScore": 81
+      "investmentScore": 95,
+      "growthScore": 74,
+      "riskScore": 79,
+      "finalScore": 84
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 88,
-        "growthScore": 78,
-        "riskScore": 78,
-        "finalScore": 82
-      },
-      "3y": {
-        "investmentScore": 89,
+        "investmentScore": 95,
         "growthScore": 79,
         "riskScore": 79,
-        "finalScore": 83
+        "finalScore": 87
+      },
+      "3y": {
+        "investmentScore": 95,
+        "growthScore": 81,
+        "riskScore": 81,
+        "finalScore": 89
       },
       "5y": {
-        "investmentScore": 89,
-        "growthScore": 81,
-        "riskScore": 80,
-        "finalScore": 84
+        "investmentScore": 95,
+        "growthScore": 84,
+        "riskScore": 83,
+        "finalScore": 90
       }
     },
     "forecast": {
@@ -8257,29 +8257,29 @@
       "populationGrowth": 0.07392835902831786
     },
     "scores": {
-      "investmentScore": 85,
-      "growthScore": 79,
+      "investmentScore": 93,
+      "growthScore": 81,
       "riskScore": 78,
-      "finalScore": 82
+      "finalScore": 86
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
-        "growthScore": 78,
-        "riskScore": 78,
-        "finalScore": 81
-      },
-      "3y": {
-        "investmentScore": 85,
+        "investmentScore": 92,
         "growthScore": 79,
         "riskScore": 78,
-        "finalScore": 82
+        "finalScore": 84
       },
-      "5y": {
-        "investmentScore": 86,
+      "3y": {
+        "investmentScore": 93,
         "growthScore": 81,
         "riskScore": 78,
-        "finalScore": 83
+        "finalScore": 86
+      },
+      "5y": {
+        "investmentScore": 95,
+        "growthScore": 84,
+        "riskScore": 79,
+        "finalScore": 88
       }
     },
     "forecast": {
@@ -8377,29 +8377,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 85,
-      "growthScore": 84,
-      "riskScore": 72,
-      "finalScore": 84
+      "investmentScore": 93,
+      "growthScore": 91,
+      "riskScore": 67,
+      "finalScore": 91
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
-        "riskScore": 81,
-        "finalScore": 79
+        "riskScore": 84,
+        "finalScore": 81
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
-        "riskScore": 80,
-        "finalScore": 79
+        "riskScore": 82,
+        "finalScore": 81
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
-        "riskScore": 79,
-        "finalScore": 79
+        "riskScore": 80,
+        "finalScore": 81
       }
     },
     "forecast": {
@@ -8497,29 +8497,29 @@
       "populationGrowth": 0.011362029135825751
     },
     "scores": {
-      "investmentScore": 87,
-      "growthScore": 87,
-      "riskScore": 83,
-      "finalScore": 85
+      "investmentScore": 95,
+      "growthScore": 95,
+      "riskScore": 89,
+      "finalScore": 92
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 78,
         "riskScore": 78,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 82,
-        "growthScore": 78,
-        "riskScore": 80,
-        "finalScore": 79
-      },
-      "5y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 78,
         "riskScore": 82,
-        "finalScore": 79
+        "finalScore": 81
+      },
+      "5y": {
+        "investmentScore": 87,
+        "growthScore": 78,
+        "riskScore": 86,
+        "finalScore": 81
       }
     },
     "forecast": {
@@ -8617,29 +8617,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 81,
-      "growthScore": 71,
-      "riskScore": 81,
-      "finalScore": 76
+      "investmentScore": 84,
+      "growthScore": 65,
+      "riskScore": 84,
+      "finalScore": 74
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 79,
-        "finalScore": 86
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 81,
+        "finalScore": 94
       },
       "3y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 83,
-        "finalScore": 85
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 89,
+        "finalScore": 93
       },
       "5y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 87,
-        "finalScore": 85
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 95,
+        "finalScore": 92
       }
     },
     "forecast": {
@@ -8737,29 +8737,29 @@
       "populationGrowth": 0.07392835902831786
     },
     "scores": {
-      "investmentScore": 85,
-      "growthScore": 79,
-      "riskScore": 76,
-      "finalScore": 82
+      "investmentScore": 93,
+      "growthScore": 80,
+      "riskScore": 75,
+      "finalScore": 86
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
-        "growthScore": 78,
-        "riskScore": 77,
-        "finalScore": 81
-      },
-      "3y": {
-        "investmentScore": 86,
+        "investmentScore": 93,
         "growthScore": 79,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 85
+      },
+      "3y": {
+        "investmentScore": 94,
+        "growthScore": 81,
+        "riskScore": 77,
+        "finalScore": 86
       },
       "5y": {
-        "investmentScore": 86,
-        "growthScore": 80,
+        "investmentScore": 95,
+        "growthScore": 83,
         "riskScore": 77,
-        "finalScore": 83
+        "finalScore": 88
       }
     },
     "forecast": {
@@ -8857,29 +8857,29 @@
       "populationGrowth": 0.06973844187424011
     },
     "scores": {
-      "investmentScore": 83,
+      "investmentScore": 88,
       "growthScore": 77,
-      "riskScore": 82,
-      "finalScore": 79
+      "riskScore": 86,
+      "finalScore": 81
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
-        "growthScore": 78,
+        "investmentScore": 89,
+        "growthScore": 79,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "3y": {
-        "investmentScore": 84,
-        "growthScore": 80,
+        "investmentScore": 90,
+        "growthScore": 82,
         "riskScore": 77,
-        "finalScore": 81
+        "finalScore": 85
       },
       "5y": {
-        "investmentScore": 85,
-        "growthScore": 81,
+        "investmentScore": 92,
+        "growthScore": 85,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 87
       }
     },
     "forecast": {
@@ -8977,29 +8977,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 81,
-      "riskScore": 80,
-      "finalScore": 81
+      "investmentScore": 90,
+      "growthScore": 84,
+      "riskScore": 82,
+      "finalScore": 85
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -9097,29 +9097,29 @@
       "populationGrowth": 0.011362029135825751
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 82,
+      "investmentScore": 90,
+      "growthScore": 86,
       "riskScore": 77,
-      "finalScore": 82
+      "finalScore": 87
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 78,
         "riskScore": 78,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 82,
-        "growthScore": 78,
-        "riskScore": 79,
-        "finalScore": 79
-      },
-      "5y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 78,
         "riskScore": 80,
-        "finalScore": 79
+        "finalScore": 81
+      },
+      "5y": {
+        "investmentScore": 87,
+        "growthScore": 78,
+        "riskScore": 83,
+        "finalScore": 81
       }
     },
     "forecast": {
@@ -9217,29 +9217,29 @@
       "populationGrowth": 0.07392835902831786
     },
     "scores": {
-      "investmentScore": 86,
-      "growthScore": 79,
+      "investmentScore": 94,
+      "growthScore": 80,
       "riskScore": 78,
-      "finalScore": 82
+      "finalScore": 86
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
-        "growthScore": 78,
-        "riskScore": 78,
-        "finalScore": 81
-      },
-      "3y": {
-        "investmentScore": 86,
+        "investmentScore": 93,
         "growthScore": 79,
         "riskScore": 78,
-        "finalScore": 82
+        "finalScore": 85
+      },
+      "3y": {
+        "investmentScore": 94,
+        "growthScore": 81,
+        "riskScore": 78,
+        "finalScore": 86
       },
       "5y": {
-        "investmentScore": 86,
-        "growthScore": 80,
+        "investmentScore": 95,
+        "growthScore": 83,
         "riskScore": 78,
-        "finalScore": 82
+        "finalScore": 87
       }
     },
     "forecast": {
@@ -9337,29 +9337,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 81,
-      "riskScore": 79,
-      "finalScore": 82
+      "investmentScore": 90,
+      "growthScore": 85,
+      "riskScore": 81,
+      "finalScore": 86
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -9457,29 +9457,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 81,
-      "growthScore": 71,
-      "riskScore": 81,
-      "finalScore": 76
+      "investmentScore": 84,
+      "growthScore": 65,
+      "riskScore": 85,
+      "finalScore": 74
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 79,
-        "finalScore": 86
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 80,
+        "finalScore": 94
       },
       "3y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 83,
-        "finalScore": 85
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 88,
+        "finalScore": 93
       },
       "5y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 86,
-        "finalScore": 85
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 95,
+        "finalScore": 92
       }
     },
     "forecast": {
@@ -9577,29 +9577,29 @@
       "populationGrowth": 0.07278020378457059
     },
     "scores": {
-      "investmentScore": 79,
-      "growthScore": 77,
-      "riskScore": 81,
+      "investmentScore": 81,
+      "growthScore": 76,
+      "riskScore": 84,
       "finalScore": 78
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 80,
-        "growthScore": 78,
-        "riskScore": 77,
-        "finalScore": 79
-      },
-      "3y": {
-        "investmentScore": 80,
+        "investmentScore": 82,
         "growthScore": 79,
         "riskScore": 77,
-        "finalScore": 79
+        "finalScore": 80
+      },
+      "3y": {
+        "investmentScore": 83,
+        "growthScore": 81,
+        "riskScore": 77,
+        "finalScore": 81
       },
       "5y": {
-        "investmentScore": 81,
-        "growthScore": 80,
+        "investmentScore": 85,
+        "growthScore": 83,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       }
     },
     "forecast": {
@@ -9697,29 +9697,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 83,
+      "investmentScore": 89,
       "growthScore": 78,
-      "riskScore": 85,
-      "finalScore": 79
+      "riskScore": 93,
+      "finalScore": 80
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       }
     },
     "forecast": {
@@ -9817,29 +9817,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 80,
-      "riskScore": 81,
-      "finalScore": 81
+      "investmentScore": 90,
+      "growthScore": 83,
+      "riskScore": 85,
+      "finalScore": 84
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -9937,29 +9937,29 @@
       "populationGrowth": 0.011362029135825751
     },
     "scores": {
-      "investmentScore": 81,
-      "growthScore": 75,
-      "riskScore": 75,
-      "finalScore": 79
+      "investmentScore": 85,
+      "growthScore": 73,
+      "riskScore": 72,
+      "finalScore": 80
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
-        "growthScore": 79,
+        "investmentScore": 89,
+        "growthScore": 81,
         "riskScore": 77,
-        "finalScore": 81
+        "finalScore": 84
       },
       "3y": {
-        "investmentScore": 84,
-        "growthScore": 80,
+        "investmentScore": 90,
+        "growthScore": 83,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 86
       },
       "5y": {
-        "investmentScore": 84,
-        "growthScore": 82,
+        "investmentScore": 91,
+        "growthScore": 86,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 87
       }
     },
     "forecast": {
@@ -10057,29 +10057,29 @@
       "populationGrowth": 0.019819454892656675
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 76,
-      "riskScore": 72,
-      "finalScore": 81
+      "investmentScore": 90,
+      "growthScore": 75,
+      "riskScore": 66,
+      "finalScore": 84
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 84,
-        "growthScore": 78,
+        "investmentScore": 91,
+        "growthScore": 79,
         "riskScore": 77,
-        "finalScore": 81
+        "finalScore": 85
       },
       "3y": {
-        "investmentScore": 85,
-        "growthScore": 79,
+        "investmentScore": 92,
+        "growthScore": 80,
         "riskScore": 77,
-        "finalScore": 81
+        "finalScore": 85
       },
       "5y": {
-        "investmentScore": 85,
-        "growthScore": 79,
+        "investmentScore": 92,
+        "growthScore": 80,
         "riskScore": 77,
-        "finalScore": 81
+        "finalScore": 85
       }
     },
     "forecast": {
@@ -10177,29 +10177,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 83,
+      "investmentScore": 89,
       "growthScore": 77,
-      "riskScore": 89,
-      "finalScore": 78
+      "riskScore": 95,
+      "finalScore": 79
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       }
     },
     "forecast": {
@@ -10297,29 +10297,29 @@
       "populationGrowth": 0.06519102486355367
     },
     "scores": {
-      "investmentScore": 84,
+      "investmentScore": 91,
       "growthScore": 77,
-      "riskScore": 89,
-      "finalScore": 79
+      "riskScore": 95,
+      "finalScore": 80
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 85,
+        "investmentScore": 92,
         "growthScore": 78,
         "riskScore": 77,
-        "finalScore": 81
+        "finalScore": 84
       },
       "3y": {
-        "investmentScore": 85,
-        "growthScore": 79,
-        "riskScore": 77,
-        "finalScore": 82
-      },
-      "5y": {
-        "investmentScore": 86,
+        "investmentScore": 93,
         "growthScore": 80,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 86
+      },
+      "5y": {
+        "investmentScore": 94,
+        "growthScore": 82,
+        "riskScore": 77,
+        "finalScore": 87
       }
     },
     "forecast": {
@@ -10417,29 +10417,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 82,
-      "growthScore": 76,
-      "riskScore": 84,
-      "finalScore": 78
+      "investmentScore": 87,
+      "growthScore": 75,
+      "riskScore": 91,
+      "finalScore": 79
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
-        "riskScore": 78,
-        "finalScore": 80
+        "riskScore": 79,
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -10537,29 +10537,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 82,
-      "growthScore": 75,
-      "riskScore": 85,
+      "investmentScore": 87,
+      "growthScore": 73,
+      "riskScore": 92,
       "finalScore": 78
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 84,
-        "growthScore": 78,
+        "investmentScore": 90,
+        "growthScore": 79,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 78,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       }
     },
     "forecast": {
@@ -10657,29 +10657,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 83,
-      "growthScore": 76,
-      "riskScore": 80,
-      "finalScore": 79
+      "investmentScore": 88,
+      "growthScore": 75,
+      "riskScore": 84,
+      "finalScore": 80
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 89,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 83
       }
     },
     "forecast": {
@@ -10777,29 +10777,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 79,
-      "riskScore": 85,
-      "finalScore": 80
+      "investmentScore": 90,
+      "growthScore": 80,
+      "riskScore": 93,
+      "finalScore": 82
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -10897,29 +10897,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 81,
-      "growthScore": 72,
-      "riskScore": 83,
-      "finalScore": 76
+      "investmentScore": 85,
+      "growthScore": 67,
+      "riskScore": 88,
+      "finalScore": 75
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 86,
-        "growthScore": 83,
+        "investmentScore": 94,
+        "growthScore": 88,
         "riskScore": 77,
-        "finalScore": 83
+        "finalScore": 89
       },
       "3y": {
-        "investmentScore": 88,
-        "growthScore": 87,
+        "investmentScore": 95,
+        "growthScore": 95,
         "riskScore": 77,
-        "finalScore": 86
+        "finalScore": 94
       },
       "5y": {
-        "investmentScore": 88,
-        "growthScore": 87,
-        "riskScore": 79,
-        "finalScore": 86
+        "investmentScore": 95,
+        "growthScore": 95,
+        "riskScore": 80,
+        "finalScore": 94
       }
     },
     "forecast": {
@@ -11017,29 +11017,29 @@
       "populationGrowth": 0.07392835902831786
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 76,
-      "riskScore": 74,
-      "finalScore": 81
+      "investmentScore": 91,
+      "growthScore": 75,
+      "riskScore": 70,
+      "finalScore": 84
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 86,
-        "growthScore": 79,
-        "riskScore": 77,
-        "finalScore": 82
-      },
-      "3y": {
-        "investmentScore": 86,
-        "growthScore": 79,
-        "riskScore": 77,
-        "finalScore": 82
-      },
-      "5y": {
-        "investmentScore": 87,
+        "investmentScore": 94,
         "growthScore": 80,
         "riskScore": 77,
-        "finalScore": 83
+        "finalScore": 86
+      },
+      "3y": {
+        "investmentScore": 94,
+        "growthScore": 81,
+        "riskScore": 77,
+        "finalScore": 86
+      },
+      "5y": {
+        "investmentScore": 95,
+        "growthScore": 83,
+        "riskScore": 77,
+        "finalScore": 88
       }
     },
     "forecast": {
@@ -11137,29 +11137,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 85,
-      "growthScore": 82,
-      "riskScore": 83,
-      "finalScore": 82
+      "investmentScore": 92,
+      "growthScore": 86,
+      "riskScore": 88,
+      "finalScore": 86
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -11257,29 +11257,29 @@
       "populationGrowth": 0.019819454892656675
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 77,
-      "riskScore": 73,
-      "finalScore": 81
+      "investmentScore": 90,
+      "growthScore": 76,
+      "riskScore": 68,
+      "finalScore": 84
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 84,
-        "growthScore": 78,
-        "riskScore": 77,
-        "finalScore": 81
-      },
-      "3y": {
-        "investmentScore": 85,
+        "investmentScore": 91,
         "growthScore": 79,
         "riskScore": 77,
-        "finalScore": 81
+        "finalScore": 84
+      },
+      "3y": {
+        "investmentScore": 92,
+        "growthScore": 81,
+        "riskScore": 77,
+        "finalScore": 85
       },
       "5y": {
-        "investmentScore": 85,
-        "growthScore": 80,
+        "investmentScore": 92,
+        "growthScore": 82,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 86
       }
     },
     "forecast": {
@@ -11377,29 +11377,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 83,
-      "growthScore": 78,
-      "riskScore": 85,
-      "finalScore": 79
+      "investmentScore": 89,
+      "growthScore": 79,
+      "riskScore": 93,
+      "finalScore": 81
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -11497,29 +11497,29 @@
       "populationGrowth": 0.019819454892656675
     },
     "scores": {
-      "investmentScore": 83,
-      "growthScore": 76,
-      "riskScore": 75,
-      "finalScore": 80
+      "investmentScore": 88,
+      "growthScore": 75,
+      "riskScore": 72,
+      "finalScore": 82
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 84,
-        "growthScore": 79,
-        "riskScore": 77,
-        "finalScore": 81
-      },
-      "3y": {
-        "investmentScore": 85,
+        "investmentScore": 91,
         "growthScore": 80,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 85
+      },
+      "3y": {
+        "investmentScore": 92,
+        "growthScore": 83,
+        "riskScore": 77,
+        "finalScore": 86
       },
       "5y": {
-        "investmentScore": 85,
-        "growthScore": 81,
+        "investmentScore": 93,
+        "growthScore": 85,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 87
       }
     },
     "forecast": {
@@ -11617,29 +11617,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 83,
-      "growthScore": 78,
-      "riskScore": 83,
-      "finalScore": 79
+      "investmentScore": 88,
+      "growthScore": 79,
+      "riskScore": 89,
+      "finalScore": 81
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 83,
+        "investmentScore": 88,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
@@ -11737,29 +11737,29 @@
       "populationGrowth": 0.019819454892656675
     },
     "scores": {
-      "investmentScore": 82,
-      "growthScore": 76,
-      "riskScore": 75,
-      "finalScore": 79
+      "investmentScore": 87,
+      "growthScore": 74,
+      "riskScore": 73,
+      "finalScore": 81
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 84,
-        "growthScore": 79,
-        "riskScore": 77,
-        "finalScore": 81
-      },
-      "3y": {
-        "investmentScore": 85,
+        "investmentScore": 90,
         "growthScore": 81,
         "riskScore": 77,
-        "finalScore": 82
+        "finalScore": 85
+      },
+      "3y": {
+        "investmentScore": 92,
+        "growthScore": 84,
+        "riskScore": 77,
+        "finalScore": 86
       },
       "5y": {
-        "investmentScore": 85,
-        "growthScore": 82,
+        "investmentScore": 93,
+        "growthScore": 87,
         "riskScore": 77,
-        "finalScore": 83
+        "finalScore": 88
       }
     },
     "forecast": {
@@ -11857,29 +11857,29 @@
       "populationGrowth": -0.039779926642214074
     },
     "scores": {
-      "investmentScore": 84,
-      "growthScore": 81,
-      "riskScore": 84,
-      "finalScore": 81
+      "investmentScore": 90,
+      "growthScore": 85,
+      "riskScore": 90,
+      "finalScore": 84
     },
     "forecast_scores": {
       "1y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "3y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       },
       "5y": {
-        "investmentScore": 82,
+        "investmentScore": 87,
         "growthScore": 77,
         "riskScore": 77,
-        "finalScore": 80
+        "finalScore": 82
       }
     },
     "forecast": {
