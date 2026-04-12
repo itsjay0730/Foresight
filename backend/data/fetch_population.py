@@ -14,11 +14,12 @@ import requests
 from config import CENSUS_API_KEY, REQUEST_TIMEOUT
 
 
-ACS_POP_2022_API = "https://api.census.gov/data/2022/acs/acs5"
-ACS_POP_2021_API = "https://api.census.gov/data/2021/acs/acs5"
-
 # Total population
 ACS_TOTAL_POP_VAR = "B01003_001E"
+
+
+def _buildPopulationApi(year: int) -> str:
+    return f"https://api.census.gov/data/{year}/acs/acs5"
 
 
 def _fetchPopulationByZip(apiUrl: str, zipCode: str) -> int | None:
@@ -63,25 +64,58 @@ def fetchPopulation(plot: dict[str, Any]) -> dict[str, Any]:
     zipCode = str(plot.get("zip", "")).strip()
 
     if not zipCode or zipCode == "Unknown":
-        return {"population_growth": None}
+        return {
+            "population_growth": None,
+            "population_history": []
+        }
 
     try:
-        pop2022 = _fetchPopulationByZip(ACS_POP_2022_API, zipCode)
-        pop2021 = _fetchPopulationByZip(ACS_POP_2021_API, zipCode)
+        currentYear = 2024
+        years = [
+            currentYear - 3,
+            currentYear - 2,
+            currentYear - 1,
+            currentYear
+        ]
 
-        if pop2022 is None or pop2021 is None:
-            return {"population_growth": None}
+        populationHistory = []
 
-        if pop2021 == 0:
-            growth = 0.0 if pop2022 == 0 else 1.0
+        for year in years:
+            api = _buildPopulationApi(year)
+            population = _fetchPopulationByZip(api, zipCode)
+
+            populationHistory.append({
+                "year": year,
+                "population": population
+            })
+
+        validYears = [p for p in populationHistory if p["population"] is not None]
+
+        if len(validYears) < 2:
+            return {
+                "population_growth": None,
+                "population_history": populationHistory
+            }
+
+        first = validYears[0]["population"]
+        last = validYears[-1]["population"]
+
+        if first == 0:
+            growth = 0.0 if last == 0 else 1.0
         else:
-            growth = (pop2022 - pop2021) / pop2021
+            growth = (last - first) / first
 
-        return {"population_growth": round(growth, 4)}
+        return {
+            "population_growth": round(growth, 4),
+            "population_history": populationHistory
+        }
 
     except Exception as exc:
         print(f"[fetchPopulation] Census API failed for ZIP {zipCode}: {exc}")
-        return {"population_growth": None}
+        return {
+            "population_growth": None,
+            "population_history": []
+        }
 
 
 if __name__ == "__main__":
