@@ -225,6 +225,20 @@
           72
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -453,6 +467,20 @@
           52
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -681,6 +709,20 @@
           66
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -909,6 +951,20 @@
           61
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -1137,6 +1193,20 @@
           53
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -1365,6 +1435,20 @@
           66
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -1593,6 +1677,20 @@
           60
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -1821,6 +1919,20 @@
           60
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -2049,6 +2161,20 @@
           64
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -2277,6 +2403,20 @@
           67
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -2505,6 +2645,20 @@
           66
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -2733,6 +2887,20 @@
           63
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -2961,6 +3129,20 @@
           63
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -3189,6 +3371,20 @@
           66
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -3417,6 +3613,20 @@
           61
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -3645,6 +3855,20 @@
           60
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -3873,6 +4097,20 @@
           63
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -4101,6 +4339,20 @@
           62
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -4329,6 +4581,20 @@
           70
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -4557,6 +4823,20 @@
           51
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -4785,6 +5065,20 @@
           64
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -5013,6 +5307,20 @@
           58
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -5241,6 +5549,20 @@
           66
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -5469,6 +5791,20 @@
           64
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -5697,6 +6033,20 @@
           70
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -5925,6 +6275,20 @@
           65
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -6120,6 +6484,20 @@
           61
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -6348,6 +6726,20 @@
           75
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -6543,6 +6935,20 @@
           66
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -6738,6 +7144,20 @@
           68
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -6966,6 +7386,20 @@
           65
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -7194,6 +7628,20 @@
           59
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -7422,6 +7870,20 @@
           69
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -7650,6 +8112,20 @@
           65
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -7878,6 +8354,20 @@
           58
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -8106,6 +8596,20 @@
           57
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -8334,6 +8838,20 @@
           64
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -8562,6 +9080,20 @@
           72
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -8790,6 +9322,20 @@
           52
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -9018,6 +9564,20 @@
           68
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -9246,6 +9806,20 @@
           57
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -9474,6 +10048,20 @@
           57
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -9702,6 +10290,20 @@
           68
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -9930,6 +10532,20 @@
           65
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -10158,6 +10774,20 @@
           56
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -10386,6 +11016,20 @@
           53
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -10614,6 +11258,20 @@
           67
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -10842,6 +11500,20 @@
           58
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -11070,6 +11742,20 @@
           55
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -11298,6 +11984,20 @@
           53
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -11526,6 +12226,20 @@
           68
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -11754,6 +12468,20 @@
           59
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -11982,6 +12710,20 @@
           65
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -12210,6 +12952,20 @@
           58
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -12438,6 +13194,20 @@
           63
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -12666,6 +13436,20 @@
           67
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -12894,6 +13678,20 @@
           64
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -13122,6 +13920,20 @@
           66
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -13350,6 +14162,20 @@
           59
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -13578,6 +14404,20 @@
           61
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -13806,6 +14646,20 @@
           54
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -14034,6 +14888,20 @@
           53
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -14262,6 +15130,20 @@
           62
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -14490,6 +15372,20 @@
           54
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -14718,6 +15614,20 @@
           58
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -14946,6 +15856,20 @@
           67
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -15174,6 +16098,20 @@
           91
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -15402,6 +16340,20 @@
           91
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -15630,6 +16582,20 @@
           64
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -15858,6 +16824,20 @@
           66
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -16086,6 +17066,20 @@
           56
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -16314,6 +17308,20 @@
           59
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -16542,6 +17550,20 @@
           94
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -16770,6 +17792,20 @@
           66
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -16998,6 +18034,20 @@
           67
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -17226,6 +18276,20 @@
           52
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -17454,6 +18518,20 @@
           62
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -17682,6 +18760,20 @@
           66
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -17910,6 +19002,20 @@
           55
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -18138,6 +19244,20 @@
           93
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -18366,6 +19486,20 @@
           64
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -18594,6 +19728,20 @@
           60
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -18822,6 +19970,20 @@
           52
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -19050,6 +20212,20 @@
           71
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -19278,6 +20454,20 @@
           69
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -19506,6 +20696,20 @@
           56
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -19734,6 +20938,20 @@
           64
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -19962,6 +21180,20 @@
           60
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -20190,6 +21422,20 @@
           67
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -20418,6 +21664,20 @@
           55
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -20646,6 +21906,20 @@
           51
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -20874,6 +22148,20 @@
           80
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -21102,6 +22390,20 @@
           69
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -21330,6 +22632,20 @@
           52
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -21558,6 +22874,20 @@
           68
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -21786,6 +23116,20 @@
           58
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -22014,6 +23358,20 @@
           69
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -22242,6 +23600,20 @@
           52
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -22470,6 +23842,20 @@
           69
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   },
   {
@@ -22698,6 +24084,20 @@
           56
         ]
       }
+    },
+    "ai_insights": {
+      "opportunityType": "Unknown Opportunity",
+      "drivers": [
+        "Insufficient signal",
+        "Fallback analysis used",
+        "Review raw plot data"
+      ],
+      "bestUse": [
+        "Hold",
+        "Further analysis",
+        "Manual review"
+      ],
+      "confidence": "Low"
     }
   }
 ]
