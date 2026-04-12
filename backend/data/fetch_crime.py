@@ -126,7 +126,7 @@ def fetchCrime(
 
     try:
         currentYear = datetime.now().year
-        years = [currentYear - 3, currentYear - 2, currentYear - 1]
+        years = [currentYear - 4, currentYear - 3, currentYear - 2, currentYear - 1]
 
         crimeHistory = []
 
