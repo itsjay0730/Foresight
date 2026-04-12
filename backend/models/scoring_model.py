@@ -379,43 +379,49 @@ def buildScoresAll(plots: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         forecastScores = {}
         forecast = plot.get("forecast", {}) or {}
 
+        crimeForecasts = forecast.get("crime_forecast", {}) or {}
+        permitForecasts = forecast.get("permit_forecast", {}) or {}
+        populationForecasts = forecast.get("population_forecast", {}) or {}
+
         for horizon in ["1y", "3y", "5y"]:
+            crimeForecast = crimeForecasts.get(horizon)
+            permitForecast = permitForecasts.get(horizon)
+            populationForecast = populationForecasts.get(horizon)
+
             if (
-                forecast.get("crime_forecast")
-                and forecast.get("permit_forecast")
-                and forecast.get("population_forecast")
+                crimeForecast is None
+                and permitForecast is None
+                and populationForecast is None
             ):
-                tempPlot = dict(plot)
-                tempFeatures = dict(plot.get("features", {}) or {})
+                continue
 
-                crimeForecast = forecast["crime_forecast"].get(horizon)
-                permitForecast = forecast["permit_forecast"].get(horizon)
-                populationForecast = forecast["population_forecast"].get(horizon)
+            tempPlot = dict(plot)
+            tempFeatures = dict(plot.get("features", {}) or {})
 
-                crimeHistory = plot.get("crime_history", []) or []
-                permitHistory = plot.get("permit_history", []) or []
-                populationHistory = plot.get("population_history", []) or []
+            crimeHistory = plot.get("crime_history", []) or []
+            permitHistory = plot.get("permit_history", []) or []
+            populationHistory = plot.get("population_history", []) or []
 
-                if crimeForecast is not None and len(crimeHistory) > 0:
-                    lastCrime = crimeHistory[-1]["crime_count"]
-                    tempFeatures["crimeTrend"] = (
-                        (crimeForecast - lastCrime) / max(lastCrime, 1)
-                    )
+            if crimeForecast is not None and len(crimeHistory) > 0:
+                lastCrime = crimeHistory[-1]["crime_count"]
+                tempFeatures["crimeTrend"] = (
+                    (crimeForecast - lastCrime) / max(lastCrime, 1)
+                )
 
-                if permitForecast is not None and len(permitHistory) > 0:
-                    lastPermit = permitHistory[-1]["permit_count"]
-                    tempFeatures["permitGrowth"] = (
-                        (permitForecast - lastPermit) / max(lastPermit, 1)
-                    )
+            if permitForecast is not None and len(permitHistory) > 0:
+                lastPermit = permitHistory[-1]["permit_count"]
+                tempFeatures["permitGrowth"] = (
+                    (permitForecast - lastPermit) / max(lastPermit, 1)
+                )
 
-                if populationForecast is not None and len(populationHistory) > 0:
-                    lastPopulation = populationHistory[-1]["population"]
-                    tempFeatures["populationGrowth"] = (
-                        (populationForecast - lastPopulation) / max(lastPopulation, 1)
-                    )
+            if populationForecast is not None and len(populationHistory) > 0:
+                lastPopulation = populationHistory[-1]["population"]
+                tempFeatures["populationGrowth"] = (
+                    (populationForecast - lastPopulation) / max(lastPopulation, 1)
+                )
 
-                tempPlot["features"] = tempFeatures
-                forecastScores[horizon] = buildScores(tempPlot)
+            tempPlot["features"] = tempFeatures
+            forecastScores[horizon] = buildScores(tempPlot)
 
         combined = {
             **plot,

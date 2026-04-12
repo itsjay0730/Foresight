@@ -36,7 +36,11 @@ interface BackendPlot {
   permit_count_nearby: number;
   nearest_station: string | null;
   transit_stop_count_nearby: number;
-  crime_history?: { year: number; crime_count: number; violent_crime_count: number }[];
+  crime_history?: {
+    year: number;
+    crime_count: number;
+    violent_crime_count: number;
+  }[];
   permit_history?: { year: number; permit_count: number }[];
   population_history?: { year: number; population: number }[];
   features?: {
@@ -66,9 +70,24 @@ interface BackendPlot {
     population_forecast?: { "1y": number; "3y": number; "5y": number };
   };
   forecast_scores?: {
-    "1y"?: { investmentScore: number; growthScore: number; riskScore: number; finalScore: number };
-    "3y"?: { investmentScore: number; growthScore: number; riskScore: number; finalScore: number };
-    "5y"?: { investmentScore: number; growthScore: number; riskScore: number; finalScore: number };
+    "1y"?: {
+      investmentScore: number;
+      growthScore: number;
+      riskScore: number;
+      finalScore: number;
+    };
+    "3y"?: {
+      investmentScore: number;
+      growthScore: number;
+      riskScore: number;
+      finalScore: number;
+    };
+    "5y"?: {
+      investmentScore: number;
+      growthScore: number;
+      riskScore: number;
+      finalScore: number;
+    };
   };
   // Enrichment fields (may or may not be present)
   full_address?: string;
@@ -79,6 +98,33 @@ interface BackendPlot {
   hardship_index?: number | null;
   unemployment_rate?: number | null;
   poverty_rate?: number | null;
+}
+
+interface BackendMapDataResponse {
+  count?: number;
+  results?: BackendPlot[];
+}
+
+function isBackendPlotArray(value: unknown): value is BackendPlot[] {
+  return Array.isArray(value);
+}
+
+function isBackendMapDataResponse(
+  value: unknown
+): value is BackendMapDataResponse {
+  return typeof value === "object" && value !== null;
+}
+
+function normalizePlotPayload(payload: unknown): BackendPlot[] {
+  if (isBackendPlotArray(payload)) {
+    return payload;
+  }
+
+  if (isBackendMapDataResponse(payload) && Array.isArray(payload.results)) {
+    return payload.results;
+  }
+
+  return [];
 }
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -99,21 +145,29 @@ async function loadData(): Promise<void> {
 
   _fetchPromise = (async () => {
     let plots: BackendPlot[] = [];
+
     try {
-      const res = await fetch(`${API_BASE}/map-data`);
+      const res = await fetch(`${API_BASE}/map-data`, {
+        headers: { Accept: "application/json" },
+      });
       if (res.ok) {
-        const data = await res.json();
-        plots = data.results || [];
+        const data: unknown = await res.json();
+        plots = normalizePlotPayload(data);
       }
     } catch {
       /* API unavailable */
     }
 
-    // Fallback to static file
+    // Fallback to static file in public/
     if (plots.length === 0) {
       try {
-        const res = await fetch("/predicted_plots.json");
-        if (res.ok) plots = await res.json();
+        const res = await fetch("/predicted_plots.json", {
+          headers: { Accept: "application/json" },
+        });
+        if (res.ok) {
+          const data: unknown = await res.json();
+          plots = normalizePlotPayload(data);
+        }
       } catch {
         /* no fallback either */
       }
@@ -128,11 +182,16 @@ async function loadData(): Promise<void> {
 // ─── Transform backend plots → Neighborhood + Property ──────────────────────
 
 function titleCase(s: string): string {
-  return s.toLowerCase().split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+  return (s || "")
+    .toLowerCase()
+    .split(" ")
+    .filter(Boolean)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
 }
 
 function toHoodId(name: string): string {
-  return name.toLowerCase().replace(/\s+/g, "-");
+  return (name || "unknown").toLowerCase().trim().replace(/\s+/g, "-");
 }
 
 function scoreToRec(score: number): Recommendation {
@@ -155,7 +214,13 @@ function mapPropertyType(backendType: string): InvestmentType {
   if (t.includes("retail") || t.includes("food")) return "Retail";
   if (t.includes("office")) return "Office";
   if (t.includes("multi") || t.includes("residential")) return "Multifamily";
-  if (t.includes("land") || t.includes("parcel") || t.includes("vacant") || t.includes("opportunity")) return "Land / Development";
+  if (
+    t.includes("land") ||
+    t.includes("parcel") ||
+    t.includes("vacant") ||
+    t.includes("opportunity")
+  )
+    return "Land / Development";
   if (t.includes("single")) return "Single Family";
   return "Mixed Use";
 }
@@ -165,18 +230,18 @@ function getArea(hood: string): string {
     "NEAR NORTH SIDE": "North Side",
     "NEAR WEST SIDE": "West Side",
     "NEAR SOUTH SIDE": "South Side",
-    "LOOP": "Central",
+    LOOP: "Central",
     "LAKE VIEW": "North Side",
     "LINCOLN SQUARE": "Northwest Side",
     "NORTH CENTER": "North Side",
     "HUMBOLDT PARK": "West Side",
     "NORTH LAWNDALE": "West Side",
     "GRAND BOULEVARD": "South Side",
-    "OAKLAND": "South Side",
-    "ENGLEWOOD": "South Side",
+    OAKLAND: "South Side",
+    ENGLEWOOD: "South Side",
     "WEST ENGLEWOOD": "South Side",
     "AUBURN GRESHAM": "South Side",
-    "ROSELAND": "Far South Side",
+    ROSELAND: "Far South Side",
     "SOUTH CHICAGO": "South Side",
     "WEST PULLMAN": "Far South Side",
     "GAGE PARK": "Southwest Side",
@@ -187,36 +252,62 @@ function getArea(hood: string): string {
 
 function buildFactors(plots: BackendPlot[]): Factor[] {
   // Average the feature scores across plots to produce the 8 factors the UI expects
-  const avg = (arr: number[]) => arr.length > 0 ? arr.reduce((a, b) => a + b, 0) / arr.length : 50;
+  const avg = (arr: number[]) =>
+    arr.length > 0 ? arr.reduce((a, b) => a + b, 0) / arr.length : 50;
 
-  const incomes = plots.filter(p => p.income).map(p => p.income!);
+  const incomes = plots.filter((p) => p.income).map((p) => p.income!);
   const avgIncome = avg(incomes);
-  const incomeScore = Math.min(96, Math.max(35, Math.round((avgIncome / 150000) * 100)));
+  const incomeScore = Math.min(
+    96,
+    Math.max(35, Math.round((avgIncome / 150000) * 100))
+  );
 
-  const transitScores = plots.filter(p => p.features?.transitScore != null).map(p => Math.round(p.features!.transitScore * 100));
+  const transitScores = plots
+    .filter((p) => p.features?.transitScore != null)
+    .map((p) => Math.round(p.features!.transitScore * 100));
   const transitVal = Math.min(96, Math.max(35, Math.round(avg(transitScores))));
 
-  const permitActs = plots.filter(p => p.permit_activity != null).map(p => p.permit_activity!);
+  const permitActs = plots
+    .filter((p) => p.permit_activity != null)
+    .map((p) => p.permit_activity!);
   const avgPermit = avg(permitActs);
-  const permitScore = Math.min(96, Math.max(35, Math.round(50 + avgPermit * 30)));
+  const permitScore = Math.min(
+    96,
+    Math.max(35, Math.round(50 + avgPermit * 30))
+  );
 
-  const crimeTs = plots.filter(p => p.crime_trend != null).map(p => p.crime_trend!);
+  const crimeTs = plots
+    .filter((p) => p.crime_trend != null)
+    .map((p) => p.crime_trend!);
   const avgCrime = avg(crimeTs);
   // Lower crime trend = better stability
   const crimeScore = Math.min(96, Math.max(35, Math.round(70 - avgCrime * 20)));
 
-  const popGrowths = plots.filter(p => p.population_growth != null).map(p => p.population_growth!);
+  const popGrowths = plots
+    .filter((p) => p.population_growth != null)
+    .map((p) => p.population_growth!);
   const avgPop = avg(popGrowths);
   const popScore = Math.min(96, Math.max(35, Math.round(50 + avgPop * 200)));
 
-  const permitCounts = plots.map(p => p.permit_count_nearby);
+  const permitCounts = plots.map((p) => p.permit_count_nearby);
   const avgPermitCount = avg(permitCounts);
-  const propValScore = Math.min(96, Math.max(35, Math.round(40 + avgPermitCount * 0.5)));
+  const propValScore = Math.min(
+    96,
+    Math.max(35, Math.round(40 + avgPermitCount * 0.5))
+  );
 
-  const schoolRatings = plots.filter(p => (p as any).average_school_rating_nearby).map(p => (p as any).average_school_rating_nearby);
-  const schoolScore = schoolRatings.length > 0 ? Math.min(96, Math.max(35, Math.round(avg(schoolRatings) * 14))) : Math.min(96, Math.max(35, Math.round(incomeScore * 0.8)));
+  const schoolRatings = plots
+    .filter((p) => (p as any).average_school_rating_nearby)
+    .map((p) => (p as any).average_school_rating_nearby);
+  const schoolScore =
+    schoolRatings.length > 0
+      ? Math.min(96, Math.max(35, Math.round(avg(schoolRatings) * 14)))
+      : Math.min(96, Math.max(35, Math.round(incomeScore * 0.8)));
 
-  const rentGrowth = Math.min(96, Math.max(35, Math.round(permitScore * 0.9 + popScore * 0.1)));
+  const rentGrowth = Math.min(
+    96,
+    Math.max(35, Math.round(permitScore * 0.9 + popScore * 0.1))
+  );
 
   return [
     { name: "Median Income", key: "income", value: incomeScore },
@@ -232,62 +323,113 @@ function buildFactors(plots: BackendPlot[]): Factor[] {
 
 function buildStrengths(plots: BackendPlot[], scores: ScoreSet): string[] {
   const strengths: string[] = [];
-  if (scores.opportunity >= 80) strengths.push("High overall investment opportunity score");
-  if (scores.commercial >= 70) strengths.push("Strong commercial corridor momentum");
-  if (scores.stability >= 75) strengths.push("Above-average market stability and lower downside risk");
+  if (scores.opportunity >= 80)
+    strengths.push("High overall investment opportunity score");
+  if (scores.commercial >= 70)
+    strengths.push("Strong commercial corridor momentum");
+  if (scores.stability >= 75)
+    strengths.push("Above-average market stability and lower downside risk");
 
-  const avgTransit = plots.reduce((a, p) => a + (p.features?.transitScore ?? 0), 0) / plots.length;
+  const avgTransit =
+    plots.reduce((a, p) => a + (p.features?.transitScore ?? 0), 0) /
+    plots.length;
   if (avgTransit > 0.6) strengths.push("Excellent transit accessibility");
 
-  const avgIncome = plots.reduce((a, p) => a + (p.income ?? 0), 0) / plots.length;
-  if (avgIncome > 80000) strengths.push("Strong median income profile supports pricing");
+  const avgIncome =
+    plots.reduce((a, p) => a + (p.income ?? 0), 0) / plots.length;
+  if (avgIncome > 80000)
+    strengths.push("Strong median income profile supports pricing");
 
-  const avgPermit = plots.reduce((a, p) => a + p.permit_count_nearby, 0) / plots.length;
-  if (avgPermit > 40) strengths.push("Active permit pipeline indicates development interest");
+  const avgPermit =
+    plots.reduce((a, p) => a + p.permit_count_nearby, 0) / plots.length;
+  if (avgPermit > 40)
+    strengths.push("Active permit pipeline indicates development interest");
 
-  if (strengths.length < 3) strengths.push("Favorable investment fundamentals in current cycle");
-  if (strengths.length < 4) strengths.push("Positioned within established urban infrastructure");
+  if (strengths.length < 3)
+    strengths.push("Favorable investment fundamentals in current cycle");
+  if (strengths.length < 4)
+    strengths.push("Positioned within established urban infrastructure");
   return strengths.slice(0, 4);
 }
 
 function buildRisks(plots: BackendPlot[], scores: ScoreSet): string[] {
   const risks: string[] = [];
-  const avgCrime = plots.reduce((a, p) => a + p.crime_count_nearby, 0) / plots.length;
-  if (avgCrime > 30) risks.push("Elevated crime metrics require block-level diligence");
+  const avgCrime =
+    plots.reduce((a, p) => a + p.crime_count_nearby, 0) / plots.length;
+  if (avgCrime > 30)
+    risks.push("Elevated crime metrics require block-level diligence");
 
-  if (scores.stability < 72) risks.push("Market stability below institutional threshold");
-  if (scores.family < 65) risks.push("Limited family demand may constrain residential pricing");
-  if (scores.devReady < 65) risks.push("Development readiness constrained by zoning or density");
+  if (scores.stability < 72)
+    risks.push("Market stability below institutional threshold");
+  if (scores.family < 65)
+    risks.push("Limited family demand may constrain residential pricing");
+  if (scores.devReady < 65)
+    risks.push("Development readiness constrained by zoning or density");
 
-  const avgPop = plots.reduce((a, p) => a + (p.population_growth ?? 0), 0) / plots.length;
-  if (avgPop < 0) risks.push("Population decline trend may weaken demand outlook");
+  const avgPop =
+    plots.reduce((a, p) => a + (p.population_growth ?? 0), 0) / plots.length;
+  if (avgPop < 0)
+    risks.push("Population decline trend may weaken demand outlook");
 
-  if (risks.length < 3) risks.push("Acquisition cost compression may limit cap rate upside");
-  if (risks.length < 4) risks.push("Macro interest rate environment creates refinancing risk");
+  if (risks.length < 3)
+    risks.push("Acquisition cost compression may limit cap rate upside");
+  if (risks.length < 4)
+    risks.push("Macro interest rate environment creates refinancing risk");
   return risks.slice(0, 4);
 }
 
-function buildMemo(name: string, scores: ScoreSet, plots: BackendPlot[]): string {
-  const avgIncome = plots.reduce((a, p) => a + (p.income ?? 0), 0) / plots.length;
-  const avgPermit = plots.reduce((a, p) => a + p.permit_count_nearby, 0) / plots.length;
+function buildMemo(
+  name: string,
+  scores: ScoreSet,
+  plots: BackendPlot[]
+): string {
+  const avgIncome =
+    plots.reduce((a, p) => a + (p.income ?? 0), 0) / plots.length;
+  const avgPermit =
+    plots.reduce((a, p) => a + p.permit_count_nearby, 0) / plots.length;
   const titleName = titleCase(name);
-  const scoreDesc = scores.opportunity >= 80 ? "strong" : scores.opportunity >= 72 ? "moderate" : "emerging";
-  const recWord = scores.opportunity >= 80 ? "acquisition" : scores.opportunity >= 72 ? "selective entry" : "monitoring";
+  const scoreDesc =
+    scores.opportunity >= 80
+      ? "strong"
+      : scores.opportunity >= 72
+      ? "moderate"
+      : "emerging";
+  const recWord =
+    scores.opportunity >= 80
+      ? "acquisition"
+      : scores.opportunity >= 72
+      ? "selective entry"
+      : "monitoring";
 
-  return `${titleName} presents ${scoreDesc} investment fundamentals with a composite opportunity score of ${scores.opportunity}. ` +
-    `The submarket shows ${avgPermit > 40 ? "robust" : avgPermit > 20 ? "moderate" : "limited"} permit activity (avg ${Math.round(avgPermit)} nearby) ` +
+  return (
+    `${titleName} presents ${scoreDesc} investment fundamentals with a composite opportunity score of ${scores.opportunity}. ` +
+    `The submarket shows ${
+      avgPermit > 40 ? "robust" : avgPermit > 20 ? "moderate" : "limited"
+    } permit activity (avg ${Math.round(avgPermit)} nearby) ` +
     `and median income of $${Math.round(avgIncome).toLocaleString()}. ` +
-    `${scores.stability >= 75 ? "Market stability is above average, supporting institutional allocation." : "Stability metrics warrant careful position sizing."} ` +
-    `${scores.appreciation >= 72 ? "Appreciation trajectory supports a growth thesis." : "Appreciation potential is modest — focus on cash flow fundamentals."} ` +
+    `${
+      scores.stability >= 75
+        ? "Market stability is above average, supporting institutional allocation."
+        : "Stability metrics warrant careful position sizing."
+    } ` +
+    `${
+      scores.appreciation >= 72
+        ? "Appreciation trajectory supports a growth thesis."
+        : "Appreciation potential is modest — focus on cash flow fundamentals."
+    } ` +
     `Recommended strategy: ${recWord} with a 3–5 year horizon. ` +
-    `${plots.length} opportunity sites identified in the current pipeline.`;
+    `${plots.length} opportunity sites identified in the current pipeline.`
+  );
 }
 
 function transformData(plots: BackendPlot[]) {
+  const safePlots = Array.isArray(plots) ? plots : [];
+
   // Group by neighborhood
   const hoodGroups: Record<string, BackendPlot[]> = {};
-  for (const p of plots) {
-    const key = toHoodId(p.neighborhood);
+  for (const p of safePlots) {
+    const neighborhoodName = p?.neighborhood || "Unknown";
+    const key = toHoodId(neighborhoodName);
     if (!hoodGroups[key]) hoodGroups[key] = [];
     hoodGroups[key].push(p);
   }
@@ -297,14 +439,24 @@ function transformData(plots: BackendPlot[]) {
   let propIdCounter = 1;
 
   for (const [hoodId, group] of Object.entries(hoodGroups)) {
+    if (!Array.isArray(group) || group.length === 0) {
+      continue;
+    }
+
     const first = group[0];
-    const avgLat = group.reduce((a, p) => a + p.lat, 0) / group.length;
-    const avgLng = group.reduce((a, p) => a + p.lng, 0) / group.length;
+    if (!first) {
+      continue;
+    }
+
+    const avgLat = group.reduce((a, p) => a + (p.lat ?? 0), 0) / group.length;
+    const avgLng = group.reduce((a, p) => a + (p.lng ?? 0), 0) / group.length;
 
     // Build ScoreSet from metrics (the 6-dimension scores)
     const m = first.metrics;
-    const oppScore = m?.investmentOpportunity?.score ?? first.scores?.finalScore ?? 70;
-    const apprScore = m?.appreciationPotential?.score ?? first.scores?.growthScore ?? 65;
+    const oppScore =
+      m?.investmentOpportunity?.score ?? first.scores?.finalScore ?? 70;
+    const apprScore =
+      m?.appreciationPotential?.score ?? first.scores?.growthScore ?? 65;
     const devScore = m?.developmentReadiness?.score ?? 60;
     const stabScore = m?.marketStability?.score ?? 70;
     const famScore = m?.familyDemand?.score ?? 65;
@@ -321,27 +473,40 @@ function transformData(plots: BackendPlot[]) {
 
     // Delta from metrics change field or forecast_scores
     const change = m?.investmentOpportunity?.change;
-    const delta = change != null ? `+${change.toFixed(1)}%` :
-      (first.forecast_scores?.["3y"]
-        ? `+${(first.forecast_scores["3y"].finalScore - (first.scores?.finalScore ?? 0)).toFixed(1)}%`
-        : "+2.0%");
+    const delta =
+      change != null
+        ? `${change >= 0 ? "+" : ""}${change.toFixed(1)}%`
+        : first.forecast_scores?.["3y"]
+        ? `${
+            first.forecast_scores["3y"].finalScore -
+              (first.scores?.finalScore ?? 0) >=
+            0
+              ? "+"
+              : ""
+          }${(
+            first.forecast_scores["3y"].finalScore -
+            (first.scores?.finalScore ?? 0)
+          ).toFixed(1)}%`
+        : "+2.0%";
 
     const factors = buildFactors(group);
     const strengths = buildStrengths(group, scores);
     const risks = buildRisks(group, scores);
-    const memo = buildMemo(first.neighborhood, scores, group);
+    const memo = buildMemo(first.neighborhood || "Unknown", scores, group);
 
     // Fix bad ZIPs
     let zip = first.zip;
-    if (zip === "0" || zip === "00000") {
-      zip = group.find(p => p.zip !== "0" && p.zip !== "00000")?.zip || "60601";
+    if (!zip || zip === "0" || zip === "00000") {
+      zip =
+        group.find((p) => p.zip && p.zip !== "0" && p.zip !== "00000")?.zip ||
+        "60601";
     }
 
     neighborhoods[hoodId] = {
       id: hoodId,
-      name: titleCase(first.neighborhood),
+      name: titleCase(first.neighborhood || "Unknown"),
       zip,
-      area: getArea(first.neighborhood),
+      area: getArea(first.neighborhood || "Unknown"),
       lat: avgLat,
       lng: avgLng,
       scores,
@@ -357,32 +522,39 @@ function transformData(plots: BackendPlot[]) {
     // Convert each plot to a Property
     for (const plot of group) {
       const finalScore = plot.scores?.finalScore ?? 70;
-      const salePrice = (plot as any).last_sale_price;
+      const salePrice = plot.last_sale_price;
       const est = salePrice
-        ? (salePrice >= 1_000_000 ? `$${(salePrice / 1_000_000).toFixed(1)}M` : `$${(salePrice / 1000).toFixed(0)}K`)
-        : (plot.income ? `$${(plot.income * 2.5 / 1000).toFixed(0)}K` : "—");
+        ? salePrice >= 1_000_000
+          ? `$${(salePrice / 1_000_000).toFixed(1)}M`
+          : `$${(salePrice / 1000).toFixed(0)}K`
+        : plot.income
+        ? `$${((plot.income * 2.5) / 1000).toFixed(0)}K`
+        : "—";
 
       allProperties.push({
         id: propIdCounter++,
-        name: (plot as any).full_address
-          ? (plot as any).full_address.split(",")[0]
+        name: plot.full_address
+          ? plot.full_address.split(",")[0]
           : `Site ${plot.id}`,
         type: mapPropertyType(plot.property_type),
         lat: plot.lat,
         lng: plot.lng,
         score: finalScore,
         rec: scoreToRec(finalScore),
-        hood: titleCase(plot.neighborhood),
+        hood: titleCase(plot.neighborhood || "Unknown"),
         est,
         sqft: plot.parcel_size > 0 ? plot.parcel_size.toLocaleString() : "—",
-        cap: finalScore >= 75 ? `${(5 + (90 - finalScore) * 0.05).toFixed(1)}%` : "—",
+        cap:
+          finalScore >= 75
+            ? `${(5 + (90 - finalScore) * 0.05).toFixed(1)}%`
+            : "—",
         risk: scoreToRisk(finalScore),
       });
     }
   }
 
   return {
-    plots,
+    plots: safePlots,
     neighborhoods,
     neighborhoodList: Object.values(neighborhoods),
     properties: allProperties.sort((a, b) => b.score - a.score),
@@ -422,9 +594,10 @@ export function getProperties(): Property[] {
 
 export async function fetchAndGetData() {
   await loadData();
+
   return {
-    neighborhoods: _cache!.neighborhoods,
-    neighborhoodList: _cache!.neighborhoodList,
-    properties: _cache!.properties,
+    neighborhoods: _cache?.neighborhoods ?? {},
+    neighborhoodList: _cache?.neighborhoodList ?? [],
+    properties: _cache?.properties ?? [],
   };
 }

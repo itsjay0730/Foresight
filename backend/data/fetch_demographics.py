@@ -9,19 +9,19 @@ from utils import safeFloat, safeGet, safeInt
 NEIGHBORHOOD_ALIASES = {
     "NORTH CHICAGO": "NEAR NORTH SIDE",
     "LAKEVIEW": "LAKE VIEW",
+    "LAKE": "LAKE VIEW",
     "RIVER NORTH": "NEAR NORTH SIDE",
     "WEST LOOP": "NEAR WEST SIDE",
     "SOUTH LOOP": "LOOP",
     "OLD TOWN": "NEAR NORTH SIDE",
-    "WEST CHICAGO": "WEST TOWN",
-    "JEFFERSON": "JEFFERSON PARK",
 }
-
-
 def _normalizeName(value: Any) -> str:
     if value is None:
         return ""
+
     name = str(value).strip().upper()
+    name = " ".join(name.split())
+
     return NEIGHBORHOOD_ALIASES.get(name, name)
 
 

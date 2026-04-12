@@ -3,17 +3,30 @@
 import { useState, useRef, useCallback, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { X } from "lucide-react";
-import { FilterState, SelectionState } from "@/data/types";
-import { properties } from "@/data/properties";
-import { neighborhoods } from "@/data/neighborhoods";
+import {
+  FilterState,
+  SelectionState,
+  Neighborhood,
+  Property,
+} from "@/data/types";
 import { fetchAndGetData } from "@/data/api";
 import CommandBar from "@/components/command/CommandBar";
 import IntelPanel from "@/components/panel/IntelPanel";
-import { CompareModal, MemoFullModal } from "@/components/modals/CompareAndMemo";
-import { MapControls, Legend, BottomTray, Notification } from "@/components/ui/Overlays";
+import {
+  CompareModal,
+  MemoFullModal,
+} from "@/components/modals/CompareAndMemo";
+import {
+  MapControls,
+  Legend,
+  BottomTray,
+  Notification,
+} from "@/components/ui/Overlays";
 import { scoreColor } from "@/lib/utils";
 
-const MapView = dynamic(() => import("@/components/map/MapView"), { ssr: false });
+const MapView = dynamic(() => import("@/components/map/MapView"), {
+  ssr: false,
+});
 
 function getTimelineAdjustedScore(baseScore: number, timeline: string) {
   const multipliers: Record<string, number> = {
@@ -35,19 +48,27 @@ function getRecommendationFromScore(score: number) {
 
 function LoadingScreen() {
   return (
-    <div className="fixed inset-0 flex items-center justify-center" style={{ background: "#06080d" }}>
+    <div
+      className="fixed inset-0 flex items-center justify-center"
+      style={{ background: "#06080d" }}
+    >
       <div className="text-center">
         <div
           className="w-[40px] h-[40px] rounded-[10px] flex items-center justify-center font-extrabold text-[18px] text-white mx-auto mb-4"
           style={{
-            background: "linear-gradient(140deg,#3b82f6 0%,#06b6d4 50%,#22c55e 100%)",
+            background:
+              "linear-gradient(140deg,#3b82f6 0%,#06b6d4 50%,#22c55e 100%)",
             boxShadow: "0 2px 20px rgba(59,130,246,0.4)",
           }}
         >
           F
         </div>
-        <div className="text-[16px] font-bold text-t-primary mb-1">Foresight</div>
-        <div className="text-[11px] text-t-muted">Loading Chicago investment data…</div>
+        <div className="text-[16px] font-bold text-t-primary mb-1">
+          Foresight
+        </div>
+        <div className="text-[11px] text-t-muted">
+          Loading Chicago investment data…
+        </div>
       </div>
     </div>
   );
@@ -57,9 +78,36 @@ export default function ForesightApp() {
   const mapRef = useRef<any>(null);
 
   const [dataReady, setDataReady] = useState(false);
+  const [apiNeighborhoods, setApiNeighborhoods] = useState<
+    Record<string, Neighborhood>
+  >({});
+  const [apiNeighborhoodList, setApiNeighborhoodList] = useState<
+    Neighborhood[]
+  >([]);
+  const [apiProperties, setApiProperties] = useState<Property[]>([]);
 
   useEffect(() => {
-    fetchAndGetData().then(() => setDataReady(true));
+    let mounted = true;
+
+    fetchAndGetData()
+      .then((data) => {
+        if (!mounted) return;
+        setApiNeighborhoods(data.neighborhoods ?? {});
+        setApiNeighborhoodList(data.neighborhoodList ?? []);
+        setApiProperties(data.properties ?? []);
+        setDataReady(true);
+      })
+      .catch(() => {
+        if (!mounted) return;
+        setApiNeighborhoods({});
+        setApiNeighborhoodList([]);
+        setApiProperties([]);
+        setDataReady(true);
+      });
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   const [filters, setFilters] = useState<FilterState>({
@@ -77,7 +125,9 @@ export default function ForesightApp() {
 
   const [panelOpen, setPanelOpen] = useState(false);
   const [hoodPopupOpen, setHoodPopupOpen] = useState(false);
-  const [activeHoodId, setActiveHoodId] = useState<string | undefined>(undefined);
+  const [activeHoodId, setActiveHoodId] = useState<string | undefined>(
+    undefined
+  );
 
   const [compareOpen, setCompareOpen] = useState(false);
   const [memoOpen, setMemoOpen] = useState(false);
@@ -93,34 +143,44 @@ export default function ForesightApp() {
     setFilters((prev) => ({ ...prev, ...partial }));
   }, []);
 
-  const handleSelectHood = useCallback((id: string) => {
-    setSelection({ type: "hood", hoodId: id });
-    setPanelOpen(false);
-    setActiveHoodId(id);
-    setHoodPopupOpen(true);
+  const handleSelectHood = useCallback(
+    (id: string) => {
+      setSelection({ type: "hood", hoodId: id });
+      setPanelOpen(false);
+      setActiveHoodId(id);
+      setHoodPopupOpen(true);
 
-    const h = neighborhoods[id];
-    if (h && mapRef.current) {
-      mapRef.current.flyTo([h.lat, h.lng], 13, { duration: 0.7 });
-    }
-  }, []);
+      const h = apiNeighborhoods[id];
+      if (h && mapRef.current) {
+        mapRef.current.flyTo([h.lat, h.lng], 13, { duration: 0.7 });
+      }
+    },
+    [apiNeighborhoods]
+  );
 
-  const handleSelectProperty = useCallback((id: number) => {
-    const p = properties.find((prop) => prop.id === id);
-    if (!p) return;
+  const handleSelectProperty = useCallback(
+    (id: number) => {
+      const p = apiProperties.find((prop) => prop.id === id);
+      if (!p) return;
 
-    const matchedHoodId =
-      Object.keys(neighborhoods).find((k) => neighborhoods[k].name === p.hood) || "west-loop";
+      const matchedHoodId =
+        Object.keys(apiNeighborhoods).find(
+          (k) => apiNeighborhoods[k]?.name === p.hood
+        ) ||
+        Object.keys(apiNeighborhoods)[0] ||
+        "unknown";
 
-    setSelection({ type: "property", propertyId: id, hoodId: matchedHoodId });
-    setActiveHoodId(matchedHoodId);
-    setPanelOpen(true);
-    setHoodPopupOpen(false);
+      setSelection({ type: "property", propertyId: id, hoodId: matchedHoodId });
+      setActiveHoodId(matchedHoodId);
+      setPanelOpen(true);
+      setHoodPopupOpen(false);
 
-    if (mapRef.current) {
-      mapRef.current.flyTo([p.lat, p.lng], 14, { duration: 0.7 });
-    }
-  }, []);
+      if (mapRef.current) {
+        mapRef.current.flyTo([p.lat, p.lng], 14, { duration: 0.7 });
+      }
+    },
+    [apiNeighborhoods, apiProperties]
+  );
 
   const handleClosePanel = useCallback(() => {
     setPanelOpen(false);
@@ -160,23 +220,33 @@ export default function ForesightApp() {
     let watch = 0;
     let avoid = 0;
 
-    properties.forEach((p) => {
+    apiProperties.forEach((p) => {
       let show = true;
 
-      if (filters.investmentType && p.type !== filters.investmentType) show = false;
+      if (filters.investmentType && p.type !== filters.investmentType)
+        show = false;
 
       if (filters.riskLevel) {
         if (filters.riskLevel === "low" && p.risk !== "low") show = false;
-        if (filters.riskLevel === "moderate" && p.risk !== "moderate") show = false;
-        if (filters.riskLevel === "high" && !["emerging", "high"].includes(p.risk)) show = false;
-        if (filters.riskLevel === "emerging" && p.risk !== "emerging") show = false;
+        if (filters.riskLevel === "moderate" && p.risk !== "moderate")
+          show = false;
+        if (
+          filters.riskLevel === "high" &&
+          !["emerging", "high"].includes(p.risk)
+        )
+          show = false;
+        if (filters.riskLevel === "emerging" && p.risk !== "emerging")
+          show = false;
         if (filters.riskLevel === "avoid" && p.risk !== "avoid") show = false;
       }
 
       if (show) {
         total++;
 
-        const adjustedScore = getTimelineAdjustedScore(p.score, filters.timeline);
+        const adjustedScore = getTimelineAdjustedScore(
+          p.score,
+          filters.timeline
+        );
         const adjustedRec = getRecommendationFromScore(adjustedScore);
 
         if (adjustedRec === "BUY") buy++;
@@ -187,9 +257,11 @@ export default function ForesightApp() {
     });
 
     return { total, buy, build, watch, avoid };
-  }, [filters]);
+  }, [apiProperties, filters]);
 
-  const activeNeighborhood = activeHoodId ? neighborhoods[activeHoodId] : undefined;
+  const activeNeighborhood = activeHoodId
+    ? apiNeighborhoods[activeHoodId]
+    : undefined;
 
   const adjustedNeighborhoodStats = useMemo(() => {
     if (!activeNeighborhood) return undefined;
@@ -207,18 +279,21 @@ export default function ForesightApp() {
         filters.timeline === "1"
           ? "Near-term outlook"
           : filters.timeline === "5"
-            ? "Long-range upside"
-            : "Balanced horizon",
+          ? "Long-range upside"
+          : "Balanced horizon",
     };
   }, [activeNeighborhood, filters.timeline]);
 
   const neighborhoodProperties = useMemo(() => {
     if (!activeNeighborhood) return [];
 
-    return properties
+    return apiProperties
       .filter((p) => p.hood === activeNeighborhood.name)
       .map((p) => {
-        const adjustedScore = getTimelineAdjustedScore(p.score, filters.timeline);
+        const adjustedScore = getTimelineAdjustedScore(
+          p.score,
+          filters.timeline
+        );
         return {
           ...p,
           adjustedScore,
@@ -226,7 +301,18 @@ export default function ForesightApp() {
         };
       })
       .sort((a, b) => b.adjustedScore - a.adjustedScore);
-  }, [activeNeighborhood, filters.timeline]);
+  }, [activeNeighborhood, apiProperties, filters.timeline]);
+
+  useEffect(() => {
+    if (!dataReady) return;
+    if (activeHoodId) return;
+
+    const firstNeighborhoodId = apiNeighborhoodList[0]?.id;
+    if (!firstNeighborhoodId) return;
+
+    setSelection({ type: "hood", hoodId: firstNeighborhoodId });
+    setActiveHoodId(firstNeighborhoodId);
+  }, [dataReady, activeHoodId, apiNeighborhoodList]);
 
   if (!dataReady) {
     return <LoadingScreen />;
@@ -248,6 +334,7 @@ export default function ForesightApp() {
       />
 
       <MapView
+        key={apiProperties.length}
         filters={filters}
         onSelectHood={handleSelectHood}
         onSelectProperty={handleSelectProperty}
@@ -255,7 +342,11 @@ export default function ForesightApp() {
       />
 
       {panelOpen && !hoodPopupOpen && (
-        <div className="fixed inset-0 z-[850]" onClick={handleClosePanel} aria-hidden="true" />
+        <div
+          className="fixed inset-0 z-[850]"
+          onClick={handleClosePanel}
+          aria-hidden="true"
+        />
       )}
 
       <MapControls mapRef={mapRef} />
@@ -308,9 +399,9 @@ function NeighborhoodPropertiesPopup({
 }: {
   open: boolean;
   onClose: () => void;
-  neighborhood?: (typeof neighborhoods)[string];
+  neighborhood?: Neighborhood;
   propertiesInNeighborhood: Array<
-    (typeof properties)[number] & {
+    Property & {
       adjustedScore: number;
       adjustedRec: string;
     }
@@ -350,9 +441,12 @@ function NeighborhoodPropertiesPopup({
         </button>
 
         <div className="pr-8">
-          <h2 className="text-[18px] md:text-[20px] font-bold">{neighborhood.name}</h2>
+          <h2 className="text-[18px] md:text-[20px] font-bold">
+            {neighborhood.name}
+          </h2>
           <p className="text-[12px] text-t-muted mt-[4px]">
-            ZIP {neighborhood.zip} · {neighborhood.area} · {propertiesInNeighborhood.length} properties
+            ZIP {neighborhood.zip} · {neighborhood.area} ·{" "}
+            {propertiesInNeighborhood.length} properties
           </p>
         </div>
 
@@ -366,11 +460,13 @@ function NeighborhoodPropertiesPopup({
                 className="font-mono font-extrabold text-[18px]"
                 style={{
                   color: scoreColor(
-                    adjustedNeighborhoodStats?.opportunity ?? neighborhood.scores.opportunity
+                    adjustedNeighborhoodStats?.opportunity ??
+                      neighborhood.scores.opportunity
                   ),
                 }}
               >
-                {adjustedNeighborhoodStats?.opportunity ?? neighborhood.scores.opportunity}
+                {adjustedNeighborhoodStats?.opportunity ??
+                  neighborhood.scores.opportunity}
               </span>
             </div>
             <div>
@@ -410,9 +506,12 @@ function NeighborhoodPropertiesPopup({
                   className="w-full text-left flex items-center justify-between gap-3 px-4 py-3 rounded-f border border-white/[0.04] bg-white/[0.02] hover:border-white/[0.09] hover:bg-white/[0.04] transition-all"
                 >
                   <div className="min-w-0 flex-1">
-                    <div className="text-[12.5px] font-semibold truncate">{property.name}</div>
+                    <div className="text-[12.5px] font-semibold truncate">
+                      {property.name}
+                    </div>
                     <div className="text-[10.5px] text-t-muted mt-[2px] truncate">
-                      {property.type} · {property.est} · {property.sqft} SF · Cap {property.cap}
+                      {property.type} · {property.est} · {property.sqft} SF ·
+                      Cap {property.cap}
                     </div>
                   </div>
 
