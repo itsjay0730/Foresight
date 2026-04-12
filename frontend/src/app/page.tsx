@@ -518,7 +518,7 @@ export default function ForesightApp() {
           hoodId={selection.hoodId}
           propertyId={selection.propertyId}
           timeline={filters.timeline}
-          housingType={filters.housingType}
+          // housingType={filters.housingType}
           onSelectProperty={handleSelectProperty}
           onOpenMemo={() => setMemoOpen(true)}
           onOpenNeighborhoodStats={() => {
