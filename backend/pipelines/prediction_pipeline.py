@@ -53,8 +53,8 @@ def runPredictionPipeline() -> List[Dict[str, Any]]:
     print("[Prediction] Building metrics...")
     data = buildMetrics(data)
 
-    # print(f"[Prediction] Completed. Total plots: {len(data)}")
-    # data = generateAIInsightsAll(data)
+    print(f"[Prediction] Completed. Total plots: {len(data)}")
+    data = generateAIInsightsAll(data)
 
     print("[Prediction] Saving predictions...")
     savePredictions(data)

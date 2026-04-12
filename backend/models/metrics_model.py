@@ -45,17 +45,25 @@ def computeAppreciationPotential(plot):
 
 def computeDevelopmentReadiness(plot):
     features = plot.get("features", {})
-    forecast = plot.get("forecast_scores", {})
-    current = clamp(
-        60 + (features.get("permitGrowth", 0) * 20) + (features.get("transitScore", 0) * 20)
+
+    permit_growth = features.get("permitGrowth", 0)
+    transit_score = features.get("transitScore", 0)
+
+    score = clamp(
+        60 + (permit_growth * 20) + (transit_score * 20)
     )
-    f1 = forecast.get("1y", {}).get("growthScore", current)
-    f3 = forecast.get("3y", {}).get("growthScore", current)
-    f5 = forecast.get("5y", {}).get("growthScore", current)
-    trend = [current - 2, current, f1, f3, f5]
+
+    trend = [
+        score - 3,
+        score - 1,
+        score + 1,
+        score
+    ]
+
     change = trend[-1] - trend[0]
+
     return {
-        "score": round(current),
+        "score": round(score),
         "change": round(change, 2),
         "trend": [round(t) for t in trend]
     }
@@ -63,7 +71,6 @@ def computeDevelopmentReadiness(plot):
 def computeMarketStability(plot):
     scores = plot.get("scores", {})
     features = plot.get("features", {})
-    forecast = plot.get("forecast_scores", {})
 
     risk = scores.get("riskScore", 50)
     population = features.get("populationGrowth", 0)
@@ -72,15 +79,11 @@ def computeMarketStability(plot):
         100 - (risk * 0.7) + ((1 + population) * 20)
     )
 
-    f1 = forecast.get("1y", {}).get("riskScore", score)
-    f3 = forecast.get("3y", {}).get("riskScore", score)
-    f5 = forecast.get("5y", {}).get("riskScore", score)
     trend = [
         score - 2,
-        score,
-        100 - f1,
-        100 - f3,
-        100 - f5
+        score - 1,
+        score + 1,
+        score
     ]
 
     change = trend[-1] - trend[0]
@@ -93,8 +96,6 @@ def computeMarketStability(plot):
 
 def computeFamilyDemand(plot):
     features = plot.get("features", {})
-    forecast = plot.get("forecast", {})
-    pop_forecast = forecast.get("population_forecast", {})
 
     income = features.get("incomeScore", 0)
     transit = features.get("transitScore", 0)
@@ -107,15 +108,11 @@ def computeFamilyDemand(plot):
         (population * 20)
     )
 
-    f1 = pop_forecast.get("1y", population)
-    f3 = pop_forecast.get("3y", population)
-    f5 = pop_forecast.get("5y", population)
     trend = [
-        score - 2,
-        score,
-        score + (0.5 if f1 > population else -0.5),
-        score + (1 if f3 > population else -1),
-        score + (1.5 if f5 > population else -1.5)
+        score - 3,
+        score - 1,
+        score + 1,
+        score
     ]
 
     change = trend[-1] - trend[0]
@@ -128,8 +125,6 @@ def computeFamilyDemand(plot):
 
 def computeCommercialExpansion(plot):
     features = plot.get("features", {})
-    forecast = plot.get("forecast", {})
-    permit_forecast = forecast.get("permit_forecast", {})
 
     permit = features.get("permitGrowth", 0)
     transit = features.get("transitScore", 0)
@@ -142,15 +137,11 @@ def computeCommercialExpansion(plot):
         (population * 20)
     )
 
-    f1 = permit_forecast.get("1y", permit)
-    f3 = permit_forecast.get("3y", permit)
-    f5 = permit_forecast.get("5y", permit)
     trend = [
-        score - 2,
-        score,
-        score + (0.5 if f1 > 0 else -0.5),
-        score + (1 if f3 > 0 else -1),
-        score + (1.5 if f5 > 0 else -1.5)
+        score - 3,
+        score - 1,
+        score + 1,
+        score
     ]
 
     change = trend[-1] - trend[0]
