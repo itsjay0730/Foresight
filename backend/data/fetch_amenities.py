@@ -1,10 +1,10 @@
+
 from __future__ import annotations
 
 from typing import Any
 
-import requests
-
-from config import OVERPASS_API_URL, SEARCH_RADIUS_AMENITIES_MILES, REQUEST_TIMEOUT
+from config import SEARCH_RADIUS_AMENITIES_MILES
+from data.overpass_client import safeOverpassPost
 from utils import safeFloat
 
 
@@ -19,25 +19,25 @@ def _buildOverpassQuery(lat: float, lng: float, radiusMeters: int) -> str:
     return f"""
     [out:json][timeout:25];
     (
-      node["amenity"="cafe"](around:{radiusMeters},{lat},{lng});
-      way["amenity"="cafe"](around:{radiusMeters},{lat},{lng});
-      relation["amenity"="cafe"](around:{radiusMeters},{lat},{lng});
+      node[\"amenity\"=\"cafe\"](around:{radiusMeters},{lat},{lng});
+      way[\"amenity\"=\"cafe\"](around:{radiusMeters},{lat},{lng});
+      relation[\"amenity\"=\"cafe\"](around:{radiusMeters},{lat},{lng});
 
-      node["amenity"="restaurant"](around:{radiusMeters},{lat},{lng});
-      way["amenity"="restaurant"](around:{radiusMeters},{lat},{lng});
-      relation["amenity"="restaurant"](around:{radiusMeters},{lat},{lng});
+      node[\"amenity\"=\"restaurant\"](around:{radiusMeters},{lat},{lng});
+      way[\"amenity\"=\"restaurant\"](around:{radiusMeters},{lat},{lng});
+      relation[\"amenity\"=\"restaurant\"](around:{radiusMeters},{lat},{lng});
 
-      node["shop"="supermarket"](around:{radiusMeters},{lat},{lng});
-      way["shop"="supermarket"](around:{radiusMeters},{lat},{lng});
-      relation["shop"="supermarket"](around:{radiusMeters},{lat},{lng});
+      node[\"shop\"=\"supermarket\"](around:{radiusMeters},{lat},{lng});
+      way[\"shop\"=\"supermarket\"](around:{radiusMeters},{lat},{lng});
+      relation[\"shop\"=\"supermarket\"](around:{radiusMeters},{lat},{lng});
 
-      node["leisure"="park"](around:{radiusMeters},{lat},{lng});
-      way["leisure"="park"](around:{radiusMeters},{lat},{lng});
-      relation["leisure"="park"](around:{radiusMeters},{lat},{lng});
+      node[\"leisure\"=\"park\"](around:{radiusMeters},{lat},{lng});
+      way[\"leisure\"=\"park\"](around:{radiusMeters},{lat},{lng});
+      relation[\"leisure\"=\"park\"](around:{radiusMeters},{lat},{lng});
 
-      node["amenity"="hospital"](around:{radiusMeters},{lat},{lng});
-      way["amenity"="hospital"](around:{radiusMeters},{lat},{lng});
-      relation["amenity"="hospital"](around:{radiusMeters},{lat},{lng});
+      node[\"amenity\"=\"hospital\"](around:{radiusMeters},{lat},{lng});
+      way[\"amenity\"=\"hospital\"](around:{radiusMeters},{lat},{lng});
+      relation[\"amenity\"=\"hospital\"](around:{radiusMeters},{lat},{lng});
     );
     out tags center;
     """
@@ -102,15 +102,7 @@ def fetchAmenities(plot: dict[str, Any]) -> dict[str, Any]:
     query = _buildOverpassQuery(lat, lng, radiusMeters)
 
     try:
-        response = requests.post(
-            OVERPASS_API_URL,
-            data=query.encode("utf-8"),
-            timeout=REQUEST_TIMEOUT,
-            headers={"Content-Type": "text/plain"},
-        )
-        response.raise_for_status()
-
-        payload = response.json()
+        payload = safeOverpassPost(query)
         elements = payload.get("elements", []) or []
 
         coffeeCount = _countAmenity(elements, "amenity", "cafe")

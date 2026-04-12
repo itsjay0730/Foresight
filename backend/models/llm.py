@@ -6,7 +6,10 @@ import re
 import time
 from typing import Any
 
+from dotenv import load_dotenv
 import google.generativeai as genai
+
+load_dotenv(override=False)
 
 MODEL_NAME = "gemini-1.5-flash"
 
@@ -28,10 +31,30 @@ DEFAULT_AI_INSIGHTS = {
 _ALLOWED_CONFIDENCE = {"Low", "Medium", "High"}
 
 
+def _clean_env_value(value: str | None) -> str:
+    if value is None:
+        return ""
+
+    cleaned = value.strip()
+
+    if (
+        (cleaned.startswith('"') and cleaned.endswith('"'))
+        or (cleaned.startswith("'") and cleaned.endswith("'"))
+    ):
+        cleaned = cleaned[1:-1].strip()
+
+    return cleaned
+
+
 def _get_client():
-    api_key = os.getenv("GEMINI_API_KEY")
+    raw_api_key = os.getenv("GEMINI_API_KEY")
+    api_key = _clean_env_value(raw_api_key)
+
     if not api_key:
         raise RuntimeError("GEMINI_API_KEY is not set")
+
+    if any(ch in api_key for ch in ["\n", "\r", "\t"]):
+        raise RuntimeError("GEMINI_API_KEY contains invalid whitespace characters")
 
     genai.configure(api_key=api_key)
     return genai.GenerativeModel(MODEL_NAME)
@@ -190,7 +213,7 @@ def _sanitize_ai_insights(payload: Any) -> dict[str, Any]:
 
 def generateAIInsights(plot: dict[str, Any], client=None) -> dict[str, Any]:
     """
-    Call GPT-5 nano for a single plot and return:
+    Call Gemini for a single plot and return:
     {
       "opportunityType": str,
       "drivers": [str, str, str],
@@ -210,7 +233,7 @@ def generateAIInsights(plot: dict[str, Any], client=None) -> dict[str, Any]:
             },
         )
 
-        raw_text = (response.text or "").strip()
+        raw_text = (getattr(response, "text", "") or "").strip()
         json_text = _extract_first_json_object(raw_text)
         if not json_text:
             return _fallback_ai_insights()
@@ -231,8 +254,14 @@ def generateAIInsightsAll(
     client = _get_client()
     results: list[dict[str, Any]] = []
 
-    total = len(data)
-    for idx, plot in enumerate(data, start=1):
+    items = data if limit is None else data[:limit]
+    total = len(items)
+
+    if total == 0:
+        return []
+
+    for idx, plot in enumerate(items, start=1):
+        print(f"[AI] Generating insights {idx}/{total} -> {plot.get('id')}")
         enriched_plot = dict(plot)
         enriched_plot["ai_insights"] = generateAIInsights(enriched_plot, client=client)
         results.append(enriched_plot)
@@ -263,4 +292,9 @@ if __name__ == "__main__":
         },
     }
 
+    key_preview = _clean_env_value(os.getenv("GEMINI_API_KEY"))
+    print({
+        "gemini_key_loaded": bool(key_preview),
+        "gemini_key_length": len(key_preview),
+    })
     print(json.dumps(generateAIInsights(sample_plot), indent=2))

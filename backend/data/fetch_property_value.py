@@ -34,7 +34,7 @@ def _cleanPin(value: Any) -> str | None:
     if len(cleaned) >= 10:
         return cleaned
 
-    return text
+    return None
 
 
 def _safeDate(value: Any) -> str | None:
@@ -163,16 +163,6 @@ def _buildFullAddress(addressRow: dict[str, Any] | None) -> str | None:
 
 
 def fetchPropertyValue(plot: dict[str, Any]) -> dict[str, Any]:
-    pin = (
-        plot.get("pin")
-        or plot.get("apn")
-        or plot.get("parcel_number")
-        or plot.get("parcel_id")
-        or plot.get("id")
-    )
-
-    pin = _cleanPin(pin)
-
     empty = {
         "full_address": None,
         "assessed_value": None,
@@ -185,6 +175,16 @@ def fetchPropertyValue(plot: dict[str, Any]) -> dict[str, Any]:
         "sale_count_known": 0,
     }
 
+    # Only trust parcel-like identifiers, never generic id
+    pin = (
+        plot.get("pin")
+        or plot.get("apn")
+        or plot.get("parcel_number")
+        or plot.get("parcel_id")
+    )
+    pin = _cleanPin(pin)
+
+    # If this is not parcel-backed, do not try to fabricate parcel address data
     if not pin:
         return empty
 
@@ -205,6 +205,49 @@ def fetchPropertyValue(plot: dict[str, Any]) -> dict[str, Any]:
 
         if assessedRow:
             assessedValueYear = _parseYear(_findValue(assessedRow, ["year", "tax_year"]))
+
+            landAssessedValue = safeInt(
+                _findValue(
+                    assessedRow,
+                    [
+                        "board_land",
+                        "certified_land",
+                        "mailed_land",
+                        "land_assessed_value",
+                        "land_value",
+                    ],
+                )
+            )
+            buildingAssessedValue = safeInt(
+                _findValue(
+                    assessedRow,
+                    [
+                        "board_bldg",
+                        "certified_bldg",
+                        "mailed_bldg",
+                        "building_assessed_value",
+                        "building_value",
+                    ],
+                )
+            )
+            assessedValue = safeInt(
+                _findValue(
+                    assessedRow,
+                    [
+                        "board_tot",
+                        "certified_tot",
+                        "mailed_tot",
+                        "total_assessed_value",
+                        "assessed_value",
+                        "total_value",
+                    ],
+                )
+            )
+
+            if assessedValue is None and (
+                landAssessedValue is not None or buildingAssessedValue is not None
+            ):
+                assessedValue = (landAssessedValue or 0) + (buildingAssessedValue or 0)
 
         lastSalePrice = None
         lastSaleDate = None

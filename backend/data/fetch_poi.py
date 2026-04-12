@@ -2,9 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
-import requests
-
-from config import OVERPASS_API_URL, REQUEST_TIMEOUT, SEARCH_RADIUS_AMENITIES_MILES
+from config import SEARCH_RADIUS_AMENITIES_MILES
+from data.overpass_client import safeOverpassPost
 from utils import safeFloat
 
 
@@ -103,15 +102,7 @@ def fetchPOI(plot: dict[str, Any]) -> dict[str, Any]:
     query = _buildOverpassQuery(lat, lng, radiusMeters)
 
     try:
-        response = requests.post(
-            OVERPASS_API_URL,
-            data=query.encode("utf-8"),
-            timeout=REQUEST_TIMEOUT,
-            headers={"Content-Type": "text/plain"},
-        )
-        response.raise_for_status()
-
-        payload = response.json()
+        payload = safeOverpassPost(query)
         elements = payload.get("elements", []) or []
 
         schoolCount = _countAmenity(elements, "amenity", "school")
