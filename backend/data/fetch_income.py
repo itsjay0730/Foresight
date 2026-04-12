@@ -4,10 +4,9 @@ from typing import Any
 
 import requests
 
-from config import CENSUS_ACS_API, CENSUS_API_KEY, REQUEST_TIMEOUT
+from config import CENSUS_ACS_2022_API, CENSUS_API_KEY, REQUEST_TIMEOUT
 
 
-# ACS variable for median household income in the past 12 months
 ACS_MEDIAN_INCOME_VAR = "B19013_001E"
 
 
@@ -23,13 +22,25 @@ ZIP_TO_INCOME: dict[str, int] = {
     "60608": 71000,
     "60622": 98000,
     "60620": 52000,
+    "60624": 31768,
+    "60636": 30451,
+    "60628": 48601,
+    "60617": 51203,
+    "60827": 35835,
+    "60609": 47209,
+    "60619": 42802,
+    "60621": 30163,
+    "60611": 115000,
+    "60654": 110000,
+    "60618": 92000,
+    "60601": 108000,
+    "60602": 99000,
+    "60603": 97000,
+    "60604": 95000,
 }
 
 
 def _fetchIncomeByZip(zipCode: str) -> int | None:
-    """
-    Fetch median household income for a ZIP Code Tabulation Area from ACS.
-    """
     params = {
         "get": f"NAME,{ACS_MEDIAN_INCOME_VAR}",
         "for": f"zip code tabulation area:{zipCode}",
@@ -38,15 +49,10 @@ def _fetchIncomeByZip(zipCode: str) -> int | None:
     if CENSUS_API_KEY:
         params["key"] = CENSUS_API_KEY
 
-    response = requests.get(CENSUS_ACS_API, params=params, timeout=REQUEST_TIMEOUT)
+    response = requests.get(CENSUS_ACS_2022_API, params=params, timeout=REQUEST_TIMEOUT)
     response.raise_for_status()
     data = response.json()
 
-    # Expected format:
-    # [
-    #   ["NAME", "B19013_001E", "zip code tabulation area"],
-    #   ["ZCTA5 60647", "102000", "60647"]
-    # ]
     if len(data) < 2:
         return None
 
@@ -54,18 +60,10 @@ def _fetchIncomeByZip(zipCode: str) -> int | None:
     if value in (None, "", "-666666666"):
         return None
 
-    return int(value)
+    return int(float(value))
 
 
 def fetchIncome(plot: dict[str, Any]) -> dict[str, Any]:
-    """
-    Fetch area income for a plot.
-
-    Returns a consistent structure:
-    {
-        "income": int | None
-    }
-    """
     zipCode = str(plot.get("zip", "")).strip()
 
     if not zipCode or zipCode == "Unknown":
@@ -78,7 +76,6 @@ def fetchIncome(plot: dict[str, Any]) -> dict[str, Any]:
     except Exception as exc:
         print(f"[fetchIncome] Census API failed for ZIP {zipCode}: {exc}")
 
-    # Fallback for MVP so the pipeline still works with realistic values
     fallbackIncome = ZIP_TO_INCOME.get(zipCode)
     return {"income": fallbackIncome}
 

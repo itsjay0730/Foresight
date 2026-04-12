@@ -1,23 +1,9 @@
-
-# ⸻
-
-# What this file does
-
-# This file:
-# 	•	pulls CTA stop data
-# 	•	checks all transit stops against the plot location
-# 	•	finds the nearest stop
-# 	•	counts how many stops are within your search radius
-# 	•	returns a clean transit summary
 from __future__ import annotations
 
 from typing import Any
 
-from config import SEARCH_RADIUS_MILES
+from config import CTA_STOPS_API, SEARCH_RADIUS_CRIME_MILES
 from utils import haversineMiles, safeFloat, safeGet
-
-
-CTA_STOPS_API = "https://data.cityofchicago.org/resource/qs84-j7wh.json"
 
 
 def _fetchAllStops(limit: int = 5000) -> list[dict[str, Any]]:
@@ -40,7 +26,13 @@ def _extractStopLatLng(stop: dict[str, Any]) -> tuple[float | None, float | None
             lat = safeFloat(coords[1])
             return lat, lng
 
-    return None, None
+    lat = safeFloat(stop.get("lat")) or safeFloat(stop.get("latitude"))
+    lng = (
+        safeFloat(stop.get("long"))
+        or safeFloat(stop.get("lng"))
+        or safeFloat(stop.get("longitude"))
+    )
+    return lat, lng
 
 
 def _extractStopName(stop: dict[str, Any]) -> str:
@@ -54,12 +46,12 @@ def _extractStopName(stop: dict[str, Any]) -> str:
 
 def fetchTransit(
     plot: dict[str, Any],
-    radiusMiles: float = SEARCH_RADIUS_MILES,
+    radiusMiles: float = SEARCH_RADIUS_CRIME_MILES,
 ) -> dict[str, Any]:
     """
     Fetch nearest CTA transit stop distance for a plot.
 
-    Returns a consistent structure:
+    Returns:
     {
         "transit_distance": float | None,
         "nearest_station": str | None,

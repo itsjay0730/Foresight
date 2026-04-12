@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from config import CHICAGO_CRIME_API, SEARCH_RADIUS_MILES
+from config import CHICAGO_CRIME_API, SEARCH_RADIUS_CRIME_MILES
 from utils import haversineMiles, safeFloat, safeGet
 
 
@@ -29,30 +29,6 @@ def _fetchCrimeWindow(
         "$where": (
             f"date >= '{startDt.strftime('%Y-%m-%dT%H:%M:%S')}' "
             f"AND date < '{endDt.strftime('%Y-%m-%dT%H:%M:%S')}' "
-            f"AND latitude IS NOT NULL "
-            f"AND longitude IS NOT NULL"
-        ),
-        "$limit": limit,
-    }
-
-    return safeGet(CHICAGO_CRIME_API, params=params)
-
-
-def _fetchCrimeYear(
-    year: int,
-    limit: int = 5000,
-) -> list[dict[str, Any]]:
-    """
-    Fetch crimes for an entire year
-    """
-    start = f"{year}-01-01T00:00:00"
-    end = f"{year + 1}-01-01T00:00:00"
-
-    params = {
-        "$select": "id,date,latitude,longitude,primary_type",
-        "$where": (
-            f"date >= '{start}' "
-            f"AND date < '{end}' "
             f"AND latitude IS NOT NULL "
             f"AND longitude IS NOT NULL"
         ),
@@ -102,7 +78,7 @@ def _countNearbyCrimes(
 
 def fetchCrime(
     plot: dict[str, Any],
-    radiusMiles: float = SEARCH_RADIUS_MILES,
+    radiusMiles: float = SEARCH_RADIUS_CRIME_MILES,
 ) -> dict[str, Any]:
     """
     Fetch nearby crime metrics for a plot.
@@ -125,25 +101,8 @@ def fetchCrime(
         }
 
     try:
-        currentYear = datetime.now().year
-        years = [currentYear - 4, currentYear - 3, currentYear - 2, currentYear - 1]
-
-        crimeHistory = []
-
         recentCrimes = _fetchCrimeWindow(lat, lng, 30, 0)
         previousCrimes = _fetchCrimeWindow(lat, lng, 60, 30)
-
-        for year in years:
-            crimes = _fetchCrimeYear(year)
-            count, violent = _countNearbyCrimes(
-                crimes, lat, lng, radiusMiles
-            )
-
-            crimeHistory.append({
-                "year": year,
-                "crime_count": count,
-                "violent_crime_count": violent
-            })
 
         recentCount, recentViolent = _countNearbyCrimes(
             recentCrimes, lat, lng, radiusMiles
@@ -161,7 +120,6 @@ def fetchCrime(
             "crime_trend": round(crimeTrend, 4),
             "crime_count_nearby": recentCount,
             "violent_crime_count_nearby": recentViolent,
-            "crime_history": crimeHistory,
         }
 
     except Exception as exc:
@@ -170,7 +128,6 @@ def fetchCrime(
             "crime_trend": None,
             "crime_count_nearby": 0,
             "violent_crime_count_nearby": 0,
-            "crime_history": [],
         }
 
 

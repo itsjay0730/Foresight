@@ -14,11 +14,33 @@ from utils import safeFloat, safeGet, safeInt, saveJson
 
 
 TARGET_DOWNTOWN_ZIPS = {
-    "60601", "60602", "60603", "60604", "60605", "60606", "60607", "60610", "60611", "60654"
+    "60601", "60602", "60603", "60604", "60605",
+    "60606", "60607", "60610", "60611", "60654",
 }
 
 TARGET_NORTH_CORE_ZIPS = {
-    "60613", "60614", "60618", "60657"
+    "60613", "60614", "60618", "60657",
+}
+
+CHICAGO_ZIPS = {
+    "60601", "60602", "60603", "60604", "60605", "60606", "60607", "60608", "60609",
+    "60610", "60611", "60612", "60613", "60614", "60615", "60616", "60617", "60618",
+    "60619", "60620", "60621", "60622", "60623", "60624", "60625", "60626", "60628",
+    "60629", "60630", "60631", "60632", "60633", "60634", "60636", "60637", "60638",
+    "60639", "60640", "60641", "60642", "60643", "60644", "60645", "60646", "60647",
+    "60649", "60651", "60652", "60653", "60654", "60655", "60656", "60657", "60659",
+    "60660", "60661", "60666",
+}
+
+NEIGHBORHOOD_ALIASES = {
+    "NORTH CHICAGO": "NEAR NORTH SIDE",
+    "RIVER NORTH": "NEAR NORTH SIDE",
+    "OLD TOWN": "NEAR NORTH SIDE",
+    "LAKEVIEW": "LAKE VIEW",
+    "WEST LOOP": "NEAR WEST SIDE",
+    "SOUTH LOOP": "LOOP",
+    "WEST CHICAGO": "WEST TOWN",
+    "JEFFERSON": "JEFFERSON PARK",
 }
 
 
@@ -26,7 +48,8 @@ def _cleanNeighborhood(value: Any) -> str:
     neighborhood = str(value).strip() if value is not None else "Unknown"
     if not neighborhood or neighborhood.isdigit():
         return "Unknown"
-    return neighborhood.upper()
+    neighborhood = neighborhood.upper()
+    return NEIGHBORHOOD_ALIASES.get(neighborhood, neighborhood)
 
 
 def _cleanZip(value: Any) -> str:
@@ -34,6 +57,23 @@ def _cleanZip(value: Any) -> str:
         return "Unknown"
     zipCode = str(value).strip()
     return zipCode if zipCode else "Unknown"
+
+
+def _cleanPin(value: Any) -> str | None:
+    if value is None:
+        return None
+    text = str(value).strip()
+    if not text:
+        return None
+    cleaned = "".join(ch for ch in text if ch.isdigit())
+    if len(cleaned) >= 10:
+        return cleaned
+    return text
+
+
+def _isChicagoPlot(plot: dict[str, Any]) -> bool:
+    zipCode = str(plot.get("zip", "")).strip()
+    return zipCode in CHICAGO_ZIPS
 
 
 def _normalizePrimaryPlot(raw: dict[str, Any], idx: int) -> dict[str, Any] | None:
@@ -88,15 +128,16 @@ def _normalizePrimaryPlot(raw: dict[str, Any], idx: int) -> dict[str, Any] | Non
         or "unknown"
     )
 
-    recordId = (
-        raw.get("id")
-        or raw.get("pin")
+    pin = _cleanPin(
+        raw.get("pin")
         or raw.get("parcel_id")
-        or f"plot_{idx:03d}"
     )
+
+    recordId = pin or raw.get("id") or f"plot_{idx:03d}"
 
     return {
         "id": str(recordId),
+        "pin": pin,
         "lat": lat,
         "lng": lng,
         "neighborhood": neighborhood,
@@ -150,6 +191,7 @@ def _normalizePermitCandidate(raw: dict[str, Any], idx: int) -> dict[str, Any] |
 
     return {
         "id": str(recordId),
+        "pin": None,
         "lat": lat,
         "lng": lng,
         "neighborhood": neighborhood,
@@ -212,15 +254,17 @@ def _normalizeParcelCandidate(raw: dict[str, Any], idx: int) -> dict[str, Any] |
         or "parcel"
     )
 
-    recordId = (
+    pin = _cleanPin(
         raw.get("pin")
         or raw.get("parcel_id")
-        or raw.get("id")
-        or f"parcel_candidate_{idx:03d}"
+        or raw.get("pin10")
     )
+
+    recordId = pin or raw.get("id") or f"parcel_candidate_{idx:03d}"
 
     return {
         "id": str(recordId),
+        "pin": pin,
         "lat": lat,
         "lng": lng,
         "neighborhood": neighborhood,
@@ -268,6 +312,7 @@ def _normalizeBusinessCandidate(raw: dict[str, Any], idx: int) -> dict[str, Any]
 
     return {
         "id": str(recordId),
+        "pin": None,
         "lat": lat,
         "lng": lng,
         "neighborhood": neighborhood,
@@ -314,7 +359,7 @@ def _fetchParcelUniverseCandidates(limit: int) -> list[dict[str, Any]]:
 
     for idx, raw in enumerate(rawRecords, start=1):
         normalized = _normalizeParcelCandidate(raw, idx)
-        if normalized is not None:
+        if normalized is not None and _isChicagoPlot(normalized):
             plots.append(normalized)
 
     return plots
@@ -336,13 +381,13 @@ def _getRegionBucket(plot: dict[str, Any]) -> str:
     neighborhood = str(plot.get("neighborhood", "")).upper()
     zipCode = str(plot.get("zip", ""))
 
-    if neighborhood in {"LOOP", "WEST LOOP", "RIVER NORTH", "NEAR NORTH SIDE", "SOUTH LOOP", "THE LOOP"}:
+    if neighborhood in {"LOOP", "NEAR NORTH SIDE", "THE LOOP", "NEAR WEST SIDE"}:
         return "downtown_core"
 
-    if neighborhood in {"LINCOLN PARK", "LAKEVIEW", "RIVER NORTH", "NEAR NORTH SIDE", "OLD TOWN"}:
+    if neighborhood in {"LINCOLN PARK", "LAKE VIEW", "NORTH CENTER", "JEFFERSON PARK"}:
         return "north_side_core"
 
-    if neighborhood in {"HUMBOLDT PARK", "NORTH LAWNDALE", "WEST GARFIELD PARK", "AUSTIN"}:
+    if neighborhood in {"HUMBOLDT PARK", "NORTH LAWNDALE", "WEST GARFIELD PARK", "AUSTIN", "WEST TOWN"}:
         return "west_side"
 
     if neighborhood in {"ENGLEWOOD", "WEST ENGLEWOOD", "AUBURN GRESHAM", "WASHINGTON PARK", "GRAND BOULEVARD", "OAKLAND", "NEW CITY", "CHATHAM", "SOUTH SHORE"}:
@@ -357,13 +402,13 @@ def _getRegionBucket(plot: dict[str, Any]) -> str:
     if zipCode in {"60613", "60614", "60618", "60657"}:
         return "north_side_core"
 
-    if zipCode in {"60624", "60644", "60612", "60623"}:
+    if zipCode in {"60612", "60623", "60624", "60644", "60651"}:
         return "west_side"
 
-    if zipCode in {"60609", "60615", "60616", "60620", "60621", "60636", "60637", "60653"}:
+    if zipCode in {"60609", "60615", "60616", "60617", "60619", "60620", "60621", "60636", "60637", "60653"}:
         return "south_side"
 
-    if zipCode in {"60617", "60619", "60628", "60827"}:
+    if zipCode in {"60628", "60633", "60643", "60827"}:
         return "far_south"
 
     return "other"
@@ -378,6 +423,19 @@ def _zipPriority(plot: dict[str, Any]) -> int:
     return 2
 
 
+def _typePriority(plot: dict[str, Any]) -> int:
+    propertyType = str(plot.get("property_type", ""))
+    if propertyType == "parcel_candidate":
+        return 0
+    if propertyType == "opportunity_site":
+        return 1
+    if propertyType == "permit_candidate":
+        return 2
+    if propertyType == "business_candidate":
+        return 3
+    return 4
+
+
 def _balancePlots(plots: list[dict[str, Any]], limit: int) -> list[dict[str, Any]]:
     bucketTargets = {
         "downtown_core": 5,
@@ -388,11 +446,14 @@ def _balancePlots(plots: list[dict[str, Any]], limit: int) -> list[dict[str, Any
         "other": 4,
     }
 
-    plots = sorted(plots, key=_zipPriority)
+    plots = sorted(plots, key=lambda p: (_typePriority(p), _zipPriority(p)))
 
     bucketCounts = {bucket: 0 for bucket in bucketTargets}
     balanced: list[dict[str, Any]] = []
     seenKeys: set[tuple[Any, ...]] = set()
+
+    minParcelTarget = max(3, min(6, limit // 3))
+    parcelCount = 0
 
     for plot in plots:
         plotKey = _buildPlotKey(plot)
@@ -407,8 +468,30 @@ def _balancePlots(plots: list[dict[str, Any]], limit: int) -> list[dict[str, Any
         bucketCounts[bucket] += 1
         balanced.append(plot)
 
+        if plot.get("property_type") == "parcel_candidate":
+            parcelCount += 1
+
         if len(balanced) >= limit:
             return balanced
+
+    if parcelCount < minParcelTarget:
+        for plot in plots:
+            if len(balanced) >= limit:
+                break
+
+            if plot.get("property_type") != "parcel_candidate":
+                continue
+
+            plotKey = _buildPlotKey(plot)
+            if plotKey in seenKeys:
+                continue
+
+            seenKeys.add(plotKey)
+            balanced.append(plot)
+            parcelCount += 1
+
+            if parcelCount >= minParcelTarget:
+                break
 
     for plot in plots:
         if len(balanced) >= limit:

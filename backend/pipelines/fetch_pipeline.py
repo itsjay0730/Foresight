@@ -1,6 +1,6 @@
 # Fetch Plots
 # ↓
-# Fetch Sub Data (crime, permits, income, population, transit)
+# Fetch Sub Data (crime, permits, income, population, transit, demographics, property value, schools)
 # ↓
 # Attach Data
 # ↓
@@ -9,6 +9,7 @@
 # Save clean dataset
 # ↓
 # Send to scoring engine later
+
 from __future__ import annotations
 
 import json
@@ -17,11 +18,16 @@ from typing import Any
 import pandas as pd
 
 from config import ENRICHED_PLOTS_FILE, FINAL_PLOTS_CSV, FINAL_PLOTS_FILE
+from data.fetch_amenities import fetchAmenities
+from data.fetch_poi import fetchPOI
 from data.fetch_crime import fetchCrime
+from data.fetch_demographics import fetchDemographics
 from data.fetch_income import fetchIncome
 from data.fetch_permits import fetchPermits
 from data.fetch_plots import fetchPlots
 from data.fetch_population import fetchPopulation
+from data.fetch_property_value import fetchPropertyValue
+from data.fetch_schools import fetchSchools
 from data.fetch_transit import fetchTransit
 from data.normalize import normalizePlots
 from utils import saveJson
@@ -38,7 +44,11 @@ def enrichPlot(plot: dict[str, Any]) -> dict[str, Any]:
     enriched["income"] = fetchIncome(enriched)
     enriched["population"] = fetchPopulation(enriched)
     enriched["transit"] = fetchTransit(enriched)
-
+    enriched["amenities"] = fetchAmenities(enriched)
+    enriched["demographics"] = fetchDemographics(enriched)
+    enriched["property_value"] = fetchPropertyValue(enriched)
+    enriched["schools"] = fetchSchools(enriched)
+    enriched["poi"] = fetchPOI(enriched)
     return enriched
 
 
