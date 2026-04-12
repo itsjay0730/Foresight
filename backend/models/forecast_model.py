@@ -5,7 +5,7 @@ import numpy as np
 
 
 # build time series arrays
-def _extractSeries(history: List[dict[str, Any]], key: str) -> tuple[np.ndarray, np.ndarray]:
+def extractSeries(history: List[dict[str, Any]], key: str) -> tuple[np.ndarray, np.ndarray]:
     years = []
     values = []
 
@@ -29,8 +29,8 @@ def _extractSeries(history: List[dict[str, Any]], key: str) -> tuple[np.ndarray,
 
 
 # train linear regression model
-def _trainModel(history: List[dict[str, Any]], key: str):
-    X, y = _extractSeries(history, key)
+def trainModel(history: List[dict[str, Any]], key: str):
+    X, y = extractSeries(history, key)
 
     if X is None:
         return None
@@ -42,7 +42,7 @@ def _trainModel(history: List[dict[str, Any]], key: str):
 
 
 # predict future values
-def _predictFuture(model, startYear: int):
+def predictFuture(model, startYear: int):
     years = np.array([
         startYear + 1,
         startYear + 3,
@@ -68,22 +68,22 @@ def forecastPlot(plot: dict[str, Any]) -> dict[str, Any]:
     result = {}
 
     # crime prediction
-    crimeModel = _trainModel(crimeHistory, "crime_count")
+    crimeModel = trainModel(crimeHistory, "crime_count")
     if crimeModel:
         latestYear = crimeHistory[-1]["year"]
-        result["crime_forecast"] = _predictFuture(crimeModel, latestYear)
+        result["crime_forecast"] = predictFuture(crimeModel, latestYear)
 
     # permit prediction
-    permitModel = _trainModel(permitHistory, "permit_count")
+    permitModel = trainModel(permitHistory, "permit_count")
     if permitModel:
         latestYear = permitHistory[-1]["year"]
-        result["permit_forecast"] = _predictFuture(permitModel, latestYear)
+        result["permit_forecast"] = predictFuture(permitModel, latestYear)
 
     # population prediction
-    populationModel = _trainModel(populationHistory, "population")
+    populationModel = trainModel(populationHistory, "population")
     if populationModel:
         latestYear = populationHistory[-1]["year"]
-        result["population_forecast"] = _predictFuture(populationModel, latestYear)
+        result["population_forecast"] = predictFuture(populationModel, latestYear)
 
     return result
 
