@@ -5,7 +5,6 @@ import { neighborhoods, neighborhoodList } from "@/data/neighborhoods";
 import { properties } from "@/data/properties";
 import { scoreColor, recColor } from "@/lib/utils";
 
-/* ═══════ COMPARE MODAL ═══════ */
 export function CompareModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   if (!open) return null;
 
@@ -38,7 +37,7 @@ export function CompareModal({ open, onClose }: { open: boolean; onClose: () => 
     <div
       className="fixed inset-0 z-[2000] flex items-center justify-center p-3 md:p-5"
       style={{ background: "rgba(0,0,0,0.65)", backdropFilter: "blur(10px)" }}
-      onClick={e => {
+      onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
@@ -77,7 +76,7 @@ export function CompareModal({ open, onClose }: { open: boolean; onClose: () => 
                   "Comm.",
                   "Delta",
                   "Strategy",
-                ].map(h => (
+                ].map((h) => (
                   <th
                     key={h}
                     className="text-[9px] uppercase tracking-[0.8px] text-t-dim text-left px-[10px] py-2 border-b border-white/[0.05] whitespace-nowrap"
@@ -88,7 +87,7 @@ export function CompareModal({ open, onClose }: { open: boolean; onClose: () => 
               </tr>
             </thead>
             <tbody>
-              {sorted.map(h => (
+              {sorted.map((h) => (
                 <tr key={h.id} className="hover:bg-white/[0.03] transition-colors">
                   <td className="text-[11px] font-semibold px-[10px] py-2 border-b border-white/[0.02] whitespace-nowrap">
                     {h.name}
@@ -130,7 +129,6 @@ export function CompareModal({ open, onClose }: { open: boolean; onClose: () => 
   );
 }
 
-/* ═══════ FULL MEMO MODAL ═══════ */
 export function MemoFullModal({
   open,
   onClose,
@@ -149,7 +147,7 @@ export function MemoFullModal({
   if (!open) return null;
 
   const hood = neighborhoods[hoodId || "west-loop"];
-  const prop = selectionType === "property" ? properties.find(p => p.id === propertyId) : undefined;
+  const prop = selectionType === "property" ? properties.find((p) => p.id === propertyId) : undefined;
   const name = prop ? prop.name : hood.name;
   const score = prop ? prop.score : hood.scores.opportunity;
   const confidence = Math.min(96, 70 + Math.floor(score * 0.28));
@@ -158,7 +156,7 @@ export function MemoFullModal({
     <div
       className="fixed inset-0 z-[2000] flex items-center justify-center p-3 md:p-5"
       style={{ background: "rgba(0,0,0,0.65)", backdropFilter: "blur(10px)" }}
-      onClick={e => {
+      onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
@@ -181,7 +179,6 @@ export function MemoFullModal({
         <h2 className="text-[18px] md:text-[20px] font-bold pr-8">Investment Memo · {name}</h2>
         <p className="text-[12px] text-t-muted mb-5">Full analyst-grade investment memorandum</p>
 
-        {/* Memo body */}
         <div className="rounded-f p-[14px] border border-white/[0.04] bg-white/[0.02] relative mb-4">
           <div
             className="absolute top-0 left-0 right-0 h-[2px] rounded-t-f"
@@ -198,14 +195,13 @@ export function MemoFullModal({
           <p className="text-[11.5px] leading-[1.7] text-t-secondary">{hood.memo}</p>
         </div>
 
-        {/* Score grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-[10px] mb-4">
           {[
             { label: "Investment Score", value: score, color: scoreColor(score) },
             { label: "Confidence", value: `${confidence}%`, color: "#3b82f6" },
             { label: "Recommendation", value: hood.rec, color: recColor(hood.rec) },
             { label: "Horizon", value: "3–5 Years", color: "#eaf0fa" },
-          ].map(item => (
+          ].map((item) => (
             <div key={item.label} className="rounded-f p-3 border border-white/[0.04] bg-white/[0.02]">
               <div className="text-[9.5px] font-semibold text-t-muted uppercase tracking-[0.4px] mb-1">
                 {item.label}
@@ -217,7 +213,6 @@ export function MemoFullModal({
           ))}
         </div>
 
-        {/* Strengths / Risks */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-[10px] mb-5">
           <div className="rounded-f p-3 border border-white/[0.04] bg-white/[0.02]">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.6px] text-f-green mb-2">
@@ -249,12 +244,6 @@ export function MemoFullModal({
         </div>
 
         <div className="flex gap-2 flex-wrap">
-          <button
-            onClick={() => onNotify("PDF exported · Check your downloads")}
-            className="px-4 py-[7px] rounded-f text-[11px] font-semibold bg-f-blue text-white hover:bg-f-blue/80 transition-colors"
-          >
-            Export as PDF
-          </button>
           <button
             onClick={() => {
               navigator.clipboard.writeText(`Foresight Investment Memo: ${name}`);

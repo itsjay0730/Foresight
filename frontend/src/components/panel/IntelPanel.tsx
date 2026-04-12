@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { Neighborhood, Property, TabKey } from "@/data/types";
+import { Neighborhood, Property } from "@/data/types";
 import { neighborhoods } from "@/data/neighborhoods";
 import { properties } from "@/data/properties";
 import { scoreColor, recColor, recLabel, generateSparklinePath } from "@/lib/utils";
@@ -11,9 +10,8 @@ interface IntelPanelProps {
   hoodId?: string;
   propertyId?: number;
   onSelectProperty: (id: number) => void;
-  onOpenScenario: () => void;
   onOpenMemo: () => void;
-  onExportPDF: () => void;
+  onOpenNeighborhoodStats: () => void;
 }
 
 export default function IntelPanel({
@@ -21,39 +19,27 @@ export default function IntelPanel({
   hoodId,
   propertyId,
   onSelectProperty,
-  onOpenScenario,
   onOpenMemo,
-  onExportPDF,
+  onOpenNeighborhoodStats,
 }: IntelPanelProps) {
-  const [tab, setTab] = useState<TabKey>("overview");
-
   const hood: Neighborhood =
     selectionType === "hood"
       ? neighborhoods[hoodId || "west-loop"]
       : neighborhoods[
           Object.keys(neighborhoods).find(
-            k => neighborhoods[k].name === properties.find(p => p.id === propertyId)?.hood
+            (k) => neighborhoods[k].name === properties.find((p) => p.id === propertyId)?.hood
           ) || "west-loop"
         ];
 
   const prop: Property | undefined =
-    selectionType === "property" ? properties.find(p => p.id === propertyId) : undefined;
+    selectionType === "property" ? properties.find((p) => p.id === propertyId) : undefined;
 
   const score = prop ? prop.score : hood.scores.opportunity;
   const name = prop ? prop.name : hood.name;
-  const subtitle = prop
-    ? `${prop.type} · ${prop.hood} · ${prop.est}`
-    : `Neighborhood · ZIP ${hood.zip} · ${hood.area}`;
+  const subtitle = `${hood.zip} • ${getMarketLabel(hood)} • ${getOpportunityType(hood)}`;
   const rec = prop ? prop.rec : hood.rec;
   const delta = prop ? `+${((prop.score - 70) * 0.12).toFixed(1)}%` : hood.delta;
   const confidence = Math.min(96, 70 + Math.floor(score * 0.28));
-
-  const tabs: { key: TabKey; label: string }[] = [
-    { key: "overview", label: "Overview" },
-    { key: "factors", label: "Factors" },
-    { key: "memo", label: "AI Memo" },
-    { key: "comps", label: "Comps" },
-  ];
 
   return (
     <div
@@ -64,66 +50,57 @@ export default function IntelPanel({
         border: "1px solid rgba(255,255,255,0.06)",
       }}
     >
-      {/* Header */}
       <div className="px-[14px] pt-4 shrink-0 md:px-[18px]">
-        <div className="flex items-start justify-between gap-2">
+        <div className="flex items-start justify-between gap-3">
           <div className="flex-1 min-w-0">
             <h2 className="text-[17px] md:text-[18px] font-bold leading-tight truncate">{name}</h2>
-            <p className="text-[11px] text-t-muted mt-[3px] truncate">{subtitle}</p>
+            <p className="text-[11px] text-t-muted mt-[4px] truncate">{subtitle}</p>
           </div>
-          <div className="text-right shrink-0">
-            <div
-              className="text-[28px] md:text-[32px] font-extrabold font-mono leading-none"
-              style={{ color: scoreColor(score) }}
-            >
-              {score}
-            </div>
-            <div
-              className={`text-[11px] font-semibold mt-[2px] ${
-                delta.startsWith("-") ? "text-f-red" : "text-f-green"
-              }`}
-            >
-              {delta.startsWith("-") ? "▼" : "▲"} {delta}
-            </div>
-          </div>
-        </div>
 
-        {/* Recommendation strip */}
-        <div
-          className="mt-3 px-[12px] py-[10px] rounded-f flex items-center justify-between gap-3"
-          style={{
-            background:
-              rec === "BUY"
-                ? "rgba(34,197,94,0.08)"
-                : rec === "BUILD"
-                ? "rgba(59,130,246,0.08)"
-                : rec === "WATCH"
-                ? "rgba(245,158,11,0.08)"
-                : "rgba(239,68,68,0.08)",
-            border: `1px solid ${recColor(rec)}22`,
-          }}
-        >
-          <div className="min-w-0">
-            <div className="text-[9px] font-semibold uppercase tracking-[1px] text-t-muted">
-              Recommended Strategy
+          <div className="shrink-0 text-right">
+            <div className="flex items-center justify-end gap-[8px]">
+              <div>
+                <div
+                  className="text-[28px] md:text-[32px] font-extrabold font-mono leading-none"
+                  style={{ color: scoreColor(score) }}
+                >
+                  {score}
+                </div>
+                <div
+                  className={`text-[11px] font-semibold mt-[3px] ${
+                    delta.startsWith("-") ? "text-f-red" : "text-f-green"
+                  }`}
+                >
+                  {delta.startsWith("-") ? "▼" : "▲"} {delta}
+                </div>
+              </div>
+
+              <div
+                className="px-[10px] py-[6px] rounded-[10px] text-[10px] font-bold uppercase tracking-[0.7px]"
+                style={{
+                  color: recColor(rec),
+                  background:
+                    rec === "BUY"
+                      ? "rgba(34,197,94,0.12)"
+                      : rec === "BUILD"
+                      ? "rgba(59,130,246,0.12)"
+                      : rec === "WATCH"
+                      ? "rgba(245,158,11,0.12)"
+                      : "rgba(239,68,68,0.12)",
+                  border: `1px solid ${recColor(rec)}22`,
+                }}
+              >
+                {rec}
+              </div>
             </div>
-            <div
-              className="text-[14px] md:text-[15px] font-extrabold tracking-[0.5px] truncate"
-              style={{ color: recColor(rec) }}
-            >
-              ● {recLabel(rec)}
-            </div>
-          </div>
-          <div className="text-right shrink-0">
-            <div className="text-[9px] text-t-muted uppercase tracking-[0.5px]">Confidence</div>
-            <div className="text-[14px] font-bold font-mono">{confidence}%</div>
           </div>
         </div>
       </div>
 
-      {/* Tabs */}
+      {/* Tabs intentionally commented out for now to make this one continuous intelligence column */}
+      {/*
       <div className="flex px-[14px] pt-3 shrink-0 overflow-x-auto no-scrollbar md:px-[18px]">
-        {tabs.map(t => (
+        {tabs.map((t) => (
           <button
             key={t.key}
             className={`px-[13px] py-2 text-[11px] font-semibold tracking-[0.2px] border-b-2 transition-all whitespace-nowrap ${
@@ -139,198 +116,193 @@ export default function IntelPanel({
       </div>
 
       <div className="h-px mx-[14px] bg-white/5 shrink-0 md:mx-[18px]" />
+      */}
 
-      {/* Body */}
       <div className="flex-1 overflow-y-auto px-[14px] py-[14px] pb-7 custom-scroll md:px-[18px]">
-        {tab === "overview" && (
-          <OverviewTab
-            hood={hood}
-            score={score}
-            rec={rec}
-            onOpenScenario={onOpenScenario}
-            onOpenMemo={onOpenMemo}
-            onExportPDF={onExportPDF}
-          />
-        )}
-        {tab === "factors" && <FactorsTab hood={hood} />}
-        {tab === "memo" && (
-          <MemoTab
-            hood={hood}
-            score={score}
-            onOpenScenario={onOpenScenario}
-            onExportPDF={onExportPDF}
-          />
-        )}
-        {tab === "comps" && (
-          <CompsTab hood={hood} prop={prop} onSelectProperty={onSelectProperty} />
-        )}
+        <OverviewContent
+          hood={hood}
+          rec={rec}
+          confidence={confidence}
+          onOpenMemo={onOpenMemo}
+          onOpenNeighborhoodStats={onOpenNeighborhoodStats}
+        />
+
+        {/* Keep these sections commented out for now, do not remove yet */}
+        {/*
+        <FactorsTab hood={hood} />
+        */}
+
+        {/*
+        <MemoTab hood={hood} score={score} onOpenMemo={onOpenMemo} />
+        */}
+
+        {/*
+        <CompsTab hood={hood} prop={prop} onSelectProperty={onSelectProperty} />
+        */}
       </div>
     </div>
   );
 }
 
-/* ═══════ OVERVIEW TAB ═══════ */
-function OverviewTab({
+function MetricCard({
+  label,
+  value,
+  delta,
+}: {
+  label: string;
+  value: number;
+  delta: string;
+}) {
+  const positive = !delta.startsWith("-");
+  const color = scoreColor(value);
+
+  return (
+    <div className="rounded-f border border-white/[0.04] bg-white/[0.02] px-[12px] py-[11px]">
+      <div className="text-[9px] font-semibold text-t-muted uppercase tracking-[0.75px] mb-[8px]">
+        {label}
+      </div>
+
+      <div className="flex items-end justify-between gap-3">
+        <div className="min-w-0">
+          <div
+            className="text-[17px] font-extrabold font-mono leading-none"
+            style={{ color }}
+          >
+            {value}
+          </div>
+          <div
+            className={`text-[9.5px] font-semibold mt-[7px] ${
+              positive ? "text-f-green" : "text-f-red"
+            }`}
+          >
+            {positive ? "▲" : "▼"} {delta}
+          </div>
+        </div>
+
+        <div className="shrink-0 opacity-95">
+          <svg width="74" height="28" viewBox="0 0 74 28">
+            <polyline
+              points={generateSparklinePath(value)
+                .split(" ")
+                .map((pair) => {
+                  const [x, y] = pair.split(",").map(Number);
+                  const scaledX = 8 + (x / 54) * 58;
+                  const scaledY = 4 + (y / 16) * 18;
+                  return `${scaledX},${scaledY}`;
+                })
+                .join(" ")}
+              fill="none"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function OverviewContent({
   hood,
-  score,
   rec,
-  onOpenScenario,
+  confidence,
   onOpenMemo,
-  onExportPDF,
+  onOpenNeighborhoodStats,
 }: {
   hood: Neighborhood;
-  score: number;
   rec: string;
-  onOpenScenario: () => void;
+  confidence: number;
   onOpenMemo: () => void;
-  onExportPDF: () => void;
+  onOpenNeighborhoodStats: () => void;
 }) {
   const scores = [
     { label: "Investment Opportunity", val: hood.scores.opportunity, delta: hood.delta },
-    { label: "Appreciation Potential", val: hood.scores.appreciation, delta: "+3.1%" },
-    { label: "Development Readiness", val: hood.scores.devReady, delta: "+1.8%" },
-    { label: "Market Stability", val: hood.scores.stability, delta: "+0.9%" },
-    { label: "Family Demand", val: hood.scores.family, delta: "+2.4%" },
-    { label: "Commercial Expansion", val: hood.scores.commercial, delta: "+4.6%" },
+    { label: "Appreciation Potential", val: hood.scores.appreciation, delta: getDeltaForMetric("appreciation", hood) },
+    { label: "Development Readiness", val: hood.scores.devReady, delta: getDeltaForMetric("devReady", hood) },
+    { label: "Market Stability", val: hood.scores.stability, delta: getDeltaForMetric("stability", hood) },
+    { label: "Family Demand", val: hood.scores.family, delta: getDeltaForMetric("family", hood) },
+    { label: "Commercial Expansion", val: hood.scores.commercial, delta: getDeltaForMetric("commercial", hood) },
   ];
+
+  const drivers = getKeyDrivers(hood);
 
   return (
     <>
-      {/* Score grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-[6px] mb-[14px]">
-        {scores.map((s, i) => (
-          <div
-            key={s.label}
-            className={`relative overflow-hidden rounded-f p-[11px] cursor-pointer transition-all border hover:border-white/[0.08] ${
-              i === 0 ? "border-f-blue/20 bg-f-blue/[0.04]" : "border-white/[0.04] bg-white/[0.02]"
-            }`}
-          >
-            <div className="text-[9.5px] font-semibold text-t-muted uppercase tracking-[0.4px] mb-[5px]">
-              {s.label}
-            </div>
-            <div className="flex items-baseline justify-between gap-3">
-              <span
-                className="text-[21px] font-extrabold font-mono leading-none"
-                style={{ color: scoreColor(s.val) }}
-              >
-                {s.val}
-              </span>
-              <span
-                className={`text-[9.5px] font-semibold shrink-0 ${
-                  s.delta.startsWith("-") ? "text-f-red" : "text-f-green"
-                }`}
-              >
-                {s.delta.startsWith("-") ? "▼" : "▲"} {s.delta}
-              </span>
-            </div>
-            <svg
-              className="absolute bottom-0 right-1 opacity-20"
-              width="54"
-              height="16"
-              viewBox="0 0 54 16"
-            >
-              <polyline
-                points={generateSparklinePath(s.val)}
-                fill="none"
-                stroke={scoreColor(s.val)}
-                strokeWidth="1.2"
-              />
-            </svg>
-          </div>
+      {/* "Overview" heading intentionally removed, content remains as one continuous analysis */}
+
+      <div className="rounded-f p-[13px] border border-white/[0.04] bg-white/[0.02] mb-[14px]">
+        <div className="text-[10px] font-bold uppercase tracking-[0.8px] text-t-muted mb-[10px]">
+          Key Drivers
+        </div>
+        <ul className="space-y-[7px]">
+          {drivers.map((driver, i) => (
+            <li key={i} className="text-[10.8px] text-t-secondary leading-[1.45] pl-[12px] relative">
+              <span className="absolute left-0 top-[6px] w-[4px] h-[4px] rounded-full bg-f-cyan" />
+              {driver}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-[8px] mb-[14px]">
+        {scores.map((s) => (
+          <MetricCard key={s.label} label={s.label} value={s.val} delta={s.delta} />
         ))}
       </div>
 
-      {/* Strengths / Risks */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-[6px] mb-[14px]">
-        <div className="rounded-f p-[11px] border border-white/[0.04] bg-white/[0.02]">
-          <h4 className="text-[10px] font-bold uppercase tracking-[0.6px] text-f-green flex items-center gap-1 mb-[7px]">
-            ▲ Strengths
-          </h4>
-          <ul className="space-y-[3px]">
-            {hood.strengths.map((s, i) => (
-              <li
-                key={i}
-                className="text-[10.5px] text-t-secondary leading-[1.45] pl-[11px] relative"
-              >
-                <span className="absolute left-0 top-[7px] w-[3px] h-[3px] rounded-full bg-f-green" />
-                {s}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="rounded-f p-[11px] border border-white/[0.04] bg-white/[0.02]">
-          <h4 className="text-[10px] font-bold uppercase tracking-[0.6px] text-f-red flex items-center gap-1 mb-[7px]">
-            ▼ Risks
-          </h4>
-          <ul className="space-y-[3px]">
-            {hood.risks.map((r, i) => (
-              <li
-                key={i}
-                className="text-[10.5px] text-t-secondary leading-[1.45] pl-[11px] relative"
-              >
-                <span className="absolute left-0 top-[7px] w-[3px] h-[3px] rounded-full bg-f-red" />
-                {r}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {/* Action card */}
       <div
         className="rounded-f p-[13px] mb-3 border"
         style={{ background: "rgba(34,197,94,0.06)", borderColor: "rgba(34,197,94,0.1)" }}
       >
-        <div className="text-[9px] font-bold text-t-muted uppercase tracking-[0.8px] mb-1">
-          Suggested Action
+        <div className="text-[9px] font-bold text-t-muted uppercase tracking-[0.8px] mb-[6px]">
+          Recommended Strategy
         </div>
-        <div className="text-[14px] font-bold" style={{ color: recColor(rec as any) }}>
-          {rec === "BUY"
-            ? "Acquire & Hold — 3Y Horizon"
-            : rec === "BUILD"
-            ? "Ground-Up Development Play"
-            : rec === "WATCH"
-            ? "Monitor — Emerging Upside"
-            : "Avoid — Risk Exceeds Reward"}
-        </div>
-        <p className="text-[10.5px] text-t-secondary mt-[3px] leading-[1.5]">
-          Based on 14 composite indicators across demographic, economic, market, and geospatial
-          signals.
-        </p>
 
-        <div className="flex gap-[5px] mt-[10px] flex-wrap">
-          <button
-            onClick={onOpenMemo}
-            className="px-3 py-[6px] rounded-f text-[10.5px] font-semibold bg-f-green text-black hover:bg-f-green/80 transition-colors"
-          >
-            Generate Full Memo
-          </button>
-          <button
-            onClick={onOpenScenario}
-            className="px-3 py-[6px] rounded-f text-[10.5px] font-semibold border border-white/[0.08] text-t-secondary hover:text-t-primary hover:border-white/[0.15] transition-all"
-          >
-            Scenario Lab
-          </button>
-          <button
-            onClick={onExportPDF}
-            className="px-3 py-[6px] rounded-f text-[10.5px] font-semibold border border-white/[0.08] text-t-secondary hover:text-t-primary hover:border-white/[0.15] transition-all"
-          >
-            Export PDF
-          </button>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <div className="text-[22px] font-extrabold tracking-[0.3px]" style={{ color: recColor(rec as any) }}>
+              {rec}
+            </div>
+            <div className="text-[10px] text-t-muted mt-[8px]">Opportunity Type</div>
+            <div className="text-[11px] font-semibold text-t-primary mt-[2px]">
+              {getOpportunityType(hood)}
+            </div>
+            <div className="text-[10px] text-t-muted mt-[8px]">Momentum</div>
+            <div className="text-[11px] font-semibold text-t-primary mt-[2px]">
+              {getMomentumLabel(hood)}
+            </div>
+          </div>
+
+          <div className="text-right shrink-0">
+            <div className="text-[10px] text-t-muted">Confidence</div>
+            <div className="text-[18px] font-bold font-mono text-t-primary mt-[2px]">
+              {confidence}%
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Freshness */}
-      <div className="flex items-start gap-[6px] text-[9.5px] text-t-dim pt-2 border-t border-white/[0.03]">
-        <span className="w-[5px] h-[5px] rounded-full bg-f-green animate-blink mt-[4px] shrink-0" />
-        <span>Updated Apr 10, 2026 · Census ACS, CoStar, Zillow, City of Chicago, Redfin, CTA</span>
-      </div>
+      {/* <div className="flex gap-[5px] mt-[10px] mb-3 flex-wrap">
+        <button
+          onClick={onOpenMemo}
+          className="px-3 py-[6px] rounded-f text-[10.5px] font-semibold bg-f-green text-black hover:bg-f-green/80 transition-colors"
+        >
+          Generate Full Memo
+        </button>
+      </div> */}
+
+      <button
+        onClick={onOpenNeighborhoodStats}
+        className="w-full px-3 py-[8px] rounded-f text-[10.5px] font-semibold border border-white/[0.08] text-t-secondary hover:text-t-primary hover:border-white/[0.15] transition-all mb-3"
+      >
+        Neighborhood Stats
+      </button>
     </>
   );
 }
 
-/* ═══════ FACTORS TAB ═══════ */
 function FactorsTab({ hood }: { hood: Neighborhood }) {
   return (
     <>
@@ -338,7 +310,7 @@ function FactorsTab({ hood }: { hood: Neighborhood }) {
         <div className="text-[10px] font-bold text-t-muted uppercase tracking-[1px] py-2">
           Investment Factors
         </div>
-        {hood.factors.map(f => (
+        {hood.factors.map((f) => (
           <div
             key={f.key}
             className="flex items-center justify-between gap-3 py-[7px] border-b border-white/[0.02] last:border-none"
@@ -387,17 +359,14 @@ function FactorsTab({ hood }: { hood: Neighborhood }) {
   );
 }
 
-/* ═══════ AI MEMO TAB ═══════ */
 function MemoTab({
   hood,
   score,
-  onOpenScenario,
-  onExportPDF,
+  onOpenMemo,
 }: {
   hood: Neighborhood;
   score: number;
-  onOpenScenario: () => void;
-  onExportPDF: () => void;
+  onOpenMemo: () => void;
 }) {
   const confidence = Math.min(96, 70 + Math.floor(score * 0.28));
 
@@ -419,33 +388,12 @@ function MemoTab({
         <p className="text-[11.5px] leading-[1.7] text-t-secondary">{hood.memo}</p>
       </div>
 
-      <div
-        className="rounded-f p-[13px] mb-3 border"
-        style={{ background: "rgba(59,130,246,0.06)", borderColor: "rgba(59,130,246,0.1)" }}
+      <button
+        onClick={onOpenMemo}
+        className="w-full px-3 py-[8px] rounded-f text-[10.5px] font-semibold bg-f-blue text-white hover:bg-f-blue/80 transition-colors mb-3"
       >
-        <div className="text-[9px] font-bold text-t-muted uppercase tracking-[0.8px] mb-1">
-          Scenario Lab
-        </div>
-        <div className="text-[14px] font-bold text-f-blue">Model Investment Scenarios</div>
-        <p className="text-[10.5px] text-t-secondary mt-[3px] leading-[1.5]">
-          Run acquisition cost, cap rate, appreciation, and exit modeling across 1Y, 3Y, and 5Y
-          horizons with adjustable parameters.
-        </p>
-        <div className="flex gap-[5px] mt-[10px] flex-wrap">
-          <button
-            onClick={onOpenScenario}
-            className="px-3 py-[6px] rounded-f text-[10.5px] font-semibold bg-f-blue text-white hover:bg-f-blue/80 transition-colors"
-          >
-            Launch Scenario Lab
-          </button>
-          <button
-            onClick={onExportPDF}
-            className="px-3 py-[6px] rounded-f text-[10.5px] font-semibold border border-white/[0.08] text-t-secondary hover:text-t-primary transition-all"
-          >
-            Download Memo PDF
-          </button>
-        </div>
-      </div>
+        Open Full Memo
+      </button>
 
       <div className="flex items-start gap-[6px] text-[9.5px] text-t-dim pt-2 border-t border-white/[0.03]">
         <span className="w-[5px] h-[5px] rounded-full bg-f-green animate-blink mt-[4px] shrink-0" />
@@ -455,7 +403,6 @@ function MemoTab({
   );
 }
 
-/* ═══════ COMPS TAB ═══════ */
 function CompsTab({
   hood,
   prop,
@@ -467,7 +414,7 @@ function CompsTab({
 }) {
   const excludeHood = prop ? prop.hood : hood.name;
   const comps = properties
-    .filter(p => p.hood !== excludeHood)
+    .filter((p) => p.hood !== excludeHood)
     .sort((a, b) => b.score - a.score)
     .slice(0, 6);
 
@@ -499,7 +446,7 @@ function CompsTab({
         Comparable Opportunities
       </div>
 
-      {comps.map(c => {
+      {comps.map((c) => {
         const bs = recBadgeStyle(c.rec);
         return (
           <div
@@ -514,10 +461,7 @@ function CompsTab({
               </div>
             </div>
             <div className="text-right shrink-0">
-              <div
-                className="text-[15px] font-bold font-mono"
-                style={{ color: scoreColor(c.score) }}
-              >
+              <div className="text-[15px] font-bold font-mono" style={{ color: scoreColor(c.score) }}>
                 {c.score}
               </div>
               <span
@@ -537,4 +481,86 @@ function CompsTab({
       </div>
     </>
   );
+}
+
+function getMarketLabel(hood: Neighborhood) {
+  if (hood.scores.stability >= 88) return "Premium Stable";
+  if (hood.scores.opportunity >= 84) return "Core Growth";
+  if (hood.scores.family >= 78) return "Family Strong";
+  if (hood.scores.commercial >= 84) return "Commercial Strong";
+  return "Balanced Market";
+}
+
+function getOpportunityType(hood: Neighborhood) {
+  if (hood.delta.startsWith("+7") || hood.delta.startsWith("+8") || hood.delta.startsWith("+9")) {
+    return "Emerging Growth";
+  }
+  if (hood.scores.stability >= 88 && hood.scores.opportunity >= 80) {
+    return "Stable Investment";
+  }
+  if (hood.scores.devReady >= 75) {
+    return "Development Upside";
+  }
+  if (hood.scores.commercial >= 84) {
+    return "Commercial Expansion";
+  }
+  return "Selective Opportunity";
+}
+
+function getMomentumLabel(hood: Neighborhood) {
+  const deltaNum = parseFloat(hood.delta.replace("%", "").replace("+", ""));
+  if (deltaNum >= 6) return "Improving";
+  if (deltaNum >= 3) return "Steady";
+  return "Stable";
+}
+
+function getDeltaForMetric(metric: string, hood: Neighborhood) {
+  switch (metric) {
+    case "appreciation":
+      return hood.scores.appreciation >= 80 ? "+3.1%" : hood.scores.appreciation >= 72 ? "+1.2%" : "-0.4%";
+    case "devReady":
+      return hood.scores.devReady >= 75 ? "+2.2%" : hood.scores.devReady >= 65 ? "+1.1%" : "-0.5%";
+    case "stability":
+      return hood.scores.stability >= 85 ? "+0.9%" : hood.scores.stability >= 72 ? "+0.3%" : "-0.8%";
+    case "family":
+      return hood.scores.family >= 80 ? "+3.1%" : hood.scores.family >= 70 ? "+1.6%" : "-0.3%";
+    case "commercial":
+      return hood.scores.commercial >= 85 ? "+4.6%" : hood.scores.commercial >= 72 ? "+1.4%" : "-0.6%";
+    default:
+      return "+0.0%";
+  }
+}
+
+function getKeyDrivers(hood: Neighborhood) {
+  const drivers: string[] = [];
+
+  if (hood.scores.commercial >= 84) drivers.push("High commercial corridor momentum");
+  if (hood.scores.devReady >= 74) drivers.push("Growing permit and development activity");
+  if (hood.scores.stability >= 84) drivers.push("Strong market stability and lower downside risk");
+  if (hood.scores.family >= 78) drivers.push("Healthy family demand and neighborhood retention");
+  if (hood.scores.appreciation >= 80) drivers.push("Strong forward appreciation potential");
+  if (hood.scores.opportunity >= 86) drivers.push("High overall investment opportunity score");
+
+  for (const strength of hood.strengths) {
+    if (drivers.length >= 4) break;
+
+    if (/transit|line|connectivity/i.test(strength)) {
+      drivers.push("High transit accessibility");
+      continue;
+    }
+    if (/income/i.test(strength)) {
+      drivers.push("Strong median income profile");
+      continue;
+    }
+    if (/permit|development|parcel/i.test(strength)) {
+      drivers.push("Growing permit activity");
+      continue;
+    }
+    if (/retail|commercial|corridor|office/i.test(strength)) {
+      drivers.push("Expanding commercial demand");
+      continue;
+    }
+  }
+
+  return Array.from(new Set(drivers)).slice(0, 4);
 }

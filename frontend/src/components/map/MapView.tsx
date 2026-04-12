@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import Map, { Marker, Popup } from "react-map-gl/mapbox";
+import { useEffect, useMemo, useRef } from "react";
+import Map, { Marker } from "react-map-gl/mapbox";
 import type { MapRef } from "react-map-gl/mapbox";
 import type { Map as MapboxMap, FillExtrusionLayer } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import { neighborhoods } from "@/data/neighborhoods";
 import { properties } from "@/data/properties";
 import { FilterState } from "@/data/types";
 import { scoreColor } from "@/lib/utils";
@@ -54,7 +53,7 @@ function add3DBuildings(map: MapboxMap) {
         120,
         "#35405a",
         300,
-        "#4a5a7a"
+        "#4a5a7a",
       ],
       "fill-extrusion-height": [
         "interpolate",
@@ -63,7 +62,7 @@ function add3DBuildings(map: MapboxMap) {
         11,
         0,
         13,
-        ["coalesce", ["get", "height"], 0]
+        ["coalesce", ["get", "height"], 0],
       ],
       "fill-extrusion-base": [
         "interpolate",
@@ -72,10 +71,10 @@ function add3DBuildings(map: MapboxMap) {
         11,
         0,
         13,
-        ["coalesce", ["get", "min_height"], 0]
+        ["coalesce", ["get", "min_height"], 0],
       ],
-      "fill-extrusion-opacity": 0.72
-    }
+      "fill-extrusion-opacity": 0.72,
+    },
   };
 
   map.addLayer(buildingsLayer, labelLayerId);
@@ -83,12 +82,10 @@ function add3DBuildings(map: MapboxMap) {
 
 export default function MapView({
   filters,
-  onSelectHood,
   onSelectProperty,
-  mapRef
+  mapRef,
 }: MapViewProps) {
   const internalMapRef = useRef<MapRef | null>(null);
-  const [popupPropertyId, setPopupPropertyId] = useState<number | null>(null);
 
   useEffect(() => {
     mapRef.current = {
@@ -100,11 +97,11 @@ export default function MapView({
           center: args.center,
           zoom: args.zoom,
           duration: args.duration,
-          essential: true
+          essential: true,
         });
       },
       zoomIn: () => internalMapRef.current?.getMap().zoomIn(),
-      zoomOut: () => internalMapRef.current?.getMap().zoomOut()
+      zoomOut: () => internalMapRef.current?.getMap().zoomOut(),
     };
 
     return () => {
@@ -128,11 +125,6 @@ export default function MapView({
     });
   }, [filters]);
 
-  const popupProperty =
-    popupPropertyId !== null
-      ? properties.find((p) => p.id === popupPropertyId) || null
-      : null;
-
   return (
     <div className="fixed inset-0 z-[1]">
       <Map
@@ -142,7 +134,7 @@ export default function MapView({
           latitude: 41.8781,
           zoom: 12.1,
           pitch: 52,
-          bearing: -18
+          bearing: -18,
         }}
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/mapbox/dark-v11"
@@ -154,46 +146,6 @@ export default function MapView({
           if (map) add3DBuildings(map);
         }}
       >
-        {/* Neighborhood markers */}
-        {Object.entries(neighborhoods).map(([id, hood]) => (
-          <Marker
-            key={id}
-            longitude={hood.lng}
-            latitude={hood.lat}
-            anchor="center"
-            onClick={(e) => {
-              e.originalEvent.stopPropagation();
-              onSelectHood(id);
-            }}
-          >
-            <button
-              type="button"
-              className="pointer-events-auto flex flex-col items-center bg-transparent border-0 p-0"
-            >
-              <div
-                className="rounded-full border border-white/40"
-                style={{
-                  width: 12,
-                  height: 12,
-                  background: scoreColor(hood.scores.opportunity)
-                }}
-              />
-              <div className="mt-[4px] text-center pointer-events-none">
-                <div className="text-[9px] font-semibold text-white/70 whitespace-nowrap drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
-                  {hood.name}
-                </div>
-                <div
-                  className="text-[12px] font-bold font-mono whitespace-nowrap drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)]"
-                  style={{ color: scoreColor(hood.scores.opportunity) }}
-                >
-                  {hood.scores.opportunity}
-                </div>
-              </div>
-            </button>
-          </Marker>
-        ))}
-
-        {/* Property markers */}
         {visibleProperties.map((p) => (
           <Marker
             key={p.id}
@@ -202,7 +154,7 @@ export default function MapView({
             anchor="center"
             onClick={(e) => {
               e.originalEvent.stopPropagation();
-              setPopupPropertyId(p.id);
+              onSelectProperty(p.id);
             }}
           >
             <button
@@ -211,90 +163,12 @@ export default function MapView({
               style={{
                 width: 10,
                 height: 10,
-                background: scoreColor(p.score)
+                background: scoreColor(p.score),
               }}
               aria-label={p.name}
             />
           </Marker>
         ))}
-
-        {/* Property popup */}
-        {popupProperty && (
-          <Popup
-            longitude={popupProperty.lng}
-            latitude={popupProperty.lat}
-            anchor="top"
-            closeButton={false}
-            closeOnClick={false}
-            offset={14}
-            onClose={() => setPopupPropertyId(null)}
-            className="foresight-mapbox-popup"
-          >
-            <div
-              className="min-w-[210px] rounded-[8px] p-[11px]"
-              style={{
-                background: "rgba(10,14,24,0.92)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                boxShadow: "0 16px 64px rgba(0,0,0,0.6)"
-              }}
-            >
-              <div className="text-[12px] font-bold text-[#eaf0fa] mb-[2px]">
-                {popupProperty.name}
-              </div>
-              <div className="text-[9px] uppercase tracking-[0.5px] text-[#4d5d7a] mb-[7px]">
-                {popupProperty.type}
-              </div>
-
-              <div className="flex justify-between text-[10.5px] py-[2px]">
-                <span className="text-[#4d5d7a]">Score</span>
-                <span
-                  className="font-semibold font-mono"
-                  style={{ color: scoreColor(popupProperty.score) }}
-                >
-                  {popupProperty.score}
-                </span>
-              </div>
-
-              <div className="flex justify-between text-[10.5px] py-[2px]">
-                <span className="text-[#4d5d7a]">Est. Value</span>
-                <span className="font-semibold font-mono text-[#eaf0fa]">
-                  {popupProperty.est}
-                </span>
-              </div>
-
-              <div className="flex justify-between text-[10.5px] py-[2px]">
-                <span className="text-[#4d5d7a]">Cap Rate</span>
-                <span className="font-semibold font-mono text-[#eaf0fa]">
-                  {popupProperty.cap}
-                </span>
-              </div>
-
-              <div
-                className="mt-[7px] pt-[7px] border-t text-[9px] font-bold uppercase tracking-[0.5px]"
-                style={{
-                  borderColor: "rgba(255,255,255,0.05)",
-                  color: scoreColor(popupProperty.score)
-                }}
-              >
-                ● {popupProperty.rec} · Click for details
-              </div>
-
-              <button
-                type="button"
-                className="mt-[8px] w-full rounded-[6px] px-3 py-[7px] text-[10.5px] font-semibold text-white"
-                style={{
-                  background: "linear-gradient(135deg, rgba(59,130,246,0.9), rgba(6,182,212,0.9))"
-                }}
-                onClick={() => {
-                  onSelectProperty(popupProperty.id);
-                  setPopupPropertyId(null);
-                }}
-              >
-                Open Property
-              </button>
-            </div>
-          </Popup>
-        )}
       </Map>
     </div>
   );
