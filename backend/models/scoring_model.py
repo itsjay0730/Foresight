@@ -24,13 +24,14 @@ def normalize(value: float, minVal: float, maxVal: float) -> float:
 # map normalized score to display band 60–95
 
 def toDisplayBand(score: float) -> int:
-    return round(60 + clamp(score) * 35)
+    # widen distribution to allow 60s and 90s
+    return round(55 + clamp(score) * 42)
 
 
 # widen score distribution while keeping values aligned
 
 def stretchScore(score: float) -> float:
-    stretched = (score - 0.5) * 1.6 + 0.5
+    stretched = (score - 0.43) * 2.3 + 0.5
     return clamp(stretched)
 
 
@@ -204,6 +205,52 @@ def computeInvestmentScore(
     return clamp(score)
 
 
+# commercial investment score (no housing signals)
+
+def computeCommercialInvestmentScore(
+    incomeScore: float,
+    permitScore: float,
+    populationScore: float,
+    transitScore: float,
+    schoolScore: float,
+    amenityScore: float,
+    ownershipScore: float,
+    poiScore: float,
+) -> float:
+    score = (
+        0.18 * incomeScore
+        + 0.18 * permitScore
+        + 0.10 * populationScore
+        + 0.18 * transitScore
+        + 0.10 * schoolScore
+        + 0.16 * amenityScore
+        + 0.05 * ownershipScore
+        + 0.05 * poiScore
+    )
+    return clamp(score)
+
+
+# development / mixed investment score
+
+def computeDevelopmentInvestmentScore(
+    permitScore: float,
+    populationScore: float,
+    transitScore: float,
+    amenityScore: float,
+    poiScore: float,
+    ownershipScore: float,
+) -> float:
+    score = (
+        0.30 * permitScore
+        + 0.18 * populationScore
+        + 0.16 * transitScore
+        + 0.14 * amenityScore
+        + 0.12 * poiScore
+        + 0.10 * ownershipScore
+    )
+    return clamp(score)
+
+
 # score future growth potential
 
 def computeGrowthScore(
@@ -233,9 +280,9 @@ def computeFinalScore(
     riskScore: float,
 ) -> float:
     score = (
-        0.40 * investmentScore
+        0.45 * investmentScore
         + 0.35 * growthScore
-        + 0.25 * (1 - riskScore)
+        + 0.20 * (1 - riskScore)
     )
     return clamp(score)
 
@@ -252,6 +299,13 @@ def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
     populationGrowth = (
         features.get("populationGrowth", plot.get("population_growth", 0)) or 0
     )
+
+    # new feature-based overrides from feature_builder
+    schoolScoreRaw = features.get("schoolScore")
+    amenityScoreRaw = features.get("amenityScore")
+    poiScoreRaw = features.get("poiScore")
+    ownershipScoreRaw = features.get("ownershipScore")
+    riskBaseRaw = features.get("riskBase")
 
     unemploymentRate = plot.get("unemployment_rate", 0) or 0
     povertyRate = plot.get("poverty_rate", 0) or 0
@@ -285,6 +339,9 @@ def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
         povertyRate,
     )
 
+    if riskBaseRaw is not None:
+        riskScore = clamp((riskScore * 0.7) + (riskBaseRaw * 0.3))
+
     permitScore = computePermitScore(permitGrowth)
     populationScore = computePopulationScore(populationGrowth)
 
@@ -298,30 +355,42 @@ def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
     else:
         transitScore = computeTransitScore(plot.get("transit_distance"))
 
-    schoolScore = computeSchoolScore(avgSchoolRating)
+    if schoolScoreRaw is not None:
+        schoolScore = clamp(schoolScoreRaw)
+    else:
+        schoolScore = computeSchoolScore(avgSchoolRating)
 
-    amenityScore = computeAmenityScore(
-        amenityDensityScore,
-        coffeeCount,
-        restaurantCount,
-        groceryCount,
-        parkCount,
-        hospitalCount,
-    )
+    if amenityScoreRaw is not None:
+        amenityScore = clamp(amenityScoreRaw)
+    else:
+        amenityScore = computeAmenityScore(
+            amenityDensityScore,
+            coffeeCount,
+            restaurantCount,
+            groceryCount,
+            parkCount,
+            hospitalCount,
+        )
 
-    poiScore = computePOIScore(
-        poiDensityScore,
-        schoolPoiCount,
-        hospitalPoiCount,
-        universityPoiCount,
-        officePoiCount,
-        parkPoiCount,
-    )
+    if poiScoreRaw is not None:
+        poiScore = clamp(poiScoreRaw)
+    else:
+        poiScore = computePOIScore(
+            poiDensityScore,
+            schoolPoiCount,
+            hospitalPoiCount,
+            universityPoiCount,
+            officePoiCount,
+            parkPoiCount,
+        )
 
-    ownershipScore = computeOwnershipStabilityScore(
-        ownershipDurationYears,
-        saleCountKnown,
-    )
+    if ownershipScoreRaw is not None:
+        ownershipScore = clamp(ownershipScoreRaw)
+    else:
+        ownershipScore = computeOwnershipStabilityScore(
+            ownershipDurationYears,
+            saleCountKnown,
+        )
 
     housingRentScore = computeHousingRentScore(
         zipRentIndexLatest,
@@ -330,8 +399,12 @@ def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
         salesCountGrowth1y,
     )
 
-    investmentScore = stretchScore(
-        computeInvestmentScore(
+    # determine investment type
+    zoning = str(plot.get("zoning", ""))
+
+    if zoning.startswith("2"):
+        # housing
+        rawInvestment = computeInvestmentScore(
             incomeScore,
             permitScore,
             populationScore,
@@ -341,7 +414,32 @@ def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
             ownershipScore,
             housingRentScore,
         )
-    )
+
+    elif zoning.startswith("3"):
+        # commercial
+        rawInvestment = computeCommercialInvestmentScore(
+            incomeScore,
+            permitScore,
+            populationScore,
+            transitScore,
+            schoolScore,
+            amenityScore,
+            ownershipScore,
+            poiScore,
+        )
+
+    else:
+        # development / mixed
+        rawInvestment = computeDevelopmentInvestmentScore(
+            permitScore,
+            populationScore,
+            transitScore,
+            amenityScore,
+            poiScore,
+            ownershipScore,
+        )
+
+    investmentScore = stretchScore(rawInvestment)
 
     growthScore = stretchScore(
         computeGrowthScore(
@@ -420,8 +518,64 @@ def buildScoresAll(plots: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                     (populationForecast - lastPopulation) / max(lastPopulation, 1)
                 )
 
+            # apply data-driven forecast adjustments based on actual projected changes
+            populationDelta = 0.0
+            permitDelta = 0.0
+            crimeDelta = 0.0
+
+            if populationForecast is not None and len(populationHistory) > 0:
+                lastPopulation = populationHistory[-1]["population"]
+                populationDelta = (
+                    (populationForecast - lastPopulation) / max(lastPopulation, 1)
+                )
+
+            if permitForecast is not None and len(permitHistory) > 0:
+                lastPermit = permitHistory[-1]["permit_count"]
+                permitDelta = (
+                    (permitForecast - lastPermit) / max(lastPermit, 1)
+                )
+
+            if crimeForecast is not None and len(crimeHistory) > 0:
+                lastCrime = crimeHistory[-1]["crime_count"]
+                crimeDelta = (
+                    (crimeForecast - lastCrime) / max(lastCrime, 1)
+                )
+
             tempPlot["features"] = tempFeatures
-            forecastScores[horizon] = buildScores(tempPlot)
+            forecastScore = buildScores(tempPlot)
+
+            # convert actual forecast deltas into visible display-score adjustments
+            investmentAdj = round((populationDelta * 90) + (permitDelta * 20) - (crimeDelta * 12))
+            growthAdj = round((populationDelta * 120) + (permitDelta * 30) - (crimeDelta * 15))
+            riskAdj = round((-populationDelta * 25) - (permitDelta * 8) + (crimeDelta * 20))
+
+            forecastScore["investmentScore"] = max(
+                55,
+                min(97, forecastScore["investmentScore"] + investmentAdj)
+            )
+            forecastScore["growthScore"] = max(
+                55,
+                min(97, forecastScore["growthScore"] + growthAdj)
+            )
+            forecastScore["riskScore"] = max(
+                55,
+                min(97, forecastScore["riskScore"] + riskAdj)
+            )
+
+            forecastScores[horizon] = forecastScore
+
+            # recompute final score after adjustments (convert to normalized 0-1 first)
+            inv = forecastScores[horizon]["investmentScore"] / 100
+            gr = forecastScores[horizon]["growthScore"] / 100
+            rk = forecastScores[horizon]["riskScore"] / 100
+
+            finalScore = (
+                0.45 * inv
+                + 0.35 * gr
+                + 0.20 * (1 - rk)
+            )
+
+            forecastScores[horizon]["finalScore"] = round(55 + finalScore * 42)
 
         combined = {
             **plot,
@@ -431,4 +585,4 @@ def buildScoresAll(plots: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
         results.append(combined)
 
-    return results
+    return results  
