@@ -23,7 +23,9 @@ def computeTransitScore(distanceToTransit: float) -> float:
     return 1 / (1 + distanceToTransit)
 
 #normalize income score
-def computeIncomeScore(medianIncome: float) -> float:
+def computeIncomeScore(medianIncome):
+    if medianIncome is None:
+        medianIncome = 50000
     return normalize(medianIncome, 30000, 150000)
 
 #returns population growth
