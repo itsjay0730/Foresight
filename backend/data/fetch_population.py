@@ -8,6 +8,7 @@
 from __future__ import annotations
 
 from typing import Any
+from datetime import datetime
 
 import requests
 
@@ -70,7 +71,8 @@ def fetchPopulation(plot: dict[str, Any]) -> dict[str, Any]:
         }
 
     try:
-        currentYear = 2024
+        # Census data typically lags by ~1 year
+        currentYear = datetime.now().year - 1
         years = [
             currentYear - 3,
             currentYear - 2,
