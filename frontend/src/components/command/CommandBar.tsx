@@ -156,16 +156,11 @@ export default function CommandBar({
     >
       <div className="flex items-center gap-[10px] px-[12px] py-[10px] overflow-x-auto no-scrollbar min-w-0">
         <div className="flex items-center gap-2 pr-[16px] mr-[8px] border-r border-white/5 shrink-0">
-          <div
-            className="w-[30px] h-[30px] rounded-[9px] flex items-center justify-center font-extrabold text-[15px] text-white shrink-0"
-            style={{
-              background:
-                "linear-gradient(140deg, #3b82f6 0%, #06b6d4 50%, #22c55e 100%)",
-              boxShadow: "0 2px 12px rgba(59,130,246,0.3)",
-            }}
-          >
-            F
-          </div>
+          <img
+            src="/logo.png"
+            alt="Foresight"
+            className="w-[30px] h-[30px] rounded-[9px] object-contain shrink-0"
+          />
 
           <div className="flex flex-col justify-center gap-[5px] min-w-0">
             <div className="text-[15px] font-bold leading-[1.05] tracking-[0.3px] text-t-primary whitespace-nowrap">
