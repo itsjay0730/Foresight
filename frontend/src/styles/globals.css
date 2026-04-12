@@ -1,9 +1,11 @@
+@import "./components.css";
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import "./components.css";
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 
 :root {
   --bg-void: #06080d;
@@ -136,14 +138,14 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%234d5d7a'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 9px center;
-  transition: all 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
   white-space: nowrap;
   min-width: 0;
 }
 
 .cb-select:hover {
-  border-color: var(--glass-border-hover);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--glass-border);
 }
 
 .cb-select:focus {

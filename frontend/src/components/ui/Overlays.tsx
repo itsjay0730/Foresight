@@ -51,7 +51,7 @@ export function Legend() {
         { color: "#f59e0b", label: "70–79 Moderate" },
         { color: "#ef4444", label: "60–69 Caution" },
         { color: "#a855f7", label: "<60 Avoid" },
-      ].map(item => (
+      ].map((item) => (
         <div key={item.label} className="flex items-center gap-[6px] text-t-muted whitespace-nowrap">
           <div className="w-2 h-2 rounded-full shrink-0" style={{ background: item.color }} />
           <span>{item.label}</span>
@@ -68,13 +68,12 @@ interface TrayStats {
   build: number;
   watch: number;
   avoid: number;
-  pipeline: string;
 }
 
 export function BottomTray({ stats }: { stats: TrayStats }) {
   return (
     <div className="fixed left-1/2 -translate-x-1/2 bottom-[22px] z-[910] hidden xl:flex justify-center max-w-[calc(100vw-40px)]">
-      <div
+      {/* <div
         className="flex items-center gap-5 px-[18px] py-2 rounded-f-lg text-[10px] text-t-muted shadow-glass"
         style={{
           background: "rgba(12,16,28,0.62)",
@@ -88,7 +87,7 @@ export function BottomTray({ stats }: { stats: TrayStats }) {
           { val: stats.build, label: "Build", color: "#3b82f6" },
           { val: stats.watch, label: "Watch", color: "#f59e0b" },
           { val: stats.avoid, label: "Avoid", color: "#ef4444" },
-        ].map(s => (
+        ].map((s) => (
           <div key={s.label} className="flex items-center gap-[6px] whitespace-nowrap">
             <span className="font-mono font-semibold text-[13px]" style={{ color: s.color }}>
               {s.val}
@@ -96,14 +95,7 @@ export function BottomTray({ stats }: { stats: TrayStats }) {
             <span className="text-[9px] uppercase tracking-[0.5px]">{s.label}</span>
           </div>
         ))}
-
-        <div className="w-px h-4 bg-white/5 shrink-0" />
-
-        <div className="flex items-center gap-[6px] whitespace-nowrap">
-          <span className="font-mono font-semibold text-[13px] text-t-primary">{stats.pipeline}</span>
-          <span className="text-[9px] uppercase tracking-[0.5px]">Pipeline</span>
-        </div>
-      </div>
+      </div> */}
     </div>
   );
 }

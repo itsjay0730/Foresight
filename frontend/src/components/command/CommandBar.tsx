@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Search, BarChart3 } from "lucide-react";
 import { neighborhoods } from "@/data/neighborhoods";
 import { properties } from "@/data/properties";
-import { FilterState, ScoreLayerKey, TimelineValue } from "@/data/types";
+import { FilterState, TimelineValue } from "@/data/types";
 import { scoreColor } from "@/lib/utils";
 
 interface CommandBarProps {
@@ -35,6 +35,7 @@ export default function CommandBar({
         setSearchOpen(false);
       }
     }
+
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
@@ -52,7 +53,7 @@ export default function CommandBar({
     q.length >= 2
       ? properties
           .filter(
-            p =>
+            (p) =>
               p.name.toLowerCase().includes(q) ||
               p.hood.toLowerCase().includes(q) ||
               p.type.toLowerCase().includes(q)
@@ -73,7 +74,7 @@ export default function CommandBar({
     >
       <div className="flex items-center gap-[8px] px-[12px] py-[10px] overflow-x-auto no-scrollbar min-w-0">
         {/* Logo */}
-        <div className="flex items-center gap-2 pr-[12px] border-r border-white/5 shrink-0">
+        <div className="flex items-center gap-2 pr-[16px] mr-[8px] border-r border-white/5 shrink-0">
           <div
             className="w-[30px] h-[30px] rounded-[9px] flex items-center justify-center font-extrabold text-[15px] text-white shrink-0"
             style={{
@@ -85,7 +86,7 @@ export default function CommandBar({
             F
           </div>
 
-          <div className="flex flex-col justify-center gap-[3px] min-w-0">
+          <div className="flex flex-col justify-center gap-[5px] min-w-0">
             <div className="text-[15px] font-bold leading-[1.05] tracking-[0.3px] text-t-primary whitespace-nowrap">
               Foresight
             </div>
@@ -101,7 +102,10 @@ export default function CommandBar({
         </select>
 
         {/* Search */}
-        <div className="relative shrink-0 w-[220px] sm:w-[260px] md:w-[300px] lg:w-[340px]" ref={searchRef}>
+        <div
+          className="relative shrink-0 w-[220px] sm:w-[260px] md:w-[300px] lg:w-[340px]"
+          ref={searchRef}
+        >
           <Search
             className="absolute left-[11px] top-1/2 -translate-y-1/2 text-t-muted pointer-events-none"
             size={14}
@@ -115,13 +119,14 @@ export default function CommandBar({
               border: "1px solid rgba(255,255,255,0.06)",
             }}
             value={query}
-            onChange={e => {
+            onChange={(e) => {
               setQuery(e.target.value);
               setSearchOpen(true);
             }}
             onFocus={() => setSearchOpen(true)}
-            onKeyDown={e => {
+            onKeyDown={(e) => {
               if (e.key === "Escape") setSearchOpen(false);
+
               if (e.key === "Enter" && hoodResults.length > 0) {
                 onSelectHood(hoodResults[0][0]);
                 setSearchOpen(false);
@@ -164,7 +169,7 @@ export default function CommandBar({
                 </div>
               ))}
 
-              {propResults.map(p => (
+              {propResults.map((p) => (
                 <div
                   key={p.id}
                   className="px-3 py-[9px] cursor-pointer flex justify-between items-center text-[12px] border-b border-white/[0.03] hover:bg-white/[0.04] transition-colors gap-3"
@@ -196,7 +201,7 @@ export default function CommandBar({
         <select
           className="cb-select w-[170px] shrink-0"
           value={filters.investmentType}
-          onChange={e => onFilterChange({ investmentType: e.target.value })}
+          onChange={(e) => onFilterChange({ investmentType: e.target.value })}
         >
           <option value="">Investment Type</option>
           <option>Multifamily</option>
@@ -210,30 +215,17 @@ export default function CommandBar({
         <select
           className="cb-select w-[74px] shrink-0"
           value={filters.timeline}
-          onChange={e => onFilterChange({ timeline: e.target.value as TimelineValue })}
+          onChange={(e) => onFilterChange({ timeline: e.target.value as TimelineValue })}
         >
-          <option value="3">3Y</option>
           <option value="1">1Y</option>
+          <option value="3">3Y</option>
           <option value="5">5Y</option>
-        </select>
-
-        <select
-          className="cb-select w-[200px] shrink-0"
-          value={filters.scoreLayer}
-          onChange={e => onFilterChange({ scoreLayer: e.target.value as ScoreLayerKey })}
-        >
-          <option value="opportunity">Investment Opportunity</option>
-          <option value="appreciation">Appreciation Potential</option>
-          <option value="devReady">Development Readiness</option>
-          <option value="stability">Market Stability</option>
-          <option value="family">Family Demand</option>
-          <option value="commercial">Commercial Expansion</option>
         </select>
 
         <select
           className="cb-select w-[150px] shrink-0"
           value={filters.riskLevel}
-          onChange={e => onFilterChange({ riskLevel: e.target.value })}
+          onChange={(e) => onFilterChange({ riskLevel: e.target.value })}
         >
           <option value="">Risk Level</option>
           <option value="low">Low Risk</option>

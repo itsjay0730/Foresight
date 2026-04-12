@@ -1,544 +1,61 @@
+/*
+ * neighborhoods.ts — Adapter
+ *
+ * Every component imports `neighborhoods` and `neighborhoodList` from here.
+ * This module now serves data fetched from the backend API via api.ts,
+ * exposed through a Proxy so reads always get current data after fetch.
+ *
+ * The exported shapes are IDENTICAL to the old hardcoded data.
+ */
+
 import { Neighborhood } from "./types";
+import { getNeighborhoods, getNeighborhoodList } from "./api";
 
-const FACTOR_NAMES = [
-  { name: "Median Income", key: "income" },
-  { name: "School Quality", key: "school" },
-  { name: "Property Value Trend", key: "propVal" },
-  { name: "Rent Growth", key: "rentGr" },
-  { name: "Permit Activity", key: "permit" },
-  { name: "Crime / Stability", key: "crime" },
-  { name: "Transit Access", key: "transit" },
-  { name: "Population Growth", key: "popGr" },
-];
+// Use a Proxy so property access always reads from the latest fetched cache.
+// Before the API responds, properties resolve to undefined (components handle
+// this gracefully since they're already guarded with fallbacks like "west-loop").
+export const neighborhoods: Record<string, Neighborhood> = new Proxy(
+  {} as Record<string, Neighborhood>,
+  {
+    get(_target, prop: string) {
+      const data = getNeighborhoods();
+      return data[prop];
+    },
+    has(_target, prop: string) {
+      const data = getNeighborhoods();
+      return prop in data;
+    },
+    ownKeys() {
+      const data = getNeighborhoods();
+      return Object.keys(data);
+    },
+    getOwnPropertyDescriptor(_target, prop: string) {
+      const data = getNeighborhoods();
+      if (prop in data) {
+        return { configurable: true, enumerable: true, value: data[prop] };
+      }
+      return undefined;
+    },
+  }
+);
 
-function generateFactors(seed: number) {
-  return FACTOR_NAMES.map((f, i) => ({
-    ...f,
-    value: Math.max(35, Math.min(96, seed + (((i * 17 + seed) % 31) - 15))),
-  }));
-}
-
-export const neighborhoods: Record<string, Neighborhood> = {
-  "logan-square": {
-    id: "logan-square",
-    name: "Logan Square",
-    zip: "60647",
-    area: "Northwest Side",
-    lat: 41.9234,
-    lng: -87.708,
-    scores: { opportunity: 87, appreciation: 82, devReady: 74, stability: 79, family: 71, commercial: 68 },
-    delta: "+4.2%",
-    rec: "BUY",
-    risk: "low",
-    factors: generateFactors(87),
-    strengths: [
-      "Blue Line transit corridor drives sustained demand",
-      "Median income rising 12% over trailing 3 years",
-      "Permit activity up 23% YoY — strongest NW Side signal",
-      "Milwaukee Ave commercial corridor absorbing retail well",
-    ],
-    risks: [
-      "Acquisition costs compressing cap rates below 5.8%",
-      "Crime index 14% above city average in 60647",
-      "Aldermanic pushback on density increases near Boulevrd",
-      "New multifamily supply may moderate rent growth by 2028",
-    ],
-    memo: `Logan Square presents one of Chicago's strongest investment corridors for 2025–2028. Sustained permit activity (+23% YoY) and transit-oriented development along the Blue Line create durable demand fundamentals. Median household income has risen 12% over 3 years, supporting both multifamily rent growth and retail absorption. Primary risk centers on rising acquisition costs compressing yields, though value-add opportunities remain in the 60647 submarket. Recommended strategy: acquire mixed-use assets along the Milwaukee Avenue corridor with a 3–5 year hold period. Focus on properties within 0.5mi of the Logan Square and California Blue Line stations for maximum appreciation capture.`,
-  },
-  "west-loop": {
-    id: "west-loop",
-    name: "West Loop",
-    zip: "60607",
-    area: "Near West",
-    lat: 41.8826,
-    lng: -87.6514,
-    scores: { opportunity: 91, appreciation: 89, devReady: 82, stability: 85, family: 63, commercial: 92 },
-    delta: "+6.1%",
-    rec: "BUY",
-    risk: "low",
-    factors: generateFactors(91),
-    strengths: [
-      "Highest commercial expansion score in Chicago (92)",
-      "Randolph/Fulton Market corridor commands premium rents",
-      "Class-A office absorption remains strong post-COVID",
-      "Google, McDonald's HQ proximity creates tech spillover",
-    ],
-    risks: [
-      "Cap rate compression — institutional pricing limits upside",
-      "Restaurant Row saturation risk on Randolph corridor",
-      "High property tax burden relative to other submarkets",
-      "Residential demand lagging commercial in some pockets",
-    ],
-    memo: `The West Loop continues to command premium positioning among Chicago's investment submarkets. Class-A office absorption remains strong, and the Randolph/Fulton Market corridor drives outsized retail demand. Commercial expansion scores 92 — the highest in the city. Cap rate compression has moderated, creating selective entry points for institutional capital. Development pipeline is robust but absorbed. The Google and McDonald's headquarters proximity creates a technology employment spillover effect that supports both residential and commercial. Recommended strategy: target stabilized retail and office assets with NNN structures for long-term hold. Consider mixed-use development on the western edge of Fulton Market where land basis remains favorable.`,
-  },
-  "pilsen": {
-    id: "pilsen",
-    name: "Pilsen",
-    zip: "60608",
-    area: "Lower West Side",
-    lat: 41.856,
-    lng: -87.6637,
-    scores: { opportunity: 78, appreciation: 80, devReady: 71, stability: 68, family: 74, commercial: 65 },
-    delta: "+5.8%",
-    rec: "BUY",
-    risk: "moderate",
-    factors: generateFactors(78),
-    strengths: [
-      "Appreciation potential ranks 80 — strong upside trajectory",
-      "18th Street retail corridor shows healthy absorption",
-      "Proximity to UIC and downtown drives renter demand",
-      "Cultural district status supports long-term desirability",
-    ],
-    risks: [
-      "Zoning politics — aldermanic positions on development volatile",
-      "Gentrification backlash may slow permit approvals",
-      "Property tax reassessment risk as values increase",
-      "Transit access limited vs. North Side competition",
-    ],
-    memo: `Pilsen is in a transitional phase that offers compelling risk-adjusted returns for investors comfortable with moderate political risk. Appreciation potential scores 80 on continued demographic shift and proximity to downtown. The 18th Street corridor shows strong retail absorption and the neighborhood's cultural district status provides long-term desirability fundamentals. Zoning politics remain the key risk — monitor aldermanic positions on development approvals closely. Recommended strategy: acquire value-add mixed-use properties in the 60608 submarket, targeting 3–5 year hold with renovation-driven NOI growth. Properties south of Cermak Road offer better basis points than the gentrified northern blocks.`,
-  },
-  "bronzeville": {
-    id: "bronzeville",
-    name: "Bronzeville",
-    zip: "60615",
-    area: "South Side",
-    lat: 41.823,
-    lng: -87.6172,
-    scores: { opportunity: 72, appreciation: 76, devReady: 69, stability: 61, family: 67, commercial: 58 },
-    delta: "+7.3%",
-    rec: "WATCH",
-    risk: "emerging",
-    factors: generateFactors(72),
-    strengths: [
-      "Highest delta in Chicago at +7.3% — momentum accelerating",
-      "Obama Presidential Center catalysis beginning to materialize",
-      "Land assembly opportunities at favorable basis points",
-      "CTA Green Line provides strong north-south connectivity",
-    ],
-    risks: [
-      "Stability index below institutional threshold at 61",
-      "Crime metrics elevated — requires block-level diligence",
-      "Commercial absorption remains weak outside key corridors",
-      "Exit liquidity risk — limited comparable transactions",
-    ],
-    memo: `Bronzeville represents the highest-delta investment zone in Chicago at +7.3% YoY score improvement. Obama Presidential Center catalysis is beginning to materialize in permit data and land assembly activity. Current scores reflect emerging-stage risk, but the appreciation trajectory is steep. The Green Line corridor between 35th and 47th streets shows the strongest near-term fundamentals. Not suitable for risk-averse capital — stability index at 61 is below institutional minimums. Recommended strategy: acquire land or distressed multifamily for development plays with 5+ year horizon. Focus on blocks within the CTA Green Line walkshed.`,
-  },
-  "hyde-park": {
-    id: "hyde-park",
-    name: "Hyde Park",
-    zip: "60637",
-    area: "South Side",
-    lat: 41.7943,
-    lng: -87.5907,
-    scores: { opportunity: 75, appreciation: 71, devReady: 62, stability: 82, family: 79, commercial: 54 },
-    delta: "+2.1%",
-    rec: "WATCH",
-    risk: "moderate",
-    factors: generateFactors(75),
-    strengths: [
-      "University of Chicago provides institutional anchor",
-      "High stability score (82) — defensive positioning",
-      "Strong family demand from academic community",
-      "Obama Presidential Center proximity boost imminent",
-    ],
-    risks: [
-      "Appreciation delta modest at +2.1% — slow growth profile",
-      "Commercial expansion limited by institutional land control",
-      "Geographic isolation from downtown dampens some demand",
-      "Development readiness constrained by historic preservation",
-    ],
-    memo: `Hyde Park offers a stability-oriented investment profile anchored by the University of Chicago. While appreciation momentum is modest at +2.1%, the neighborhood provides defensive characteristics suitable for risk-averse capital. The Obama Presidential Center in adjacent Woodlawn may create spillover demand over the 5-year horizon. Commercial expansion remains constrained by institutional land ownership. Recommended strategy: hold existing positions; new acquisition primarily for stable cash flow via student/faculty rental demand. Monitor OPC construction timeline for entry timing on appreciation plays.`,
-  },
-  "lincoln-park": {
-    id: "lincoln-park",
-    name: "Lincoln Park",
-    zip: "60614",
-    area: "North Side",
-    lat: 41.9214,
-    lng: -87.6513,
-    scores: { opportunity: 83, appreciation: 68, devReady: 55, stability: 91, family: 85, commercial: 78 },
-    delta: "+1.4%",
-    rec: "BUY",
-    risk: "low",
-    factors: generateFactors(83),
-    strengths: [
-      "Highest stability score on North Side at 91",
-      "Premium family demand — school quality drives pricing",
-      "Mature commercial corridors (Armitage, Halsted, Clark)",
-      "Lakefront proximity — irreplaceable locational advantage",
-    ],
-    risks: [
-      "Appreciation upside limited — already mature market",
-      "Development readiness low (55) — limited new inventory",
-      "High acquisition basis compresses returns",
-      "Delta of +1.4% suggests plateau risk",
-    ],
-    memo: `Lincoln Park is Chicago's premier residential submarket, offering institutional-grade stability (91) and strong family demand (85). The trade-off is limited appreciation upside — at +1.4% delta, this is a cash-flow and capital-preservation play, not a growth bet. Development readiness at 55 reflects a mature, built-out neighborhood. Recommended strategy: acquire stabilized multifamily or single-family for hold. Target properties on quiet residential blocks near DePaul University for consistent rental income. Not appropriate for development-oriented capital.`,
-  },
-  "lakeview": {
-    id: "lakeview",
-    name: "Lakeview",
-    zip: "60657",
-    area: "North Side",
-    lat: 41.9434,
-    lng: -87.6553,
-    scores: { opportunity: 80, appreciation: 72, devReady: 58, stability: 88, family: 82, commercial: 75 },
-    delta: "+2.8%",
-    rec: "BUY",
-    risk: "low",
-    factors: generateFactors(80),
-    strengths: [
-      "Dense transit access — Brown, Purple, Red Line coverage",
-      "Wrigleyville redevelopment boosting commercial profile",
-      "Strong rental demand from young professionals",
-      "High walkability and retail corridor density",
-    ],
-    risks: [
-      "Development constrained by built-out density",
-      "Wrigleyville event traffic creates localized friction",
-      "Moderate appreciation trajectory vs. emerging areas",
-      "Parking and congestion limit some residential appeal",
-    ],
-    memo: `Lakeview delivers balanced investment fundamentals across all scoring dimensions with no critical weakness. The Wrigleyville redevelopment has elevated the commercial profile, and dense transit access (three CTA lines) ensures durable renter demand. Like Lincoln Park, this is a stability play rather than a growth play. Recommended strategy: multifamily acquisition along Broadway and Clark corridors, targeting value-add renovation for rent optimization. The area between Belmont and Addison offers the best risk-adjusted entry points.`,
-  },
-  "wicker-park": {
-    id: "wicker-park",
-    name: "Wicker Park",
-    zip: "60622",
-    area: "Northwest Side",
-    lat: 41.9088,
-    lng: -87.6796,
-    scores: { opportunity: 85, appreciation: 79, devReady: 68, stability: 83, family: 69, commercial: 81 },
-    delta: "+3.5%",
-    rec: "BUY",
-    risk: "low",
-    factors: generateFactors(85),
-    strengths: [
-      "Premium retail corridor — Division/Damen/Milwaukee triangle",
-      "Strong commercial expansion (81) driven by hospitality",
-      "Blue Line access provides downtown connectivity",
-      "High desirability score among 25–40 demographic",
-    ],
-    risks: [
-      "Retail saturation risk on Division St corridor",
-      "Family demand moderate (69) — less appealing to families",
-      "Competition from adjacent Bucktown for same renter pool",
-      "Noise and nightlife may limit premium residential pricing",
-    ],
-    memo: `Wicker Park remains one of Chicago's most commercially dynamic neighborhoods. The Division/Damen/Milwaukee triangle commands premium retail rents and the area's cultural cachet supports strong absorption. Commercial expansion at 81 reflects continued hospitality and F&B investment. Residential demand is driven by the 25–40 professional demographic rather than families. Recommended strategy: retail and mixed-use acquisition along primary commercial corridors. Consider ground-floor retail with upper-floor residential in the Division St walkshed.`,
-  },
-  "south-loop": {
-    id: "south-loop",
-    name: "South Loop",
-    zip: "60605",
-    area: "Near South",
-    lat: 41.8568,
-    lng: -87.6246,
-    scores: { opportunity: 76, appreciation: 74, devReady: 78, stability: 72, family: 60, commercial: 71 },
-    delta: "+3.9%",
-    rec: "WATCH",
-    risk: "moderate",
-    factors: generateFactors(76),
-    strengths: [
-      "High development readiness (78) — entitled land available",
-      "Downtown adjacency provides demand spillover",
-      "McCormick Place and Museum Campus drive commercial",
-      "CTA Red/Green/Orange lines intersect here",
-    ],
-    risks: [
-      "Oversupply risk from recent high-rise completions",
-      "Family demand weak (60) — demographic skews transient",
-      "Street-level retail struggling in some micro-zones",
-      "Construction noise from ongoing development cycle",
-    ],
-    memo: `The South Loop presents a development-oriented investment profile with the highest development readiness score in this cohort (78). Multiple entitled parcels remain available along Michigan Avenue and State Street. The area benefits from downtown adjacency and multi-line CTA access, but recent high-rise completions have created temporary supply pressure. Recommended strategy: land acquisition for ground-up development on a 3–5 year timeline, or distressed acquisition of recent completions trading below replacement cost.`,
-  },
-  "near-north": {
-    id: "near-north",
-    name: "Near North Side",
-    zip: "60610",
-    area: "North Side",
-    lat: 41.903,
-    lng: -87.635,
-    scores: { opportunity: 88, appreciation: 65, devReady: 48, stability: 93, family: 56, commercial: 90 },
-    delta: "+1.9%",
-    rec: "BUY",
-    risk: "low",
-    factors: generateFactors(88),
-    strengths: [
-      "Highest stability in the city at 93",
-      "Premium commercial (90) — Magnificent Mile adjacency",
-      "Institutional-grade liquidity — deep buyer pool on exit",
-      "Gold Coast premium supports outsized per-unit pricing",
-    ],
-    risks: [
-      "Development readiness very low (48) — no land",
-      "Appreciation limited — mature premium market",
-      "Entry basis extremely high — limits return potential",
-      "Remote work trends softening some office demand",
-    ],
-    memo: `Near North / Gold Coast is Chicago's most institutionally liquid submarket. Stability at 93 and commercial at 90 make this a capital-preservation vehicle suitable for pension and insurance capital. Appreciation is limited and development nearly impossible due to build-out density. Recommended strategy: stabilized NNN office and retail. This is a portfolio anchor, not a return driver.`,
-  },
-  "bucktown": {
-    id: "bucktown",
-    name: "Bucktown",
-    zip: "60647",
-    area: "Northwest Side",
-    lat: 41.9182,
-    lng: -87.6802,
-    scores: { opportunity: 84, appreciation: 78, devReady: 64, stability: 81, family: 73, commercial: 77 },
-    delta: "+3.1%",
-    rec: "BUY",
-    risk: "low",
-    factors: generateFactors(84),
-    strengths: [
-      "Balanced scores — no critical weakness across dimensions",
-      "Strong family demand relative to adjacent Wicker Park",
-      "Armitage corridor provides premium retail frontage",
-      "Proximity to 606 Trail boosts walkability metrics",
-    ],
-    risks: [
-      "Premium pricing compresses yield spreads",
-      "Limited developable parcels in core blocks",
-      "Competition with Logan Square for NW Side capital",
-      "Some blocks showing price plateau signals",
-    ],
-    memo: `Bucktown offers a well-balanced investment profile bridging the premium stability of Lincoln Park with the growth trajectory of Logan Square. The neighborhood benefits from the 606 Trail amenity and Armitage corridor retail. Family demand at 73 exceeds adjacent Wicker Park, creating residential pricing support. Recommended strategy: value-add multifamily and single-family renovation targeting the 25–40 family demographic. Focus on blocks between the 606 Trail and Armitage Avenue.`,
-  },
-  "ukr-village": {
-    id: "ukr-village",
-    name: "Ukrainian Village",
-    zip: "60622",
-    area: "West Town",
-    lat: 41.8983,
-    lng: -87.687,
-    scores: { opportunity: 81, appreciation: 77, devReady: 70, stability: 76, family: 72, commercial: 66 },
-    delta: "+4.8%",
-    rec: "BUY",
-    risk: "moderate",
-    factors: generateFactors(81),
-    strengths: [
-      "Strong appreciation momentum at +4.8%",
-      "Development readiness (70) — parcels still available",
-      "Chicago Ave corridor expanding commercial base",
-      "Walkable residential streets with character housing stock",
-    ],
-    risks: [
-      "Commercial expansion lagging neighboring Wicker Park",
-      "Some blocks transition abruptly to lower-stability zones",
-      "Zoning mix creates valuation complexity",
-      "Limited transit — reliant on buses and bike infrastructure",
-    ],
-    memo: `Ukrainian Village is in a growth phase with strong delta (+4.8%) and available development parcels. The neighborhood benefits from Wicker Park spillover demand while maintaining lower acquisition costs. Chicago Avenue is expanding as a commercial corridor. Recommended strategy: ground-up development and value-add renovation on the north side of the neighborhood closer to Division Street. The price differential vs. Wicker Park creates natural appreciation upside.`,
-  },
-  "humboldt": {
-    id: "humboldt",
-    name: "Humboldt Park",
-    zip: "60624",
-    area: "West Side",
-    lat: 41.902,
-    lng: -87.72,
-    scores: { opportunity: 65, appreciation: 72, devReady: 67, stability: 54, family: 63, commercial: 48 },
-    delta: "+8.2%",
-    rec: "WATCH",
-    risk: "emerging",
-    factors: generateFactors(65),
-    strengths: [
-      "Highest appreciation delta in dataset at +8.2%",
-      "Significant parkland amenity (Humboldt Park itself)",
-      "Spillover from Logan Square/Ukrainian Village gentrification",
-      "Available land at low basis for development plays",
-    ],
-    risks: [
-      "Stability well below institutional threshold (54)",
-      "Commercial infrastructure severely underdeveloped (48)",
-      "Crime metrics require block-by-block diligence",
-      "Exit liquidity risk — limited institutional buyer pool",
-    ],
-    memo: `Humboldt Park shows the highest appreciation momentum in the dataset (+8.2%) but carries significant risk. Stability at 54 and commercial at 48 are below institutional minimums. The area benefits from spillover demand as Logan Square and Ukrainian Village mature, and the Humboldt Park amenity provides long-term value. This is a speculative play suitable for opportunistic capital with a long horizon. Recommended strategy: land banking on the eastern edge nearest to Ukrainian Village. Monitor crime trends and commercial activity quarterly. Not suitable for risk-averse capital.`,
-  },
-  "avondale": {
-    id: "avondale",
-    name: "Avondale",
-    zip: "60618",
-    area: "Northwest Side",
-    lat: 41.9388,
-    lng: -87.7108,
-    scores: { opportunity: 77, appreciation: 75, devReady: 72, stability: 74, family: 76, commercial: 62 },
-    delta: "+5.1%",
-    rec: "BUY",
-    risk: "moderate",
-    factors: generateFactors(77),
-    strengths: [
-      "Healthy appreciation at +5.1% with moderate risk",
-      "Family demand strong (76) — school-adjacent housing",
-      "Development parcels available along Milwaukee corridor",
-      "Blue Line Belmont station provides transit backbone",
-    ],
-    risks: [
-      "Commercial score (62) indicates limited retail options",
-      "Industrial-to-residential conversion creates transition noise",
-      "Some blocks lack pedestrian infrastructure",
-      "Competition from adjacent Logan Square for tenant pool",
-    ],
-    memo: `Avondale offers a value-oriented entry into the Northwest Side growth corridor. Family demand at 76 distinguishes it from more nightlife-oriented neighbors. The Milwaukee Avenue industrial-to-residential transition is creating development opportunities. Recommended strategy: multifamily development targeting the family renter demographic, particularly near school zones. The Belmont Blue Line station walkshed represents the highest-value micro-zone.`,
-  },
-  "irving-park": {
-    id: "irving-park",
-    name: "Irving Park",
-    zip: "60618",
-    area: "Northwest Side",
-    lat: 41.9539,
-    lng: -87.7245,
-    scores: { opportunity: 70, appreciation: 68, devReady: 63, stability: 77, family: 80, commercial: 55 },
-    delta: "+3.4%",
-    rec: "WATCH",
-    risk: "moderate",
-    factors: generateFactors(70),
-    strengths: [
-      "Strong family demand (80) — quality school options",
-      "Stable residential character with lower turnover",
-      "More affordable entry point vs. core North Side",
-      "Blue Line provides downtown access",
-    ],
-    risks: [
-      "Commercial underdevelopment limits retail amenity",
-      "Growth momentum moderate — not in rapid-change category",
-      "Distance from lakefront reduces premium appeal",
-      "Some infrastructure deferred maintenance",
-    ],
-    memo: `Irving Park is a stable, family-oriented submarket with moderate growth potential. It functions as an affordable alternative to Lakeview and Lincoln Park for families, which supports steady rental demand. Growth trajectory at +3.4% is modest. Recommended strategy: cash-flow-oriented multifamily acquisition for long-term hold. Not a development or rapid-appreciation play.`,
-  },
-  "rogers-park": {
-    id: "rogers-park",
-    name: "Rogers Park",
-    zip: "60626",
-    area: "Far North Side",
-    lat: 42.0087,
-    lng: -87.6699,
-    scores: { opportunity: 68, appreciation: 70, devReady: 65, stability: 62, family: 71, commercial: 52 },
-    delta: "+4.6%",
-    rec: "WATCH",
-    risk: "emerging",
-    factors: generateFactors(68),
-    strengths: [
-      "Lakefront access at affordable price points",
-      "Loyola University provides institutional renter base",
-      "Red Line terminus ensures transit connectivity",
-      "Diverse housing stock — SFR through mid-rise",
-    ],
-    risks: [
-      "Stability at 62 — some blocks show volatility",
-      "Commercial infrastructure very limited (52)",
-      "Distance from downtown limits premium appeal",
-      "Block-level variance requires granular diligence",
-    ],
-    memo: `Rogers Park is Chicago's most affordable lakefront neighborhood, creating a natural value proposition for renters priced out of Edgewater and Lakeview. Loyola University provides an institutional demand anchor. The Red Line terminus ensures transit connectivity despite the far-north location. Recommended strategy: multifamily value-add near Loyola campus. Lakefront blocks (east of Sheridan) command premium but require crime diligence.`,
-  },
-  "uptown": {
-    id: "uptown",
-    name: "Uptown",
-    zip: "60640",
-    area: "North Side",
-    lat: 41.9658,
-    lng: -87.6549,
-    scores: { opportunity: 71, appreciation: 73, devReady: 68, stability: 59, family: 64, commercial: 60 },
-    delta: "+6.7%",
-    rec: "WATCH",
-    risk: "emerging",
-    factors: generateFactors(71),
-    strengths: [
-      "Strong delta at +6.7% — rapid improvement trajectory",
-      "Red Line and bus connectivity excellent",
-      "Entertainment district (Riviera, Aragon) draws foot traffic",
-      "Large developable parcels available on Broadway",
-    ],
-    risks: [
-      "Stability at 59 — transitional character",
-      "Homeless services concentration creates localized friction",
-      "Block-level quality variance is extreme",
-      "Political dynamics around development approvals",
-    ],
-    memo: `Uptown is in active transition with the strongest delta on the North Side at +6.7%. Large Broadway corridor parcels offer development opportunities. The entertainment district provides commercial anchoring. However, stability at 59 reflects ongoing neighborhood evolution — block-level diligence is essential. Recommended strategy: development-oriented plays on Broadway corridor north of Lawrence Ave. This is a 5-year conviction trade.`,
-  },
-  "edgewater": {
-    id: "edgewater",
-    name: "Edgewater",
-    zip: "60660",
-    area: "Far North Side",
-    lat: 41.9835,
-    lng: -87.6606,
-    scores: { opportunity: 73, appreciation: 69, devReady: 60, stability: 75, family: 78, commercial: 56 },
-    delta: "+3.2%",
-    rec: "WATCH",
-    risk: "moderate",
-    factors: generateFactors(73),
-    strengths: [
-      "Solid family demand (78) with good school access",
-      "Lakefront proximity at moderate price points",
-      "Stable residential character — low volatility",
-      "Bryn Mawr corridor showing retail improvement",
-    ],
-    risks: [
-      "Appreciation momentum modest at +3.2%",
-      "Commercial options limited — lower walkability score",
-      "Competition from Andersonville for same renter profile",
-      "Development readiness constrained by built density",
-    ],
-    memo: `Edgewater provides a stability-oriented alternative to adjacent Uptown, with strong family demand and lakefront access at moderate pricing. Growth is steady rather than dynamic. Recommended strategy: stabilized multifamily hold with emphasis on cash flow. The Bryn Mawr Red Line station walkshed offers the best micro-location for mixed-use.`,
-  },
-  "bridgeport": {
-    id: "bridgeport",
-    name: "Bridgeport",
-    zip: "60608",
-    area: "South Side",
-    lat: 41.8372,
-    lng: -87.6508,
-    scores: { opportunity: 66, appreciation: 71, devReady: 66, stability: 65, family: 68, commercial: 53 },
-    delta: "+5.5%",
-    rec: "WATCH",
-    risk: "emerging",
-    factors: generateFactors(66),
-    strengths: [
-      "Strong appreciation potential at +5.5% delta",
-      "Proximity to Pilsen spillover demand",
-      "Halsted corridor showing commercial improvement",
-      "Affordable entry basis relative to appreciation trend",
-    ],
-    risks: [
-      "Commercial infrastructure underdeveloped (53)",
-      "Some industrial-adjacent blocks limit residential appeal",
-      "Transit access moderate — limited rapid transit",
-      "Institutional buyer interest still nascent",
-    ],
-    memo: `Bridgeport is benefiting from Pilsen spillover as investors seek adjacent value. The delta of +5.5% on a low basis suggests attractive risk-reward for opportunistic capital. Halsted Street is emerging as a commercial spine. Recommended strategy: value-add single-family and small multifamily acquisition targeting the residential blocks between Halsted and Morgan. Monitor Pilsen appreciation trends as a leading indicator.`,
-  },
-  "woodlawn": {
-    id: "woodlawn",
-    name: "Woodlawn",
-    zip: "60637",
-    area: "South Side",
-    lat: 41.7798,
-    lng: -87.5996,
-    scores: { opportunity: 62, appreciation: 74, devReady: 72, stability: 48, family: 55, commercial: 44 },
-    delta: "+9.1%",
-    rec: "WATCH",
-    risk: "high",
-    factors: generateFactors(62),
-    strengths: [
-      "Obama Presidential Center — transformative catalyst",
-      "Highest appreciation delta in South Side at +9.1%",
-      "Development readiness high (72) — vacant parcels available",
-      "University of Chicago investment expanding southward",
-    ],
-    risks: [
-      "Stability at 48 — well below institutional minimums",
-      "Commercial infrastructure critically weak (44)",
-      "Crime metrics require extreme block-level diligence",
-      "Speculation risk — OPC timeline creates uncertainty",
-    ],
-    memo: `Woodlawn is Chicago's highest-beta investment zone. The Obama Presidential Center represents a once-in-a-generation catalytic investment, and the +9.1% score delta reflects the early stages of this transformation. However, current stability (48) and commercial (44) scores are critically below institutional thresholds. This is a pure speculation play. Recommended strategy: land acquisition only, with a 7–10 year horizon, focused on blocks within 0.25mi of the OPC site. Not appropriate for any risk-averse allocation.`,
-  },
-};
-
-export const neighborhoodList = Object.values(neighborhoods);
+// neighborhoodList is used by CompareModal
+export const neighborhoodList: Neighborhood[] = new Proxy(
+  [] as Neighborhood[],
+  {
+    get(_target, prop) {
+      const data = getNeighborhoodList();
+      if (prop === "length") return data.length;
+      if (prop === Symbol.iterator) return data[Symbol.iterator].bind(data);
+      // Array methods (sort, filter, map, etc.)
+      if (typeof prop === "string" && typeof (data as any)[prop] === "function") {
+        return (data as any)[prop].bind(data);
+      }
+      // Index access
+      if (typeof prop === "string" && !isNaN(Number(prop))) {
+        return data[Number(prop)];
+      }
+      return (data as any)[prop as any];
+    },
+  }
+);

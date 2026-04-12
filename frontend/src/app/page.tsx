@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useRef, useCallback, useMemo } from "react";
+import { useState, useRef, useCallback, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { X } from "lucide-react";
 import { FilterState, SelectionState } from "@/data/types";
 import { properties } from "@/data/properties";
 import { neighborhoods } from "@/data/neighborhoods";
+import { fetchAndGetData } from "@/data/api";
 import CommandBar from "@/components/command/CommandBar";
 import IntelPanel from "@/components/panel/IntelPanel";
 import { CompareModal, MemoFullModal } from "@/components/modals/CompareAndMemo";
@@ -14,8 +15,52 @@ import { scoreColor } from "@/lib/utils";
 
 const MapView = dynamic(() => import("@/components/map/MapView"), { ssr: false });
 
+function getTimelineAdjustedScore(baseScore: number, timeline: string) {
+  const multipliers: Record<string, number> = {
+    "1": 0.94,
+    "3": 1,
+    "5": 1.08,
+  };
+
+  const multiplier = multipliers[timeline] ?? 1;
+  return Math.max(0, Math.min(100, Math.round(baseScore * multiplier)));
+}
+
+function getRecommendationFromScore(score: number) {
+  if (score >= 85) return "BUY";
+  if (score >= 75) return "BUILD";
+  if (score >= 65) return "WATCH";
+  return "AVOID";
+}
+
+function LoadingScreen() {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center" style={{ background: "#06080d" }}>
+      <div className="text-center">
+        <div
+          className="w-[40px] h-[40px] rounded-[10px] flex items-center justify-center font-extrabold text-[18px] text-white mx-auto mb-4"
+          style={{
+            background: "linear-gradient(140deg,#3b82f6 0%,#06b6d4 50%,#22c55e 100%)",
+            boxShadow: "0 2px 20px rgba(59,130,246,0.4)",
+          }}
+        >
+          F
+        </div>
+        <div className="text-[16px] font-bold text-t-primary mb-1">Foresight</div>
+        <div className="text-[11px] text-t-muted">Loading Chicago investment data…</div>
+      </div>
+    </div>
+  );
+}
+
 export default function ForesightApp() {
   const mapRef = useRef<any>(null);
+
+  const [dataReady, setDataReady] = useState(false);
+
+  useEffect(() => {
+    fetchAndGetData().then(() => setDataReady(true));
+  }, []);
 
   const [filters, setFilters] = useState<FilterState>({
     investmentType: "",
@@ -38,6 +83,7 @@ export default function ForesightApp() {
   const [memoOpen, setMemoOpen] = useState(false);
 
   const [notif, setNotif] = useState({ message: "", visible: false });
+
   const notify = useCallback((msg: string) => {
     setNotif({ message: msg, visible: true });
     setTimeout(() => setNotif((prev) => ({ ...prev, visible: false })), 2800);
@@ -108,11 +154,11 @@ export default function ForesightApp() {
   }, [notify]);
 
   const trayStats = useMemo(() => {
-    let total = 0,
-      buy = 0,
-      build = 0,
-      watch = 0,
-      avoid = 0;
+    let total = 0;
+    let buy = 0;
+    let build = 0;
+    let watch = 0;
+    let avoid = 0;
 
     properties.forEach((p) => {
       let show = true;
@@ -129,24 +175,62 @@ export default function ForesightApp() {
 
       if (show) {
         total++;
-        if (p.rec === "BUY") buy++;
-        else if (p.rec === "BUILD") build++;
-        else if (p.rec === "WATCH") watch++;
+
+        const adjustedScore = getTimelineAdjustedScore(p.score, filters.timeline);
+        const adjustedRec = getRecommendationFromScore(adjustedScore);
+
+        if (adjustedRec === "BUY") buy++;
+        else if (adjustedRec === "BUILD") build++;
+        else if (adjustedRec === "WATCH") watch++;
         else avoid++;
       }
     });
 
-    return { total, buy, build, watch, avoid, pipeline: "$284M" };
+    return { total, buy, build, watch, avoid };
   }, [filters]);
 
   const activeNeighborhood = activeHoodId ? neighborhoods[activeHoodId] : undefined;
 
+  const adjustedNeighborhoodStats = useMemo(() => {
+    if (!activeNeighborhood) return undefined;
+
+    const adjustedOpportunity = getTimelineAdjustedScore(
+      activeNeighborhood.scores.opportunity,
+      filters.timeline
+    );
+
+    return {
+      opportunity: adjustedOpportunity,
+      recommendation: getRecommendationFromScore(adjustedOpportunity),
+      timelineLabel: `${filters.timeline}Y`,
+      delta:
+        filters.timeline === "1"
+          ? "Near-term outlook"
+          : filters.timeline === "5"
+            ? "Long-range upside"
+            : "Balanced horizon",
+    };
+  }, [activeNeighborhood, filters.timeline]);
+
   const neighborhoodProperties = useMemo(() => {
     if (!activeNeighborhood) return [];
+
     return properties
       .filter((p) => p.hood === activeNeighborhood.name)
-      .sort((a, b) => b.score - a.score);
-  }, [activeNeighborhood]);
+      .map((p) => {
+        const adjustedScore = getTimelineAdjustedScore(p.score, filters.timeline);
+        return {
+          ...p,
+          adjustedScore,
+          adjustedRec: getRecommendationFromScore(adjustedScore),
+        };
+      })
+      .sort((a, b) => b.adjustedScore - a.adjustedScore);
+  }, [activeNeighborhood, filters.timeline]);
+
+  if (!dataReady) {
+    return <LoadingScreen />;
+  }
 
   return (
     <>
@@ -197,6 +281,7 @@ export default function ForesightApp() {
         neighborhood={activeNeighborhood}
         propertiesInNeighborhood={neighborhoodProperties}
         onSelectProperty={handleSelectProperty}
+        adjustedNeighborhoodStats={adjustedNeighborhoodStats}
       />
 
       <CompareModal open={compareOpen} onClose={() => setCompareOpen(false)} />
@@ -219,12 +304,24 @@ function NeighborhoodPropertiesPopup({
   neighborhood,
   propertiesInNeighborhood,
   onSelectProperty,
+  adjustedNeighborhoodStats,
 }: {
   open: boolean;
   onClose: () => void;
   neighborhood?: (typeof neighborhoods)[string];
-  propertiesInNeighborhood: typeof properties;
+  propertiesInNeighborhood: Array<
+    (typeof properties)[number] & {
+      adjustedScore: number;
+      adjustedRec: string;
+    }
+  >;
   onSelectProperty: (id: number) => void;
+  adjustedNeighborhoodStats?: {
+    opportunity: number;
+    recommendation: string;
+    timelineLabel: string;
+    delta: string;
+  };
 }) {
   if (!open || !neighborhood) return null;
 
@@ -262,21 +359,35 @@ function NeighborhoodPropertiesPopup({
         <div className="mt-4 rounded-f p-[12px] border border-white/[0.04] bg-white/[0.02]">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px]">
             <div>
-              <span className="text-t-muted uppercase tracking-[0.5px] text-[9px] mr-2">Opportunity</span>
+              <span className="text-t-muted uppercase tracking-[0.5px] text-[9px] mr-2">
+                {adjustedNeighborhoodStats?.timelineLabel ?? "3Y"} Opportunity
+              </span>
               <span
                 className="font-mono font-extrabold text-[18px]"
-                style={{ color: scoreColor(neighborhood.scores.opportunity) }}
+                style={{
+                  color: scoreColor(
+                    adjustedNeighborhoodStats?.opportunity ?? neighborhood.scores.opportunity
+                  ),
+                }}
               >
-                {neighborhood.scores.opportunity}
+                {adjustedNeighborhoodStats?.opportunity ?? neighborhood.scores.opportunity}
               </span>
             </div>
             <div>
-              <span className="text-t-muted uppercase tracking-[0.5px] text-[9px] mr-2">Recommendation</span>
-              <span className="font-semibold">{neighborhood.rec}</span>
+              <span className="text-t-muted uppercase tracking-[0.5px] text-[9px] mr-2">
+                Recommendation
+              </span>
+              <span className="font-semibold">
+                {adjustedNeighborhoodStats?.recommendation ?? neighborhood.rec}
+              </span>
             </div>
             <div>
-              <span className="text-t-muted uppercase tracking-[0.5px] text-[9px] mr-2">Delta</span>
-              <span className="font-semibold text-f-green">{neighborhood.delta}</span>
+              <span className="text-t-muted uppercase tracking-[0.5px] text-[9px] mr-2">
+                Horizon
+              </span>
+              <span className="font-semibold text-f-green">
+                {adjustedNeighborhoodStats?.delta ?? neighborhood.delta}
+              </span>
             </div>
           </div>
         </div>
@@ -308,12 +419,12 @@ function NeighborhoodPropertiesPopup({
                   <div className="text-right shrink-0">
                     <div
                       className="text-[18px] font-extrabold font-mono leading-none"
-                      style={{ color: scoreColor(property.score) }}
+                      style={{ color: scoreColor(property.adjustedScore) }}
                     >
-                      {property.score}
+                      {property.adjustedScore}
                     </div>
                     <div className="text-[9px] font-bold uppercase tracking-[0.5px] text-t-muted mt-[4px]">
-                      {property.rec}
+                      {property.adjustedRec}
                     </div>
                   </div>
                 </button>
