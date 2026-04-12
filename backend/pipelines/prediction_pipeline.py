@@ -4,7 +4,10 @@ from config import FINAL_PLOTS_FILE, OUTPUT_DIR
 from models.feature_builder import buildFeaturesAll
 from models.forecast_model import forecastAllPlots
 from models.scoring_model import buildScoresAll
+from models.metrics_model import buildMetricsAll
+from models.llm import generateAIInsightsAll
 from utils import loadJson, saveJson
+
 #where predictions will be saved
 PREDICTIONS_FILE = OUTPUT_DIR / "predicted_plots.json"
 
@@ -20,6 +23,10 @@ def buildFeatures(data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 #compute scoring metrics
 def buildScores(data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return buildScoresAll(data)
+
+#build ui metrics for graphs
+def buildMetrics(data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    return buildMetricsAll(data)
 
 #run prediction model
 def buildPredictions(data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -37,17 +44,20 @@ def runPredictionPipeline() -> List[Dict[str, Any]]:
     print("[Prediction] Building features...")
     data = buildFeatures(data)
 
+    print("[Prediction] Running forecasts...")
+    data = buildPredictions(data)
+
     print("[Prediction] Building scores...")
     data = buildScores(data)
 
-    print("[Prediction] Running forecasts...")
-    data = buildPredictions(data)
+    print("[Prediction] Building metrics...")
+    data = buildMetrics(data)
 
     print("[Prediction] Saving predictions...")
     savePredictions(data)
 
     print(f"[Prediction] Completed. Total plots: {len(data)}")
-
+    data = generateAIInsightsAll(data)
     return data
 
 

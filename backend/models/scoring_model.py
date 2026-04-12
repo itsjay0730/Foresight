@@ -24,6 +24,13 @@ def toDisplayBand(score: float) -> int:
     return round(60 + clamp(score) * 35)
 
 
+# widen score distribution while keeping values aligned
+def stretchScore(score: float) -> float:
+    # stretch mid range without breaking extremes
+    stretched = (score - 0.5) * 1.6 + 0.5
+    return clamp(stretched)
+
+
 # more crime increase => higher risk
 # expected useful range roughly: -0.30 to +0.50
 def computeRiskScore(crimeTrend: float) -> float:
@@ -87,9 +94,9 @@ def computeFinalScore(
     riskScore: float,
 ) -> float:
     score = (
-        0.45 * investmentScore
-        + 0.35 * growthScore
-        + 0.20 * (1 - riskScore)
+        0.38 * investmentScore
+        + 0.33 * growthScore
+        + 0.29 * (1 - riskScore)
     )
     return clamp(score)
 
@@ -114,14 +121,23 @@ def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
     incomeScore = clamp(incomeScoreRaw)
     transitScore = clamp(transitScoreRaw)
 
-    investmentScore = computeInvestmentScore(
-        incomeScore,
-        permitScore,
-        populationScore,
-        transitScore,
+    investmentScore = stretchScore(
+        computeInvestmentScore(
+            incomeScore,
+            permitScore,
+            populationScore,
+            transitScore,
+        )
     )
-    growthScore = computeGrowthScore(permitScore, populationScore)
+
+    growthScore = stretchScore(
+        computeGrowthScore(permitScore, populationScore)
+    )
+
+    riskScore = stretchScore(riskScore)
+
     finalScore = computeFinalScore(investmentScore, growthScore, riskScore)
+
 
     scores = {
         "investmentScore": toDisplayBand(investmentScore),
