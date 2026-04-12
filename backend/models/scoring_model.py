@@ -1,125 +1,192 @@
-from typing import Dict, Any
+from typing import Dict, Any, List
 
+
+# keep value between 0 and 1
 def clamp(value: float) -> float:
     if value < 0:
-        return 0
+        return 0.0
     if value > 1:
-        return 1
+        return 1.0
     return value
 
-# Map realistic score range [0.25, 0.75] → display range [60, 95].
-# Scores outside that band are clamped to the floor/ceiling.
-# This amplifies real differences instead of cramming everything into a narrow slice.
-def toDisplayRange(score: float) -> float:
-    LOW_RAW, HIGH_RAW   = 0.25, 0.75   # expected realistic input band
-    LOW_DISP, HIGH_DISP = 0.60, 0.95   # target display range
-    normalized = (score - LOW_RAW) / (HIGH_RAW - LOW_RAW)
-    return LOW_DISP + clamp(normalized) * (HIGH_DISP - LOW_DISP)
 
+# generic normalization
+def normalize(value: float, minVal: float, maxVal: float) -> float:
+    if value is None:
+        return 0.0
+    if maxVal - minVal == 0:
+        return 0.0
+    return clamp((value - minVal) / (maxVal - minVal))
+
+
+# map normalized score to display band 60–95
+def toDisplayBand(score: float) -> int:
+    return round(60 + clamp(score) * 35)
+
+
+# more crime increase => higher risk
+# expected useful range roughly: -0.30 to +0.50
 def computeRiskScore(crimeTrend: float) -> float:
-    return clamp((crimeTrend + 1) / 2)
+    return normalize(crimeTrend, -0.30, 0.50)
 
+
+# permit activity can be noisy, so use a wide range
+# negative values are decline, positive are momentum
+def computePermitScore(permitGrowth: float) -> float:
+    return normalize(permitGrowth, -0.50, 2.50)
+
+
+# population growth is usually small, so use a tighter range
+def computePopulationScore(populationGrowth: float) -> float:
+    return normalize(populationGrowth, -0.06, 0.04)
+
+
+# closer to transit = higher score
+def computeTransitScore(distanceToTransit: float) -> float:
+    if distanceToTransit is None:
+        return 0.0
+    # smoother falloff so transit helps, but does not dominate
+    return clamp(1 / (1 + 2.5 * distanceToTransit))
+
+
+# normalize income score
+def computeIncomeScore(medianIncome: float) -> float:
+    return normalize(medianIncome, 30000, 150000)
+
+
+# score how investable the area looks right now
 def computeInvestmentScore(
     incomeScore: float,
-    permitGrowth: float,
-    populationGrowth: float,
+    permitScore: float,
+    populationScore: float,
     transitScore: float,
 ) -> float:
-    normalizedPermit     = clamp((permitGrowth + 1) / 2)
-    normalizedPopulation = clamp((populationGrowth + 1) / 2)
     score = (
-        0.30 * incomeScore +
-        0.25 * normalizedPermit +
-        0.25 * normalizedPopulation +
-        0.20 * transitScore
+        0.35 * incomeScore
+        + 0.25 * permitScore
+        + 0.15 * populationScore
+        + 0.25 * transitScore
     )
     return clamp(score)
 
-def computeGrowthScore(permitGrowth: float, populationGrowth: float) -> float:
-    normalizedPermit     = clamp((permitGrowth + 1) / 2)
-    normalizedPopulation = clamp((populationGrowth + 1) / 2)
-    return clamp(0.55 * normalizedPermit + 0.45 * normalizedPopulation)
 
+# score future growth potential
+def computeGrowthScore(permitScore: float, populationScore: float) -> float:
+    score = (
+        0.65 * permitScore
+        + 0.35 * populationScore
+    )
+    return clamp(score)
+
+
+# combine all into final score
+# risk is a penalty, so we use (1 - riskScore)
 def computeFinalScore(
     investmentScore: float,
     growthScore: float,
     riskScore: float,
 ) -> float:
-    return clamp(
-        0.45 * investmentScore +
-        0.40 * growthScore +
-        0.15 * (1 - riskScore)
+    score = (
+        0.45 * investmentScore
+        + 0.35 * growthScore
+        + 0.20 * (1 - riskScore)
     )
+    return clamp(score)
 
-def toPercent(score: float) -> int:
-    return round(toDisplayRange(score) * 100)
 
+# build all scores for one plot
 def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
-    features = plot.get("features", {})
+    features = plot.get("features", {}) or {}
 
-    crimeTrend       = features.get("crimeTrend", 0)
-    permitGrowth     = features.get("permitGrowth", 0)
-    transitScore     = features.get("transitScore", 0)
-    incomeScore      = features.get("incomeScore", 0)
-    populationGrowth = features.get("populationGrowth", 0)
+    crimeTrend = features.get("crimeTrend", 0) or 0
+    permitGrowth = features.get("permitGrowth", 0) or 0
+    transitScoreRaw = features.get("transitScore", 0) or 0
+    incomeScoreRaw = features.get("incomeScore", 0) or 0
+    populationGrowth = features.get("populationGrowth", 0) or 0
 
-    riskScore       = computeRiskScore(crimeTrend)
-    investmentScore = computeInvestmentScore(incomeScore, permitGrowth, populationGrowth, transitScore)
-    growthScore     = computeGrowthScore(permitGrowth, populationGrowth)
-    finalScore      = computeFinalScore(investmentScore, growthScore, riskScore)
+    # feature_builder may already normalize some fields, but to keep this model
+    # stable and realistic we recompute score components from reasonable ranges.
+    riskScore = computeRiskScore(crimeTrend)
+    permitScore = computePermitScore(permitGrowth)
+    populationScore = computePopulationScore(populationGrowth)
 
-    return {
-        "investmentScore": toPercent(investmentScore),
-        "growthScore":     toPercent(growthScore),
-        "riskScore":       toPercent(riskScore),
-        "finalScore":      toPercent(finalScore),
+    # if feature_builder already gave a normalized income/transit score, use it
+    incomeScore = clamp(incomeScoreRaw)
+    transitScore = clamp(transitScoreRaw)
+
+    investmentScore = computeInvestmentScore(
+        incomeScore,
+        permitScore,
+        populationScore,
+        transitScore,
+    )
+    growthScore = computeGrowthScore(permitScore, populationScore)
+    finalScore = computeFinalScore(investmentScore, growthScore, riskScore)
+
+    scores = {
+        "investmentScore": toDisplayBand(investmentScore),
+        "growthScore": toDisplayBand(growthScore),
+        "riskScore": toDisplayBand(riskScore),
+        "finalScore": toDisplayBand(finalScore),
     }
 
-def buildScoresAll(plots):
-    results = []
+    return scores
+
+
+# build scores for all plots
+def buildScoresAll(plots: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    results: List[Dict[str, Any]] = []
 
     for plot in plots:
         scores = buildScores(plot)
 
         forecastScores = {}
-        forecast = plot.get("forecast", {})
+        forecast = plot.get("forecast", {}) or {}
 
         for horizon in ["1y", "3y", "5y"]:
             if (
-                forecast.get("crime_forecast") and
-                forecast.get("permit_forecast") and
-                forecast.get("population_forecast")
+                forecast.get("crime_forecast")
+                and forecast.get("permit_forecast")
+                and forecast.get("population_forecast")
             ):
-                tempFeatures = dict(plot.get("features", {}))
+                tempPlot = dict(plot)
+                tempFeatures = dict(plot.get("features", {}) or {})
 
-                crimeHistory      = plot.get("crime_history", [])
-                permitHistory     = plot.get("permit_history", [])
-                populationHistory = plot.get("population_history", [])
-
-                crimeForecast      = forecast["crime_forecast"].get(horizon)
-                permitForecast     = forecast["permit_forecast"].get(horizon)
+                crimeForecast = forecast["crime_forecast"].get(horizon)
+                permitForecast = forecast["permit_forecast"].get(horizon)
                 populationForecast = forecast["population_forecast"].get(horizon)
+
+                crimeHistory = plot.get("crime_history", []) or []
+                permitHistory = plot.get("permit_history", []) or []
+                populationHistory = plot.get("population_history", []) or []
 
                 if crimeForecast is not None and len(crimeHistory) > 0:
                     lastCrime = crimeHistory[-1]["crime_count"]
-                    tempFeatures["crimeTrend"] = clamp(
+                    tempFeatures["crimeTrend"] = (
                         (crimeForecast - lastCrime) / max(lastCrime, 1)
                     )
 
                 if permitForecast is not None and len(permitHistory) > 0:
                     lastPermit = permitHistory[-1]["permit_count"]
-                    tempFeatures["permitGrowth"] = clamp(
+                    tempFeatures["permitGrowth"] = (
                         (permitForecast - lastPermit) / max(lastPermit, 1)
                     )
 
                 if populationForecast is not None and len(populationHistory) > 0:
                     lastPopulation = populationHistory[-1]["population"]
-                    tempFeatures["populationGrowth"] = clamp(
+                    tempFeatures["populationGrowth"] = (
                         (populationForecast - lastPopulation) / max(lastPopulation, 1)
                     )
 
-                forecastScores[horizon] = buildScores({**plot, "features": tempFeatures})
+                tempPlot["features"] = tempFeatures
+                forecastScores[horizon] = buildScores(tempPlot)
 
-        results.append({**plot, "scores": scores, "forecast_scores": forecastScores})
+        combined = {
+            **plot,
+            "scores": scores,
+            "forecast_scores": forecastScores,
+        }
+
+        results.append(combined)
 
     return results
