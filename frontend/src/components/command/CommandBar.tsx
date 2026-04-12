@@ -245,8 +245,8 @@ export default function CommandBar({
                           {result.title}
                         </div>
                         <div className="text-[10px] text-t-muted truncate mt-[2px]">
-                          {result.type === "hood" ? "Neighborhood" : "Property"} ·{" "}
-                          {result.subtitle}
+                          {result.type === "hood" ? "Neighborhood" : "Property"}{" "}
+                          · {result.subtitle}
                         </div>
                       </div>
 
@@ -281,7 +281,7 @@ export default function CommandBar({
           className="cb-select w-[96px] shrink-0"
           value={filters.timeline}
           onChange={(e) =>
-            onFilterChange({ timeline: e.target.value as "0" | "1" | "3" | "5" })
+            onFilterChange({ timeline: e.target.value as "1" | "3" | "5" })
           }
         >
           <option value="0">Current</option>

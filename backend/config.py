@@ -15,7 +15,7 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 # General settings
 # -----------------------------
 REQUEST_TIMEOUT = 20
-PIPELINE_LIMIT = 50 # matches the 100-plot dataset shown in the map
+PIPELINE_LIMIT = 1 # matches the 100-plot dataset shown in the map
 
 # Search radius per feature type (in miles)
 SEARCH_RADIUS_CRIME_MILES   = 0.5
