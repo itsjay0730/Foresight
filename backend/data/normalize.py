@@ -34,6 +34,7 @@ def _normalizeOnePlot(plot: dict[str, Any]) -> dict[str, Any] | None:
     schools = plot.get("schools", {}) or {}
     amenities = plot.get("amenities", {}) or {}
     poi = plot.get("poi", {}) or {}
+    housingMarket = plot.get("housing_market", {}) or {}
 
     normalized = {
         # base
@@ -159,6 +160,33 @@ def _normalizeOnePlot(plot: dict[str, Any]) -> dict[str, Any] | None:
         "poi_density_score": safeFloat(
             poi.get("poi_density_score")
         ),
+
+        # housing market
+        "housing_market_scope": housingMarket.get("market_scope"),
+
+        "zip_rent_index_latest": safeFloat(
+            housingMarket.get("zip_rent_index_latest")
+        ),
+        "zip_rent_growth_1y": safeFloat(
+            housingMarket.get("zip_rent_growth_1y")
+        ),
+        "zip_rent_history": housingMarket.get("zip_rent_history", []),
+
+        "metro_rent_index_latest": safeFloat(
+            housingMarket.get("metro_rent_index_latest")
+        ),
+        "metro_rent_growth_1y": safeFloat(
+            housingMarket.get("metro_rent_growth_1y")
+        ),
+        "metro_rent_history": housingMarket.get("metro_rent_history", []),
+
+        "sales_count_latest": safeFloat(
+            housingMarket.get("sales_count_latest")
+        ),
+        "sales_count_growth_1y": safeFloat(
+            housingMarket.get("sales_count_growth_1y")
+        ),
+        "sales_count_history": housingMarket.get("sales_count_history", []),
     }
 
     return normalized
@@ -240,6 +268,27 @@ if __name__ == "__main__":
             "office_poi_count_nearby": 6,
             "park_poi_count_nearby": 2,
             "poi_density_score": 0.61,
+        },
+        "housing_market": {
+            "market_scope": "zip_plus_metro",
+            "zip_rent_index_latest": 2385.22,
+            "zip_rent_growth_1y": 0.0614,
+            "zip_rent_history": [
+                {"month": "2025-01", "value": 2247.15},
+                {"month": "2026-01", "value": 2385.22},
+            ],
+            "metro_rent_index_latest": 2132.29,
+            "metro_rent_growth_1y": 0.0546,
+            "metro_rent_history": [
+                {"month": "2025-01", "value": 2005.04},
+                {"month": "2026-02", "value": 2132.29},
+            ],
+            "sales_count_latest": 5947.0,
+            "sales_count_growth_1y": -0.0025,
+            "sales_count_history": [
+                {"month": "2025-01", "value": 5956.0},
+                {"month": "2026-02", "value": 5947.0},
+            ],
         },
     }
 

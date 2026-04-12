@@ -1,15 +1,3 @@
-# Fetch Plots
-# ↓
-# Fetch Sub Data (crime, permits, income, population, transit, demographics, property value, schools)
-# ↓
-# Attach Data
-# ↓
-# Normalize and flatten
-# ↓
-# Save clean dataset
-# ↓
-# Send to scoring engine later
-
 from __future__ import annotations
 
 import json
@@ -19,12 +7,13 @@ import pandas as pd
 
 from config import ENRICHED_PLOTS_FILE, FINAL_PLOTS_CSV, FINAL_PLOTS_FILE
 from data.fetch_amenities import fetchAmenities
-from data.fetch_poi import fetchPOI
 from data.fetch_crime import fetchCrime
 from data.fetch_demographics import fetchDemographics
+from data.fetch_housing_market import fetchHousingMarket
 from data.fetch_income import fetchIncome
 from data.fetch_permits import fetchPermits
 from data.fetch_plots import fetchPlots
+from data.fetch_poi import fetchPOI
 from data.fetch_population import fetchPopulation
 from data.fetch_property_value import fetchPropertyValue
 from data.fetch_schools import fetchSchools
@@ -44,11 +33,16 @@ def enrichPlot(plot: dict[str, Any]) -> dict[str, Any]:
     enriched["income"] = fetchIncome(enriched)
     enriched["population"] = fetchPopulation(enriched)
     enriched["transit"] = fetchTransit(enriched)
-    enriched["amenities"] = fetchAmenities(enriched)
+
     enriched["demographics"] = fetchDemographics(enriched)
     enriched["property_value"] = fetchPropertyValue(enriched)
     enriched["schools"] = fetchSchools(enriched)
+    enriched["amenities"] = fetchAmenities(enriched)
     enriched["poi"] = fetchPOI(enriched)
+
+    # new housing metro context layer
+    enriched["housing_market"] = fetchHousingMarket(enriched)
+
     return enriched
 
 

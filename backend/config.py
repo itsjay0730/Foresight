@@ -1,6 +1,9 @@
 import os
 from pathlib import Path
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 # -----------------------------
 # Base project paths
 # -----------------------------
@@ -12,7 +15,7 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 # General settings
 # -----------------------------
 REQUEST_TIMEOUT = 20
-PIPELINE_LIMIT = 20 # matches the 100-plot dataset shown in the map
+PIPELINE_LIMIT = 100 # matches the 100-plot dataset shown in the map
 
 # Search radius per feature type (in miles)
 SEARCH_RADIUS_CRIME_MILES   = 0.5
