@@ -217,6 +217,7 @@ export default function CommandBar({
           value={filters.timeline}
           onChange={(e) => onFilterChange({ timeline: e.target.value as TimelineValue })}
         >
+          <option value="0">Current</option>
           <option value="1">1Y</option>
           <option value="3">3Y</option>
           <option value="5">5Y</option>

@@ -64,7 +64,7 @@ export type InvestmentType =
 
 export type ScoreLayerKey = keyof ScoreSet;
 
-export type TimelineValue = "1" | "3" | "5";
+export type TimelineValue = "0" |"1" | "3" | "5";
 
 export interface FilterState {
   investmentType: string;
