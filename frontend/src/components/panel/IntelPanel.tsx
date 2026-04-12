@@ -86,45 +86,41 @@ function getTimelinePanelDelta(
 }
 
 function getTimelineAwareScoreSet(hood: Neighborhood, timeline: string) {
-  const forecastScores = (hood as any).forecast_scores;
+  // FIX: Read each dimension's own trend[] array from metrics
+  // instead of reading the same forecast_scores.finalScore for all 5.
+  //
+  // metrics.investmentOpportunity.trend = [current, 1y, 3y, 5y]
+  // metrics.appreciationPotential.trend = [current, 1y, 3y, 5y]
+  // etc. — each has DIFFERENT projected values per dimension.
+  //
+  // The old code read forecast_scores.Xy.finalScore for all 5 non-opportunity
+  // dimensions, which is a single aggregate number, causing them to all show
+  // the same value (e.g. all showing 79).
+
+  const metrics = (hood as any).metrics as Record<string, { score: number; trend?: number[] }> | undefined;
+
+  // Map timeline string to trend array index
+  // trend[0] = baseline, trend[1] = 1y, trend[2] = 3y, trend[3] = 5y
+  const trendIndex: Record<string, number> = { "0": 0, "1": 1, "3": 2, "5": 3 };
+  const idx = trendIndex[timeline] ?? 0;
+
+  function getFromTrend(metricKey: string, fallbackScore: number): number {
+    const trend = metrics?.[metricKey]?.trend;
+    if (trend && idx < trend.length) {
+      return Math.max(0, Math.min(100, Math.round(trend[idx])));
+    }
+    // If no trend data, use base score with a small timeline adjustment
+    const mult = timeline === "1" ? 0.98 : timeline === "5" ? 1.02 : 1.0;
+    return Math.max(0, Math.min(100, Math.round(fallbackScore * mult)));
+  }
 
   return {
-    opportunity: getTimelinePanelScore(
-      hood.scores.opportunity,
-      timeline,
-      forecastScores,
-      "opportunity"
-    ),
-    appreciation: getTimelinePanelScore(
-      hood.scores.appreciation,
-      timeline,
-      forecastScores,
-      "finalScore"
-    ),
-    devReady: getTimelinePanelScore(
-      hood.scores.devReady,
-      timeline,
-      forecastScores,
-      "finalScore"
-    ),
-    stability: getTimelinePanelScore(
-      hood.scores.stability,
-      timeline,
-      forecastScores,
-      "finalScore"
-    ),
-    family: getTimelinePanelScore(
-      hood.scores.family,
-      timeline,
-      forecastScores,
-      "finalScore"
-    ),
-    commercial: getTimelinePanelScore(
-      hood.scores.commercial,
-      timeline,
-      forecastScores,
-      "finalScore"
-    ),
+    opportunity: getFromTrend("investmentOpportunity", hood.scores.opportunity),
+    appreciation: getFromTrend("appreciationPotential", hood.scores.appreciation),
+    devReady: getFromTrend("developmentReadiness", hood.scores.devReady),
+    stability: getFromTrend("marketStability", hood.scores.stability),
+    family: getFromTrend("familyDemand", hood.scores.family),
+    commercial: getFromTrend("commercialExpansion", hood.scores.commercial),
   };
 }
 
