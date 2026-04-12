@@ -1,0 +1,3470 @@
+[
+  {
+    "id": "17103120121021",
+    "lat": 41.88227600197529,
+    "lng": -87.62569872954695,
+    "neighborhood": "SOUTH CHICAGO",
+    "zip": "60602",
+    "property_type": "parcel_candidate",
+    "parcel_size": 0,
+    "zoning": "299",
+    "crime_trend": 0.4043,
+    "permit_activity": -0.0656,
+    "income": 167617,
+    "population_growth": -0.1786,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 108,
+        "violent_crime_count": 28
+      },
+      {
+        "year": 2023,
+        "crime_count": 126,
+        "violent_crime_count": 31
+      },
+      {
+        "year": 2024,
+        "crime_count": 120,
+        "violent_crime_count": 25
+      },
+      {
+        "year": 2025,
+        "crime_count": 129,
+        "violent_crime_count": 24
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 314
+      },
+      {
+        "year": 2023,
+        "permit_count": 265
+      },
+      {
+        "year": 2024,
+        "permit_count": 360
+      },
+      {
+        "year": 2025,
+        "permit_count": 322
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 1142
+      },
+      {
+        "year": 2022,
+        "population": 938
+      }
+    ],
+    "transit_distance": 0.017,
+    "crime_count_nearby": 66,
+    "violent_crime_count_nearby": 22,
+    "permit_count_nearby": 114,
+    "nearest_station": "Madison & Wabash",
+    "transit_stop_count_nearby": 51,
+    "features": {
+      "crimeTrend": 0.075,
+      "permitGrowth": -0.10555555555555556,
+      "transitScore": 0.9832841691248771,
+      "incomeScore": 1.1468083333333334,
+      "populationGrowth": -0.1786339754816112
+    },
+    "scores": {
+      "investmentScore": 76,
+      "growthScore": 43,
+      "riskScore": 54,
+      "finalScore": 85
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 80,
+        "growthScore": 52,
+        "riskScore": 52,
+        "finalScore": 95
+      },
+      "3y": {
+        "investmentScore": 81,
+        "growthScore": 54,
+        "riskScore": 57,
+        "finalScore": 96
+      },
+      "5y": {
+        "investmentScore": 82,
+        "growthScore": 56,
+        "riskScore": 61,
+        "finalScore": 97
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 135.0,
+        "3y": 146.39999999999964,
+        "5y": 157.79999999999927
+      },
+      "permit_forecast": {
+        "1y": 345.0,
+        "3y": 368.7999999999993,
+        "5y": 392.59999999999854
+      },
+      "population_forecast": {
+        "1y": 734.0,
+        "3y": 326.0,
+        "5y": -82.0
+      }
+    }
+  },
+  {
+    "id": "17032210130000",
+    "lat": 41.8989865305,
+    "lng": -87.6215879503,
+    "neighborhood": "NORTH CHICAGO",
+    "zip": "60611",
+    "property_type": "parcel_candidate",
+    "parcel_size": 0,
+    "zoning": "529",
+    "crime_trend": -0.0938,
+    "permit_activity": 0.3519,
+    "income": 126812,
+    "population_growth": 0.0198,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 90,
+        "violent_crime_count": 12
+      },
+      {
+        "year": 2023,
+        "crime_count": 62,
+        "violent_crime_count": 19
+      },
+      {
+        "year": 2024,
+        "crime_count": 76,
+        "violent_crime_count": 20
+      },
+      {
+        "year": 2025,
+        "crime_count": 53,
+        "violent_crime_count": 13
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 169
+      },
+      {
+        "year": 2023,
+        "permit_count": 207
+      },
+      {
+        "year": 2024,
+        "permit_count": 227
+      },
+      {
+        "year": 2025,
+        "permit_count": 185
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 34562
+      },
+      {
+        "year": 2022,
+        "population": 35247
+      }
+    ],
+    "transit_distance": 0.1197,
+    "crime_count_nearby": 29,
+    "violent_crime_count_nearby": 10,
+    "permit_count_nearby": 73,
+    "nearest_station": "Pearson & Dewitt",
+    "transit_stop_count_nearby": 31,
+    "features": {
+      "crimeTrend": -0.3026315789473684,
+      "permitGrowth": -0.18502202643171806,
+      "transitScore": 0.8930963650977941,
+      "incomeScore": 0.8067666666666666,
+      "populationGrowth": 0.019819454892656675
+    },
+    "scores": {
+      "investmentScore": 65,
+      "growthScore": 45,
+      "riskScore": 35,
+      "finalScore": 83
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 69,
+        "growthScore": 55,
+        "riskScore": 50,
+        "finalScore": 89
+      },
+      "3y": {
+        "investmentScore": 71,
+        "growthScore": 58,
+        "riskScore": 50,
+        "finalScore": 92
+      },
+      "5y": {
+        "investmentScore": 72,
+        "growthScore": 61,
+        "riskScore": 50,
+        "finalScore": 95
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 46.0,
+        "3y": 26.599999999998545,
+        "5y": 7.19999999999709
+      },
+      "permit_forecast": {
+        "1y": 214.0,
+        "3y": 227.60000000000036,
+        "5y": 241.20000000000073
+      },
+      "population_forecast": {
+        "1y": 35932.0,
+        "3y": 37302.0,
+        "5y": 38672.0
+      }
+    }
+  },
+  {
+    "id": "17042040640000",
+    "lat": 41.9102792067,
+    "lng": -87.6342172613,
+    "neighborhood": "NORTH CHICAGO",
+    "zip": "60610",
+    "property_type": "parcel_candidate",
+    "parcel_size": 0,
+    "zoning": "211",
+    "crime_trend": -0.2632,
+    "permit_activity": -0.1786,
+    "income": 106277,
+    "population_growth": 0.0114,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 36,
+        "violent_crime_count": 11
+      },
+      {
+        "year": 2023,
+        "crime_count": 30,
+        "violent_crime_count": 9
+      },
+      {
+        "year": 2024,
+        "crime_count": 40,
+        "violent_crime_count": 8
+      },
+      {
+        "year": 2025,
+        "crime_count": 36,
+        "violent_crime_count": 10
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 55
+      },
+      {
+        "year": 2023,
+        "permit_count": 48
+      },
+      {
+        "year": 2024,
+        "permit_count": 42
+      },
+      {
+        "year": 2025,
+        "permit_count": 58
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 42422
+      },
+      {
+        "year": 2022,
+        "population": 42904
+      }
+    ],
+    "transit_distance": 0.0599,
+    "crime_count_nearby": 14,
+    "violent_crime_count_nearby": 3,
+    "permit_count_nearby": 23,
+    "nearest_station": "LaSalle & North Ave",
+    "transit_stop_count_nearby": 43,
+    "features": {
+      "crimeTrend": -0.1,
+      "permitGrowth": 0.38095238095238093,
+      "transitScore": 0.9434852344560807,
+      "incomeScore": 0.6356416666666667,
+      "populationGrowth": 0.011362029135825751
+    },
+    "scores": {
+      "investmentScore": 68,
+      "growthScore": 61,
+      "riskScore": 45,
+      "finalScore": 94
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 63,
+        "growthScore": 50,
+        "riskScore": 53,
+        "finalScore": 80
+      },
+      "3y": {
+        "investmentScore": 63,
+        "growthScore": 51,
+        "riskScore": 56,
+        "finalScore": 80
+      },
+      "5y": {
+        "investmentScore": 64,
+        "growthScore": 51,
+        "riskScore": 58,
+        "finalScore": 80
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 38.0,
+        "3y": 40.0,
+        "5y": 42.0
+      },
+      "permit_forecast": {
+        "1y": 51.5,
+        "3y": 52.10000000000002,
+        "5y": 52.700000000000045
+      },
+      "population_forecast": {
+        "1y": 43386.0,
+        "3y": 44350.0,
+        "5y": 45314.0
+      }
+    }
+  },
+  {
+    "id": "17042171420000",
+    "lat": 41.9071336484,
+    "lng": -87.6305022444,
+    "neighborhood": "NORTH CHICAGO",
+    "zip": "60610",
+    "property_type": "parcel_candidate",
+    "parcel_size": 0,
+    "zoning": "391",
+    "crime_trend": 0.4444,
+    "permit_activity": -0.2059,
+    "income": 106277,
+    "population_growth": 0.0114,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 45,
+        "violent_crime_count": 12
+      },
+      {
+        "year": 2023,
+        "crime_count": 36,
+        "violent_crime_count": 12
+      },
+      {
+        "year": 2024,
+        "crime_count": 53,
+        "violent_crime_count": 13
+      },
+      {
+        "year": 2025,
+        "crime_count": 47,
+        "violent_crime_count": 14
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 76
+      },
+      {
+        "year": 2023,
+        "permit_count": 87
+      },
+      {
+        "year": 2024,
+        "permit_count": 83
+      },
+      {
+        "year": 2025,
+        "permit_count": 90
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 42422
+      },
+      {
+        "year": 2022,
+        "population": 42904
+      }
+    ],
+    "transit_distance": 0.0816,
+    "crime_count_nearby": 26,
+    "violent_crime_count_nearby": 7,
+    "permit_count_nearby": 27,
+    "nearest_station": "Clark & Schiller",
+    "transit_stop_count_nearby": 46,
+    "features": {
+      "crimeTrend": -0.11320754716981132,
+      "permitGrowth": 0.08433734939759036,
+      "transitScore": 0.9245562130177516,
+      "incomeScore": 0.6356416666666667,
+      "populationGrowth": 0.011362029135825751
+    },
+    "scores": {
+      "investmentScore": 64,
+      "growthScore": 53,
+      "riskScore": 44,
+      "finalScore": 85
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 63,
+        "growthScore": 51,
+        "riskScore": 54,
+        "finalScore": 80
+      },
+      "3y": {
+        "investmentScore": 65,
+        "growthScore": 54,
+        "riskScore": 59,
+        "finalScore": 82
+      },
+      "5y": {
+        "investmentScore": 66,
+        "growthScore": 57,
+        "riskScore": 64,
+        "finalScore": 84
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 51.0,
+        "3y": 55.600000000000364,
+        "5y": 60.20000000000073
+      },
+      "permit_forecast": {
+        "1y": 93.5,
+        "3y": 101.10000000000036,
+        "5y": 108.70000000000073
+      },
+      "population_forecast": {
+        "1y": 43386.0,
+        "3y": 44350.0,
+        "5y": 45314.0
+      }
+    }
+  },
+  {
+    "id": "17042180531132",
+    "lat": 41.9070463872,
+    "lng": -87.6296434248,
+    "neighborhood": "NORTH CHICAGO",
+    "zip": "60610",
+    "property_type": "parcel_candidate",
+    "parcel_size": 0,
+    "zoning": "299",
+    "crime_trend": 0.6111,
+    "permit_activity": -0.0625,
+    "income": 106277,
+    "population_growth": 0.0114,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 43,
+        "violent_crime_count": 10
+      },
+      {
+        "year": 2023,
+        "crime_count": 32,
+        "violent_crime_count": 10
+      },
+      {
+        "year": 2024,
+        "crime_count": 52,
+        "violent_crime_count": 13
+      },
+      {
+        "year": 2025,
+        "crime_count": 44,
+        "violent_crime_count": 13
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 77
+      },
+      {
+        "year": 2023,
+        "permit_count": 90
+      },
+      {
+        "year": 2024,
+        "permit_count": 90
+      },
+      {
+        "year": 2025,
+        "permit_count": 90
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 42422
+      },
+      {
+        "year": 2022,
+        "population": 42904
+      }
+    ],
+    "transit_distance": 0.1208,
+    "crime_count_nearby": 29,
+    "violent_crime_count_nearby": 8,
+    "permit_count_nearby": 30,
+    "nearest_station": "Clark & Schiller",
+    "transit_stop_count_nearby": 43,
+    "features": {
+      "crimeTrend": -0.15384615384615385,
+      "permitGrowth": 0.0,
+      "transitScore": 0.8922198429693077,
+      "incomeScore": 0.6356416666666667,
+      "populationGrowth": 0.011362029135825751
+    },
+    "scores": {
+      "investmentScore": 62,
+      "growthScore": 50,
+      "riskScore": 42,
+      "finalScore": 82
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 63,
+        "growthScore": 52,
+        "riskScore": 55,
+        "finalScore": 81
+      },
+      "3y": {
+        "investmentScore": 64,
+        "growthScore": 55,
+        "riskScore": 60,
+        "finalScore": 82
+      },
+      "5y": {
+        "investmentScore": 66,
+        "growthScore": 58,
+        "riskScore": 66,
+        "finalScore": 84
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 48.5,
+        "3y": 53.100000000000364,
+        "5y": 57.70000000000073
+      },
+      "permit_forecast": {
+        "1y": 96.5,
+        "3y": 104.30000000000018,
+        "5y": 112.10000000000036
+      },
+      "population_forecast": {
+        "1y": 43386.0,
+        "3y": 44350.0,
+        "5y": 45314.0
+      }
+    }
+  },
+  {
+    "id": "17151010181016",
+    "lat": 41.881384366194695,
+    "lng": -87.62498157745645,
+    "neighborhood": "SOUTH CHICAGO",
+    "zip": "60603",
+    "property_type": "parcel_candidate",
+    "parcel_size": 0,
+    "zoning": "599",
+    "crime_trend": 0.2041,
+    "permit_activity": -0.1009,
+    "income": 124888,
+    "population_growth": -0.1294,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 99,
+        "violent_crime_count": 28
+      },
+      {
+        "year": 2023,
+        "crime_count": 116,
+        "violent_crime_count": 27
+      },
+      {
+        "year": 2024,
+        "crime_count": 113,
+        "violent_crime_count": 24
+      },
+      {
+        "year": 2025,
+        "crime_count": 115,
+        "violent_crime_count": 22
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 293
+      },
+      {
+        "year": 2023,
+        "permit_count": 232
+      },
+      {
+        "year": 2024,
+        "permit_count": 334
+      },
+      {
+        "year": 2025,
+        "permit_count": 276
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 1275
+      },
+      {
+        "year": 2022,
+        "population": 1110
+      }
+    ],
+    "transit_distance": 0.0644,
+    "crime_count_nearby": 59,
+    "violent_crime_count_nearby": 21,
+    "permit_count_nearby": 98,
+    "nearest_station": "Michigan & Monroe",
+    "transit_stop_count_nearby": 53,
+    "features": {
+      "crimeTrend": 0.017699115044247787,
+      "permitGrowth": -0.17365269461077845,
+      "transitScore": 0.9394964299135663,
+      "incomeScore": 0.7907333333333333,
+      "populationGrowth": -0.12941176470588237
+    },
+    "scores": {
+      "investmentScore": 64,
+      "growthScore": 42,
+      "riskScore": 51,
+      "finalScore": 75
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 68,
+        "growthScore": 52,
+        "riskScore": 53,
+        "finalScore": 86
+      },
+      "3y": {
+        "investmentScore": 69,
+        "growthScore": 53,
+        "riskScore": 57,
+        "finalScore": 86
+      },
+      "5y": {
+        "investmentScore": 69,
+        "growthScore": 54,
+        "riskScore": 61,
+        "finalScore": 86
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 122.0,
+        "3y": 131.0,
+        "5y": 140.0
+      },
+      "permit_forecast": {
+        "1y": 296.5,
+        "3y": 306.7000000000007,
+        "5y": 316.90000000000146
+      },
+      "population_forecast": {
+        "1y": 945.0,
+        "3y": 615.0,
+        "5y": 285.0
+      }
+    }
+  },
+  {
+    "id": "2563584-20260916",
+    "lat": 41.8893542519,
+    "lng": -87.6241024562,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60611",
+    "property_type": "business_candidate",
+    "parcel_size": 0,
+    "zoning": "Limited Business License",
+    "crime_trend": 1.1951,
+    "permit_activity": -0.0225,
+    "income": 126812,
+    "population_growth": 0.0198,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 178,
+        "violent_crime_count": 30
+      },
+      {
+        "year": 2023,
+        "crime_count": 164,
+        "violent_crime_count": 46
+      },
+      {
+        "year": 2024,
+        "crime_count": 166,
+        "violent_crime_count": 40
+      },
+      {
+        "year": 2025,
+        "crime_count": 131,
+        "violent_crime_count": 26
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 212
+      },
+      {
+        "year": 2023,
+        "permit_count": 247
+      },
+      {
+        "year": 2024,
+        "permit_count": 350
+      },
+      {
+        "year": 2025,
+        "permit_count": 299
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 34562
+      },
+      {
+        "year": 2022,
+        "population": 35247
+      }
+    ],
+    "transit_distance": 0.0579,
+    "crime_count_nearby": 90,
+    "violent_crime_count_nearby": 27,
+    "permit_count_nearby": 87,
+    "nearest_station": "Michigan (Lower) & Hubbard",
+    "transit_stop_count_nearby": 57,
+    "features": {
+      "crimeTrend": -0.21084337349397592,
+      "permitGrowth": -0.1457142857142857,
+      "transitScore": 0.9452689290103033,
+      "incomeScore": 0.8067666666666666,
+      "populationGrowth": 0.019819454892656675
+    },
+    "scores": {
+      "investmentScore": 67,
+      "growthScore": 46,
+      "riskScore": 39,
+      "finalScore": 84
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 71,
+        "growthScore": 57,
+        "riskScore": 50,
+        "finalScore": 92
+      },
+      "3y": {
+        "investmentScore": 75,
+        "growthScore": 64,
+        "riskScore": 50,
+        "finalScore": 100
+      },
+      "5y": {
+        "investmentScore": 78,
+        "growthScore": 72,
+        "riskScore": 50,
+        "finalScore": 100
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 125.0,
+        "3y": 97.20000000000073,
+        "5y": 69.40000000000146
+      },
+      "permit_forecast": {
+        "1y": 368.0,
+        "3y": 440.8000000000029,
+        "5y": 513.6000000000058
+      },
+      "population_forecast": {
+        "1y": 35932.0,
+        "3y": 37302.0,
+        "5y": 38672.0
+      }
+    }
+  },
+  {
+    "id": "14293140481073",
+    "lat": 41.92743116494208,
+    "lng": -87.66252955275677,
+    "neighborhood": "LAKE VIEW",
+    "zip": "60614",
+    "property_type": "parcel_candidate",
+    "parcel_size": 0,
+    "zoning": "299",
+    "crime_trend": 0.0,
+    "permit_activity": -0.2222,
+    "income": 135364,
+    "population_growth": -0.0058,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 13,
+        "violent_crime_count": 1
+      },
+      {
+        "year": 2023,
+        "crime_count": 21,
+        "violent_crime_count": 7
+      },
+      {
+        "year": 2024,
+        "crime_count": 18,
+        "violent_crime_count": 4
+      },
+      {
+        "year": 2025,
+        "crime_count": 13,
+        "violent_crime_count": 6
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 46
+      },
+      {
+        "year": 2023,
+        "permit_count": 17
+      },
+      {
+        "year": 2024,
+        "permit_count": 50
+      },
+      {
+        "year": 2025,
+        "permit_count": 55
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 72119
+      },
+      {
+        "year": 2022,
+        "population": 71701
+      }
+    ],
+    "transit_distance": 0.157,
+    "crime_count_nearby": 8,
+    "violent_crime_count_nearby": 1,
+    "permit_count_nearby": 14,
+    "nearest_station": "Fullerton & Southport",
+    "transit_stop_count_nearby": 16,
+    "features": {
+      "crimeTrend": -0.2777777777777778,
+      "permitGrowth": 0.1,
+      "transitScore": 0.8643042350907519,
+      "incomeScore": 0.8780333333333333,
+      "populationGrowth": -0.0057959760950651
+    },
+    "scores": {
+      "investmentScore": 70,
+      "growthScore": 53,
+      "riskScore": 36,
+      "finalScore": 92
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 69,
+        "growthScore": 51,
+        "riskScore": 60,
+        "finalScore": 84
+      },
+      "3y": {
+        "investmentScore": 72,
+        "growthScore": 57,
+        "riskScore": 57,
+        "finalScore": 91
+      },
+      "5y": {
+        "investmentScore": 75,
+        "growthScore": 63,
+        "riskScore": 55,
+        "finalScore": 98
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 15.5,
+        "3y": 14.899999999999977,
+        "5y": 14.299999999999955
+      },
+      "permit_forecast": {
+        "1y": 57.0,
+        "3y": 69.0,
+        "5y": 81.0
+      },
+      "population_forecast": {
+        "1y": 71283.0,
+        "3y": 70447.0,
+        "5y": 69611.0
+      }
+    }
+  },
+  {
+    "id": "14173020410000",
+    "lat": 41.9605657137,
+    "lng": -87.6673676063,
+    "neighborhood": "LAKE VIEW",
+    "zip": "60613",
+    "property_type": "parcel_candidate",
+    "parcel_size": 0,
+    "zoning": "278",
+    "crime_trend": 0.0,
+    "permit_activity": -0.6154,
+    "income": 92238,
+    "population_growth": -0.0248,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 16,
+        "violent_crime_count": 6
+      },
+      {
+        "year": 2023,
+        "crime_count": 19,
+        "violent_crime_count": 5
+      },
+      {
+        "year": 2024,
+        "crime_count": 14,
+        "violent_crime_count": 2
+      },
+      {
+        "year": 2025,
+        "crime_count": 13,
+        "violent_crime_count": 4
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 27
+      },
+      {
+        "year": 2023,
+        "permit_count": 20
+      },
+      {
+        "year": 2024,
+        "permit_count": 27
+      },
+      {
+        "year": 2025,
+        "permit_count": 25
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 53282
+      },
+      {
+        "year": 2022,
+        "population": 51961
+      }
+    ],
+    "transit_distance": 0.1049,
+    "crime_count_nearby": 6,
+    "violent_crime_count_nearby": 1,
+    "permit_count_nearby": 5,
+    "nearest_station": "Clark & Montrose",
+    "transit_stop_count_nearby": 23,
+    "features": {
+      "crimeTrend": -0.07142857142857142,
+      "permitGrowth": -0.07407407407407407,
+      "transitScore": 0.9050592813829306,
+      "incomeScore": 0.51865,
+      "populationGrowth": -0.024792612889906536
+    },
+    "scores": {
+      "investmentScore": 57,
+      "growthScore": 47,
+      "riskScore": 46,
+      "finalScore": 75
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 59,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 77
+      },
+      "3y": {
+        "investmentScore": 59,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 77
+      },
+      "5y": {
+        "investmentScore": 59,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 77
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 12.0,
+        "3y": 9.199999999999818,
+        "5y": 6.399999999999636
+      },
+      "permit_forecast": {
+        "1y": 25.0,
+        "3y": 25.19999999999999,
+        "5y": 25.399999999999977
+      },
+      "population_forecast": {
+        "1y": 50640.0,
+        "3y": 47998.0,
+        "5y": 45356.0
+      }
+    }
+  },
+  {
+    "id": "14174030471002",
+    "lat": 41.96082223,
+    "lng": -87.6559116605,
+    "neighborhood": "LAKE VIEW",
+    "zip": "60613",
+    "property_type": "parcel_candidate",
+    "parcel_size": 0,
+    "zoning": "299",
+    "crime_trend": -0.0526,
+    "permit_activity": -0.7333,
+    "income": 92238,
+    "population_growth": -0.0248,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 46,
+        "violent_crime_count": 16
+      },
+      {
+        "year": 2023,
+        "crime_count": 37,
+        "violent_crime_count": 13
+      },
+      {
+        "year": 2024,
+        "crime_count": 40,
+        "violent_crime_count": 12
+      },
+      {
+        "year": 2025,
+        "crime_count": 38,
+        "violent_crime_count": 12
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 14
+      },
+      {
+        "year": 2023,
+        "permit_count": 22
+      },
+      {
+        "year": 2024,
+        "permit_count": 25
+      },
+      {
+        "year": 2025,
+        "permit_count": 22
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 53282
+      },
+      {
+        "year": 2022,
+        "population": 51961
+      }
+    ],
+    "transit_distance": 0.0775,
+    "crime_count_nearby": 18,
+    "violent_crime_count_nearby": 6,
+    "permit_count_nearby": 4,
+    "nearest_station": "Sheridan & Broadway/Montrose",
+    "transit_stop_count_nearby": 40,
+    "features": {
+      "crimeTrend": -0.05,
+      "permitGrowth": -0.12,
+      "transitScore": 0.9280742459396752,
+      "incomeScore": 0.51865,
+      "populationGrowth": -0.024792612889906536
+    },
+    "scores": {
+      "investmentScore": 57,
+      "growthScore": 46,
+      "riskScore": 48,
+      "finalScore": 74
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 62,
+        "growthScore": 57,
+        "riskScore": 50,
+        "finalScore": 85
+      },
+      "3y": {
+        "investmentScore": 65,
+        "growthScore": 64,
+        "riskScore": 50,
+        "finalScore": 92
+      },
+      "5y": {
+        "investmentScore": 68,
+        "growthScore": 70,
+        "riskScore": 50,
+        "finalScore": 100
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 35.0,
+        "3y": 30.800000000000182,
+        "5y": 26.600000000000364
+      },
+      "permit_forecast": {
+        "1y": 27.5,
+        "3y": 32.899999999999636,
+        "5y": 38.29999999999927
+      },
+      "population_forecast": {
+        "1y": 50640.0,
+        "3y": 47998.0,
+        "5y": 45356.0
+      }
+    }
+  },
+  {
+    "id": "14183020430000",
+    "lat": 41.960389745,
+    "lng": -87.6853592877,
+    "neighborhood": "LAKE VIEW",
+    "zip": "60618",
+    "property_type": "parcel_candidate",
+    "parcel_size": 0,
+    "zoning": "278",
+    "crime_trend": 0.25,
+    "permit_activity": -0.3889,
+    "income": 100976,
+    "population_growth": -0.0299,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 10,
+        "violent_crime_count": 3
+      },
+      {
+        "year": 2023,
+        "crime_count": 13,
+        "violent_crime_count": 0
+      },
+      {
+        "year": 2024,
+        "crime_count": 11,
+        "violent_crime_count": 1
+      },
+      {
+        "year": 2025,
+        "crime_count": 11,
+        "violent_crime_count": 1
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 34
+      },
+      {
+        "year": 2023,
+        "permit_count": 29
+      },
+      {
+        "year": 2024,
+        "permit_count": 28
+      },
+      {
+        "year": 2025,
+        "permit_count": 47
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 95078
+      },
+      {
+        "year": 2022,
+        "population": 92235
+      }
+    ],
+    "transit_distance": 0.0809,
+    "crime_count_nearby": 5,
+    "violent_crime_count_nearby": 1,
+    "permit_count_nearby": 11,
+    "nearest_station": "Montrose & Oakley",
+    "transit_stop_count_nearby": 23,
+    "features": {
+      "crimeTrend": 0.0,
+      "permitGrowth": 0.6785714285714286,
+      "transitScore": 0.9251549634563789,
+      "incomeScore": 0.5914666666666667,
+      "populationGrowth": -0.029901764866740992
+    },
+    "scores": {
+      "investmentScore": 69,
+      "growthScore": 68,
+      "riskScore": 50,
+      "finalScore": 99
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 61,
+        "growthScore": 50,
+        "riskScore": 52,
+        "finalScore": 78
+      },
+      "3y": {
+        "investmentScore": 62,
+        "growthScore": 53,
+        "riskScore": 53,
+        "finalScore": 81
+      },
+      "5y": {
+        "investmentScore": 64,
+        "growthScore": 57,
+        "riskScore": 54,
+        "finalScore": 86
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 11.5,
+        "3y": 11.699999999999989,
+        "5y": 11.899999999999977
+      },
+      "permit_forecast": {
+        "1y": 44.0,
+        "3y": 51.600000000000364,
+        "5y": 59.20000000000073
+      },
+      "population_forecast": {
+        "1y": 89392.0,
+        "3y": 83706.0,
+        "5y": 78020.0
+      }
+    }
+  },
+  {
+    "id": "14183270291005",
+    "lat": 41.9553016373,
+    "lng": -87.6806277906,
+    "neighborhood": "LAKE VIEW",
+    "zip": "60618",
+    "property_type": "parcel_candidate",
+    "parcel_size": 0,
+    "zoning": "299",
+    "crime_trend": 1.0,
+    "permit_activity": -0.1429,
+    "income": 100976,
+    "population_growth": -0.0299,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 11,
+        "violent_crime_count": 2
+      },
+      {
+        "year": 2023,
+        "crime_count": 12,
+        "violent_crime_count": 0
+      },
+      {
+        "year": 2024,
+        "crime_count": 9,
+        "violent_crime_count": 1
+      },
+      {
+        "year": 2025,
+        "crime_count": 8,
+        "violent_crime_count": 0
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 29
+      },
+      {
+        "year": 2023,
+        "permit_count": 33
+      },
+      {
+        "year": 2024,
+        "permit_count": 35
+      },
+      {
+        "year": 2025,
+        "permit_count": 41
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 95078
+      },
+      {
+        "year": 2022,
+        "population": 92235
+      }
+    ],
+    "transit_distance": 0.1247,
+    "crime_count_nearby": 2,
+    "violent_crime_count_nearby": 0,
+    "permit_count_nearby": 12,
+    "nearest_station": "Irving Park & Damen/Lincoln",
+    "transit_stop_count_nearby": 16,
+    "features": {
+      "crimeTrend": -0.1111111111111111,
+      "permitGrowth": 0.17142857142857143,
+      "transitScore": 0.8891259891526629,
+      "incomeScore": 0.5914666666666667,
+      "populationGrowth": -0.029901764866740992
+    },
+    "scores": {
+      "investmentScore": 62,
+      "growthScore": 54,
+      "riskScore": 44,
+      "finalScore": 84
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 61,
+        "growthScore": 52,
+        "riskScore": 50,
+        "finalScore": 81
+      },
+      "3y": {
+        "investmentScore": 64,
+        "growthScore": 57,
+        "riskScore": 50,
+        "finalScore": 86
+      },
+      "5y": {
+        "investmentScore": 66,
+        "growthScore": 62,
+        "riskScore": 50,
+        "finalScore": 92
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 7.0,
+        "3y": 4.599999999999909,
+        "5y": 2.199999999999818
+      },
+      "permit_forecast": {
+        "1y": 44.0,
+        "3y": 51.600000000000364,
+        "5y": 59.20000000000073
+      },
+      "population_forecast": {
+        "1y": 89392.0,
+        "3y": 83706.0,
+        "5y": 78020.0
+      }
+    }
+  },
+  {
+    "id": "37756",
+    "lat": 41.75654782391807,
+    "lng": -87.64386327857898,
+    "neighborhood": "ENGLEWOOD",
+    "zip": "60620",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "B1-2",
+    "crime_trend": 0.0909,
+    "permit_activity": 2.6667,
+    "income": 46472,
+    "population_growth": -0.0148,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 36,
+        "violent_crime_count": 12
+      },
+      {
+        "year": 2023,
+        "crime_count": 41,
+        "violent_crime_count": 11
+      },
+      {
+        "year": 2024,
+        "crime_count": 42,
+        "violent_crime_count": 17
+      },
+      {
+        "year": 2025,
+        "crime_count": 44,
+        "violent_crime_count": 16
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 16
+      },
+      {
+        "year": 2023,
+        "permit_count": 18
+      },
+      {
+        "year": 2024,
+        "permit_count": 17
+      },
+      {
+        "year": 2025,
+        "permit_count": 18
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 69357
+      },
+      {
+        "year": 2022,
+        "population": 68330
+      }
+    ],
+    "transit_distance": 0.0327,
+    "crime_count_nearby": 12,
+    "violent_crime_count_nearby": 6,
+    "permit_count_nearby": 11,
+    "nearest_station": "Halsted & 76th Street",
+    "transit_stop_count_nearby": 23,
+    "features": {
+      "crimeTrend": 0.047619047619047616,
+      "permitGrowth": 0.058823529411764705,
+      "transitScore": 0.9683354313934347,
+      "incomeScore": 0.13726666666666668,
+      "populationGrowth": -0.014807445535418198
+    },
+    "scores": {
+      "investmentScore": 49,
+      "growthScore": 51,
+      "riskScore": 52,
+      "finalScore": 70
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 49,
+        "growthScore": 51,
+        "riskScore": 53,
+        "finalScore": 69
+      },
+      "3y": {
+        "investmentScore": 50,
+        "growthScore": 52,
+        "riskScore": 59,
+        "finalScore": 69
+      },
+      "5y": {
+        "investmentScore": 50,
+        "growthScore": 54,
+        "riskScore": 65,
+        "finalScore": 69
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 47.0,
+        "3y": 52.0,
+        "5y": 57.0
+      },
+      "permit_forecast": {
+        "1y": 18.5,
+        "3y": 19.5,
+        "5y": 20.5
+      },
+      "population_forecast": {
+        "1y": 67303.0,
+        "3y": 65249.0,
+        "5y": 63195.0
+      }
+    }
+  },
+  {
+    "id": "8947",
+    "lat": 41.891993539915006,
+    "lng": -87.72262337281994,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "RS-3",
+    "crime_trend": -0.1765,
+    "permit_activity": 1.5,
+    "income": 31768,
+    "population_growth": -0.0357,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 24,
+        "violent_crime_count": 11
+      },
+      {
+        "year": 2023,
+        "crime_count": 35,
+        "violent_crime_count": 20
+      },
+      {
+        "year": 2024,
+        "crime_count": 41,
+        "violent_crime_count": 10
+      },
+      {
+        "year": 2025,
+        "crime_count": 47,
+        "violent_crime_count": 10
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 15
+      },
+      {
+        "year": 2023,
+        "permit_count": 22
+      },
+      {
+        "year": 2024,
+        "permit_count": 14
+      },
+      {
+        "year": 2025,
+        "permit_count": 18
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 36986
+      },
+      {
+        "year": 2022,
+        "population": 35664
+      }
+    ],
+    "transit_distance": 0.1764,
+    "crime_count_nearby": 14,
+    "violent_crime_count_nearby": 7,
+    "permit_count_nearby": 10,
+    "nearest_station": "Pulaski & Erie",
+    "transit_stop_count_nearby": 13,
+    "features": {
+      "crimeTrend": 0.14634146341463414,
+      "permitGrowth": 0.2857142857142857,
+      "transitScore": 0.8500510030601836,
+      "incomeScore": 0.014733333333333333,
+      "populationGrowth": -0.035743254204293515
+    },
+    "scores": {
+      "investmentScore": 46,
+      "growthScore": 57,
+      "riskScore": 57,
+      "finalScore": 70
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 59,
+        "finalScore": 61
+      },
+      "3y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 75,
+        "finalScore": 57
+      },
+      "5y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 91,
+        "finalScore": 53
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 55.5,
+        "3y": 70.5,
+        "5y": 85.5
+      },
+      "permit_forecast": {
+        "1y": 17.5,
+        "3y": 17.69999999999999,
+        "5y": 17.899999999999977
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
+  },
+  {
+    "id": "58725",
+    "lat": 41.867174702009,
+    "lng": -87.73696513733313,
+    "neighborhood": "NORTH LAWNDALE",
+    "zip": "60624",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "M2-2",
+    "crime_trend": 0.2857,
+    "permit_activity": -0.5,
+    "income": 31768,
+    "population_growth": -0.0357,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 18,
+        "violent_crime_count": 5
+      },
+      {
+        "year": 2023,
+        "crime_count": 17,
+        "violent_crime_count": 9
+      },
+      {
+        "year": 2024,
+        "crime_count": 25,
+        "violent_crime_count": 10
+      },
+      {
+        "year": 2025,
+        "crime_count": 22,
+        "violent_crime_count": 7
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 11
+      },
+      {
+        "year": 2023,
+        "permit_count": 6
+      },
+      {
+        "year": 2024,
+        "permit_count": 5
+      },
+      {
+        "year": 2025,
+        "permit_count": 18
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 36986
+      },
+      {
+        "year": 2022,
+        "population": 35664
+      }
+    ],
+    "transit_distance": 0.0774,
+    "crime_count_nearby": 9,
+    "violent_crime_count_nearby": 3,
+    "permit_count_nearby": 2,
+    "nearest_station": "Roosevelt & Kilbourn",
+    "transit_stop_count_nearby": 16,
+    "features": {
+      "crimeTrend": -0.12,
+      "permitGrowth": 2.6,
+      "transitScore": 0.9281603861147207,
+      "incomeScore": 0.014733333333333333,
+      "populationGrowth": -0.035743254204293515
+    },
+    "scores": {
+      "investmentScore": 56,
+      "growthScore": 77,
+      "riskScore": 44,
+      "finalScore": 96
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 44,
+        "growthScore": 50,
+        "riskScore": 58,
+        "finalScore": 63
+      },
+      "3y": {
+        "investmentScore": 45,
+        "growthScore": 52,
+        "riskScore": 67,
+        "finalScore": 62
+      },
+      "5y": {
+        "investmentScore": 47,
+        "growthScore": 58,
+        "riskScore": 76,
+        "finalScore": 66
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 25.5,
+        "3y": 29.5,
+        "5y": 33.5
+      },
+      "permit_forecast": {
+        "1y": 15.0,
+        "3y": 19.0,
+        "5y": 23.0
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
+  },
+  {
+    "id": "36518",
+    "lat": 41.78970436565455,
+    "lng": -87.66048889509541,
+    "neighborhood": "WEST ENGLEWOOD",
+    "zip": "60636",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "RS-3",
+    "crime_trend": 0.4286,
+    "permit_activity": 0.3333,
+    "income": 30451,
+    "population_growth": -0.019,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 33,
+        "violent_crime_count": 15
+      },
+      {
+        "year": 2023,
+        "crime_count": 22,
+        "violent_crime_count": 9
+      },
+      {
+        "year": 2024,
+        "crime_count": 29,
+        "violent_crime_count": 13
+      },
+      {
+        "year": 2025,
+        "crime_count": 33,
+        "violent_crime_count": 9
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 14
+      },
+      {
+        "year": 2023,
+        "permit_count": 21
+      },
+      {
+        "year": 2024,
+        "permit_count": 13
+      },
+      {
+        "year": 2025,
+        "permit_count": 19
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 30412
+      },
+      {
+        "year": 2022,
+        "population": 29833
+      }
+    ],
+    "transit_distance": 0.2021,
+    "crime_count_nearby": 10,
+    "violent_crime_count_nearby": 4,
+    "permit_count_nearby": 12,
+    "nearest_station": "Ashland & 57th Street",
+    "transit_stop_count_nearby": 28,
+    "features": {
+      "crimeTrend": 0.13793103448275862,
+      "permitGrowth": 0.46153846153846156,
+      "transitScore": 0.8318775476249897,
+      "incomeScore": 0.003758333333333333,
+      "populationGrowth": -0.019038537419439696
+    },
+    "scores": {
+      "investmentScore": 47,
+      "growthScore": 62,
+      "riskScore": 57,
+      "finalScore": 75
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 63
+      },
+      "3y": {
+        "investmentScore": 42,
+        "growthScore": 51,
+        "riskScore": 50,
+        "finalScore": 65
+      },
+      "5y": {
+        "investmentScore": 43,
+        "growthScore": 53,
+        "riskScore": 51,
+        "finalScore": 67
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 31.0,
+        "3y": 32.40000000000009,
+        "5y": 33.80000000000018
+      },
+      "permit_forecast": {
+        "1y": 18.5,
+        "3y": 19.90000000000009,
+        "5y": 21.300000000000182
+      },
+      "population_forecast": {
+        "1y": 29254.0,
+        "3y": 28096.0,
+        "5y": 26938.0
+      }
+    }
+  },
+  {
+    "id": "8191",
+    "lat": 41.900716723815016,
+    "lng": -87.72293506329427,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60651",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "RS-3",
+    "crime_trend": -0.2381,
+    "permit_activity": 2.75,
+    "income": 48532,
+    "population_growth": 0.0091,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 40,
+        "violent_crime_count": 16
+      },
+      {
+        "year": 2023,
+        "crime_count": 43,
+        "violent_crime_count": 21
+      },
+      {
+        "year": 2024,
+        "crime_count": 52,
+        "violent_crime_count": 17
+      },
+      {
+        "year": 2025,
+        "crime_count": 48,
+        "violent_crime_count": 8
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 27
+      },
+      {
+        "year": 2023,
+        "permit_count": 26
+      },
+      {
+        "year": 2024,
+        "permit_count": 26
+      },
+      {
+        "year": 2025,
+        "permit_count": 30
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 64638
+      },
+      {
+        "year": 2022,
+        "population": 65229
+      }
+    ],
+    "transit_distance": 0.1518,
+    "crime_count_nearby": 16,
+    "violent_crime_count_nearby": 8,
+    "permit_count_nearby": 15,
+    "nearest_station": "Division & Hamlin",
+    "transit_stop_count_nearby": 19,
+    "features": {
+      "crimeTrend": -0.07692307692307693,
+      "permitGrowth": 0.15384615384615385,
+      "transitScore": 0.8682062858135093,
+      "incomeScore": 0.15443333333333334,
+      "populationGrowth": 0.009143228441474055
+    },
+    "scores": {
+      "investmentScore": 49,
+      "growthScore": 54,
+      "riskScore": 46,
+      "finalScore": 73
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 47,
+        "growthScore": 50,
+        "riskScore": 56,
+        "finalScore": 66
+      },
+      "3y": {
+        "investmentScore": 48,
+        "growthScore": 52,
+        "riskScore": 63,
+        "finalScore": 66
+      },
+      "5y": {
+        "investmentScore": 49,
+        "growthScore": 54,
+        "riskScore": 70,
+        "finalScore": 66
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 54.0,
+        "3y": 60.600000000000364,
+        "5y": 67.20000000000073
+      },
+      "permit_forecast": {
+        "1y": 29.5,
+        "3y": 31.299999999999955,
+        "5y": 33.09999999999991
+      },
+      "population_forecast": {
+        "1y": 65820.0,
+        "3y": 67002.0,
+        "5y": 68184.0
+      }
+    }
+  },
+  {
+    "id": "24455",
+    "lat": 41.693650660718724,
+    "lng": -87.63215724444655,
+    "neighborhood": "ROSELAND",
+    "zip": "60628",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "RS-3",
+    "crime_trend": -0.8333,
+    "permit_activity": 1.25,
+    "income": 48601,
+    "population_growth": -0.0476,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 25,
+        "violent_crime_count": 11
+      },
+      {
+        "year": 2023,
+        "crime_count": 24,
+        "violent_crime_count": 12
+      },
+      {
+        "year": 2024,
+        "crime_count": 18,
+        "violent_crime_count": 4
+      },
+      {
+        "year": 2025,
+        "crime_count": 14,
+        "violent_crime_count": 2
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 16
+      },
+      {
+        "year": 2023,
+        "permit_count": 20
+      },
+      {
+        "year": 2024,
+        "permit_count": 16
+      },
+      {
+        "year": 2025,
+        "permit_count": 13
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 64489
+      },
+      {
+        "year": 2022,
+        "population": 61419
+      }
+    ],
+    "transit_distance": 0.0798,
+    "crime_count_nearby": 2,
+    "violent_crime_count_nearby": 0,
+    "permit_count_nearby": 9,
+    "nearest_station": "111th Street & Stewart",
+    "transit_stop_count_nearby": 7,
+    "features": {
+      "crimeTrend": -0.2222222222222222,
+      "permitGrowth": -0.1875,
+      "transitScore": 0.9260974254491572,
+      "incomeScore": 0.15500833333333333,
+      "populationGrowth": -0.04760501791003117
+    },
+    "scores": {
+      "investmentScore": 45,
+      "growthScore": 44,
+      "riskScore": 39,
+      "finalScore": 65
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 48,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 69
+      },
+      "3y": {
+        "investmentScore": 48,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 69
+      },
+      "5y": {
+        "investmentScore": 48,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 69
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 10.5,
+        "3y": 2.699999999999818,
+        "5y": -5.100000000000364
+      },
+      "permit_forecast": {
+        "1y": 13.0,
+        "3y": 10.400000000000091,
+        "5y": 7.800000000000182
+      },
+      "population_forecast": {
+        "1y": 58349.0,
+        "3y": 52209.0,
+        "5y": 46069.0
+      }
+    }
+  },
+  {
+    "id": "16109",
+    "lat": 41.823586956634486,
+    "lng": -87.60432230879749,
+    "neighborhood": "OAKLAND",
+    "zip": "60653",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "RM-5",
+    "crime_trend": -0.125,
+    "permit_activity": 0.25,
+    "income": 35136,
+    "population_growth": -0.0045,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 16,
+        "violent_crime_count": 7
+      },
+      {
+        "year": 2023,
+        "crime_count": 14,
+        "violent_crime_count": 4
+      },
+      {
+        "year": 2024,
+        "crime_count": 25,
+        "violent_crime_count": 6
+      },
+      {
+        "year": 2025,
+        "crime_count": 14,
+        "violent_crime_count": 3
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 11
+      },
+      {
+        "year": 2023,
+        "permit_count": 6
+      },
+      {
+        "year": 2024,
+        "permit_count": 17
+      },
+      {
+        "year": 2025,
+        "permit_count": 18
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 34519
+      },
+      {
+        "year": 2022,
+        "population": 34364
+      }
+    ],
+    "transit_distance": 0.0374,
+    "crime_count_nearby": 7,
+    "violent_crime_count_nearby": 1,
+    "permit_count_nearby": 5,
+    "nearest_station": "Ellis & Oakwood",
+    "transit_stop_count_nearby": 16,
+    "features": {
+      "crimeTrend": -0.44,
+      "permitGrowth": 0.058823529411764705,
+      "transitScore": 0.9639483323693849,
+      "incomeScore": 0.0428,
+      "populationGrowth": -0.004490280714968568
+    },
+    "scores": {
+      "investmentScore": 46,
+      "growthScore": 52,
+      "riskScore": 28,
+      "finalScore": 74
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 48,
+        "growthScore": 55,
+        "riskScore": 66,
+        "finalScore": 67
+      },
+      "3y": {
+        "investmentScore": 52,
+        "growthScore": 64,
+        "riskScore": 70,
+        "finalScore": 77
+      },
+      "5y": {
+        "investmentScore": 57,
+        "growthScore": 74,
+        "riskScore": 73,
+        "finalScore": 86
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 18.5,
+        "3y": 19.5,
+        "5y": 20.5
+      },
+      "permit_forecast": {
+        "1y": 21.0,
+        "3y": 27.399999999999636,
+        "5y": 33.79999999999927
+      },
+      "population_forecast": {
+        "1y": 34209.0,
+        "3y": 33899.0,
+        "5y": 33589.0
+      }
+    }
+  },
+  {
+    "id": "50670",
+    "lat": 41.67587538651602,
+    "lng": -87.63497051121821,
+    "neighborhood": "WEST PULLMAN",
+    "zip": "60628",
+    "property_type": "opportunity_site",
+    "parcel_size": 3075,
+    "zoning": "RS-3",
+    "crime_trend": 0.0,
+    "permit_activity": 1.0,
+    "income": 48601,
+    "population_growth": -0.0476,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 22,
+        "violent_crime_count": 9
+      },
+      {
+        "year": 2023,
+        "crime_count": 17,
+        "violent_crime_count": 5
+      },
+      {
+        "year": 2024,
+        "crime_count": 24,
+        "violent_crime_count": 6
+      },
+      {
+        "year": 2025,
+        "crime_count": 20,
+        "violent_crime_count": 6
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 23
+      },
+      {
+        "year": 2023,
+        "permit_count": 17
+      },
+      {
+        "year": 2024,
+        "permit_count": 11
+      },
+      {
+        "year": 2025,
+        "permit_count": 16
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 64489
+      },
+      {
+        "year": 2022,
+        "population": 61419
+      }
+    ],
+    "transit_distance": 0.1358,
+    "crime_count_nearby": 10,
+    "violent_crime_count_nearby": 5,
+    "permit_count_nearby": 8,
+    "nearest_station": "119th Street & Normal",
+    "transit_stop_count_nearby": 13,
+    "features": {
+      "crimeTrend": -0.16666666666666666,
+      "permitGrowth": 0.45454545454545453,
+      "transitScore": 0.8804366966015145,
+      "incomeScore": 0.15500833333333333,
+      "populationGrowth": -0.04760501791003117
+    },
+    "scores": {
+      "investmentScore": 52,
+      "growthScore": 61,
+      "riskScore": 42,
+      "finalScore": 82
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 47,
+        "growthScore": 50,
+        "riskScore": 52,
+        "finalScore": 67
+      },
+      "3y": {
+        "investmentScore": 47,
+        "growthScore": 50,
+        "riskScore": 53,
+        "finalScore": 67
+      },
+      "5y": {
+        "investmentScore": 47,
+        "growthScore": 50,
+        "riskScore": 53,
+        "finalScore": 67
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 21.0,
+        "3y": 21.19999999999999,
+        "5y": 21.399999999999977
+      },
+      "permit_forecast": {
+        "1y": 10.0,
+        "3y": 4.600000000000364,
+        "5y": -0.7999999999992724
+      },
+      "population_forecast": {
+        "1y": 58349.0,
+        "3y": 52209.0,
+        "5y": 46069.0
+      }
+    }
+  },
+  {
+    "id": "35245",
+    "lat": 41.89385728946573,
+    "lng": -87.72041320086409,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "RS-3",
+    "crime_trend": 0.0556,
+    "permit_activity": 4.0,
+    "income": 31768,
+    "population_growth": -0.0357,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 32,
+        "violent_crime_count": 12
+      },
+      {
+        "year": 2023,
+        "crime_count": 46,
+        "violent_crime_count": 22
+      },
+      {
+        "year": 2024,
+        "crime_count": 64,
+        "violent_crime_count": 15
+      },
+      {
+        "year": 2025,
+        "crime_count": 65,
+        "violent_crime_count": 13
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 19
+      },
+      {
+        "year": 2023,
+        "permit_count": 28
+      },
+      {
+        "year": 2024,
+        "permit_count": 22
+      },
+      {
+        "year": 2025,
+        "permit_count": 27
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 36986
+      },
+      {
+        "year": 2022,
+        "population": 35664
+      }
+    ],
+    "transit_distance": 0.1056,
+    "crime_count_nearby": 19,
+    "violent_crime_count_nearby": 9,
+    "permit_count_nearby": 15,
+    "nearest_station": "Chicago & Hamlin",
+    "transit_stop_count_nearby": 15,
+    "features": {
+      "crimeTrend": 0.015625,
+      "permitGrowth": 0.22727272727272727,
+      "transitScore": 0.9044862518089726,
+      "incomeScore": 0.014733333333333333,
+      "populationGrowth": -0.035743254204293515
+    },
+    "scores": {
+      "investmentScore": 46,
+      "growthScore": 55,
+      "riskScore": 51,
+      "finalScore": 70
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 44,
+        "growthScore": 52,
+        "riskScore": 62,
+        "finalScore": 63
+      },
+      "3y": {
+        "investmentScore": 46,
+        "growthScore": 55,
+        "riskScore": 80,
+        "finalScore": 62
+      },
+      "5y": {
+        "investmentScore": 48,
+        "growthScore": 59,
+        "riskScore": 98,
+        "finalScore": 61
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 81.0,
+        "3y": 104.40000000000146,
+        "5y": 127.80000000000291
+      },
+      "permit_forecast": {
+        "1y": 28.5,
+        "3y": 32.09999999999991,
+        "5y": 35.69999999999982
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
+  },
+  {
+    "id": "36653",
+    "lat": 41.800670630471494,
+    "lng": -87.67241424373661,
+    "neighborhood": "NEW CITY",
+    "zip": "60609",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "RS-3",
+    "crime_trend": -0.1818,
+    "permit_activity": -0.4,
+    "income": 47209,
+    "population_growth": 0.0223,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 19,
+        "violent_crime_count": 11
+      },
+      {
+        "year": 2023,
+        "crime_count": 20,
+        "violent_crime_count": 9
+      },
+      {
+        "year": 2024,
+        "crime_count": 15,
+        "violent_crime_count": 9
+      },
+      {
+        "year": 2025,
+        "crime_count": 25,
+        "violent_crime_count": 8
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 18
+      },
+      {
+        "year": 2023,
+        "permit_count": 8
+      },
+      {
+        "year": 2024,
+        "permit_count": 7
+      },
+      {
+        "year": 2025,
+        "permit_count": 14
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 61861
+      },
+      {
+        "year": 2022,
+        "population": 63241
+      }
+    ],
+    "transit_distance": 0.1083,
+    "crime_count_nearby": 9,
+    "violent_crime_count_nearby": 4,
+    "permit_count_nearby": 3,
+    "nearest_station": "51st Street & Damen",
+    "transit_stop_count_nearby": 17,
+    "features": {
+      "crimeTrend": 0.6666666666666666,
+      "permitGrowth": 1.0,
+      "transitScore": 0.9022827754218171,
+      "incomeScore": 0.14340833333333333,
+      "populationGrowth": 0.022308077787297327
+    },
+    "scores": {
+      "investmentScore": 60,
+      "growthScore": 78,
+      "riskScore": 83,
+      "finalScore": 89
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 48,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 68
+      },
+      "3y": {
+        "investmentScore": 48,
+        "growthScore": 51,
+        "riskScore": 51,
+        "finalScore": 69
+      },
+      "5y": {
+        "investmentScore": 49,
+        "growthScore": 52,
+        "riskScore": 56,
+        "finalScore": 69
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 23.0,
+        "3y": 25.59999999999991,
+        "5y": 28.199999999999818
+      },
+      "permit_forecast": {
+        "1y": 8.5,
+        "3y": 5.900000000000091,
+        "5y": 3.300000000000182
+      },
+      "population_forecast": {
+        "1y": 64621.0,
+        "3y": 67381.0,
+        "5y": 70141.0
+      }
+    }
+  },
+  {
+    "id": "19505",
+    "lat": 41.74483594473508,
+    "lng": -87.6597997988371,
+    "neighborhood": "AUBURN GRESHAM",
+    "zip": "60620",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "RS-3",
+    "crime_trend": 0.0,
+    "permit_activity": -0.25,
+    "income": 46472,
+    "population_growth": -0.0148,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 37,
+        "violent_crime_count": 17
+      },
+      {
+        "year": 2023,
+        "crime_count": 35,
+        "violent_crime_count": 14
+      },
+      {
+        "year": 2024,
+        "crime_count": 30,
+        "violent_crime_count": 11
+      },
+      {
+        "year": 2025,
+        "crime_count": 30,
+        "violent_crime_count": 12
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 19
+      },
+      {
+        "year": 2023,
+        "permit_count": 21
+      },
+      {
+        "year": 2024,
+        "permit_count": 20
+      },
+      {
+        "year": 2025,
+        "permit_count": 21
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 69357
+      },
+      {
+        "year": 2022,
+        "population": 68330
+      }
+    ],
+    "transit_distance": 0.2151,
+    "crime_count_nearby": 9,
+    "violent_crime_count_nearby": 2,
+    "permit_count_nearby": 6,
+    "nearest_station": "Ashland & 83rd Street",
+    "transit_stop_count_nearby": 19,
+    "features": {
+      "crimeTrend": 0.0,
+      "permitGrowth": 0.05,
+      "transitScore": 0.8229775327133568,
+      "incomeScore": 0.13726666666666668,
+      "populationGrowth": -0.014807445535418198
+    },
+    "scores": {
+      "investmentScore": 46,
+      "growthScore": 51,
+      "riskScore": 50,
+      "finalScore": 68
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 46,
+        "growthScore": 51,
+        "riskScore": 50,
+        "finalScore": 67
+      },
+      "3y": {
+        "investmentScore": 46,
+        "growthScore": 52,
+        "riskScore": 50,
+        "finalScore": 69
+      },
+      "5y": {
+        "investmentScore": 47,
+        "growthScore": 53,
+        "riskScore": 50,
+        "finalScore": 70
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 26.5,
+        "3y": 21.300000000000182,
+        "5y": 16.100000000000364
+      },
+      "permit_forecast": {
+        "1y": 21.5,
+        "3y": 22.5,
+        "5y": 23.5
+      },
+      "population_forecast": {
+        "1y": 67303.0,
+        "3y": 65249.0,
+        "5y": 63195.0
+      }
+    }
+  },
+  {
+    "id": "35396",
+    "lat": 41.777707143534506,
+    "lng": -87.67351351348495,
+    "neighborhood": "WEST ENGLEWOOD",
+    "zip": "60636",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "RS-3",
+    "crime_trend": -0.1111,
+    "permit_activity": 0.5,
+    "income": 30451,
+    "population_growth": -0.019,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 25,
+        "violent_crime_count": 6
+      },
+      {
+        "year": 2023,
+        "crime_count": 29,
+        "violent_crime_count": 8
+      },
+      {
+        "year": 2024,
+        "crime_count": 15,
+        "violent_crime_count": 8
+      },
+      {
+        "year": 2025,
+        "crime_count": 16,
+        "violent_crime_count": 5
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 8
+      },
+      {
+        "year": 2023,
+        "permit_count": 13
+      },
+      {
+        "year": 2024,
+        "permit_count": 10
+      },
+      {
+        "year": 2025,
+        "permit_count": 13
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 30412
+      },
+      {
+        "year": 2022,
+        "population": 29833
+      }
+    ],
+    "transit_distance": 0.0228,
+    "crime_count_nearby": 8,
+    "violent_crime_count_nearby": 0,
+    "permit_count_nearby": 6,
+    "nearest_station": "Damen & 64th Street",
+    "transit_stop_count_nearby": 12,
+    "features": {
+      "crimeTrend": 0.06666666666666667,
+      "permitGrowth": 0.3,
+      "transitScore": 0.9777082518576458,
+      "incomeScore": 0.003758333333333333,
+      "populationGrowth": -0.019038537419439696
+    },
+    "scores": {
+      "investmentScore": 48,
+      "growthScore": 58,
+      "riskScore": 53,
+      "finalScore": 73
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 46,
+        "growthScore": 52,
+        "riskScore": 50,
+        "finalScore": 68
+      },
+      "3y": {
+        "investmentScore": 48,
+        "growthScore": 57,
+        "riskScore": 50,
+        "finalScore": 74
+      },
+      "5y": {
+        "investmentScore": 50,
+        "growthScore": 62,
+        "riskScore": 50,
+        "finalScore": 79
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 11.0,
+        "3y": 2.7999999999992724,
+        "5y": -5.400000000001455
+      },
+      "permit_forecast": {
+        "1y": 14.0,
+        "3y": 16.40000000000009,
+        "5y": 18.800000000000182
+      },
+      "population_forecast": {
+        "1y": 29254.0,
+        "3y": 28096.0,
+        "5y": 26938.0
+      }
+    }
+  },
+  {
+    "id": "58818",
+    "lat": 41.89275197812359,
+    "lng": -87.72023597773659,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "RS-3",
+    "crime_trend": 0.0,
+    "permit_activity": 3.3333,
+    "income": 31768,
+    "population_growth": -0.0357,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 32,
+        "violent_crime_count": 13
+      },
+      {
+        "year": 2023,
+        "crime_count": 43,
+        "violent_crime_count": 19
+      },
+      {
+        "year": 2024,
+        "crime_count": 63,
+        "violent_crime_count": 13
+      },
+      {
+        "year": 2025,
+        "crime_count": 60,
+        "violent_crime_count": 11
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 18
+      },
+      {
+        "year": 2023,
+        "permit_count": 27
+      },
+      {
+        "year": 2024,
+        "permit_count": 16
+      },
+      {
+        "year": 2025,
+        "permit_count": 22
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 36986
+      },
+      {
+        "year": 2022,
+        "population": 35664
+      }
+    ],
+    "transit_distance": 0.1822,
+    "crime_count_nearby": 17,
+    "violent_crime_count_nearby": 7,
+    "permit_count_nearby": 13,
+    "nearest_station": "Chicago & Hamlin",
+    "transit_stop_count_nearby": 14,
+    "features": {
+      "crimeTrend": -0.047619047619047616,
+      "permitGrowth": 0.375,
+      "transitScore": 0.845880561664693,
+      "incomeScore": 0.014733333333333333,
+      "populationGrowth": -0.035743254204293515
+    },
+    "scores": {
+      "investmentScore": 47,
+      "growthScore": 60,
+      "riskScore": 48,
+      "finalScore": 75
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 63,
+        "finalScore": 60
+      },
+      "3y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 80,
+        "finalScore": 56
+      },
+      "5y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 98,
+        "finalScore": 51
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 75.5,
+        "3y": 96.29999999999927,
+        "5y": 117.09999999999854
+      },
+      "permit_forecast": {
+        "1y": 21.0,
+        "3y": 21.19999999999999,
+        "5y": 21.399999999999977
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
+  },
+  {
+    "id": "8771",
+    "lat": 41.89385822556417,
+    "lng": -87.72028530282613,
+    "neighborhood": "HUMBOLDT PARK",
+    "zip": "60624",
+    "property_type": "opportunity_site",
+    "parcel_size": 0,
+    "zoning": "RT-4",
+    "crime_trend": 0.0556,
+    "permit_activity": 4.0,
+    "income": 31768,
+    "population_growth": -0.0357,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 33,
+        "violent_crime_count": 12
+      },
+      {
+        "year": 2023,
+        "crime_count": 46,
+        "violent_crime_count": 21
+      },
+      {
+        "year": 2024,
+        "crime_count": 65,
+        "violent_crime_count": 16
+      },
+      {
+        "year": 2025,
+        "crime_count": 65,
+        "violent_crime_count": 13
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 18
+      },
+      {
+        "year": 2023,
+        "permit_count": 28
+      },
+      {
+        "year": 2024,
+        "permit_count": 21
+      },
+      {
+        "year": 2025,
+        "permit_count": 26
+      }
+    ],
+    "population_history": [
+      {
+        "year": 2021,
+        "population": 36986
+      },
+      {
+        "year": 2022,
+        "population": 35664
+      }
+    ],
+    "transit_distance": 0.1074,
+    "crime_count_nearby": 19,
+    "violent_crime_count_nearby": 9,
+    "permit_count_nearby": 15,
+    "nearest_station": "Chicago & Hamlin",
+    "transit_stop_count_nearby": 15,
+    "features": {
+      "crimeTrend": 0.0,
+      "permitGrowth": 0.23809523809523808,
+      "transitScore": 0.9030160736861117,
+      "incomeScore": 0.014733333333333333,
+      "populationGrowth": -0.035743254204293515
+    },
+    "scores": {
+      "investmentScore": 46,
+      "growthScore": 56,
+      "riskScore": 50,
+      "finalScore": 71
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 44,
+        "growthScore": 52,
+        "riskScore": 62,
+        "finalScore": 63
+      },
+      "3y": {
+        "investmentScore": 46,
+        "growthScore": 55,
+        "riskScore": 80,
+        "finalScore": 62
+      },
+      "5y": {
+        "investmentScore": 47,
+        "growthScore": 59,
+        "riskScore": 98,
+        "finalScore": 61
+      }
+    },
+    "forecast": {
+      "crime_forecast": {
+        "1y": 81.0,
+        "3y": 104.0,
+        "5y": 127.0
+      },
+      "permit_forecast": {
+        "1y": 27.5,
+        "3y": 30.90000000000009,
+        "5y": 34.30000000000018
+      },
+      "population_forecast": {
+        "1y": 34342.0,
+        "3y": 31698.0,
+        "5y": 29054.0
+      }
+    }
+  },
+  {
+    "id": "1674612",
+    "lat": 41.897740856252504,
+    "lng": -87.62396131598219,
+    "neighborhood": "UNKNOWN",
+    "zip": "Unknown",
+    "property_type": "permit_candidate",
+    "parcel_size": 0,
+    "zoning": "PERMIT - SIGNS",
+    "crime_trend": 0.0222,
+    "permit_activity": 0.3729,
+    "income": null,
+    "population_growth": null,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 129,
+        "violent_crime_count": 16
+      },
+      {
+        "year": 2023,
+        "crime_count": 98,
+        "violent_crime_count": 27
+      },
+      {
+        "year": 2024,
+        "crime_count": 104,
+        "violent_crime_count": 25
+      },
+      {
+        "year": 2025,
+        "crime_count": 74,
+        "violent_crime_count": 14
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 196
+      },
+      {
+        "year": 2023,
+        "permit_count": 246
+      },
+      {
+        "year": 2024,
+        "permit_count": 253
+      },
+      {
+        "year": 2025,
+        "permit_count": 205
+      }
+    ],
+    "population_history": [],
+    "transit_distance": 0.014,
+    "crime_count_nearby": 46,
+    "violent_crime_count_nearby": 12,
+    "permit_count_nearby": 81,
+    "nearest_station": "Michigan & Pearson",
+    "transit_stop_count_nearby": 50,
+    "features": {
+      "crimeTrend": -0.28846153846153844,
+      "permitGrowth": -0.18972332015810275,
+      "transitScore": 0.9861932938856016,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 47,
+      "growthScore": 45,
+      "riskScore": 36,
+      "finalScore": 68
+    },
+    "forecast_scores": {},
+    "forecast": {
+      "crime_forecast": {
+        "1y": 61.5,
+        "3y": 29.700000000000728,
+        "5y": -2.099999999998545
+      },
+      "permit_forecast": {
+        "1y": 233.5,
+        "3y": 240.30000000000018,
+        "5y": 247.10000000000036
+      }
+    }
+  },
+  {
+    "id": "1688922",
+    "lat": 41.90322929302484,
+    "lng": -87.68133976093554,
+    "neighborhood": "UNKNOWN",
+    "zip": "Unknown",
+    "property_type": "permit_candidate",
+    "parcel_size": 0,
+    "zoning": "PERMIT - SIGNS",
+    "crime_trend": 0.25,
+    "permit_activity": 0.0952,
+    "income": null,
+    "population_growth": null,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 18,
+        "violent_crime_count": 4
+      },
+      {
+        "year": 2023,
+        "crime_count": 16,
+        "violent_crime_count": 5
+      },
+      {
+        "year": 2024,
+        "crime_count": 20,
+        "violent_crime_count": 2
+      },
+      {
+        "year": 2025,
+        "crime_count": 20,
+        "violent_crime_count": 6
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 39
+      },
+      {
+        "year": 2023,
+        "permit_count": 42
+      },
+      {
+        "year": 2024,
+        "permit_count": 36
+      },
+      {
+        "year": 2025,
+        "permit_count": 35
+      }
+    ],
+    "population_history": [],
+    "transit_distance": 0.0349,
+    "crime_count_nearby": 10,
+    "violent_crime_count_nearby": 2,
+    "permit_count_nearby": 23,
+    "nearest_station": "Division & Leavitt",
+    "transit_stop_count_nearby": 13,
+    "features": {
+      "crimeTrend": 0.0,
+      "permitGrowth": -0.027777777777777776,
+      "transitScore": 0.9662769349695624,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 49,
+      "growthScore": 49,
+      "riskScore": 50,
+      "finalScore": 69
+    },
+    "forecast_scores": {},
+    "forecast": {
+      "crime_forecast": {
+        "1y": 21.0,
+        "3y": 23.0,
+        "5y": 25.0
+      },
+      "permit_forecast": {
+        "1y": 33.5,
+        "3y": 29.90000000000009,
+        "5y": 26.300000000000182
+      }
+    }
+  },
+  {
+    "id": "3390256",
+    "lat": 41.859406533938085,
+    "lng": -87.67346070900182,
+    "neighborhood": "Unknown",
+    "zip": "Unknown",
+    "property_type": "permit_candidate",
+    "parcel_size": 0,
+    "zoning": "PERMIT - SIGNS",
+    "crime_trend": 0.8,
+    "permit_activity": -0.0909,
+    "income": null,
+    "population_growth": null,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 19,
+        "violent_crime_count": 8
+      },
+      {
+        "year": 2023,
+        "crime_count": 12,
+        "violent_crime_count": 3
+      },
+      {
+        "year": 2024,
+        "crime_count": 17,
+        "violent_crime_count": 4
+      },
+      {
+        "year": 2025,
+        "crime_count": 9,
+        "violent_crime_count": 3
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 23
+      },
+      {
+        "year": 2023,
+        "permit_count": 18
+      },
+      {
+        "year": 2024,
+        "permit_count": 10
+      },
+      {
+        "year": 2025,
+        "permit_count": 10
+      }
+    ],
+    "population_history": [],
+    "transit_distance": 0.123,
+    "crime_count_nearby": 9,
+    "violent_crime_count_nearby": 1,
+    "permit_count_nearby": 10,
+    "nearest_station": "18th Street & Wolcott",
+    "transit_stop_count_nearby": 19,
+    "features": {
+      "crimeTrend": -0.47058823529411764,
+      "permitGrowth": 0.0,
+      "transitScore": 0.8904719501335708,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 48,
+      "growthScore": 50,
+      "riskScore": 26,
+      "finalScore": 75
+    },
+    "forecast_scores": {},
+    "forecast": {
+      "crime_forecast": {
+        "1y": 8.0,
+        "3y": 3.0,
+        "5y": -2.0
+      },
+      "permit_forecast": {
+        "1y": 3.5,
+        "3y": -5.899999999999636,
+        "5y": -15.299999999999272
+      }
+    }
+  },
+  {
+    "id": "3392045",
+    "lat": 41.99250536850696,
+    "lng": -87.6604919629177,
+    "neighborhood": "Unknown",
+    "zip": "Unknown",
+    "property_type": "permit_candidate",
+    "parcel_size": 0,
+    "zoning": "PERMIT - SIGNS",
+    "crime_trend": 0.375,
+    "permit_activity": 0.625,
+    "income": null,
+    "population_growth": null,
+    "crime_history": [
+      {
+        "year": 2022,
+        "crime_count": 37,
+        "violent_crime_count": 12
+      },
+      {
+        "year": 2023,
+        "crime_count": 34,
+        "violent_crime_count": 3
+      },
+      {
+        "year": 2024,
+        "crime_count": 41,
+        "violent_crime_count": 9
+      },
+      {
+        "year": 2025,
+        "crime_count": 38,
+        "violent_crime_count": 5
+      }
+    ],
+    "permit_history": [
+      {
+        "year": 2022,
+        "permit_count": 10
+      },
+      {
+        "year": 2023,
+        "permit_count": 34
+      },
+      {
+        "year": 2024,
+        "permit_count": 30
+      },
+      {
+        "year": 2025,
+        "permit_count": 25
+      }
+    ],
+    "population_history": [],
+    "transit_distance": 0.0213,
+    "crime_count_nearby": 11,
+    "violent_crime_count_nearby": 3,
+    "permit_count_nearby": 13,
+    "nearest_station": "Broadway & Glenlake",
+    "transit_stop_count_nearby": 25,
+    "features": {
+      "crimeTrend": -0.07317073170731707,
+      "permitGrowth": -0.16666666666666666,
+      "transitScore": 0.9791442279447762,
+      "incomeScore": 0.16666666666666666,
+      "populationGrowth": 0
+    },
+    "scores": {
+      "investmentScore": 47,
+      "growthScore": 45,
+      "riskScore": 46,
+      "finalScore": 66
+    },
+    "forecast_scores": {},
+    "forecast": {
+      "crime_forecast": {
+        "1y": 40.0,
+        "3y": 42.0,
+        "5y": 44.0
+      },
+      "permit_forecast": {
+        "1y": 35.0,
+        "3y": 43.20000000000073,
+        "5y": 51.400000000001455
+      }
+    }
+  }
+]
