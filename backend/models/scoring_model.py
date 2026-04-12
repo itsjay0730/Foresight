@@ -8,6 +8,12 @@ def clamp(value: float) -> float:
         return 1
     return value
 
+#stretch scores to widen distribution
+def stretch(score: float) -> float:
+    # widen mid-range and push values toward 60-100 range
+    stretched = (score - 0.4) * 1.6 + 0.5
+    return clamp(stretched)
+
 #turn crime trend into risk score
 #more crime increase = higher risk and vice versa
 def computeRiskScore(crimeTrend: float) -> float:
@@ -55,9 +61,9 @@ def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
     incomeScore = features.get("incomeScore", 0)
     populationGrowth = features.get("populationGrowth", 0)
 
-    riskScore = computeRiskScore(crimeTrend)
-    investmentScore = computeInvestmentScore(incomeScore, permitGrowth, populationGrowth, transitScore)
-    growthScore = computeGrowthScore(permitGrowth, populationGrowth)
+    riskScore = stretch(computeRiskScore(crimeTrend))
+    investmentScore = stretch(computeInvestmentScore(incomeScore, permitGrowth, populationGrowth, transitScore))
+    growthScore = stretch(computeGrowthScore(permitGrowth, populationGrowth))
     finalScore = computeFinalScore(investmentScore, growthScore, riskScore)
 
     scores = {
