@@ -1,15 +1,15 @@
 import { Recommendation, ScoreLayerKey, ScenarioInputs, ScenarioResults, Neighborhood } from "@/data/types";
 
 export function scoreColor(score: number): string {
-  if (score >= 80) return "#22c55e";
-  if (score >= 70) return "#f59e0b";
+  if (score >= 85) return "#22c55e";
+  if (score >= 75) return "#f59e0b";
   if (score >= 60) return "#ef4444";
   return "#a855f7";
 }
 
 export function scoreBg(score: number): string {
-  if (score >= 80) return "rgba(34,197,94,0.12)";
-  if (score >= 70) return "rgba(245,158,11,0.1)";
+  if (score >= 85) return "rgba(34,197,94,0.12)";
+  if (score >= 75) return "rgba(245,158,11,0.1)";
   if (score >= 60) return "rgba(239,68,68,0.1)";
   return "rgba(168,85,247,0.1)";
 }
