@@ -34,11 +34,37 @@ def computePopulationGrowth(popLastYear: float, popThisYear: float) -> float:
 
 #convert raw plot data into features
 def buildFeatures(plot: Dict[str, Any]) -> Dict[str, Any]:
-    crimeTrend = computeCrimeTrend(plot.get("crime_last_year", 0), plot.get("crime_this_year", 0))
-    permitGrowth = computePermitGrowth(plot.get("permits_last_year", 0), plot.get("permits_this_year", 0))
-    transitScore = computeTransitScore(plot.get("distance_to_transit", 1))
-    incomeScore = computeIncomeScore(plot.get("median_income", 50000))
-    populationGrowth = computePopulationGrowth(plot.get("population_last_year", 0), plot.get("population_this_year", 0))
+
+    crimeHistory = plot.get("crime_history", [])
+    permitHistory = plot.get("permit_history", [])
+    populationHistory = plot.get("population_history", [])
+
+    #crime trend from last two years
+    if len(crimeHistory) >= 2:
+        crimeLast = crimeHistory[-2]["crime_count"]
+        crimeThis = crimeHistory[-1]["crime_count"]
+        crimeTrend = computeCrimeTrend(crimeLast, crimeThis)
+    else:
+        crimeTrend = 0
+
+    #permit growth from last two years
+    if len(permitHistory) >= 2:
+        permitLast = permitHistory[-2]["permit_count"]
+        permitThis = permitHistory[-1]["permit_count"]
+        permitGrowth = computePermitGrowth(permitLast, permitThis)
+    else:
+        permitGrowth = 0
+
+    #population growth from last two years
+    if len(populationHistory) >= 2:
+        popLast = populationHistory[-2]["population"]
+        popThis = populationHistory[-1]["population"]
+        populationGrowth = computePopulationGrowth(popLast, popThis)
+    else:
+        populationGrowth = 0
+
+    transitScore = computeTransitScore(plot.get("transit_distance", 1))
+    incomeScore = computeIncomeScore(plot.get("income", 50000))
 
     features = {
         "crimeTrend": crimeTrend,
