@@ -170,7 +170,7 @@ export default function ForesightApp() {
         mapRef={mapRef}
       />
 
-      {panelOpen && (
+      {panelOpen && !hoodPopupOpen && (
         <div className="fixed inset-0 z-[850]" onClick={handleClosePanel} aria-hidden="true" />
       )}
 
@@ -186,7 +186,6 @@ export default function ForesightApp() {
           onSelectProperty={handleSelectProperty}
           onOpenMemo={() => setMemoOpen(true)}
           onOpenNeighborhoodStats={() => {
-            setPanelOpen(false);
             setHoodPopupOpen(true);
           }}
         />
