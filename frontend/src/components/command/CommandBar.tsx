@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Search, RotateCcw, Maximize2, BarChart3, Zap } from "lucide-react";
+import { Search, BarChart3, Zap } from "lucide-react";
 import { neighborhoods } from "@/data/neighborhoods";
 import { properties } from "@/data/properties";
 import { FilterState, ScoreLayerKey, TimelineValue } from "@/data/types";
@@ -23,10 +23,8 @@ export default function CommandBar({
   onFilterChange,
   onSelectHood,
   onSelectProperty,
-  onReset,
   onCompare,
   onGenerateInsight,
-  onRefresh,
 }: CommandBarProps) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -74,8 +72,7 @@ export default function CommandBar({
         border: "1px solid rgba(255,255,255,0.06)",
       }}
     >
-      <div className="flex flex-wrap items-center gap-[8px] px-[10px] py-[10px] md:flex-nowrap md:gap-[6px] md:h-[56px] md:py-[7px]">
-        {/* Logo */}
+<div className="flex flex-wrap items-center gap-[8px] px-[10px] py-[10px] xl:flex-nowrap xl:gap-[8px] xl:h-[56px] xl:py-[7px]">        {/* Logo */}
         <div className="flex min-w-0 items-center gap-2 pr-0 md:pr-[14px] md:border-r md:border-white/5 shrink-0">
           <div
             className="w-[30px] h-[30px] rounded-[9px] flex items-center justify-center font-extrabold text-[15px] text-white shrink-0"
@@ -99,22 +96,23 @@ export default function CommandBar({
         </div>
 
         {/* City */}
-        <select className="cb-select w-[120px] shrink-0" defaultValue="chicago">
+        <select className="cb-select w-[140px] shrink-0" defaultValue="chicago">
           <option value="chicago">◉ Chicago</option>
         </select>
 
-        <div className="hidden md:block w-px h-6 bg-white/5 shrink-0" />
-
         {/* Search */}
-        <div className="order-3 w-full md:order-none md:flex-1 md:max-w-[280px] relative" ref={searchRef}>
+        <div
+          className="order-3 w-full xl:order-none xl:flex-1 xl:min-w-[180px] xl:max-w-[300px] relative"
+          ref={searchRef}
+        >
           <Search
-            className="absolute left-[9px] top-1/2 -translate-y-1/2 text-t-muted pointer-events-none"
-            size={13}
+            className="absolute left-[11px] top-1/2 -translate-y-1/2 text-t-muted pointer-events-none"
+            size={14}
           />
           <input
             type="text"
             placeholder="ZIP, neighborhood, address…"
-            className="w-full h-[36px] pl-[30px] pr-3 rounded-f text-[11.5px] font-sans text-t-primary outline-none transition-all"
+            className="w-full h-[38px] md:h-[36px] pl-[34px] pr-3 rounded-f text-[12px] font-sans text-t-primary outline-none transition-all"
             style={{
               background: "rgba(255,255,255,0.03)",
               border: "1px solid rgba(255,255,255,0.06)",
@@ -137,7 +135,7 @@ export default function CommandBar({
 
           {searchOpen && hasResults && (
             <div
-              className="absolute top-[42px] left-0 right-0 rounded-f shadow-deep max-h-[260px] overflow-y-auto z-50"
+              className="absolute top-[44px] left-0 right-0 rounded-f shadow-deep max-h-[260px] overflow-y-auto z-50"
               style={{
                 background: "rgba(10,14,24,0.92)",
                 backdropFilter: "blur(24px)",
@@ -198,7 +196,7 @@ export default function CommandBar({
         </div>
 
         {/* Filters */}
-        <div className="flex w-full flex-wrap gap-[8px] md:w-auto md:flex-nowrap md:gap-[6px]">
+        <div className="flex w-full flex-wrap gap-[8px] xl:w-auto xl:flex-nowrap xl:gap-[8px]">
           <select
             className="cb-select min-w-0 flex-1 md:w-[150px] md:flex-none"
             value={filters.investmentType}
@@ -214,7 +212,7 @@ export default function CommandBar({
           </select>
 
           <select
-            className="cb-select w-[84px] shrink-0"
+            className="cb-select w-[55px] shrink-0"
             value={filters.timeline}
             onChange={e => onFilterChange({ timeline: e.target.value as TimelineValue })}
           >
@@ -224,7 +222,7 @@ export default function CommandBar({
           </select>
 
           <select
-            className="cb-select min-w-0 flex-1 md:w-[190px] md:flex-none"
+            className="cb-select min-w-0 flex-1 md:w-[159px] md:flex-none"
             value={filters.scoreLayer}
             onChange={e => onFilterChange({ scoreLayer: e.target.value as ScoreLayerKey })}
           >
@@ -237,7 +235,7 @@ export default function CommandBar({
           </select>
 
           <select
-            className="cb-select min-w-0 flex-1 md:w-[130px] md:flex-none"
+            className="cb-select min-w-0 flex-1 md:w-[120px] md:flex-none"
             value={filters.riskLevel}
             onChange={e => onFilterChange({ riskLevel: e.target.value })}
           >
@@ -250,37 +248,21 @@ export default function CommandBar({
           </select>
         </div>
 
-        <div className="hidden md:flex flex-1" />
+        <div className="hidden xl:flex flex-1 min-w-[0px]" />
 
         {/* Actions */}
-        <div className="flex w-full items-center justify-between gap-[8px] pt-[2px] md:w-auto md:justify-end md:pt-0">
-          <div className="flex items-center gap-[6px]">
-            <button onClick={onRefresh} className="cb-btn" title="Refresh Data">
-              <RotateCcw size={14} />
-            </button>
-            <button onClick={onReset} className="cb-btn" title="Reset View">
-              <Maximize2 size={14} />
-            </button>
-          </div>
+        <div className="flex w-full items-center justify-end gap-[8px] pt-[2px] xl:w-auto xl:pt-0 shrink-0">
+          <button onClick={onCompare} className="cb-btn-text" title="Compare">
+            <BarChart3 size={13} /> Compare
+          </button>
 
-          <div className="flex items-center gap-[6px] ml-auto">
-            <button onClick={onCompare} className="cb-btn-text" title="Compare">
-              <BarChart3 size={13} /> <span className="hidden sm:inline">Compare</span>
-            </button>
-            <button
-              onClick={onGenerateInsight}
-              className="cb-btn-accent"
-              title="Generate Insight"
-            >
-              <Zap size={13} /> <span className="hidden sm:inline">Generate Insight</span>
-            </button>
-            <div
-              className="w-[32px] h-[32px] rounded-full flex items-center justify-center text-[11px] font-bold text-white cursor-pointer shrink-0"
-              style={{ background: "linear-gradient(135deg, #3b82f6, #06b6d4)" }}
-            >
-              JK
-            </div>
-          </div>
+          <button
+            onClick={onGenerateInsight}
+            className="cb-btn-accent"
+            title="Generate Insight"
+          >
+            <Zap size={13} /> Generate Insight
+          </button>
         </div>
       </div>
     </div>

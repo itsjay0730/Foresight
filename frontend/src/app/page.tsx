@@ -17,6 +17,7 @@ const MapView = dynamic(() => import("@/components/map/MapView"), { ssr: false }
 export default function ForesightApp() {
   const mapRef = useRef<any>(null);
 
+  // ── Filters ──
   const [filters, setFilters] = useState<FilterState>({
     investmentType: "",
     timeline: "3",
@@ -25,28 +26,36 @@ export default function ForesightApp() {
     searchQuery: "",
   });
 
+  // ── Selection ──
   const [selection, setSelection] = useState<SelectionState>({
     type: "hood",
     hoodId: "west-loop",
   });
 
+  // ── Panel state ──
+  const [panelOpen, setPanelOpen] = useState(false);
+
+  // ── Modals ──
   const [scenarioOpen, setScenarioOpen] = useState(false);
   const [compareOpen, setCompareOpen] = useState(false);
   const [memoOpen, setMemoOpen] = useState(false);
 
+  // ── Notification ──
   const [notif, setNotif] = useState({ message: "", visible: false });
-
   const notify = useCallback((msg: string) => {
     setNotif({ message: msg, visible: true });
     setTimeout(() => setNotif(prev => ({ ...prev, visible: false })), 2800);
   }, []);
 
+  // ── Handlers ──
   const handleFilterChange = useCallback((partial: Partial<FilterState>) => {
     setFilters(prev => ({ ...prev, ...partial }));
   }, []);
 
   const handleSelectHood = useCallback((id: string) => {
     setSelection({ type: "hood", hoodId: id });
+    setPanelOpen(false);
+
     const h = neighborhoods[id];
     if (h && mapRef.current) {
       mapRef.current.flyTo([h.lat, h.lng], 13, { duration: 0.7 });
@@ -55,15 +64,22 @@ export default function ForesightApp() {
 
   const handleSelectProperty = useCallback((id: number) => {
     setSelection({ type: "property", propertyId: id });
+    setPanelOpen(true);
+
     const p = properties.find(prop => prop.id === id);
     if (p && mapRef.current) {
       mapRef.current.flyTo([p.lat, p.lng], 14, { duration: 0.7 });
     }
   }, []);
 
+  const handleClosePanel = useCallback(() => {
+    setPanelOpen(false);
+  }, []);
+
   const handleReset = useCallback(() => {
     mapRef.current?.flyTo([41.8781, -87.6298], 12, { duration: 0.7 });
     setSelection({ type: "hood", hoodId: "west-loop" });
+    setPanelOpen(false);
     setFilters({
       investmentType: "",
       timeline: "3",
@@ -85,12 +101,9 @@ export default function ForesightApp() {
     notify("PDF exported · Check your downloads");
   }, [notify]);
 
+  // ── Tray stats ──
   const trayStats = useMemo(() => {
-    let total = 0;
-    let buy = 0;
-    let build = 0;
-    let watch = 0;
-    let avoid = 0;
+    let total = 0, buy = 0, build = 0, watch = 0, avoid = 0;
 
     properties.forEach(p => {
       let show = true;
@@ -139,19 +152,30 @@ export default function ForesightApp() {
         mapRef={mapRef}
       />
 
+      {/* Click-outside layer for closing the right panel */}
+      {panelOpen && (
+        <div
+          className="fixed inset-0 z-[850]"
+          onClick={handleClosePanel}
+          aria-hidden="true"
+        />
+      )}
+
       <MapControls mapRef={mapRef} />
       <Legend />
       <BottomTray stats={trayStats} />
 
-      <IntelPanel
-        selectionType={selection.type}
-        hoodId={selection.hoodId}
-        propertyId={selection.propertyId}
-        onSelectProperty={handleSelectProperty}
-        onOpenScenario={() => setScenarioOpen(true)}
-        onOpenMemo={() => setMemoOpen(true)}
-        onExportPDF={handleExportPDF}
-      />
+      {panelOpen && selection.type === "property" && (
+        <IntelPanel
+          selectionType={selection.type}
+          hoodId={selection.hoodId}
+          propertyId={selection.propertyId}
+          onSelectProperty={handleSelectProperty}
+          onOpenScenario={() => setScenarioOpen(true)}
+          onOpenMemo={() => setMemoOpen(true)}
+          onExportPDF={handleExportPDF}
+        />
+      )}
 
       <ScenarioLab
         open={scenarioOpen}
