@@ -12,7 +12,7 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 # General settings
 # -----------------------------
 REQUEST_TIMEOUT = 20
-PIPELINE_LIMIT = 30
+PIPELINE_LIMIT = 100
 SEARCH_RADIUS_MILES = 0.5
 
 # -----------------------------
