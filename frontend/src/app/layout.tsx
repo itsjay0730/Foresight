@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Foresight · Geospatial Investment Intelligence",
+  title: "Foresight",
   description: "Where in Chicago should you buy, build, or invest over the next 2–5 years?",
 };
 
