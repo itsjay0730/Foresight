@@ -11,9 +11,8 @@ interface IntelPanelProps {
   hoodId?: string;
   propertyId?: number;
   onSelectProperty: (id: number) => void;
-  onOpenScenario: () => void;
   onOpenMemo: () => void;
-  onExportPDF: () => void;
+  onOpenNeighborhoodStats: () => void;
 }
 
 export default function IntelPanel({
@@ -21,9 +20,8 @@ export default function IntelPanel({
   hoodId,
   propertyId,
   onSelectProperty,
-  onOpenScenario,
   onOpenMemo,
-  onExportPDF,
+  onOpenNeighborhoodStats,
 }: IntelPanelProps) {
   const [tab, setTab] = useState<TabKey>("overview");
 
@@ -32,12 +30,12 @@ export default function IntelPanel({
       ? neighborhoods[hoodId || "west-loop"]
       : neighborhoods[
           Object.keys(neighborhoods).find(
-            k => neighborhoods[k].name === properties.find(p => p.id === propertyId)?.hood
+            (k) => neighborhoods[k].name === properties.find((p) => p.id === propertyId)?.hood
           ) || "west-loop"
         ];
 
   const prop: Property | undefined =
-    selectionType === "property" ? properties.find(p => p.id === propertyId) : undefined;
+    selectionType === "property" ? properties.find((p) => p.id === propertyId) : undefined;
 
   const score = prop ? prop.score : hood.scores.opportunity;
   const name = prop ? prop.name : hood.name;
@@ -64,7 +62,6 @@ export default function IntelPanel({
         border: "1px solid rgba(255,255,255,0.06)",
       }}
     >
-      {/* Header */}
       <div className="px-[14px] pt-4 shrink-0 md:px-[18px]">
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
@@ -88,7 +85,6 @@ export default function IntelPanel({
           </div>
         </div>
 
-        {/* Recommendation strip */}
         <div
           className="mt-3 px-[12px] py-[10px] rounded-f flex items-center justify-between gap-3"
           style={{
@@ -121,9 +117,8 @@ export default function IntelPanel({
         </div>
       </div>
 
-      {/* Tabs */}
       <div className="flex px-[14px] pt-3 shrink-0 overflow-x-auto no-scrollbar md:px-[18px]">
-        {tabs.map(t => (
+        {tabs.map((t) => (
           <button
             key={t.key}
             className={`px-[13px] py-2 text-[11px] font-semibold tracking-[0.2px] border-b-2 transition-all whitespace-nowrap ${
@@ -140,50 +135,33 @@ export default function IntelPanel({
 
       <div className="h-px mx-[14px] bg-white/5 shrink-0 md:mx-[18px]" />
 
-      {/* Body */}
       <div className="flex-1 overflow-y-auto px-[14px] py-[14px] pb-7 custom-scroll md:px-[18px]">
         {tab === "overview" && (
           <OverviewTab
             hood={hood}
-            score={score}
             rec={rec}
-            onOpenScenario={onOpenScenario}
             onOpenMemo={onOpenMemo}
-            onExportPDF={onExportPDF}
+            onOpenNeighborhoodStats={onOpenNeighborhoodStats}
           />
         )}
         {tab === "factors" && <FactorsTab hood={hood} />}
-        {tab === "memo" && (
-          <MemoTab
-            hood={hood}
-            score={score}
-            onOpenScenario={onOpenScenario}
-            onExportPDF={onExportPDF}
-          />
-        )}
-        {tab === "comps" && (
-          <CompsTab hood={hood} prop={prop} onSelectProperty={onSelectProperty} />
-        )}
+        {tab === "memo" && <MemoTab hood={hood} score={score} />}
+        {tab === "comps" && <CompsTab hood={hood} prop={prop} onSelectProperty={onSelectProperty} />}
       </div>
     </div>
   );
 }
 
-/* ═══════ OVERVIEW TAB ═══════ */
 function OverviewTab({
   hood,
-  score,
   rec,
-  onOpenScenario,
   onOpenMemo,
-  onExportPDF,
+  onOpenNeighborhoodStats,
 }: {
   hood: Neighborhood;
-  score: number;
   rec: string;
-  onOpenScenario: () => void;
   onOpenMemo: () => void;
-  onExportPDF: () => void;
+  onOpenNeighborhoodStats: () => void;
 }) {
   const scores = [
     { label: "Investment Opportunity", val: hood.scores.opportunity, delta: hood.delta },
@@ -196,7 +174,6 @@ function OverviewTab({
 
   return (
     <>
-      {/* Score grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-[6px] mb-[14px]">
         {scores.map((s, i) => (
           <div
@@ -223,12 +200,7 @@ function OverviewTab({
                 {s.delta.startsWith("-") ? "▼" : "▲"} {s.delta}
               </span>
             </div>
-            <svg
-              className="absolute bottom-0 right-1 opacity-20"
-              width="54"
-              height="16"
-              viewBox="0 0 54 16"
-            >
+            <svg className="absolute bottom-0 right-1 opacity-20" width="54" height="16" viewBox="0 0 54 16">
               <polyline
                 points={generateSparklinePath(s.val)}
                 fill="none"
@@ -240,7 +212,6 @@ function OverviewTab({
         ))}
       </div>
 
-      {/* Strengths / Risks */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-[6px] mb-[14px]">
         <div className="rounded-f p-[11px] border border-white/[0.04] bg-white/[0.02]">
           <h4 className="text-[10px] font-bold uppercase tracking-[0.6px] text-f-green flex items-center gap-1 mb-[7px]">
@@ -277,7 +248,6 @@ function OverviewTab({
         </div>
       </div>
 
-      {/* Action card */}
       <div
         className="rounded-f p-[13px] mb-3 border"
         style={{ background: "rgba(34,197,94,0.06)", borderColor: "rgba(34,197,94,0.1)" }}
@@ -306,22 +276,16 @@ function OverviewTab({
           >
             Generate Full Memo
           </button>
-          <button
-            onClick={onOpenScenario}
-            className="px-3 py-[6px] rounded-f text-[10.5px] font-semibold border border-white/[0.08] text-t-secondary hover:text-t-primary hover:border-white/[0.15] transition-all"
-          >
-            Scenario Lab
-          </button>
-          <button
-            onClick={onExportPDF}
-            className="px-3 py-[6px] rounded-f text-[10.5px] font-semibold border border-white/[0.08] text-t-secondary hover:text-t-primary hover:border-white/[0.15] transition-all"
-          >
-            Export PDF
-          </button>
         </div>
       </div>
 
-      {/* Freshness */}
+      <button
+        onClick={onOpenNeighborhoodStats}
+        className="w-full px-3 py-[8px] rounded-f text-[10.5px] font-semibold border border-white/[0.08] text-t-secondary hover:text-t-primary hover:border-white/[0.15] transition-all mb-3"
+      >
+        Neighborhood Stats
+      </button>
+
       <div className="flex items-start gap-[6px] text-[9.5px] text-t-dim pt-2 border-t border-white/[0.03]">
         <span className="w-[5px] h-[5px] rounded-full bg-f-green animate-blink mt-[4px] shrink-0" />
         <span>Updated Apr 10, 2026 · Census ACS, CoStar, Zillow, City of Chicago, Redfin, CTA</span>
@@ -330,7 +294,6 @@ function OverviewTab({
   );
 }
 
-/* ═══════ FACTORS TAB ═══════ */
 function FactorsTab({ hood }: { hood: Neighborhood }) {
   return (
     <>
@@ -338,7 +301,7 @@ function FactorsTab({ hood }: { hood: Neighborhood }) {
         <div className="text-[10px] font-bold text-t-muted uppercase tracking-[1px] py-2">
           Investment Factors
         </div>
-        {hood.factors.map(f => (
+        {hood.factors.map((f) => (
           <div
             key={f.key}
             className="flex items-center justify-between gap-3 py-[7px] border-b border-white/[0.02] last:border-none"
@@ -387,17 +350,12 @@ function FactorsTab({ hood }: { hood: Neighborhood }) {
   );
 }
 
-/* ═══════ AI MEMO TAB ═══════ */
 function MemoTab({
   hood,
   score,
-  onOpenScenario,
-  onExportPDF,
 }: {
   hood: Neighborhood;
   score: number;
-  onOpenScenario: () => void;
-  onExportPDF: () => void;
 }) {
   const confidence = Math.min(96, 70 + Math.floor(score * 0.28));
 
@@ -419,34 +377,6 @@ function MemoTab({
         <p className="text-[11.5px] leading-[1.7] text-t-secondary">{hood.memo}</p>
       </div>
 
-      <div
-        className="rounded-f p-[13px] mb-3 border"
-        style={{ background: "rgba(59,130,246,0.06)", borderColor: "rgba(59,130,246,0.1)" }}
-      >
-        <div className="text-[9px] font-bold text-t-muted uppercase tracking-[0.8px] mb-1">
-          Scenario Lab
-        </div>
-        <div className="text-[14px] font-bold text-f-blue">Model Investment Scenarios</div>
-        <p className="text-[10.5px] text-t-secondary mt-[3px] leading-[1.5]">
-          Run acquisition cost, cap rate, appreciation, and exit modeling across 1Y, 3Y, and 5Y
-          horizons with adjustable parameters.
-        </p>
-        <div className="flex gap-[5px] mt-[10px] flex-wrap">
-          <button
-            onClick={onOpenScenario}
-            className="px-3 py-[6px] rounded-f text-[10.5px] font-semibold bg-f-blue text-white hover:bg-f-blue/80 transition-colors"
-          >
-            Launch Scenario Lab
-          </button>
-          <button
-            onClick={onExportPDF}
-            className="px-3 py-[6px] rounded-f text-[10.5px] font-semibold border border-white/[0.08] text-t-secondary hover:text-t-primary transition-all"
-          >
-            Download Memo PDF
-          </button>
-        </div>
-      </div>
-
       <div className="flex items-start gap-[6px] text-[9.5px] text-t-dim pt-2 border-t border-white/[0.03]">
         <span className="w-[5px] h-[5px] rounded-full bg-f-green animate-blink mt-[4px] shrink-0" />
         <span>Memo generated Apr 11, 2026 · Model v3.2 · Confidence: {confidence}%</span>
@@ -455,7 +385,6 @@ function MemoTab({
   );
 }
 
-/* ═══════ COMPS TAB ═══════ */
 function CompsTab({
   hood,
   prop,
@@ -467,7 +396,7 @@ function CompsTab({
 }) {
   const excludeHood = prop ? prop.hood : hood.name;
   const comps = properties
-    .filter(p => p.hood !== excludeHood)
+    .filter((p) => p.hood !== excludeHood)
     .sort((a, b) => b.score - a.score)
     .slice(0, 6);
 
@@ -499,7 +428,7 @@ function CompsTab({
         Comparable Opportunities
       </div>
 
-      {comps.map(c => {
+      {comps.map((c) => {
         const bs = recBadgeStyle(c.rec);
         return (
           <div
@@ -514,10 +443,7 @@ function CompsTab({
               </div>
             </div>
             <div className="text-right shrink-0">
-              <div
-                className="text-[15px] font-bold font-mono"
-                style={{ color: scoreColor(c.score) }}
-              >
+              <div className="text-[15px] font-bold font-mono" style={{ color: scoreColor(c.score) }}>
                 {c.score}
               </div>
               <span
