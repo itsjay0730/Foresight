@@ -110,6 +110,50 @@ function getTimelineDelta(
     : "Balanced horizon";
 }
 
+function clamp01(value: number) {
+  return Math.max(0, Math.min(1, value));
+}
+
+function normalize(value: number, min: number, max: number) {
+  if (!Number.isFinite(value)) return 0;
+  if (max <= min) return 0;
+  return clamp01((value - min) / (max - min));
+}
+
+function getHousingModeScore(plot: any, timeline: string) {
+  const rentLevel = Number(plot?.zip_rent_index_latest ?? 0);
+  const zipRentGrowth = Number(plot?.zip_rent_growth_1y ?? 0);
+  const metroRentGrowth = Number(plot?.metro_rent_growth_1y ?? 0);
+  const salesGrowth = Number(plot?.sales_count_growth_1y ?? 0);
+
+  const rentLevelScore = normalize(rentLevel, 1200, 3200);
+  const zipGrowthScore = normalize(zipRentGrowth, -0.05, 0.12);
+  const metroGrowthScore = normalize(metroRentGrowth, -0.05, 0.12);
+  const salesMomentumScore = normalize(salesGrowth, -0.2, 0.2);
+
+  const base =
+    0.4 * rentLevelScore +
+    0.3 * zipGrowthScore +
+    0.15 * metroGrowthScore +
+    0.15 * salesMomentumScore;
+
+  const multiplier = timeline === "1" ? 0.97 : timeline === "5" ? 1.05 : 1.0;
+
+  return Math.max(0, Math.min(100, Math.round((60 + base * 35) * multiplier)));
+}
+
+function getModeScore(
+  plot: any,
+  timeline: string,
+  housingType: "investment" | "housing"
+) {
+  if (housingType === "housing") {
+    return getHousingModeScore(plot, timeline);
+  }
+
+  return getTimelineAdjustedScore(plot.score, timeline, plot?.forecast_scores);
+}
+
 function LoadingScreen() {
   return (
     <div
@@ -180,7 +224,7 @@ export default function ForesightApp() {
 
     setDataReady(false);
 
-    fetchAndGetData(filters.housingType)
+    fetchAndGetData("investment")
       .then((data) => {
         if (!mounted) return;
         setApiNeighborhoods(data.neighborhoods ?? {});
@@ -297,17 +341,6 @@ export default function ForesightApp() {
     apiProperties.forEach((p) => {
       let show = true;
 
-      if (filters.housingType === "housing") {
-        const propertyType = p.type.toLowerCase();
-        const isHousingType =
-          propertyType.includes("multi") ||
-          propertyType.includes("single") ||
-          propertyType.includes("residential") ||
-          propertyType.includes("land");
-
-        if (!isHousingType) show = false;
-      }
-
       if (filters.investmentType && p.type !== filters.investmentType) {
         show = false;
       }
@@ -334,10 +367,10 @@ export default function ForesightApp() {
       if (show) {
         total++;
 
-        const adjustedScore = getTimelineAdjustedScore(
-          p.score,
+        const adjustedScore = getModeScore(
+          p,
           filters.timeline,
-          (p as any).forecast_scores
+          filters.housingType
         );
         const adjustedRec = getRecommendationFromScore(adjustedScore);
 
@@ -358,51 +391,57 @@ export default function ForesightApp() {
   const adjustedNeighborhoodStats = useMemo(() => {
     if (!activeNeighborhood) return undefined;
 
-    const adjustedOpportunity = getTimelineLayerScore(
-      activeNeighborhood.scores.opportunity,
-      filters.timeline,
-      (activeNeighborhood as any).forecast_scores,
-      "opportunity"
+    const neighborhoodPlots = apiProperties.filter(
+      (p) => p.hood === activeNeighborhood.name
     );
 
+    const adjustedOpportunity =
+      filters.housingType === "housing"
+        ? neighborhoodPlots.reduce(
+            (sum, p) => sum + getModeScore(p, filters.timeline, "housing"),
+            0
+          ) / Math.max(neighborhoodPlots.length, 1)
+        : getTimelineLayerScore(
+            activeNeighborhood.scores.opportunity,
+            filters.timeline,
+            (activeNeighborhood as any).forecast_scores,
+            "opportunity"
+          );
+
     return {
-      opportunity: adjustedOpportunity,
-      recommendation: getRecommendationFromScore(adjustedOpportunity),
-      timelineLabel: `${filters.timeline}Y`,
-      delta: getTimelineDelta(
-        activeNeighborhood.scores.opportunity,
-        filters.timeline,
-        (activeNeighborhood as any).forecast_scores
+      opportunity: Math.round(adjustedOpportunity),
+      recommendation: getRecommendationFromScore(
+        Math.round(adjustedOpportunity)
       ),
+      timelineLabel: `${filters.timeline}Y`,
+      delta:
+        filters.housingType === "housing"
+          ? "Housing market view"
+          : getTimelineDelta(
+              activeNeighborhood.scores.opportunity,
+              filters.timeline,
+              (activeNeighborhood as any).forecast_scores
+            ),
     };
-  }, [activeNeighborhood, filters.timeline]);
+  }, [
+    activeNeighborhood,
+    apiProperties,
+    filters.timeline,
+    filters.housingType,
+  ]);
 
   const neighborhoodProperties = useMemo(() => {
     if (!activeNeighborhood) return [];
 
     return apiProperties
-      .filter((p) => {
-        if (p.hood !== activeNeighborhood.name) return false;
-
-        if (filters.housingType === "housing") {
-          const propertyType = p.type.toLowerCase();
-          const isHousingType =
-            propertyType.includes("multi") ||
-            propertyType.includes("single") ||
-            propertyType.includes("residential") ||
-            propertyType.includes("land");
-
-          if (!isHousingType) return false;
-        }
-
-        return true;
-      })
+      .filter((p) => p.hood === activeNeighborhood.name)
       .map((p) => {
-        const adjustedScore = getTimelineAdjustedScore(
-          p.score,
+        const adjustedScore = getModeScore(
+          p,
           filters.timeline,
-          (p as any).forecast_scores
+          filters.housingType
         );
+
         return {
           ...p,
           adjustedScore,
@@ -473,6 +512,7 @@ export default function ForesightApp() {
           hoodId={selection.hoodId}
           propertyId={selection.propertyId}
           timeline={filters.timeline}
+          housingType={filters.housingType}
           onSelectProperty={handleSelectProperty}
           onOpenMemo={() => setMemoOpen(true)}
           onOpenNeighborhoodStats={() => {
