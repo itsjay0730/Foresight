@@ -12,7 +12,7 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 # General settings
 # -----------------------------
 REQUEST_TIMEOUT = 20
-PIPELINE_LIMIT = 30  # target 20–50 sites for MVP
+PIPELINE_LIMIT = 30
 SEARCH_RADIUS_MILES = 0.5
 
 # -----------------------------
@@ -37,9 +37,22 @@ CHICAGO_CITY_OWNED_LOTS_API = os.getenv(
 # Generic alias used by the rest of the pipeline
 CHICAGO_PLOTS_API = CHICAGO_CITY_OWNED_LOTS_API
 
+# NEW: broader parcel universe source for better citywide coverage
+COOK_COUNTY_PARCEL_UNIVERSE_API = os.getenv(
+    "COOK_COUNTY_PARCEL_UNIVERSE_API",
+    "https://datacatalog.cookcountyil.gov/resource/nj4t-kc8j.json",
+)
+
+# NEW: active business licenses for downtown / commercial activity signals
+CHICAGO_BUSINESS_LICENSES_API = os.getenv(
+    "CHICAGO_BUSINESS_LICENSES_API",
+    "https://data.cityofchicago.org/resource/uupf-x98q.json",
+)
+
+# Updated CTA bus stops dataset
 CTA_STOPS_API = os.getenv(
     "CTA_STOPS_API",
-    "https://data.cityofchicago.org/resource/8pix-ypme.json",
+    "https://data.cityofchicago.org/resource/qs84-j7wh.json",
 )
 
 # Census / ACS
@@ -61,3 +74,4 @@ RAW_PLOTS_FILE = OUTPUT_DIR / "raw_plots.json"
 ENRICHED_PLOTS_FILE = OUTPUT_DIR / "enriched_plots.json"
 FINAL_PLOTS_FILE = OUTPUT_DIR / "final_plots.json"
 FINAL_PLOTS_CSV = OUTPUT_DIR / "final_plots.csv"
+PREDICTIONS_FILE = OUTPUT_DIR / "predicted_plots.json"
