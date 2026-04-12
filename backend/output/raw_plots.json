@@ -1,5 +1,125 @@
 [
   {
+    "id": "17103120121021",
+    "lat": 41.88227600197529,
+    "lng": -87.62569872954695,
+    "neighborhood": "SOUTH CHICAGO",
+    "zip": "60602",
+    "parcel_size": 0,
+    "property_type": "parcel_candidate",
+    "zoning": "299"
+  },
+  {
+    "id": "17032210130000",
+    "lat": 41.8989865305,
+    "lng": -87.6215879503,
+    "neighborhood": "NORTH CHICAGO",
+    "zip": "60611",
+    "parcel_size": 0,
+    "property_type": "parcel_candidate",
+    "zoning": "529"
+  },
+  {
+    "id": "17042040640000",
+    "lat": 41.9102792067,
+    "lng": -87.6342172613,
+    "neighborhood": "NORTH CHICAGO",
+    "zip": "60610",
+    "parcel_size": 0,
+    "property_type": "parcel_candidate",
+    "zoning": "211"
+  },
+  {
+    "id": "17042171420000",
+    "lat": 41.9071336484,
+    "lng": -87.6305022444,
+    "neighborhood": "NORTH CHICAGO",
+    "zip": "60610",
+    "parcel_size": 0,
+    "property_type": "parcel_candidate",
+    "zoning": "391"
+  },
+  {
+    "id": "17042180531132",
+    "lat": 41.9070463872,
+    "lng": -87.6296434248,
+    "neighborhood": "NORTH CHICAGO",
+    "zip": "60610",
+    "parcel_size": 0,
+    "property_type": "parcel_candidate",
+    "zoning": "299"
+  },
+  {
+    "id": "17151010181016",
+    "lat": 41.881384366194695,
+    "lng": -87.62498157745645,
+    "neighborhood": "SOUTH CHICAGO",
+    "zip": "60603",
+    "parcel_size": 0,
+    "property_type": "parcel_candidate",
+    "zoning": "599"
+  },
+  {
+    "id": "2563584-20260916",
+    "lat": 41.8893542519,
+    "lng": -87.6241024562,
+    "neighborhood": "NEAR NORTH SIDE",
+    "zip": "60611",
+    "parcel_size": 0,
+    "property_type": "business_candidate",
+    "zoning": "Limited Business License"
+  },
+  {
+    "id": "14293140481073",
+    "lat": 41.92743116494208,
+    "lng": -87.66252955275677,
+    "neighborhood": "LAKE VIEW",
+    "zip": "60614",
+    "parcel_size": 0,
+    "property_type": "parcel_candidate",
+    "zoning": "299"
+  },
+  {
+    "id": "14173020410000",
+    "lat": 41.9605657137,
+    "lng": -87.6673676063,
+    "neighborhood": "LAKE VIEW",
+    "zip": "60613",
+    "parcel_size": 0,
+    "property_type": "parcel_candidate",
+    "zoning": "278"
+  },
+  {
+    "id": "14174030471002",
+    "lat": 41.96082223,
+    "lng": -87.6559116605,
+    "neighborhood": "LAKE VIEW",
+    "zip": "60613",
+    "parcel_size": 0,
+    "property_type": "parcel_candidate",
+    "zoning": "299"
+  },
+  {
+    "id": "14183020430000",
+    "lat": 41.960389745,
+    "lng": -87.6853592877,
+    "neighborhood": "LAKE VIEW",
+    "zip": "60618",
+    "parcel_size": 0,
+    "property_type": "parcel_candidate",
+    "zoning": "278"
+  },
+  {
+    "id": "14183270291005",
+    "lat": 41.9553016373,
+    "lng": -87.6806277906,
+    "neighborhood": "LAKE VIEW",
+    "zip": "60618",
+    "parcel_size": 0,
+    "property_type": "parcel_candidate",
+    "zoning": "299"
+  },
+  {
     "id": "37756",
     "lat": 41.75654782391807,
     "lng": -87.64386327857898,
@@ -80,36 +200,6 @@
     "zoning": "RS-3"
   },
   {
-    "id": "19665",
-    "lat": 41.75109345398283,
-    "lng": -87.55324870345193,
-    "neighborhood": "SOUTH CHICAGO",
-    "zip": "60617",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "C1-2"
-  },
-  {
-    "id": "19589",
-    "lat": 41.73765810096648,
-    "lng": -87.5656731440233,
-    "neighborhood": "SOUTH CHICAGO",
-    "zip": "60617",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RS-3"
-  },
-  {
-    "id": "34339",
-    "lat": 41.65121204392156,
-    "lng": -87.60535532025513,
-    "neighborhood": "RIVERDALE",
-    "zip": "60827",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RS-2"
-  },
-  {
     "id": "35245",
     "lat": 41.89385728946573,
     "lng": -87.72041320086409,
@@ -150,16 +240,6 @@
     "zoning": "RS-3"
   },
   {
-    "id": "59403",
-    "lat": 41.8104306715045,
-    "lng": -87.61482207300874,
-    "neighborhood": "GRAND BOULEVARD",
-    "zip": "60653",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RM-5"
-  },
-  {
     "id": "58818",
     "lat": 41.89275197812359,
     "lng": -87.72023597773659,
@@ -180,103 +260,43 @@
     "zoning": "RT-4"
   },
   {
-    "id": "20523",
-    "lat": 41.76935077769723,
-    "lng": -87.6460896664575,
-    "neighborhood": "ENGLEWOOD",
-    "zip": "60621",
+    "id": "1674612",
+    "lat": 41.897740856252504,
+    "lng": -87.62396131598219,
+    "neighborhood": "UNKNOWN",
+    "zip": "Unknown",
     "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RS-3"
+    "property_type": "permit_candidate",
+    "zoning": "PERMIT - SIGNS"
   },
   {
-    "id": "34273",
-    "lat": 41.892317458842314,
-    "lng": -87.71830714095819,
-    "neighborhood": "HUMBOLDT PARK",
-    "zip": "60624",
+    "id": "1688922",
+    "lat": 41.90322929302484,
+    "lng": -87.68133976093554,
+    "neighborhood": "UNKNOWN",
+    "zip": "Unknown",
     "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RS-3"
+    "property_type": "permit_candidate",
+    "zoning": "PERMIT - SIGNS"
   },
   {
-    "id": "23989",
-    "lat": 41.72654653465606,
-    "lng": -87.62672288201742,
-    "neighborhood": "ROSELAND",
-    "zip": "60620",
+    "id": "3390256",
+    "lat": 41.859406533938085,
+    "lng": -87.67346070900182,
+    "neighborhood": "Unknown",
+    "zip": "Unknown",
     "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RS-2"
+    "property_type": "permit_candidate",
+    "zoning": "PERMIT - SIGNS"
   },
   {
-    "id": "37225",
-    "lat": 41.879003371657504,
-    "lng": -87.73581569092116,
-    "neighborhood": "WEST GARFIELD PARK",
-    "zip": "60624",
+    "id": "3392045",
+    "lat": 41.99250536850696,
+    "lng": -87.6604919629177,
+    "neighborhood": "Unknown",
+    "zip": "Unknown",
     "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RT-4"
-  },
-  {
-    "id": "62419",
-    "lat": 41.79627432700558,
-    "lng": -87.62713196133157,
-    "neighborhood": "WASHINGTON PARK",
-    "zip": "60609",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RT-4"
-  },
-  {
-    "id": "9617",
-    "lat": 41.86661288645532,
-    "lng": -87.71405473196708,
-    "neighborhood": "NORTH LAWNDALE",
-    "zip": "60624",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "B3-3"
-  },
-  {
-    "id": "37546",
-    "lat": 41.74562225812267,
-    "lng": -87.60103490114405,
-    "neighborhood": "CHATHAM",
-    "zip": "60619",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RT-4"
-  },
-  {
-    "id": "18694",
-    "lat": 41.79610870709449,
-    "lng": -87.62712699483926,
-    "neighborhood": "WASHINGTON PARK",
-    "zip": "60609",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RT-4"
-  },
-  {
-    "id": "8915",
-    "lat": 41.89245195880656,
-    "lng": -87.7239042788536,
-    "neighborhood": "HUMBOLDT PARK",
-    "zip": "60624",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "RS-3"
-  },
-  {
-    "id": "9616",
-    "lat": 41.866611868338424,
-    "lng": -87.7141407599288,
-    "neighborhood": "NORTH LAWNDALE",
-    "zip": "60624",
-    "parcel_size": 0,
-    "property_type": "opportunity_site",
-    "zoning": "B3-3"
+    "property_type": "permit_candidate",
+    "zoning": "PERMIT - SIGNS"
   }
 ]
