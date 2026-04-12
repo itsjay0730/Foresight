@@ -52,9 +52,9 @@ export function Legend() {
       </span>
 
       {[
-        { color: "#22c55e", label: "80+ Strong" },
-        { color: "#f59e0b", label: "70–79 Moderate" },
-        { color: "#ef4444", label: "60–69 Caution" },
+        { color: "#22c55e", label: "85+ Strong" },
+        { color: "#f59e0b", label: "75–84 Moderate" },
+        { color: "#ef4444", label: "60–74 Caution" },
         { color: "#a855f7", label: "<60 Avoid" },
       ].map((item) => (
         <div

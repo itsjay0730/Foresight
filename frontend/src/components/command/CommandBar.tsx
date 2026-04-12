@@ -71,6 +71,7 @@ export default function CommandBar({
             onFilterChange({ timeline: e.target.value as "1" | "3" | "5" })
           }
         >
+          <option value="0">Current</option>
           <option value="1">1Y</option>
           <option value="3">3Y</option>
           <option value="5">5Y</option>
