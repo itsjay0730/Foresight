@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import FastAPI
 
 from api.map_data import router as mapDataRouter
-from data.run_pipeline import runPipeline
+from backend.pipeline.fetch_pipeline import runPipeline
 
 
 app = FastAPI(title="Foresight Data Pipeline API")
