@@ -1,187 +1,301 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Map, { Marker, Popup } from "react-map-gl/mapbox";
+import type { MapRef } from "react-map-gl/mapbox";
+import type { Map as MapboxMap, FillExtrusionLayer } from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+
 import { neighborhoods } from "@/data/neighborhoods";
 import { properties } from "@/data/properties";
 import { FilterState } from "@/data/types";
-import { scoreColor, getScoreValue } from "@/lib/utils";
-
-// Fix Leaflet default icon paths — webpack/next break the asset resolution
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
-  iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
-  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
-});
+import { scoreColor } from "@/lib/utils";
 
 interface MapViewProps {
   filters: FilterState;
   onSelectHood: (id: string) => void;
   onSelectProperty: (id: number) => void;
-  mapRef: React.MutableRefObject<L.Map | null>;
+  mapRef: React.MutableRefObject<any>;
 }
 
-export default function MapView({ filters, onSelectHood, onSelectProperty, mapRef }: MapViewProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const zonesRef = useRef<Record<string, L.Circle>>({});
-  const markersRef = useRef<Record<number, L.CircleMarker>>({});
-  const initRef = useRef(false);
+const BUILDINGS_LAYER_ID = "foresight-3d-buildings";
 
-  const updateLayers = useCallback(() => {
-    const { scoreLayer, investmentType, riskLevel } = filters;
+function add3DBuildings(map: MapboxMap) {
+  if (!map.getStyle() || !map.getStyle().layers) return;
+  if (map.getLayer(BUILDINGS_LAYER_ID)) return;
+  if (!map.getSource("composite")) return;
 
-    Object.entries(neighborhoods).forEach(([key, hood]) => {
-      const circle = zonesRef.current[key];
-      if (!circle) return;
-      const val = getScoreValue(hood, scoreLayer);
-      const clr = scoreColor(val);
-      circle.setStyle({
-        color: clr,
-        fillColor: clr,
-        fillOpacity: 0.06 + (val - 55) * 0.002,
-      });
-    });
+  const labelLayerId = map
+    .getStyle()
+    .layers?.find(
+      (layer) =>
+        layer.type === "symbol" &&
+        "layout" in layer &&
+        layer.layout &&
+        (layer.layout as Record<string, unknown>)["text-field"]
+    )?.id;
 
-    properties.forEach(p => {
-      const m = markersRef.current[p.id];
-      if (!m) return;
-      let show = true;
-      if (investmentType && p.type !== investmentType) show = false;
-      if (riskLevel) {
-        if (riskLevel === "low" && p.risk !== "low") show = false;
-        if (riskLevel === "moderate" && p.risk !== "moderate") show = false;
-        if (riskLevel === "high" && !["emerging", "high"].includes(p.risk)) show = false;
-        if (riskLevel === "emerging" && p.risk !== "emerging") show = false;
-        if (riskLevel === "avoid" && p.risk !== "avoid") show = false;
+  const buildingsLayer: FillExtrusionLayer = {
+    id: BUILDINGS_LAYER_ID,
+    source: "composite",
+    "source-layer": "building",
+    filter: ["==", ["get", "extrude"], "true"],
+    type: "fill-extrusion",
+    minzoom: 11,
+    paint: {
+      "fill-extrusion-color": [
+        "interpolate",
+        ["linear"],
+        ["get", "height"],
+        0,
+        "#20242e",
+        40,
+        "#2a3040",
+        120,
+        "#35405a",
+        300,
+        "#4a5a7a"
+      ],
+      "fill-extrusion-height": [
+        "interpolate",
+        ["linear"],
+        ["zoom"],
+        11,
+        0,
+        13,
+        ["coalesce", ["get", "height"], 0]
+      ],
+      "fill-extrusion-base": [
+        "interpolate",
+        ["linear"],
+        ["zoom"],
+        11,
+        0,
+        13,
+        ["coalesce", ["get", "min_height"], 0]
+      ],
+      "fill-extrusion-opacity": 0.72
+    }
+  };
+
+  map.addLayer(buildingsLayer, labelLayerId);
+}
+
+export default function MapView({
+  filters,
+  onSelectHood,
+  onSelectProperty,
+  mapRef
+}: MapViewProps) {
+  const internalMapRef = useRef<MapRef | null>(null);
+  const [popupPropertyId, setPopupPropertyId] = useState<number | null>(null);
+
+  useEffect(() => {
+    mapRef.current = {
+      flyTo: (args: { center?: [number, number]; zoom?: number; duration?: number }) => {
+        const map = internalMapRef.current?.getMap();
+        if (!map || !args.center) return;
+
+        map.flyTo({
+          center: args.center,
+          zoom: args.zoom,
+          duration: args.duration,
+          essential: true
+        });
+      },
+      zoomIn: () => internalMapRef.current?.getMap().zoomIn(),
+      zoomOut: () => internalMapRef.current?.getMap().zoomOut()
+    };
+
+    return () => {
+      mapRef.current = null;
+    };
+  }, [mapRef]);
+
+  const visibleProperties = useMemo(() => {
+    return properties.filter((p) => {
+      if (filters.investmentType && p.type !== filters.investmentType) return false;
+
+      if (filters.riskLevel) {
+        if (filters.riskLevel === "low" && p.risk !== "low") return false;
+        if (filters.riskLevel === "moderate" && p.risk !== "moderate") return false;
+        if (filters.riskLevel === "high" && !["emerging", "high"].includes(p.risk)) return false;
+        if (filters.riskLevel === "emerging" && p.risk !== "emerging") return false;
+        if (filters.riskLevel === "avoid" && p.risk !== "avoid") return false;
       }
-      if (show) {
-        m.setStyle({ opacity: 1, fillOpacity: 0.9 });
-        m.setRadius(5.5);
-      } else {
-        m.setStyle({ opacity: 0.1, fillOpacity: 0.1 });
-        m.setRadius(3);
-      }
+
+      return true;
     });
   }, [filters]);
 
-  useEffect(() => {
-    if (initRef.current || !containerRef.current) return;
-    initRef.current = true;
+  const popupProperty =
+    popupPropertyId !== null
+      ? properties.find((p) => p.id === popupPropertyId) || null
+      : null;
 
-    const map = L.map(containerRef.current, {
-      center: [41.8781, -87.6298],
-      zoom: 12,
-      zoomControl: false,
-      attributionControl: false,
-    });
-    mapRef.current = map;
+  return (
+    <div className="fixed inset-0 z-[1]">
+      <Map
+        ref={internalMapRef}
+        initialViewState={{
+          longitude: -87.6298,
+          latitude: 41.8781,
+          zoom: 12.1,
+          pitch: 52,
+          bearing: -18
+        }}
+        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
+        mapStyle="mapbox://styles/mapbox/dark-v11"
+        attributionControl={false}
+        style={{ width: "100%", height: "100%" }}
+        onLoad={(e) => add3DBuildings(e.target)}
+        onStyleData={() => {
+          const map = internalMapRef.current?.getMap();
+          if (map) add3DBuildings(map);
+        }}
+      >
+        {/* Neighborhood markers */}
+        {Object.entries(neighborhoods).map(([id, hood]) => (
+          <Marker
+            key={id}
+            longitude={hood.lng}
+            latitude={hood.lat}
+            anchor="center"
+            onClick={(e) => {
+              e.originalEvent.stopPropagation();
+              onSelectHood(id);
+            }}
+          >
+            <button
+              type="button"
+              className="pointer-events-auto flex flex-col items-center bg-transparent border-0 p-0"
+            >
+              <div
+                className="rounded-full border border-white/40"
+                style={{
+                  width: 12,
+                  height: 12,
+                  background: scoreColor(hood.scores.opportunity)
+                }}
+              />
+              <div className="mt-[4px] text-center pointer-events-none">
+                <div className="text-[9px] font-semibold text-white/70 whitespace-nowrap drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+                  {hood.name}
+                </div>
+                <div
+                  className="text-[12px] font-bold font-mono whitespace-nowrap drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)]"
+                  style={{ color: scoreColor(hood.scores.opportunity) }}
+                >
+                  {hood.scores.opportunity}
+                </div>
+              </div>
+            </button>
+          </Marker>
+        ))}
 
-    // Leaflet sometimes miscalculates container size on first render in
-    // Next.js because the DOM isn't fully painted yet. Invalidating after
-    // a short delay forces it to recalculate and load all tiles.
-    requestAnimationFrame(() => {
-      map.invalidateSize();
-    });
-    setTimeout(() => {
-      map.invalidateSize();
-    }, 200);
+        {/* Property markers */}
+        {visibleProperties.map((p) => (
+          <Marker
+            key={p.id}
+            longitude={p.lng}
+            latitude={p.lat}
+            anchor="center"
+            onClick={(e) => {
+              e.originalEvent.stopPropagation();
+              setPopupPropertyId(p.id);
+            }}
+          >
+            <button
+              type="button"
+              className="pointer-events-auto rounded-full border border-white/35"
+              style={{
+                width: 10,
+                height: 10,
+                background: scoreColor(p.score)
+              }}
+              aria-label={p.name}
+            />
+          </Marker>
+        ))}
 
-    // Dark tiles: no-label base + dim labels overlay
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png", {
-      maxZoom: 19,
-      subdomains: "abcd",
-    }).addTo(map);
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png", {
-      maxZoom: 19,
-      opacity: 0.4,
-      subdomains: "abcd",
-    }).addTo(map);
+        {/* Property popup */}
+        {popupProperty && (
+          <Popup
+            longitude={popupProperty.lng}
+            latitude={popupProperty.lat}
+            anchor="top"
+            closeButton={false}
+            closeOnClick={false}
+            offset={14}
+            onClose={() => setPopupPropertyId(null)}
+            className="foresight-mapbox-popup"
+          >
+            <div
+              className="min-w-[210px] rounded-[8px] p-[11px]"
+              style={{
+                background: "rgba(10,14,24,0.92)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                boxShadow: "0 16px 64px rgba(0,0,0,0.6)"
+              }}
+            >
+              <div className="text-[12px] font-bold text-[#eaf0fa] mb-[2px]">
+                {popupProperty.name}
+              </div>
+              <div className="text-[9px] uppercase tracking-[0.5px] text-[#4d5d7a] mb-[7px]">
+                {popupProperty.type}
+              </div>
 
-    // Neighborhood zone circles
-    Object.entries(neighborhoods).forEach(([key, hood]) => {
-      const clr = scoreColor(hood.scores.opportunity);
-      const radius = 800 + (hood.scores.opportunity - 55) * 12;
+              <div className="flex justify-between text-[10.5px] py-[2px]">
+                <span className="text-[#4d5d7a]">Score</span>
+                <span
+                  className="font-semibold font-mono"
+                  style={{ color: scoreColor(popupProperty.score) }}
+                >
+                  {popupProperty.score}
+                </span>
+              </div>
 
-      const circle = L.circle([hood.lat, hood.lng], {
-        radius,
-        color: clr,
-        weight: 1.5,
-        opacity: 0.3,
-        fillColor: clr,
-        fillOpacity: 0.06 + (hood.scores.opportunity - 55) * 0.002,
-      }).addTo(map);
+              <div className="flex justify-between text-[10.5px] py-[2px]">
+                <span className="text-[#4d5d7a]">Est. Value</span>
+                <span className="font-semibold font-mono text-[#eaf0fa]">
+                  {popupProperty.est}
+                </span>
+              </div>
 
-      circle.on("click", () => onSelectHood(key));
-      circle.on("mouseover", function (this: L.Circle) {
-        this.setStyle({ weight: 2.5, opacity: 0.5, fillOpacity: 0.12 });
-      });
-      circle.on("mouseout", function (this: L.Circle) {
-        const val = hood.scores.opportunity;
-        this.setStyle({ weight: 1.5, opacity: 0.3, fillOpacity: 0.06 + (val - 55) * 0.002 });
-      });
+              <div className="flex justify-between text-[10.5px] py-[2px]">
+                <span className="text-[#4d5d7a]">Cap Rate</span>
+                <span className="font-semibold font-mono text-[#eaf0fa]">
+                  {popupProperty.cap}
+                </span>
+              </div>
 
-      // Score label overlay
-      L.marker([hood.lat, hood.lng], {
-        icon: L.divIcon({
-          className: "",
-          html: `<div style="font-family:Outfit,sans-serif;text-align:center;pointer-events:none;transform:translate(-50%,-50%)">
-            <div style="font-size:9px;font-weight:600;color:rgba(255,255,255,.4);white-space:nowrap;text-shadow:0 1px 6px rgba(0,0,0,.9)">${hood.name}</div>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:${clr};text-shadow:0 0 12px ${clr}40">${hood.scores.opportunity}</div>
-          </div>`,
-          iconSize: [0, 0],
-          iconAnchor: [0, 0],
-        }),
-      }).addTo(map);
+              <div
+                className="mt-[7px] pt-[7px] border-t text-[9px] font-bold uppercase tracking-[0.5px]"
+                style={{
+                  borderColor: "rgba(255,255,255,0.05)",
+                  color: scoreColor(popupProperty.score)
+                }}
+              >
+                ● {popupProperty.rec} · Click for details
+              </div>
 
-      zonesRef.current[key] = circle;
-    });
-
-    // Property markers
-    properties.forEach(p => {
-      const clr = scoreColor(p.score);
-      const marker = L.circleMarker([p.lat, p.lng], {
-        radius: 5.5,
-        fillColor: clr,
-        color: "rgba(255,255,255,0.25)",
-        weight: 1.2,
-        fillOpacity: 0.9,
-      }).addTo(map);
-
-      marker.bindTooltip(`
-        <div style="background:rgba(10,14,24,0.92);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:11px 14px;min-width:210px;box-shadow:0 16px 64px rgba(0,0,0,0.6);font-family:Outfit,sans-serif">
-          <div style="font-size:12px;font-weight:700;margin-bottom:1px;color:#eaf0fa">${p.name}</div>
-          <div style="font-size:9px;color:#4d5d7a;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:7px">${p.type}</div>
-          <div style="display:flex;justify-content:space-between;font-size:10.5px;padding:2px 0"><span style="color:#4d5d7a">Score</span><span style="font-weight:600;font-family:'IBM Plex Mono',monospace;color:${clr}">${p.score}</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:10.5px;padding:2px 0"><span style="color:#4d5d7a">Est. Value</span><span style="font-weight:600;font-family:'IBM Plex Mono',monospace;color:#eaf0fa">${p.est}</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:10.5px;padding:2px 0"><span style="color:#4d5d7a">Cap Rate</span><span style="font-weight:600;font-family:'IBM Plex Mono',monospace;color:#eaf0fa">${p.cap}</span></div>
-          <div style="margin-top:7px;padding-top:7px;border-top:1px solid rgba(255,255,255,0.05);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${clr}">● ${p.rec} · Click for details</div>
-        </div>
-      `, { className: "foresight-tip", direction: "top", offset: [0, -8] });
-
-      marker.on("click", () => onSelectProperty(p.id));
-      marker.on("mouseover", function (this: L.CircleMarker) {
-        this.setRadius(8);
-        this.setStyle({ weight: 2, color: "#fff" });
-      });
-      marker.on("mouseout", function (this: L.CircleMarker) {
-        this.setRadius(5.5);
-        this.setStyle({ weight: 1.2, color: "rgba(255,255,255,0.25)" });
-      });
-
-      markersRef.current[p.id] = marker;
-    });
-
-    return () => {
-      map.remove();
-      initRef.current = false;
-    };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    updateLayers();
-  }, [updateLayers]);
-
-  return <div ref={containerRef} className="fixed inset-0 z-[1]" style={{ width: "100vw", height: "100vh" }} />;
+              <button
+                type="button"
+                className="mt-[8px] w-full rounded-[6px] px-3 py-[7px] text-[10.5px] font-semibold text-white"
+                style={{
+                  background: "linear-gradient(135deg, rgba(59,130,246,0.9), rgba(6,182,212,0.9))"
+                }}
+                onClick={() => {
+                  onSelectProperty(popupProperty.id);
+                  setPopupPropertyId(null);
+                }}
+              >
+                Open Property
+              </button>
+            </div>
+          </Popup>
+        )}
+      </Map>
+    </div>
+  );
 }
