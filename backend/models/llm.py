@@ -7,11 +7,11 @@ import time
 from typing import Any
 
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
 
 load_dotenv(override=False)
 
-MODEL_NAME = "gemini-1.5-flash"
+MODEL_NAME = "gemini-2.5-flash-lite"
 
 DEFAULT_AI_INSIGHTS = {
     "opportunityType": "Unknown Opportunity",
@@ -53,11 +53,11 @@ def _get_client():
     if not api_key:
         raise RuntimeError("GEMINI_API_KEY is not set")
 
-    if any(ch in api_key for ch in ["\n", "\r", "\t"]):
-        raise RuntimeError("GEMINI_API_KEY contains invalid whitespace characters")
+    os.environ["GEMINI_API_KEY"] = api_key
 
-    genai.configure(api_key=api_key)
-    return genai.GenerativeModel(MODEL_NAME)
+    print("[AI DEBUG] Using Gemini 2.5 Flash Lite")
+
+    return genai.Client()
 
 
 def _fallback_ai_insights() -> dict[str, Any]:
@@ -116,9 +116,6 @@ Rules:
 - No markdown
 - No explanations
 - Always include all fields
-- drivers must contain exactly 3 short strings
-- bestUse must contain exactly 3 short strings
-- confidence must be exactly one of: Low, Medium, High
 """
 
 
@@ -156,10 +153,13 @@ def _sanitize_string_list(value: Any, fallback: list[str]) -> list[str]:
         return fallback
 
     cleaned = []
+
     for item in value:
         if item is None:
             continue
+
         text = str(item).strip()
+
         if text:
             cleaned.append(text)
 
@@ -167,6 +167,7 @@ def _sanitize_string_list(value: Any, fallback: list[str]) -> list[str]:
         return fallback
 
     cleaned = cleaned[:3]
+
     while len(cleaned) < 3:
         cleaned.append(fallback[len(cleaned)])
 
@@ -178,12 +179,14 @@ def _sanitize_ai_insights(payload: Any) -> dict[str, Any]:
         return _fallback_ai_insights()
 
     ai_insights = payload.get("ai_insights", payload)
+
     if not isinstance(ai_insights, dict):
         return _fallback_ai_insights()
 
     opportunity_type = str(
         ai_insights.get("opportunityType", DEFAULT_AI_INSIGHTS["opportunityType"])
     ).strip()
+
     if not opportunity_type:
         opportunity_type = DEFAULT_AI_INSIGHTS["opportunityType"]
 
@@ -200,6 +203,7 @@ def _sanitize_ai_insights(payload: Any) -> dict[str, Any]:
     confidence = str(
         ai_insights.get("confidence", DEFAULT_AI_INSIGHTS["confidence"])
     ).strip()
+
     if confidence not in _ALLOWED_CONFIDENCE:
         confidence = DEFAULT_AI_INSIGHTS["confidence"]
 
@@ -212,33 +216,27 @@ def _sanitize_ai_insights(payload: Any) -> dict[str, Any]:
 
 
 def generateAIInsights(plot: dict[str, Any], client=None) -> dict[str, Any]:
-    """
-    Call Gemini for a single plot and return:
-    {
-      "opportunityType": str,
-      "drivers": [str, str, str],
-      "bestUse": [str, str, str],
-      "confidence": "Low" | "Medium" | "High"
-    }
-    """
     client = client or _get_client()
+
     prompt = buildPrompt(plot)
 
     try:
-        response = client.generate_content(
-            prompt,
-            generation_config={
-                "temperature": 0.2,
-                "max_output_tokens": 250,
-            },
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=prompt
         )
 
-        raw_text = (getattr(response, "text", "") or "").strip()
+        raw_text = getattr(response, "text", "")
+
+        print(f"[AI DEBUG] Response {plot.get('id')}:\n{raw_text}\n")
+
         json_text = _extract_first_json_object(raw_text)
+
         if not json_text:
             return _fallback_ai_insights()
 
         parsed = json.loads(json_text)
+
         return _sanitize_ai_insights(parsed)
 
     except Exception as exc:
@@ -251,10 +249,13 @@ def generateAIInsightsAll(
     sleep_seconds: float = 0.0,
     limit: int | None = None,
 ) -> list[dict[str, Any]]:
+
     client = _get_client()
+
     results: list[dict[str, Any]] = []
 
     items = data if limit is None else data[:limit]
+
     total = len(items)
 
     if total == 0:
@@ -262,39 +263,17 @@ def generateAIInsightsAll(
 
     for idx, plot in enumerate(items, start=1):
         print(f"[AI] Generating insights {idx}/{total} -> {plot.get('id')}")
+
         enriched_plot = dict(plot)
-        enriched_plot["ai_insights"] = generateAIInsights(enriched_plot, client=client)
+
+        enriched_plot["ai_insights"] = generateAIInsights(
+            enriched_plot,
+            client=client,
+        )
+
         results.append(enriched_plot)
 
         if sleep_seconds > 0 and idx < total:
             time.sleep(sleep_seconds)
 
     return results
-
-
-if __name__ == "__main__":
-    sample_plot = {
-        "id": "demo_plot_001",
-        "zip": "60611",
-        "neighborhood": "NEAR NORTH SIDE",
-        "zoning": "299",
-        "scores": {
-            "finalScore": 78,
-            "investmentScore": 74,
-            "growthScore": 70,
-            "riskScore": 42,
-        },
-        "amenities": {
-            "coffee_shop_count_nearby": 5,
-            "restaurant_count_nearby": 18,
-            "grocery_count_nearby": 2,
-            "park_count_nearby": 4,
-        },
-    }
-
-    key_preview = _clean_env_value(os.getenv("GEMINI_API_KEY"))
-    print({
-        "gemini_key_loaded": bool(key_preview),
-        "gemini_key_length": len(key_preview),
-    })
-    print(json.dumps(generateAIInsights(sample_plot), indent=2))
