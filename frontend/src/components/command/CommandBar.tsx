@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Search, BarChart3, Zap } from "lucide-react";
+import { Search, BarChart3 } from "lucide-react";
 import { neighborhoods } from "@/data/neighborhoods";
 import { properties } from "@/data/properties";
 import { FilterState, ScoreLayerKey, TimelineValue } from "@/data/types";
@@ -24,7 +24,6 @@ export default function CommandBar({
   onSelectHood,
   onSelectProperty,
   onCompare,
-  onGenerateInsight,
 }: CommandBarProps) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -72,8 +71,9 @@ export default function CommandBar({
         border: "1px solid rgba(255,255,255,0.06)",
       }}
     >
-<div className="flex flex-wrap items-center gap-[8px] px-[10px] py-[10px] xl:flex-nowrap xl:gap-[8px] xl:h-[56px] xl:py-[7px]">        {/* Logo */}
-        <div className="flex min-w-0 items-center gap-2 pr-0 md:pr-[14px] md:border-r md:border-white/5 shrink-0">
+      <div className="flex items-center gap-[8px] px-[12px] py-[10px] overflow-x-auto no-scrollbar min-w-0">
+        {/* Logo */}
+        <div className="flex items-center gap-2 pr-[12px] border-r border-white/5 shrink-0">
           <div
             className="w-[30px] h-[30px] rounded-[9px] flex items-center justify-center font-extrabold text-[15px] text-white shrink-0"
             style={{
@@ -85,34 +85,31 @@ export default function CommandBar({
             F
           </div>
 
-          <div className="flex flex-col justify-center gap-[4px] min-w-0">
+          <div className="flex flex-col justify-center gap-[3px] min-w-0">
             <div className="text-[15px] font-bold leading-[1.05] tracking-[0.3px] text-t-primary whitespace-nowrap">
               Foresight
             </div>
-            <div className="hidden sm:block text-[8.5px] font-normal leading-[1.2] text-t-muted uppercase tracking-[1.2px] whitespace-nowrap">
+            <div className="hidden 2xl:block text-[8.5px] font-normal leading-[1.2] text-t-muted uppercase tracking-[1.2px] whitespace-nowrap">
               Geospatial Investment Intelligence
             </div>
           </div>
         </div>
 
         {/* City */}
-        <select className="cb-select w-[140px] shrink-0" defaultValue="chicago">
+        <select className="cb-select w-[170px] shrink-0" defaultValue="chicago">
           <option value="chicago">◉ Chicago</option>
         </select>
 
         {/* Search */}
-        <div
-          className="order-3 w-full xl:order-none xl:flex-1 xl:min-w-[180px] xl:max-w-[300px] relative"
-          ref={searchRef}
-        >
+        <div className="relative shrink-0 w-[220px] sm:w-[260px] md:w-[300px] lg:w-[340px]" ref={searchRef}>
           <Search
             className="absolute left-[11px] top-1/2 -translate-y-1/2 text-t-muted pointer-events-none"
             size={14}
           />
           <input
             type="text"
-            placeholder="ZIP, neighborhood, address…"
-            className="w-full h-[38px] md:h-[36px] pl-[34px] pr-3 rounded-f text-[12px] font-sans text-t-primary outline-none transition-all"
+            placeholder="ZIP, neighborhood, address..."
+            className="w-full h-[36px] pl-[34px] pr-3 rounded-f text-[12px] font-sans text-t-primary outline-none transition-all"
             style={{
               background: "rgba(255,255,255,0.03)",
               border: "1px solid rgba(255,255,255,0.06)",
@@ -196,72 +193,60 @@ export default function CommandBar({
         </div>
 
         {/* Filters */}
-        <div className="flex w-full flex-wrap gap-[8px] xl:w-auto xl:flex-nowrap xl:gap-[8px]">
-          <select
-            className="cb-select min-w-0 flex-1 md:w-[150px] md:flex-none"
-            value={filters.investmentType}
-            onChange={e => onFilterChange({ investmentType: e.target.value })}
-          >
-            <option value="">Investment Type</option>
-            <option>Multifamily</option>
-            <option>Single Family</option>
-            <option>Mixed Use</option>
-            <option>Retail</option>
-            <option>Office</option>
-            <option>Land / Development</option>
-          </select>
+        <select
+          className="cb-select w-[170px] shrink-0"
+          value={filters.investmentType}
+          onChange={e => onFilterChange({ investmentType: e.target.value })}
+        >
+          <option value="">Investment Type</option>
+          <option>Multifamily</option>
+          <option>Single Family</option>
+          <option>Mixed Use</option>
+          <option>Retail</option>
+          <option>Office</option>
+          <option>Land / Development</option>
+        </select>
 
-          <select
-            className="cb-select w-[55px] shrink-0"
-            value={filters.timeline}
-            onChange={e => onFilterChange({ timeline: e.target.value as TimelineValue })}
-          >
-            <option value="3">3Y</option>
-            <option value="1">1Y</option>
-            <option value="5">5Y</option>
-          </select>
+        <select
+          className="cb-select w-[74px] shrink-0"
+          value={filters.timeline}
+          onChange={e => onFilterChange({ timeline: e.target.value as TimelineValue })}
+        >
+          <option value="3">3Y</option>
+          <option value="1">1Y</option>
+          <option value="5">5Y</option>
+        </select>
 
-          <select
-            className="cb-select min-w-0 flex-1 md:w-[159px] md:flex-none"
-            value={filters.scoreLayer}
-            onChange={e => onFilterChange({ scoreLayer: e.target.value as ScoreLayerKey })}
-          >
-            <option value="opportunity">Investment Opportunity</option>
-            <option value="appreciation">Appreciation Potential</option>
-            <option value="devReady">Development Readiness</option>
-            <option value="stability">Market Stability</option>
-            <option value="family">Family Demand</option>
-            <option value="commercial">Commercial Expansion</option>
-          </select>
+        <select
+          className="cb-select w-[200px] shrink-0"
+          value={filters.scoreLayer}
+          onChange={e => onFilterChange({ scoreLayer: e.target.value as ScoreLayerKey })}
+        >
+          <option value="opportunity">Investment Opportunity</option>
+          <option value="appreciation">Appreciation Potential</option>
+          <option value="devReady">Development Readiness</option>
+          <option value="stability">Market Stability</option>
+          <option value="family">Family Demand</option>
+          <option value="commercial">Commercial Expansion</option>
+        </select>
 
-          <select
-            className="cb-select min-w-0 flex-1 md:w-[120px] md:flex-none"
-            value={filters.riskLevel}
-            onChange={e => onFilterChange({ riskLevel: e.target.value })}
-          >
-            <option value="">Risk Level</option>
-            <option value="low">Low Risk</option>
-            <option value="moderate">Moderate Risk</option>
-            <option value="high">High Upside</option>
-            <option value="emerging">Emerging</option>
-            <option value="avoid">Avoid</option>
-          </select>
-        </div>
+        <select
+          className="cb-select w-[150px] shrink-0"
+          value={filters.riskLevel}
+          onChange={e => onFilterChange({ riskLevel: e.target.value })}
+        >
+          <option value="">Risk Level</option>
+          <option value="low">Low Risk</option>
+          <option value="moderate">Moderate Risk</option>
+          <option value="high">High Upside</option>
+          <option value="emerging">Emerging</option>
+          <option value="avoid">Avoid</option>
+        </select>
 
-        <div className="hidden xl:flex flex-1 min-w-[0px]" />
-
-        {/* Actions */}
-        <div className="flex w-full items-center justify-end gap-[8px] pt-[2px] xl:w-auto xl:pt-0 shrink-0">
+        {/* Action */}
+        <div className="pl-[4px] shrink-0">
           <button onClick={onCompare} className="cb-btn-text" title="Compare">
             <BarChart3 size={13} /> Compare
-          </button>
-
-          <button
-            onClick={onGenerateInsight}
-            className="cb-btn-accent"
-            title="Generate Insight"
-          >
-            <Zap size={13} /> Generate Insight
           </button>
         </div>
       </div>

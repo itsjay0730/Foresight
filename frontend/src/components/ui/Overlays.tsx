@@ -35,7 +35,7 @@ export function MapControls({ mapRef }: { mapRef: React.MutableRefObject<any> })
 export function Legend() {
   return (
     <div
-      className="fixed left-[62px] bottom-[22px] z-[900] hidden xl:flex flex-col gap-[8px] px-3 py-3 rounded-f-lg text-[10px] shadow-glass"
+      className="fixed left-[62px] bottom-[22px] z-[900] hidden xl:flex flex-col gap-[5.1px] px-3 py-3 rounded-f-lg text-[10px] shadow-glass"
       style={{
         background: "rgba(12,16,28,0.62)",
         backdropFilter: "blur(24px)",
