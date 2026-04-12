@@ -36,6 +36,9 @@ def computeGrowthScore(permitGrowth: float, populationGrowth: float) -> float:
 def computeFinalScore(investmentScore: float, growthScore: float, riskScore: float) -> float:
     score = (0.45 * investmentScore + 0.40 * growthScore + 0.15 * (1 - riskScore))
 
+    # shift scores upward slightly so distribution isn't too low
+    score = (score - 0.5) * 1.8 + 0.7
+
     return clamp(score)
 
 #convert 0 to 1 score into 0 to 100
@@ -66,16 +69,58 @@ def buildScores(plot: Dict[str, Any]) -> Dict[str, Any]:
 
     return scores
 
-#build scores for all plots
+ #build scores for all plots
 def buildScoresAll(plots):
     results = []
 
     for plot in plots:
         scores = buildScores(plot)
 
+        # build forecast scores if forecast exists
+        forecastScores = {}
+
+        forecast = plot.get("forecast", {})
+
+        for horizon in ["1y", "3y", "5y"]:
+            if (
+                forecast.get("crime_forecast") and
+                forecast.get("permit_forecast") and
+                forecast.get("population_forecast")
+            ):
+                tempPlot = dict(plot)
+
+                tempFeatures = dict(plot.get("features", {}))
+
+                # recompute features using forecast values
+                crimeForecast = forecast["crime_forecast"].get(horizon)
+                permitForecast = forecast["permit_forecast"].get(horizon)
+                populationForecast = forecast["population_forecast"].get(horizon)
+
+                # get latest real values
+                crimeHistory = plot.get("crime_history", [])
+                permitHistory = plot.get("permit_history", [])
+                populationHistory = plot.get("population_history", [])
+
+                if crimeForecast is not None and len(crimeHistory) > 0:
+                    lastCrime = crimeHistory[-1]["crime_count"]
+                    tempFeatures["crimeTrend"] = clamp((crimeForecast - lastCrime) / max(lastCrime, 1))
+
+                if permitForecast is not None and len(permitHistory) > 0:
+                    lastPermit = permitHistory[-1]["permit_count"]
+                    tempFeatures["permitGrowth"] = clamp((permitForecast - lastPermit) / max(lastPermit, 1))
+
+                if populationForecast is not None and len(populationHistory) > 0:
+                    lastPopulation = populationHistory[-1]["population"]
+                    tempFeatures["populationGrowth"] = clamp((populationForecast - lastPopulation) / max(lastPopulation, 1))
+
+                tempPlot["features"] = tempFeatures
+
+                forecastScores[horizon] = buildScores(tempPlot)
+
         combined = {
             **plot,
-            "scores": scores
+            "scores": scores,
+            "forecast_scores": forecastScores
         }
 
         results.append(combined)

@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import Any, List
 from sklearn.linear_model import LinearRegression
 import numpy as np
+from models.scoring_model import buildScoresAll
 
 
 # build time series arrays
@@ -101,5 +102,8 @@ def forecastAllPlots(plots: List[dict[str, Any]]) -> List[dict[str, Any]]:
         }
 
         results.append(combined)
+
+    # recompute scores after forecasts added
+    results = buildScoresAll(results)
 
     return results

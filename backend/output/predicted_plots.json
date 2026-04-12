@@ -79,7 +79,27 @@
       "investmentScore": 49,
       "growthScore": 51,
       "riskScore": 52,
-      "finalScore": 50
+      "finalScore": 70
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 49,
+        "growthScore": 51,
+        "riskScore": 53,
+        "finalScore": 69
+      },
+      "3y": {
+        "investmentScore": 50,
+        "growthScore": 52,
+        "riskScore": 59,
+        "finalScore": 69
+      },
+      "5y": {
+        "investmentScore": 50,
+        "growthScore": 54,
+        "riskScore": 65,
+        "finalScore": 69
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -179,7 +199,27 @@
       "investmentScore": 46,
       "growthScore": 57,
       "riskScore": 57,
-      "finalScore": 50
+      "finalScore": 70
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 59,
+        "finalScore": 61
+      },
+      "3y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 75,
+        "finalScore": 57
+      },
+      "5y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 91,
+        "finalScore": 53
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -279,7 +319,27 @@
       "investmentScore": 56,
       "growthScore": 77,
       "riskScore": 44,
-      "finalScore": 64
+      "finalScore": 96
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 44,
+        "growthScore": 50,
+        "riskScore": 58,
+        "finalScore": 63
+      },
+      "3y": {
+        "investmentScore": 45,
+        "growthScore": 52,
+        "riskScore": 67,
+        "finalScore": 62
+      },
+      "5y": {
+        "investmentScore": 47,
+        "growthScore": 58,
+        "riskScore": 76,
+        "finalScore": 66
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -379,7 +439,27 @@
       "investmentScore": 47,
       "growthScore": 62,
       "riskScore": 57,
-      "finalScore": 53
+      "finalScore": 75
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 63
+      },
+      "3y": {
+        "investmentScore": 42,
+        "growthScore": 51,
+        "riskScore": 50,
+        "finalScore": 65
+      },
+      "5y": {
+        "investmentScore": 43,
+        "growthScore": 53,
+        "riskScore": 51,
+        "finalScore": 67
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -479,7 +559,27 @@
       "investmentScore": 49,
       "growthScore": 54,
       "riskScore": 46,
-      "finalScore": 52
+      "finalScore": 73
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 47,
+        "growthScore": 50,
+        "riskScore": 56,
+        "finalScore": 66
+      },
+      "3y": {
+        "investmentScore": 48,
+        "growthScore": 52,
+        "riskScore": 63,
+        "finalScore": 66
+      },
+      "5y": {
+        "investmentScore": 49,
+        "growthScore": 54,
+        "riskScore": 70,
+        "finalScore": 66
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -579,7 +679,27 @@
       "investmentScore": 45,
       "growthScore": 44,
       "riskScore": 39,
-      "finalScore": 47
+      "finalScore": 65
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 48,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 69
+      },
+      "3y": {
+        "investmentScore": 48,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 69
+      },
+      "5y": {
+        "investmentScore": 48,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 69
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -679,7 +799,27 @@
       "investmentScore": 46,
       "growthScore": 52,
       "riskScore": 28,
-      "finalScore": 52
+      "finalScore": 74
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 48,
+        "growthScore": 55,
+        "riskScore": 66,
+        "finalScore": 67
+      },
+      "3y": {
+        "investmentScore": 52,
+        "growthScore": 64,
+        "riskScore": 70,
+        "finalScore": 77
+      },
+      "5y": {
+        "investmentScore": 57,
+        "growthScore": 74,
+        "riskScore": 73,
+        "finalScore": 86
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -779,7 +919,27 @@
       "investmentScore": 52,
       "growthScore": 61,
       "riskScore": 42,
-      "finalScore": 57
+      "finalScore": 82
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 47,
+        "growthScore": 50,
+        "riskScore": 52,
+        "finalScore": 67
+      },
+      "3y": {
+        "investmentScore": 47,
+        "growthScore": 50,
+        "riskScore": 53,
+        "finalScore": 67
+      },
+      "5y": {
+        "investmentScore": 47,
+        "growthScore": 50,
+        "riskScore": 53,
+        "finalScore": 67
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -879,7 +1039,27 @@
       "investmentScore": 62,
       "growthScore": 77,
       "riskScore": 77,
-      "finalScore": 62
+      "finalScore": 92
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 49,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 70
+      },
+      "3y": {
+        "investmentScore": 54,
+        "growthScore": 60,
+        "riskScore": 50,
+        "finalScore": 80
+      },
+      "5y": {
+        "investmentScore": 58,
+        "growthScore": 69,
+        "riskScore": 50,
+        "finalScore": 90
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -979,7 +1159,27 @@
       "investmentScore": 56,
       "growthScore": 63,
       "riskScore": 90,
-      "finalScore": 52
+      "finalScore": 74
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 50,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 70
+      },
+      "3y": {
+        "investmentScore": 50,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 70
+      },
+      "5y": {
+        "investmentScore": 50,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 70
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -1079,7 +1279,27 @@
       "investmentScore": 44,
       "growthScore": 50,
       "riskScore": 56,
-      "finalScore": 46
+      "finalScore": 63
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 44,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 66
+      },
+      "3y": {
+        "investmentScore": 44,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 66
+      },
+      "5y": {
+        "investmentScore": 44,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 66
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -1179,7 +1399,27 @@
       "investmentScore": 46,
       "growthScore": 55,
       "riskScore": 51,
-      "finalScore": 50
+      "finalScore": 70
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 44,
+        "growthScore": 52,
+        "riskScore": 62,
+        "finalScore": 63
+      },
+      "3y": {
+        "investmentScore": 46,
+        "growthScore": 55,
+        "riskScore": 80,
+        "finalScore": 62
+      },
+      "5y": {
+        "investmentScore": 48,
+        "growthScore": 59,
+        "riskScore": 98,
+        "finalScore": 61
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -1279,7 +1519,27 @@
       "investmentScore": 60,
       "growthScore": 78,
       "riskScore": 83,
-      "finalScore": 61
+      "finalScore": 89
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 48,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 68
+      },
+      "3y": {
+        "investmentScore": 48,
+        "growthScore": 51,
+        "riskScore": 51,
+        "finalScore": 69
+      },
+      "5y": {
+        "investmentScore": 49,
+        "growthScore": 52,
+        "riskScore": 56,
+        "finalScore": 69
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -1379,7 +1639,27 @@
       "investmentScore": 46,
       "growthScore": 51,
       "riskScore": 50,
-      "finalScore": 49
+      "finalScore": 68
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 46,
+        "growthScore": 51,
+        "riskScore": 50,
+        "finalScore": 67
+      },
+      "3y": {
+        "investmentScore": 46,
+        "growthScore": 52,
+        "riskScore": 50,
+        "finalScore": 69
+      },
+      "5y": {
+        "investmentScore": 47,
+        "growthScore": 53,
+        "riskScore": 50,
+        "finalScore": 70
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -1479,7 +1759,27 @@
       "investmentScore": 48,
       "growthScore": 58,
       "riskScore": 53,
-      "finalScore": 52
+      "finalScore": 73
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 46,
+        "growthScore": 52,
+        "riskScore": 50,
+        "finalScore": 68
+      },
+      "3y": {
+        "investmentScore": 48,
+        "growthScore": 57,
+        "riskScore": 50,
+        "finalScore": 74
+      },
+      "5y": {
+        "investmentScore": 50,
+        "growthScore": 62,
+        "riskScore": 50,
+        "finalScore": 79
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -1579,7 +1879,27 @@
       "investmentScore": 45,
       "growthScore": 51,
       "riskScore": 86,
-      "finalScore": 43
+      "finalScore": 57
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 45,
+        "growthScore": 50,
+        "riskScore": 51,
+        "finalScore": 65
+      },
+      "3y": {
+        "investmentScore": 45,
+        "growthScore": 50,
+        "riskScore": 65,
+        "finalScore": 62
+      },
+      "5y": {
+        "investmentScore": 45,
+        "growthScore": 50,
+        "riskScore": 80,
+        "finalScore": 58
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -1679,7 +1999,27 @@
       "investmentScore": 47,
       "growthScore": 60,
       "riskScore": 48,
-      "finalScore": 53
+      "finalScore": 75
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 63,
+        "finalScore": 60
+      },
+      "3y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 80,
+        "finalScore": 56
+      },
+      "5y": {
+        "investmentScore": 42,
+        "growthScore": 50,
+        "riskScore": 98,
+        "finalScore": 51
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -1779,7 +2119,27 @@
       "investmentScore": 46,
       "growthScore": 56,
       "riskScore": 50,
-      "finalScore": 51
+      "finalScore": 71
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 44,
+        "growthScore": 52,
+        "riskScore": 62,
+        "finalScore": 63
+      },
+      "3y": {
+        "investmentScore": 46,
+        "growthScore": 55,
+        "riskScore": 80,
+        "finalScore": 62
+      },
+      "5y": {
+        "investmentScore": 47,
+        "growthScore": 59,
+        "riskScore": 98,
+        "finalScore": 61
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -1879,7 +2239,27 @@
       "investmentScore": 45,
       "growthScore": 52,
       "riskScore": 58,
-      "finalScore": 47
+      "finalScore": 65
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 44,
+        "growthScore": 51,
+        "riskScore": 50,
+        "finalScore": 66
+      },
+      "3y": {
+        "investmentScore": 45,
+        "growthScore": 52,
+        "riskScore": 50,
+        "finalScore": 67
+      },
+      "5y": {
+        "investmentScore": 45,
+        "growthScore": 53,
+        "riskScore": 50,
+        "finalScore": 68
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -1979,7 +2359,27 @@
       "investmentScore": 46,
       "growthScore": 60,
       "riskScore": 47,
-      "finalScore": 53
+      "finalScore": 75
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 42,
+        "growthScore": 51,
+        "riskScore": 64,
+        "finalScore": 60
+      },
+      "3y": {
+        "investmentScore": 44,
+        "growthScore": 54,
+        "riskScore": 82,
+        "finalScore": 59
+      },
+      "5y": {
+        "investmentScore": 45,
+        "growthScore": 58,
+        "riskScore": 100,
+        "finalScore": 58
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -2079,7 +2479,27 @@
       "investmentScore": 49,
       "growthScore": 54,
       "riskScore": 48,
-      "finalScore": 52
+      "finalScore": 73
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 50,
+        "growthScore": 56,
+        "riskScore": 62,
+        "finalScore": 71
+      },
+      "3y": {
+        "investmentScore": 55,
+        "growthScore": 68,
+        "riskScore": 80,
+        "finalScore": 79
+      },
+      "5y": {
+        "investmentScore": 60,
+        "growthScore": 78,
+        "riskScore": 97,
+        "finalScore": 85
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -2179,7 +2599,27 @@
       "investmentScore": 55,
       "growthScore": 77,
       "riskScore": 41,
-      "finalScore": 64
+      "finalScore": 96
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 43,
+        "growthScore": 50,
+        "riskScore": 54,
+        "finalScore": 63
+      },
+      "3y": {
+        "investmentScore": 47,
+        "growthScore": 58,
+        "riskScore": 53,
+        "finalScore": 72
+      },
+      "5y": {
+        "investmentScore": 50,
+        "growthScore": 66,
+        "riskScore": 53,
+        "finalScore": 81
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -2279,7 +2719,27 @@
       "investmentScore": 48,
       "growthScore": 51,
       "riskScore": 39,
-      "finalScore": 51
+      "finalScore": 72
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 48,
+        "growthScore": 50,
+        "riskScore": 57,
+        "finalScore": 67
+      },
+      "3y": {
+        "investmentScore": 50,
+        "growthScore": 54,
+        "riskScore": 57,
+        "finalScore": 71
+      },
+      "5y": {
+        "investmentScore": 52,
+        "growthScore": 58,
+        "riskScore": 57,
+        "finalScore": 75
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -2379,7 +2839,27 @@
       "investmentScore": 48,
       "growthScore": 59,
       "riskScore": 50,
-      "finalScore": 53
+      "finalScore": 75
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 44,
+        "growthScore": 50,
+        "riskScore": 54,
+        "finalScore": 64
+      },
+      "3y": {
+        "investmentScore": 44,
+        "growthScore": 50,
+        "riskScore": 60,
+        "finalScore": 63
+      },
+      "5y": {
+        "investmentScore": 44,
+        "growthScore": 50,
+        "riskScore": 66,
+        "finalScore": 61
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -2479,7 +2959,27 @@
       "investmentScore": 54,
       "growthScore": 70,
       "riskScore": 41,
-      "finalScore": 61
+      "finalScore": 89
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 45,
+        "growthScore": 50,
+        "riskScore": 53,
+        "finalScore": 65
+      },
+      "3y": {
+        "investmentScore": 45,
+        "growthScore": 50,
+        "riskScore": 50,
+        "finalScore": 66
+      },
+      "5y": {
+        "investmentScore": 46,
+        "growthScore": 53,
+        "riskScore": 50,
+        "finalScore": 69
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -2579,7 +3079,27 @@
       "investmentScore": 46,
       "growthScore": 46,
       "riskScore": 40,
-      "finalScore": 48
+      "finalScore": 67
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 49,
+        "growthScore": 53,
+        "riskScore": 56,
+        "finalScore": 70
+      },
+      "3y": {
+        "investmentScore": 52,
+        "growthScore": 58,
+        "riskScore": 55,
+        "finalScore": 76
+      },
+      "5y": {
+        "investmentScore": 54,
+        "growthScore": 63,
+        "riskScore": 54,
+        "finalScore": 81
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -2679,7 +3199,27 @@
       "investmentScore": 48,
       "growthScore": 59,
       "riskScore": 59,
-      "finalScore": 51
+      "finalScore": 72
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 44,
+        "growthScore": 50,
+        "riskScore": 57,
+        "finalScore": 63
+      },
+      "3y": {
+        "investmentScore": 45,
+        "growthScore": 53,
+        "riskScore": 72,
+        "finalScore": 62
+      },
+      "5y": {
+        "investmentScore": 46,
+        "growthScore": 55,
+        "riskScore": 87,
+        "finalScore": 61
+      }
     },
     "forecast": {
       "crime_forecast": {
@@ -2779,7 +3319,27 @@
       "investmentScore": 51,
       "growthScore": 65,
       "riskScore": 51,
-      "finalScore": 56
+      "finalScore": 81
+    },
+    "forecast_scores": {
+      "1y": {
+        "investmentScore": 44,
+        "growthScore": 50,
+        "riskScore": 54,
+        "finalScore": 64
+      },
+      "3y": {
+        "investmentScore": 44,
+        "growthScore": 50,
+        "riskScore": 59,
+        "finalScore": 63
+      },
+      "5y": {
+        "investmentScore": 45,
+        "growthScore": 51,
+        "riskScore": 65,
+        "finalScore": 63
+      }
     },
     "forecast": {
       "crime_forecast": {
