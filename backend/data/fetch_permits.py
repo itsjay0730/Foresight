@@ -44,6 +44,30 @@ def _fetchPermitWindow(
     return safeGet(CHICAGO_BUILDING_PERMITS_API, params=params)
 
 
+def _fetchPermitYear(
+    year: int,
+    limit: int = 5000,
+) -> list[dict[str, Any]]:
+    """
+    Fetch permits for an entire year
+    """
+    start = f"{year}-01-01T00:00:00"
+    end = f"{year + 1}-01-01T00:00:00"
+
+    params = {
+        "$select": "id,issue_date,latitude,longitude,permit_type,work_description",
+        "$where": (
+            f"issue_date >= '{start}' "
+            f"AND issue_date < '{end}' "
+            f"AND latitude IS NOT NULL "
+            f"AND longitude IS NOT NULL"
+        ),
+        "$limit": limit,
+    }
+
+    return safeGet(CHICAGO_BUILDING_PERMITS_API, params=params)
+
+
 def _countNearbyPermits(
     permits: list[dict[str, Any]],
     lat: float,
@@ -85,11 +109,33 @@ def fetchPermits(
         return {
             "permit_activity": None,
             "permit_count_nearby": 0,
+            "permit_history": [],
         }
 
     try:
+        currentYear = datetime.now().year
+        years = [
+            currentYear - 4,
+            currentYear - 3,
+            currentYear - 2,
+            currentYear - 1
+        ]
+
+        permitHistory = []
+
         recentPermits = _fetchPermitWindow(90, 0)
         previousPermits = _fetchPermitWindow(180, 90)
+
+        for year in years:
+            permits = _fetchPermitYear(year)
+            count = _countNearbyPermits(
+                permits, lat, lng, radiusMiles
+            )
+
+            permitHistory.append({
+                "year": year,
+                "permit_count": count
+            })
 
         recentCount = _countNearbyPermits(recentPermits, lat, lng, radiusMiles)
         previousCount = _countNearbyPermits(previousPermits, lat, lng, radiusMiles)
@@ -102,6 +148,7 @@ def fetchPermits(
         return {
             "permit_activity": round(permitActivity, 4),
             "permit_count_nearby": recentCount,
+            "permit_history": permitHistory,
         }
 
     except Exception as exc:
@@ -109,6 +156,7 @@ def fetchPermits(
         return {
             "permit_activity": None,
             "permit_count_nearby": 0,
+            "permit_history": [],
         }
 
 
