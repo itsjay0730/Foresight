@@ -58,8 +58,6 @@ def runPredictionPipeline() -> List[Dict[str, Any]]:
 
     print("[Prediction] Saving predictions...")
     savePredictions(data)
-
-
     return data
 
 

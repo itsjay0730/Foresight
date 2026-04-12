@@ -6,12 +6,9 @@ import re
 import time
 from typing import Any
 
-from dotenv import load_dotenv
-from openai import OpenAI
+import google.generativeai as genai
 
-load_dotenv()
-
-MODEL_NAME = "gpt-5-nano"
+MODEL_NAME = "gemini-1.5-flash"
 
 DEFAULT_AI_INSIGHTS = {
     "opportunityType": "Unknown Opportunity",
@@ -31,11 +28,13 @@ DEFAULT_AI_INSIGHTS = {
 _ALLOWED_CONFIDENCE = {"Low", "Medium", "High"}
 
 
-def _get_client() -> OpenAI:
-    api_key = os.getenv("OPENAI_API_KEY")
+def _get_client():
+    api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY is not set")
-    return OpenAI(api_key=api_key)
+        raise RuntimeError("GEMINI_API_KEY is not set")
+
+    genai.configure(api_key=api_key)
+    return genai.GenerativeModel(MODEL_NAME)
 
 
 def _fallback_ai_insights() -> dict[str, Any]:
@@ -189,22 +188,29 @@ def _sanitize_ai_insights(payload: Any) -> dict[str, Any]:
     }
 
 
-def generateAIInsights(
-    plot: dict[str, Any], client: OpenAI | None = None
-) -> dict[str, Any]:
+def generateAIInsights(plot: dict[str, Any], client=None) -> dict[str, Any]:
+    """
+    Call GPT-5 nano for a single plot and return:
+    {
+      "opportunityType": str,
+      "drivers": [str, str, str],
+      "bestUse": [str, str, str],
+      "confidence": "Low" | "Medium" | "High"
+    }
+    """
     client = client or _get_client()
     prompt = buildPrompt(plot)
 
     try:
-        response = client.responses.create(
-            model=MODEL_NAME,
-            reasoning={"effort": "low"},
-            input=prompt,
-            max_output_tokens=250,
-            timeout=60,
+        response = client.generate_content(
+            prompt,
+            generation_config={
+                "temperature": 0.2,
+                "max_output_tokens": 250,
+            },
         )
 
-        raw_text = (response.output_text or "").strip()
+        raw_text = (response.text or "").strip()
         json_text = _extract_first_json_object(raw_text)
         if not json_text:
             return _fallback_ai_insights()
