@@ -18,6 +18,7 @@ interface IntelPanelProps {
   onOpenMemo: () => void;
   onOpenNeighborhoodStats: () => void;
 }
+
 function getRecommendationFromScore(
   score: number
 ): "BUY" | "BUILD" | "WATCH" | "AVOID" {
@@ -37,6 +38,10 @@ function getTimelinePanelScore(
   },
   key: "finalScore" | "opportunity" = "finalScore"
 ) {
+  if (timeline === "0") {
+    return Math.max(0, Math.min(100, Math.round(baseScore)));
+  }
+
   const timelineKey = `${timeline}y` as "1y" | "3y" | "5y";
   const value = forecastScores?.[timelineKey]?.[key];
 
@@ -63,6 +68,10 @@ function getTimelinePanelDelta(
     "5y"?: { finalScore?: number; opportunity?: number };
   }
 ) {
+  if (timeline === "0") {
+    return "Current";
+  }
+
   const timelineKey = `${timeline}y` as "1y" | "3y" | "5y";
   const value = forecastScores?.[timelineKey]?.finalScore;
 
@@ -119,6 +128,10 @@ function getTimelineAwareScoreSet(hood: Neighborhood, timeline: string) {
   };
 }
 
+function getTimelineDisplayLabel(timeline: string) {
+  return timeline === "0" ? "Current" : `${timeline}Y Forecast`;
+}
+
 export default function IntelPanel({
   selectionType,
   hoodId,
@@ -130,6 +143,7 @@ export default function IntelPanel({
 }: IntelPanelProps) {
   const neighborhoods = getNeighborhoods();
   const properties = getProperties();
+
   const hood: Neighborhood =
     selectionType === "hood"
       ? neighborhoods[hoodId || Object.keys(neighborhoods)[0] || "west-loop"]
@@ -149,6 +163,7 @@ export default function IntelPanel({
       : undefined;
 
   const timelineAwareHoodScores = getTimelineAwareScoreSet(hood, timeline);
+
   const score = prop
     ? getTimelinePanelScore(
         prop.score,
@@ -157,7 +172,9 @@ export default function IntelPanel({
         "finalScore"
       )
     : timelineAwareHoodScores.opportunity;
+
   const name = prop ? prop.name : hood.name;
+
   const subtitle = `${hood.zip} • ${getMarketLabel({
     ...hood,
     scores: timelineAwareHoodScores,
@@ -165,8 +182,9 @@ export default function IntelPanel({
     ...hood,
     scores: timelineAwareHoodScores,
   } as Neighborhood)}`;
+
   const rec: "BUY" | "BUILD" | "WATCH" | "AVOID" = prop
-    ? (prop.rec as "BUY" | "BUILD" | "WATCH" | "AVOID")
+    ? getRecommendationFromScore(score)
     : getRecommendationFromScore(timelineAwareHoodScores.opportunity);
 
   const delta = prop
@@ -176,6 +194,7 @@ export default function IntelPanel({
         timeline,
         (hood as any).forecast_scores
       );
+
   const confidence = Math.min(96, 70 + Math.floor(score * 0.28));
 
   return (
@@ -238,27 +257,6 @@ export default function IntelPanel({
         </div>
       </div>
 
-      {/* Tabs intentionally commented out for now to make this one continuous intelligence column */}
-      {/*
-      <div className="flex px-[14px] pt-3 shrink-0 overflow-x-auto no-scrollbar md:px-[18px]">
-        {tabs.map((t) => (
-          <button
-            key={t.key}
-            className={`px-[13px] py-2 text-[11px] font-semibold tracking-[0.2px] border-b-2 transition-all whitespace-nowrap ${
-              tab === t.key
-                ? "text-f-blue border-f-blue"
-                : "text-t-muted border-transparent hover:text-t-secondary"
-            }`}
-            onClick={() => setTab(t.key)}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
-
-      <div className="h-px mx-[14px] bg-white/5 shrink-0 md:mx-[18px]" />
-      */}
-
       <div className="flex-1 overflow-y-auto px-[14px] py-[14px] pb-7 custom-scroll md:px-[18px]">
         <OverviewContent
           hood={{ ...hood, scores: timelineAwareHoodScores } as Neighborhood}
@@ -266,9 +264,9 @@ export default function IntelPanel({
           confidence={confidence}
           onOpenMemo={onOpenMemo}
           onOpenNeighborhoodStats={onOpenNeighborhoodStats}
+          timelineLabel={getTimelineDisplayLabel(timeline)}
         />
 
-        {/* Keep these sections commented out for now, do not remove yet */}
         {/*
         <FactorsTab hood={hood} />
         */}
@@ -351,12 +349,14 @@ function OverviewContent({
   confidence,
   onOpenMemo,
   onOpenNeighborhoodStats,
+  timelineLabel,
 }: {
   hood: Neighborhood;
   rec: "BUY" | "BUILD" | "WATCH" | "AVOID";
   confidence: number;
   onOpenMemo: () => void;
   onOpenNeighborhoodStats: () => void;
+  timelineLabel: string;
 }) {
   const scores = [
     {
@@ -395,8 +395,6 @@ function OverviewContent({
 
   return (
     <>
-      {/* "Overview" heading intentionally removed, content remains as one continuous analysis */}
-
       <div className="rounded-f p-[13px] border border-white/[0.04] bg-white/[0.02] mb-[14px]">
         <div className="text-[10px] font-bold uppercase tracking-[0.8px] text-t-muted mb-[10px]">
           Key Drivers
@@ -438,7 +436,6 @@ function OverviewContent({
 
         <div className="flex items-start justify-between gap-3">
           <div>
-            ``
             <div
               className="text-[22px] font-extrabold tracking-[0.3px]"
               style={{ color: recColor(rec) }}
@@ -451,9 +448,9 @@ function OverviewContent({
             <div className="text-[11px] font-semibold text-t-primary mt-[2px]">
               {getOpportunityType(hood)}
             </div>
-            <div className="text-[10px] text-t-muted mt-[8px]">Momentum</div>
+            <div className="text-[10px] text-t-muted mt-[8px]">Horizon</div>
             <div className="text-[11px] font-semibold text-t-primary mt-[2px]">
-              {getMomentumLabel(hood)}
+              {timelineLabel}
             </div>
           </div>
 
@@ -465,15 +462,6 @@ function OverviewContent({
           </div>
         </div>
       </div>
-
-      {/* <div className="flex gap-[5px] mt-[10px] mb-3 flex-wrap">
-        <button
-          onClick={onOpenMemo}
-          className="px-3 py-[6px] rounded-f text-[10.5px] font-semibold bg-f-green text-black hover:bg-f-green/80 transition-colors"
-        >
-          Generate Full Memo
-        </button>
-      </div> */}
 
       <button
         onClick={onOpenNeighborhoodStats}

@@ -65,10 +65,10 @@ export default function CommandBar({
         </select>
 
         <select
-          className="cb-select w-[90px] shrink-0"
+          className="cb-select w-[96px] shrink-0"
           value={filters.timeline}
           onChange={(e) =>
-            onFilterChange({ timeline: e.target.value as "1" | "3" | "5" })
+            onFilterChange({ timeline: e.target.value as "0" | "1" | "3" | "5" })
           }
         >
           <option value="0">Current</option>
