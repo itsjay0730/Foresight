@@ -28,7 +28,22 @@ const MapView = dynamic(() => import("@/components/map/MapView"), {
   ssr: false,
 });
 
-function getTimelineAdjustedScore(baseScore: number, timeline: string) {
+function getTimelineAdjustedScore(
+  baseScore: number,
+  timeline: string,
+  forecastScores?: {
+    "1y"?: { finalScore?: number; opportunity?: number };
+    "3y"?: { finalScore?: number; opportunity?: number };
+    "5y"?: { finalScore?: number; opportunity?: number };
+  }
+) {
+  const timelineKey = `${timeline}y` as "1y" | "3y" | "5y";
+  const forecastScore = forecastScores?.[timelineKey]?.finalScore;
+
+  if (typeof forecastScore === "number") {
+    return Math.max(0, Math.min(100, Math.round(forecastScore)));
+  }
+
   const multipliers: Record<string, number> = {
     "1": 0.94,
     "3": 1,
@@ -44,6 +59,55 @@ function getRecommendationFromScore(score: number) {
   if (score >= 75) return "BUILD";
   if (score >= 65) return "WATCH";
   return "AVOID";
+}
+
+function getTimelineLayerScore(
+  baseScore: number,
+  timeline: string,
+  forecastScores?: {
+    "1y"?: { finalScore?: number; opportunity?: number };
+    "3y"?: { finalScore?: number; opportunity?: number };
+    "5y"?: { finalScore?: number; opportunity?: number };
+  },
+  layerKey: "opportunity" | "finalScore" = "opportunity"
+) {
+  const timelineKey = `${timeline}y` as "1y" | "3y" | "5y";
+  const source = forecastScores?.[timelineKey];
+
+  if (source) {
+    const layerValue =
+      layerKey === "opportunity" ? source.opportunity : source.finalScore;
+
+    if (typeof layerValue === "number") {
+      return Math.max(0, Math.min(100, Math.round(layerValue)));
+    }
+  }
+
+  return getTimelineAdjustedScore(baseScore, timeline, forecastScores);
+}
+
+function getTimelineDelta(
+  baseScore: number,
+  timeline: string,
+  forecastScores?: {
+    "1y"?: { finalScore?: number; opportunity?: number };
+    "3y"?: { finalScore?: number; opportunity?: number };
+    "5y"?: { finalScore?: number; opportunity?: number };
+  }
+) {
+  const timelineKey = `${timeline}y` as "1y" | "3y" | "5y";
+  const forecastScore = forecastScores?.[timelineKey]?.finalScore;
+
+  if (typeof forecastScore === "number") {
+    const delta = forecastScore - baseScore;
+    return `${delta >= 0 ? "+" : ""}${delta.toFixed(1)} pts`;
+  }
+
+  return timeline === "1"
+    ? "Near-term outlook"
+    : timeline === "5"
+    ? "Long-range upside"
+    : "Balanced horizon";
 }
 
 function LoadingScreen() {
@@ -86,32 +150,9 @@ export default function ForesightApp() {
   >([]);
   const [apiProperties, setApiProperties] = useState<Property[]>([]);
 
-  useEffect(() => {
-    let mounted = true;
-
-    fetchAndGetData()
-      .then((data) => {
-        if (!mounted) return;
-        setApiNeighborhoods(data.neighborhoods ?? {});
-        setApiNeighborhoodList(data.neighborhoodList ?? []);
-        setApiProperties(data.properties ?? []);
-        setDataReady(true);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setApiNeighborhoods({});
-        setApiNeighborhoodList([]);
-        setApiProperties([]);
-        setDataReady(true);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
   const [filters, setFilters] = useState<FilterState>({
     investmentType: "",
+    housingType: "investment",
     timeline: "3",
     scoreLayer: "opportunity",
     riskLevel: "",
@@ -133,6 +174,38 @@ export default function ForesightApp() {
   const [memoOpen, setMemoOpen] = useState(false);
 
   const [notif, setNotif] = useState({ message: "", visible: false });
+
+  useEffect(() => {
+    let mounted = true;
+
+    setDataReady(false);
+
+    fetchAndGetData(filters.housingType)
+      .then((data) => {
+        if (!mounted) return;
+        setApiNeighborhoods(data.neighborhoods ?? {});
+        setApiNeighborhoodList(data.neighborhoodList ?? []);
+        setApiProperties(data.properties ?? []);
+        setActiveHoodId(undefined);
+        setPanelOpen(false);
+        setHoodPopupOpen(false);
+        setDataReady(true);
+      })
+      .catch(() => {
+        if (!mounted) return;
+        setApiNeighborhoods({});
+        setApiNeighborhoodList([]);
+        setApiProperties([]);
+        setActiveHoodId(undefined);
+        setPanelOpen(false);
+        setHoodPopupOpen(false);
+        setDataReady(true);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [filters.housingType]);
 
   const notify = useCallback((msg: string) => {
     setNotif({ message: msg, visible: true });
@@ -198,6 +271,7 @@ export default function ForesightApp() {
     setActiveHoodId(undefined);
     setFilters({
       investmentType: "",
+      housingType: "investment",
       timeline: "3",
       scoreLayer: "opportunity",
       riskLevel: "",
@@ -223,21 +297,38 @@ export default function ForesightApp() {
     apiProperties.forEach((p) => {
       let show = true;
 
-      if (filters.investmentType && p.type !== filters.investmentType)
+      if (filters.housingType === "housing") {
+        const propertyType = p.type.toLowerCase();
+        const isHousingType =
+          propertyType.includes("multi") ||
+          propertyType.includes("single") ||
+          propertyType.includes("residential") ||
+          propertyType.includes("land");
+
+        if (!isHousingType) show = false;
+      }
+
+      if (filters.investmentType && p.type !== filters.investmentType) {
         show = false;
+      }
 
       if (filters.riskLevel) {
         if (filters.riskLevel === "low" && p.risk !== "low") show = false;
-        if (filters.riskLevel === "moderate" && p.risk !== "moderate")
+        if (filters.riskLevel === "moderate" && p.risk !== "moderate") {
           show = false;
+        }
         if (
           filters.riskLevel === "high" &&
           !["emerging", "high"].includes(p.risk)
-        )
+        ) {
           show = false;
-        if (filters.riskLevel === "emerging" && p.risk !== "emerging")
+        }
+        if (filters.riskLevel === "emerging" && p.risk !== "emerging") {
           show = false;
-        if (filters.riskLevel === "avoid" && p.risk !== "avoid") show = false;
+        }
+        if (filters.riskLevel === "avoid" && p.risk !== "avoid") {
+          show = false;
+        }
       }
 
       if (show) {
@@ -245,7 +336,8 @@ export default function ForesightApp() {
 
         const adjustedScore = getTimelineAdjustedScore(
           p.score,
-          filters.timeline
+          filters.timeline,
+          (p as any).forecast_scores
         );
         const adjustedRec = getRecommendationFromScore(adjustedScore);
 
@@ -266,21 +358,22 @@ export default function ForesightApp() {
   const adjustedNeighborhoodStats = useMemo(() => {
     if (!activeNeighborhood) return undefined;
 
-    const adjustedOpportunity = getTimelineAdjustedScore(
+    const adjustedOpportunity = getTimelineLayerScore(
       activeNeighborhood.scores.opportunity,
-      filters.timeline
+      filters.timeline,
+      (activeNeighborhood as any).forecast_scores,
+      "opportunity"
     );
 
     return {
       opportunity: adjustedOpportunity,
       recommendation: getRecommendationFromScore(adjustedOpportunity),
       timelineLabel: `${filters.timeline}Y`,
-      delta:
-        filters.timeline === "1"
-          ? "Near-term outlook"
-          : filters.timeline === "5"
-          ? "Long-range upside"
-          : "Balanced horizon",
+      delta: getTimelineDelta(
+        activeNeighborhood.scores.opportunity,
+        filters.timeline,
+        (activeNeighborhood as any).forecast_scores
+      ),
     };
   }, [activeNeighborhood, filters.timeline]);
 
@@ -288,11 +381,27 @@ export default function ForesightApp() {
     if (!activeNeighborhood) return [];
 
     return apiProperties
-      .filter((p) => p.hood === activeNeighborhood.name)
+      .filter((p) => {
+        if (p.hood !== activeNeighborhood.name) return false;
+
+        if (filters.housingType === "housing") {
+          const propertyType = p.type.toLowerCase();
+          const isHousingType =
+            propertyType.includes("multi") ||
+            propertyType.includes("single") ||
+            propertyType.includes("residential") ||
+            propertyType.includes("land");
+
+          if (!isHousingType) return false;
+        }
+
+        return true;
+      })
       .map((p) => {
         const adjustedScore = getTimelineAdjustedScore(
           p.score,
-          filters.timeline
+          filters.timeline,
+          (p as any).forecast_scores
         );
         return {
           ...p,
@@ -301,7 +410,12 @@ export default function ForesightApp() {
         };
       })
       .sort((a, b) => b.adjustedScore - a.adjustedScore);
-  }, [activeNeighborhood, apiProperties, filters.timeline]);
+  }, [
+    activeNeighborhood,
+    apiProperties,
+    filters.timeline,
+    filters.housingType,
+  ]);
 
   useEffect(() => {
     if (!dataReady) return;
@@ -358,6 +472,7 @@ export default function ForesightApp() {
           selectionType={selection.type}
           hoodId={selection.hoodId}
           propertyId={selection.propertyId}
+          timeline={filters.timeline}
           onSelectProperty={handleSelectProperty}
           onOpenMemo={() => setMemoOpen(true)}
           onOpenNeighborhoodStats={() => {

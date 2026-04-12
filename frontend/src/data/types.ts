@@ -13,6 +13,11 @@ export interface Neighborhood {
   strengths: string[];
   risks: string[];
   memo: string;
+  forecast_scores?: {
+    "1y"?: ForecastScorePoint;
+    "3y"?: ForecastScorePoint;
+    "5y"?: ForecastScorePoint;
+  };
 }
 
 export interface Property {
@@ -28,6 +33,11 @@ export interface Property {
   sqft: string;
   cap: string;
   risk: RiskLevel;
+  forecast_scores?: {
+    "1y"?: ForecastScorePoint;
+    "3y"?: ForecastScorePoint;
+    "5y"?: ForecastScorePoint;
+  };
 }
 
 export interface ScoreSet {
@@ -45,14 +55,14 @@ export interface Factor {
   value: number;
 }
 
+export interface ForecastScorePoint {
+  finalScore?: number;
+  opportunity?: number;
+}
+
 export type Recommendation = "BUY" | "BUILD" | "WATCH" | "AVOID";
 
-export type RiskLevel =
-  | "low"
-  | "moderate"
-  | "emerging"
-  | "high"
-  | "avoid";
+export type RiskLevel = "low" | "moderate" | "emerging" | "high" | "avoid";
 
 export type InvestmentType =
   | "Multifamily"
@@ -62,12 +72,13 @@ export type InvestmentType =
   | "Office"
   | "Land / Development";
 
-export type ScoreLayerKey = keyof ScoreSet;
+export type HousingType = "investment" | "housing";
 
 export type TimelineValue = "1" | "3" | "5";
-
+export type ScoreLayerKey = keyof ScoreSet;
 export interface FilterState {
   investmentType: string;
+  housingType: HousingType;
   timeline: TimelineValue;
   scoreLayer: ScoreLayerKey;
   riskLevel: string;

@@ -130,24 +130,34 @@ function normalizePlotPayload(payload: unknown): BackendPlot[] {
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 // ─── Singleton cache ────────────────────────────────────────────────────────
-let _cache: {
-  plots: BackendPlot[];
-  neighborhoods: Record<string, Neighborhood>;
-  neighborhoodList: Neighborhood[];
-  properties: Property[];
-} | null = null;
+let _cacheByMode: Record<
+  string,
+  {
+    plots: BackendPlot[];
+    neighborhoods: Record<string, Neighborhood>;
+    neighborhoodList: Neighborhood[];
+    properties: Property[];
+  }
+> = {};
 
-let _fetchPromise: Promise<void> | null = null;
+let _fetchPromiseByMode: Record<string, Promise<void> | null> = {};
+let _activeMode = "investment";
 
-async function loadData(): Promise<void> {
-  if (_cache) return;
-  if (_fetchPromise) return _fetchPromise;
+async function loadData(
+  mode: "investment" | "housing" = "investment"
+): Promise<void> {
+  const normalizedMode = mode === "housing" ? "housing" : "investment";
+  _activeMode = normalizedMode;
 
-  _fetchPromise = (async () => {
+  if (_cacheByMode[normalizedMode]) return;
+  if (_fetchPromiseByMode[normalizedMode])
+    return _fetchPromiseByMode[normalizedMode] as Promise<void>;
+
+  _fetchPromiseByMode[normalizedMode] = (async () => {
     let plots: BackendPlot[] = [];
 
     try {
-      const res = await fetch(`${API_BASE}/map-data`, {
+      const res = await fetch(`${API_BASE}/map-data?mode=${normalizedMode}`, {
         headers: { Accept: "application/json" },
       });
       if (res.ok) {
@@ -158,25 +168,38 @@ async function loadData(): Promise<void> {
       /* API unavailable */
     }
 
-    // Fallback to static file in public/
     if (plots.length === 0) {
-      try {
-        const res = await fetch("/predicted_plots.json", {
-          headers: { Accept: "application/json" },
-        });
-        if (res.ok) {
-          const data: unknown = await res.json();
-          plots = normalizePlotPayload(data);
+      const fallbackPaths =
+        normalizedMode === "housing"
+          ? [
+              "/predicted_housing_plots.json",
+              "/final_housing_plots.json",
+              "/housing_plots.json",
+              "/housing_map_data.json",
+            ]
+          : ["/predicted_plots.json", "/final_plots.json"];
+
+      for (const path of fallbackPaths) {
+        try {
+          const res = await fetch(path, {
+            headers: { Accept: "application/json" },
+          });
+          if (res.ok) {
+            const data: unknown = await res.json();
+            plots = normalizePlotPayload(data);
+            if (plots.length > 0) break;
+          }
+        } catch {
+          /* try next fallback */
         }
-      } catch {
-        /* no fallback either */
       }
     }
 
-    _cache = transformData(plots);
+    _cacheByMode[normalizedMode] = transformData(plots);
+    _fetchPromiseByMode[normalizedMode] = null;
   })();
 
-  return _fetchPromise;
+  return _fetchPromiseByMode[normalizedMode] as Promise<void>;
 }
 
 // ─── Transform backend plots → Neighborhood + Property ──────────────────────
@@ -517,7 +540,8 @@ function transformData(plots: BackendPlot[]) {
       strengths,
       risks,
       memo,
-    };
+      forecast_scores: first.forecast_scores,
+    } as any;
 
     // Convert each plot to a Property
     for (const plot of group) {
@@ -549,7 +573,8 @@ function transformData(plots: BackendPlot[]) {
             ? `${(5 + (90 - finalScore) * 0.05).toFixed(1)}%`
             : "—",
         risk: scoreToRisk(finalScore),
-      });
+        forecast_scores: plot.forecast_scores,
+      } as any);
     }
   }
 
@@ -571,33 +596,43 @@ let _syncProperties: Property[] = [];
 
 // Kick off the fetch immediately on module load (client-side only)
 if (typeof window !== "undefined") {
-  loadData().then(() => {
-    if (_cache) {
-      _syncNeighborhoods = _cache.neighborhoods;
-      _syncNeighborhoodList = _cache.neighborhoodList;
-      _syncProperties = _cache.properties;
+  loadData("investment").then(() => {
+    const activeCache = _cacheByMode[_activeMode];
+    if (activeCache) {
+      _syncNeighborhoods = activeCache.neighborhoods;
+      _syncNeighborhoodList = activeCache.neighborhoodList;
+      _syncProperties = activeCache.properties;
     }
   });
 }
 
 export function getNeighborhoods(): Record<string, Neighborhood> {
-  return _cache?.neighborhoods ?? _syncNeighborhoods;
+  const activeCache = _cacheByMode[_activeMode];
+  return activeCache?.neighborhoods ?? _syncNeighborhoods;
 }
 
 export function getNeighborhoodList(): Neighborhood[] {
-  return _cache?.neighborhoodList ?? _syncNeighborhoodList;
+  const activeCache = _cacheByMode[_activeMode];
+  return activeCache?.neighborhoodList ?? _syncNeighborhoodList;
 }
 
 export function getProperties(): Property[] {
-  return _cache?.properties ?? _syncProperties;
+  const activeCache = _cacheByMode[_activeMode];
+  return activeCache?.properties ?? _syncProperties;
 }
 
-export async function fetchAndGetData() {
-  await loadData();
+export async function fetchAndGetData(
+  mode: "investment" | "housing" = "investment"
+) {
+  const normalizedMode = mode === "housing" ? "housing" : "investment";
+  await loadData(normalizedMode);
+  _activeMode = normalizedMode;
+
+  const activeCache = _cacheByMode[normalizedMode];
 
   return {
-    neighborhoods: _cache?.neighborhoods ?? {},
-    neighborhoodList: _cache?.neighborhoodList ?? [],
-    properties: _cache?.properties ?? [],
+    neighborhoods: activeCache?.neighborhoods ?? {},
+    neighborhoodList: activeCache?.neighborhoodList ?? [],
+    properties: activeCache?.properties ?? [],
   };
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Map, { Marker } from "react-map-gl/mapbox";
 import type { MapRef } from "react-map-gl/mapbox";
 import type { Map as MapboxMap, FillExtrusionLayer } from "mapbox-gl";
@@ -91,6 +91,7 @@ export default function MapView({
   mapRef,
 }: MapViewProps) {
   const internalMapRef = useRef<MapRef | null>(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   useEffect(() => {
     mapRef.current = {
@@ -135,6 +136,7 @@ export default function MapView({
 
     return () => {
       mapRef.current = null;
+      setMapLoaded(false);
     };
   }, [mapRef]);
 
@@ -162,6 +164,14 @@ export default function MapView({
       return true;
     });
   }, [filters]);
+
+  const safeVisibleProperties = useMemo(() => {
+    if (!mapLoaded) return [];
+
+    return visibleProperties.filter(
+      (p) => isFiniteNumber(p.lat) && isFiniteNumber(p.lng)
+    );
+  }, [mapLoaded, visibleProperties]);
 
   const mapboxToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
@@ -198,13 +208,22 @@ export default function MapView({
         mapStyle="mapbox://styles/mapbox/dark-v11"
         attributionControl={false}
         style={{ width: "100%", height: "100%" }}
-        onLoad={(e) => add3DBuildings(e.target)}
+        onLoad={(e) => {
+          add3DBuildings(e.target);
+          setMapLoaded(true);
+        }}
         onStyleData={() => {
           const map = internalMapRef.current?.getMap();
-          if (map) add3DBuildings(map);
+          if (map) {
+            add3DBuildings(map);
+            const style = map.getStyle();
+            if (style?.layers?.length) {
+              setMapLoaded(true);
+            }
+          }
         }}
       >
-        {visibleProperties.map((p) => (
+        {safeVisibleProperties.map((p) => (
           <Marker
             key={p.id}
             longitude={p.lng}
