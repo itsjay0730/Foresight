@@ -6,7 +6,10 @@ import re
 import time
 from typing import Any
 
+from dotenv import load_dotenv
 from openai import OpenAI
+
+load_dotenv()
 
 MODEL_NAME = "gpt-5-nano"
 
@@ -102,16 +105,13 @@ def _extract_first_json_object(text: str) -> str | None:
     if not text:
         return None
 
-    # Best case: whole response is JSON.
     if text.startswith("{") and text.endswith("}"):
         return text
 
-    # Remove fenced code blocks if present.
     fenced = re.search(r"```(?:json)?\s*(\{.*\})\s*```", text, flags=re.DOTALL)
     if fenced:
         return fenced.group(1).strip()
 
-    # Fallback: grab the first top-level JSON object.
     start = text.find("{")
     if start == -1:
         return None
@@ -144,7 +144,6 @@ def _sanitize_string_list(value: Any, fallback: list[str]) -> list[str]:
     if not cleaned:
         return fallback
 
-    # Force exactly 3 strings.
     cleaned = cleaned[:3]
     while len(cleaned) < 3:
         cleaned.append(fallback[len(cleaned)])
@@ -190,16 +189,9 @@ def _sanitize_ai_insights(payload: Any) -> dict[str, Any]:
     }
 
 
-def generateAIInsights(plot: dict[str, Any], client: OpenAI | None = None) -> dict[str, Any]:
-    """
-    Call GPT-5 nano for a single plot and return:
-    {
-      "opportunityType": str,
-      "drivers": [str, str, str],
-      "bestUse": [str, str, str],
-      "confidence": "Low" | "Medium" | "High"
-    }
-    """
+def generateAIInsights(
+    plot: dict[str, Any], client: OpenAI | None = None
+) -> dict[str, Any]:
     client = client or _get_client()
     prompt = buildPrompt(plot)
 
@@ -209,6 +201,7 @@ def generateAIInsights(plot: dict[str, Any], client: OpenAI | None = None) -> di
             reasoning={"effort": "low"},
             input=prompt,
             max_output_tokens=250,
+            timeout=60,
         )
 
         raw_text = (response.output_text or "").strip()
@@ -227,17 +220,8 @@ def generateAIInsights(plot: dict[str, Any], client: OpenAI | None = None) -> di
 def generateAIInsightsAll(
     data: list[dict[str, Any]],
     sleep_seconds: float = 0.0,
+    limit: int | None = None,
 ) -> list[dict[str, Any]]:
-    """
-    Loop through all plots and attach ai_insights.
-
-    Returns the same list shape with:
-      plot["ai_insights"] = {...}
-
-    Designed to fail safely:
-    - every plot always gets ai_insights
-    - bad model output falls back to defaults
-    """
     client = _get_client()
     results: list[dict[str, Any]] = []
 
