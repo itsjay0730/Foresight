@@ -159,7 +159,7 @@ export default function CommandBar({
           <img
             src="/logo.png"
             alt="Foresight"
-            className="w-[30px] h-[30px] rounded-[9px] object-contain shrink-0"
+            className="w-[34px] h-[34px] rounded-[10px] object-cover shrink-0"
           />
 
           <div className="flex flex-col justify-center gap-[5px] min-w-0">
