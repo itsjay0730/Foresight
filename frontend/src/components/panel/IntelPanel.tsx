@@ -332,7 +332,7 @@ function MetricCard({
       </div>
 
       {reason && (
-        <div className="text-[9px] leading-[1.4] text-t-dim mt-[7px] border-t border-white/[0.03] pt-[6px]">
+        <div className="text-[9px] leading-[1.45] text-t-secondary mt-[7px] border-t border-white/[0.05] pt-[6px]">
           {reason}
         </div>
       )}
