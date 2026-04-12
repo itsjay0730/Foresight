@@ -89,7 +89,7 @@ def forecastPlot(plot: dict[str, Any]) -> dict[str, Any]:
 
 
 # forecast all plots
-def forecastAll(plots: List[dict[str, Any]]) -> List[dict[str, Any]]:
+def forecastAllPlots(plots: List[dict[str, Any]]) -> List[dict[str, Any]]:
     results = []
 
     for plot in plots:

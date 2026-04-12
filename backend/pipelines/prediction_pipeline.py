@@ -3,7 +3,7 @@ from typing import Any, List, Dict
 from utils import saveJson, loadJson
 from pipelines.feature_builder import buildFeaturesAll
 from pipelines.scoring_model import buildScoresAll
-from pipelines.forecast_model import buildForecastsAll
+from pipelines.forecast_model import forecastAllPlots
 from config import FINAL_PLOTS_FILE, OUTPUT_DIR
 
 #where predictions will be saved
@@ -24,7 +24,7 @@ def buildScores(data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
 #run prediction model
 def buildPredictions(data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    return buildForecastsAll(data)
+    return forecastAllPlots(data)
 
 #save predictions to output file
 def savePredictions(data: List[Dict[str, Any]]) -> None:
