@@ -5,6 +5,7 @@ from models.feature_builder import buildFeaturesAll
 from models.forecast_model import forecastAllPlots
 from models.scoring_model import buildScoresAll
 from utils import loadJson, saveJson
+
 #where predictions will be saved
 PREDICTIONS_FILE = OUTPUT_DIR / "predicted_plots.json"
 
