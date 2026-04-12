@@ -90,12 +90,39 @@ def buildFeatures(plot: Dict[str, Any]) -> Dict[str, Any]:
     transitScore = computeTransitScore(plot.get("transit_distance", 1))
     incomeScore = computeIncomeScore(plot.get("income", 50000))
 
+    # additional differentiating features
+    schoolScore = normalize(
+        plot.get("average_school_rating_nearby", 0) or 0,
+        1.5,
+        5.0
+    )
+
+    amenityScore = plot.get("amenity_density_score", 0) or 0
+    poiScore = plot.get("poi_density_score", 0) or 0
+
+    ownershipScore = normalize(
+        plot.get("ownership_duration_years", 0) or 0,
+        0,
+        15
+    )
+
+    riskBase = normalize(
+        plot.get("crime_count_nearby", 0) or 0,
+        0,
+        20
+    )
+
     features = {
         "crimeTrend": crimeTrend,
         "permitGrowth": permitGrowth,
         "transitScore": transitScore,
         "incomeScore": incomeScore,
-        "populationGrowth": populationGrowth
+        "populationGrowth": populationGrowth,
+        "schoolScore": schoolScore,
+        "amenityScore": amenityScore,
+        "poiScore": poiScore,
+        "ownershipScore": ownershipScore,
+        "riskBase": riskBase,
     }
 
     return features
