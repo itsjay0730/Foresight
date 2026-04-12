@@ -14,11 +14,42 @@ interface IntelPanelProps {
   hoodId?: string;
   propertyId?: number;
   timeline: string;
+  housingType: "investment" | "housing";
   onSelectProperty: (id: number) => void;
   onOpenMemo: () => void;
   onOpenNeighborhoodStats: () => void;
 }
+function clamp01(value: number) {
+  return Math.max(0, Math.min(1, value));
+}
 
+function normalize(value: number, min: number, max: number) {
+  if (!Number.isFinite(value)) return 0;
+  if (max <= min) return 0;
+  return clamp01((value - min) / (max - min));
+}
+
+function getHousingModeScore(plot: any, timeline: string) {
+  const rentLevel = Number(plot?.zip_rent_index_latest ?? 0);
+  const zipRentGrowth = Number(plot?.zip_rent_growth_1y ?? 0);
+  const metroRentGrowth = Number(plot?.metro_rent_growth_1y ?? 0);
+  const salesGrowth = Number(plot?.sales_count_growth_1y ?? 0);
+
+  const rentLevelScore = normalize(rentLevel, 1200, 3200);
+  const zipGrowthScore = normalize(zipRentGrowth, -0.05, 0.12);
+  const metroGrowthScore = normalize(metroRentGrowth, -0.05, 0.12);
+  const salesMomentumScore = normalize(salesGrowth, -0.2, 0.2);
+
+  const base =
+    0.4 * rentLevelScore +
+    0.3 * zipGrowthScore +
+    0.15 * metroGrowthScore +
+    0.15 * salesMomentumScore;
+
+  const multiplier = timeline === "1" ? 0.97 : timeline === "5" ? 1.05 : 1.0;
+
+  return Math.max(0, Math.min(100, Math.round((60 + base * 35) * multiplier)));
+}
 function getRecommendationFromScore(
   score: number
 ): "BUY" | "BUILD" | "WATCH" | "AVOID" {
@@ -133,6 +164,7 @@ export default function IntelPanel({
   hoodId,
   propertyId,
   timeline,
+  housingType,
   onSelectProperty,
   onOpenMemo,
   onOpenNeighborhoodStats,
@@ -160,36 +192,61 @@ export default function IntelPanel({
 
   const timelineAwareHoodScores = getTimelineAwareScoreSet(hood, timeline);
 
+  const hoodProperties = properties.filter((p) => p.hood === hood.name);
+  const housingNeighborhoodScore = Math.round(
+    hoodProperties.reduce(
+      (sum, p) => sum + getHousingModeScore(p, timeline),
+      0
+    ) / Math.max(hoodProperties.length, 1)
+  );
+
   const score = prop
-    ? getTimelinePanelScore(
-        prop.score,
-        timeline,
-        (prop as any).forecast_scores,
-        "finalScore"
-      )
+    ? housingType === "housing"
+      ? getHousingModeScore(prop, timeline)
+      : getTimelinePanelScore(
+          prop.score,
+          timeline,
+          (prop as any).forecast_scores,
+          "finalScore"
+        )
+    : housingType === "housing"
+    ? housingNeighborhoodScore
     : timelineAwareHoodScores.opportunity;
 
   const name = prop ? prop.name : hood.name;
 
-  const subtitle = `${hood.zip} • ${getMarketLabel({
-    ...hood,
-    scores: timelineAwareHoodScores,
-  } as Neighborhood)} • ${getOpportunityType({
-    ...hood,
-    scores: timelineAwareHoodScores,
-  } as Neighborhood)}`;
+  const subtitle =
+    housingType === "housing"
+      ? `${hood.zip} • Housing Market • Rental / Sales Outlook`
+      : `${hood.zip} • ${getMarketLabel({
+          ...hood,
+          scores: timelineAwareHoodScores,
+        } as Neighborhood)} • ${getOpportunityType({
+          ...hood,
+          scores: timelineAwareHoodScores,
+        } as Neighborhood)}`;
 
-  const rec: "BUY" | "BUILD" | "WATCH" | "AVOID" = prop
-    ? getRecommendationFromScore(score)
-    : getRecommendationFromScore(timelineAwareHoodScores.opportunity);
+  const rec: "BUY" | "BUILD" | "WATCH" | "AVOID" =
+    housingType === "housing"
+      ? getRecommendationFromScore(score)
+      : prop
+      ? (prop.rec as "BUY" | "BUILD" | "WATCH" | "AVOID")
+      : getRecommendationFromScore(timelineAwareHoodScores.opportunity);
 
-  const delta = prop
-    ? getTimelinePanelDelta(prop.score, timeline, (prop as any).forecast_scores)
-    : getTimelinePanelDelta(
-        hood.scores.opportunity,
-        timeline,
-        (hood as any).forecast_scores
-      );
+  const delta =
+    housingType === "housing"
+      ? "Housing market view"
+      : prop
+      ? getTimelinePanelDelta(
+          prop.score,
+          timeline,
+          (prop as any).forecast_scores
+        )
+      : getTimelinePanelDelta(
+          hood.scores.opportunity,
+          timeline,
+          (hood as any).forecast_scores
+        );
 
   const confidence = Math.min(96, 70 + Math.floor(score * 0.28));
 
@@ -227,7 +284,9 @@ export default function IntelPanel({
                     delta.startsWith("-") ? "text-f-red" : "text-f-green"
                   }`}
                 >
-                  {delta.startsWith("-") ? "▼" : "▲"} {delta}
+                  {delta === "Housing market view"
+                    ? delta
+                    : `${delta.startsWith("-") ? "▼" : "▲"} ${delta}`}
                 </div>
               </div>
 
@@ -258,6 +317,7 @@ export default function IntelPanel({
           hood={{ ...hood, scores: timelineAwareHoodScores } as Neighborhood}
           rec={rec}
           confidence={confidence}
+          housingType={housingType}
           onOpenMemo={onOpenMemo}
           onOpenNeighborhoodStats={onOpenNeighborhoodStats}
           timelineLabel={getTimelineDisplayLabel(timeline)}
@@ -343,6 +403,7 @@ function OverviewContent({
   hood,
   rec,
   confidence,
+  housingType,
   onOpenMemo,
   onOpenNeighborhoodStats,
   timelineLabel,
@@ -350,42 +411,77 @@ function OverviewContent({
   hood: Neighborhood;
   rec: "BUY" | "BUILD" | "WATCH" | "AVOID";
   confidence: number;
+  housingType: "investment" | "housing";
   onOpenMemo: () => void;
   onOpenNeighborhoodStats: () => void;
   timelineLabel: string;
 }) {
-  const scores = [
-    {
-      label: "Investment Opportunity",
-      val: hood.scores.opportunity,
-      delta: hood.delta,
-    },
-    {
-      label: "Appreciation Potential",
-      val: hood.scores.appreciation,
-      delta: getDeltaForMetric("appreciation", hood),
-    },
-    {
-      label: "Development Readiness",
-      val: hood.scores.devReady,
-      delta: getDeltaForMetric("devReady", hood),
-    },
-    {
-      label: "Market Stability",
-      val: hood.scores.stability,
-      delta: getDeltaForMetric("stability", hood),
-    },
-    {
-      label: "Family Demand",
-      val: hood.scores.family,
-      delta: getDeltaForMetric("family", hood),
-    },
-    {
-      label: "Commercial Expansion",
-      val: hood.scores.commercial,
-      delta: getDeltaForMetric("commercial", hood),
-    },
-  ];
+  const scores =
+    housingType === "housing"
+      ? [
+          {
+            label: "Housing Opportunity",
+            val: hood.scores.opportunity,
+            delta: "Housing market view",
+          },
+          {
+            label: "Rent Growth",
+            val: hood.scores.appreciation,
+            delta: "+Rent-led",
+          },
+          {
+            label: "Rental Strength",
+            val: hood.scores.devReady,
+            delta: "+Demand",
+          },
+          {
+            label: "Market Stability",
+            val: hood.scores.stability,
+            delta: "+Stable",
+          },
+          {
+            label: "Sales Momentum",
+            val: hood.scores.family,
+            delta: "+Sales",
+          },
+          {
+            label: "ZIP Premium",
+            val: hood.scores.commercial,
+            delta: "+Pricing",
+          },
+        ]
+      : [
+          {
+            label: "Investment Opportunity",
+            val: hood.scores.opportunity,
+            delta: hood.delta,
+          },
+          {
+            label: "Appreciation Potential",
+            val: hood.scores.appreciation,
+            delta: getDeltaForMetric("appreciation", hood),
+          },
+          {
+            label: "Development Readiness",
+            val: hood.scores.devReady,
+            delta: getDeltaForMetric("devReady", hood),
+          },
+          {
+            label: "Market Stability",
+            val: hood.scores.stability,
+            delta: getDeltaForMetric("stability", hood),
+          },
+          {
+            label: "Family Demand",
+            val: hood.scores.family,
+            delta: getDeltaForMetric("family", hood),
+          },
+          {
+            label: "Commercial Expansion",
+            val: hood.scores.commercial,
+            delta: getDeltaForMetric("commercial", hood),
+          },
+        ];
 
   const drivers = getKeyDrivers(hood);
 
@@ -436,17 +532,21 @@ function OverviewContent({
               className="text-[22px] font-extrabold tracking-[0.3px]"
               style={{ color: recColor(rec) }}
             >
-              {rec}
+              {housingType === "housing" ? "HOUSING" : rec}
             </div>
             <div className="text-[10px] text-t-muted mt-[8px]">
-              Opportunity Type
+              {housingType === "housing" ? "Housing Type" : "Opportunity Type"}
             </div>
             <div className="text-[11px] font-semibold text-t-primary mt-[2px]">
-              {getOpportunityType(hood)}
+              {housingType === "housing"
+                ? "Rental / Sales Outlook"
+                : getOpportunityType(hood)}
             </div>
             <div className="text-[10px] text-t-muted mt-[8px]">Horizon</div>
             <div className="text-[11px] font-semibold text-t-primary mt-[2px]">
-              {timelineLabel}
+              {housingType === "housing"
+                ? "Housing-led"
+                : getMomentumLabel(hood)}
             </div>
           </div>
 
