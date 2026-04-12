@@ -28,15 +28,21 @@ const MapView = dynamic(() => import("@/components/map/MapView"), {
   ssr: false,
 });
 
+type ForecastScores = {
+  "1y"?: { finalScore?: number; opportunity?: number };
+  "3y"?: { finalScore?: number; opportunity?: number };
+  "5y"?: { finalScore?: number; opportunity?: number };
+};
+
 function getTimelineAdjustedScore(
   baseScore: number,
   timeline: string,
-  forecastScores?: {
-    "1y"?: { finalScore?: number; opportunity?: number };
-    "3y"?: { finalScore?: number; opportunity?: number };
-    "5y"?: { finalScore?: number; opportunity?: number };
-  }
+  forecastScores?: ForecastScores
 ) {
+  if (timeline === "0") {
+    return Math.max(0, Math.min(100, Math.round(baseScore)));
+  }
+
   const timelineKey = `${timeline}y` as "1y" | "3y" | "5y";
   const forecastScore = forecastScores?.[timelineKey]?.finalScore;
 
@@ -64,13 +70,13 @@ function getRecommendationFromScore(score: number) {
 function getTimelineLayerScore(
   baseScore: number,
   timeline: string,
-  forecastScores?: {
-    "1y"?: { finalScore?: number; opportunity?: number };
-    "3y"?: { finalScore?: number; opportunity?: number };
-    "5y"?: { finalScore?: number; opportunity?: number };
-  },
+  forecastScores?: ForecastScores,
   layerKey: "opportunity" | "finalScore" = "opportunity"
 ) {
+  if (timeline === "0") {
+    return Math.max(0, Math.min(100, Math.round(baseScore)));
+  }
+
   const timelineKey = `${timeline}y` as "1y" | "3y" | "5y";
   const source = forecastScores?.[timelineKey];
 
@@ -89,12 +95,12 @@ function getTimelineLayerScore(
 function getTimelineDelta(
   baseScore: number,
   timeline: string,
-  forecastScores?: {
-    "1y"?: { finalScore?: number; opportunity?: number };
-    "3y"?: { finalScore?: number; opportunity?: number };
-    "5y"?: { finalScore?: number; opportunity?: number };
-  }
+  forecastScores?: ForecastScores
 ) {
+  if (timeline === "0") {
+    return "Current";
+  }
+
   const timelineKey = `${timeline}y` as "1y" | "3y" | "5y";
   const forecastScore = forecastScores?.[timelineKey]?.finalScore;
 
@@ -609,7 +615,8 @@ function NeighborhoodPropertiesPopup({
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px]">
             <div>
               <span className="text-t-muted uppercase tracking-[0.5px] text-[9px] mr-2">
-                {adjustedNeighborhoodStats?.timelineLabel ?? "3Y"} Opportunity
+                {adjustedNeighborhoodStats?.timelineLabel ?? "Current"}{" "}
+                Opportunity
               </span>
               <span
                 className="font-mono font-extrabold text-[18px]"

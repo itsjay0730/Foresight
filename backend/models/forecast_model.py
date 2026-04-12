@@ -65,6 +65,7 @@ def forecastPlot(plot: dict[str, Any]) -> dict[str, Any]:
     crimeHistory = plot.get("crime_history", [])
     permitHistory = plot.get("permit_history", [])
     populationHistory = plot.get("population_history", [])
+    incomeHistory = plot.get("income_history", [])
 
     result = {}
 
@@ -85,6 +86,21 @@ def forecastPlot(plot: dict[str, Any]) -> dict[str, Any]:
     if populationModel:
         latestYear = populationHistory[-1]["year"]
         result["population_forecast"] = predictFuture(populationModel, latestYear)
+
+    # income prediction (important for investment score)
+    incomeModel = trainModel(incomeHistory, "income")
+    if incomeModel:
+        latestYear = incomeHistory[-1]["year"]
+        result["income_forecast"] = predictFuture(incomeModel, latestYear)
+
+    # fallback: approximate income forecast if no history exists
+    if "income_forecast" not in result and plot.get("income") is not None:
+        baseIncome = plot.get("income")
+        result["income_forecast"] = {
+            "1y": float(baseIncome * 1.01),
+            "3y": float(baseIncome * 1.03),
+            "5y": float(baseIncome * 1.05)
+        }
 
     return result
 
