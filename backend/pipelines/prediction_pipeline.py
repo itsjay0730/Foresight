@@ -5,6 +5,7 @@ from models.feature_builder import buildFeaturesAll
 from models.forecast_model import forecastAllPlots
 from models.scoring_model import buildScoresAll
 from models.metrics_model import buildMetricsAll
+from models.llm import generateAIInsightsAll
 from utils import loadJson, saveJson
 
 #where predictions will be saved
@@ -56,7 +57,7 @@ def runPredictionPipeline() -> List[Dict[str, Any]]:
     savePredictions(data)
 
     print(f"[Prediction] Completed. Total plots: {len(data)}")
-
+    data = generateAIInsightsAll(data)
     return data
 
 
