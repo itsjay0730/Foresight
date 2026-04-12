@@ -377,9 +377,39 @@ function transformData(plots: BackendPlot[]) {
         sqft: plot.parcel_size > 0 ? plot.parcel_size.toLocaleString() : "—",
         cap: finalScore >= 75 ? `${(5 + (90 - finalScore) * 0.05).toFixed(1)}%` : "—",
         risk: scoreToRisk(finalScore),
-        // Attach raw backend data so IntelPanel can read per-property metrics
+        // Attach raw backend data for IntelPanel per-property metrics + snapshot
+        ...Object.fromEntries(
+          Object.entries(plot).filter(([k]) =>
+            !["id","lat","lng","property_type","parcel_size","zoning"].includes(k)
+          ).map(([k, v]) => [`_${k}`, v])
+        ),
         metrics: plot.metrics,
         forecast_scores: plot.forecast_scores,
+        income: plot.income,
+        crime_count_nearby: plot.crime_count_nearby,
+        violent_crime_count_nearby: plot.violent_crime_count_nearby,
+        permit_count_nearby: plot.permit_count_nearby,
+        transit_stop_count_nearby: plot.transit_stop_count_nearby,
+        nearest_station: plot.nearest_station,
+        transit_distance: plot.transit_distance,
+        population_growth: plot.population_growth,
+        permit_activity: plot.permit_activity,
+        average_school_rating_nearby: (plot as any).average_school_rating_nearby,
+        park_count_nearby: (plot as any).park_count_nearby,
+        restaurant_count_nearby: (plot as any).restaurant_count_nearby,
+        coffee_shop_count_nearby: (plot as any).coffee_shop_count_nearby,
+        grocery_count_nearby: (plot as any).grocery_count_nearby,
+        office_poi_count_nearby: (plot as any).office_poi_count_nearby,
+        amenity_density_score: (plot as any).amenity_density_score,
+        hardship_index: (plot as any).hardship_index,
+        median_age: (plot as any).median_age,
+        renter_pct: (plot as any).renter_pct,
+        unemployment_rate: (plot as any).unemployment_rate,
+        last_sale_price: (plot as any).last_sale_price,
+        assessed_value: (plot as any).assessed_value,
+        ownership_duration_years: (plot as any).ownership_duration_years,
+        poverty_rate: (plot as any).poverty_rate,
+        zoning: plot.zoning,
       } as any);
     }
   }
