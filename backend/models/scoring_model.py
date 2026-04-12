@@ -315,11 +315,7 @@ def buildScoresAll(plots: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         forecast = plot.get("forecast", {}) or {}
 
         for horizon in ["1y", "3y", "5y"]:
-            if (
-                forecast.get("crime_forecast")
-                and forecast.get("permit_forecast")
-                and forecast.get("population_forecast")
-            ):
+            if forecast.get("population_forecast"):
                 tempPlot = dict(plot)
                 tempFeatures = dict(plot.get("features", {}) or {})
 
