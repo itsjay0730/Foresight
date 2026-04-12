@@ -5,7 +5,7 @@ import { Plus, Minus, Crosshair } from "lucide-react";
 /* ═══════ MAP CONTROLS ═══════ */
 export function MapControls({ mapRef }: { mapRef: React.MutableRefObject<any> }) {
   return (
-    <div className="fixed left-4 bottom-[calc(46vh+96px)] z-[900] flex flex-col gap-[6px] md:bottom-5">
+    <div className="fixed left-4 bottom-[22px] z-[900] flex flex-col gap-[6px]">
       {[
         { icon: <Plus size={16} />, action: () => mapRef.current?.zoomIn() },
         { icon: <Minus size={16} />, action: () => mapRef.current?.zoomOut() },
@@ -35,7 +35,7 @@ export function MapControls({ mapRef }: { mapRef: React.MutableRefObject<any> })
 export function Legend() {
   return (
     <div
-      className="fixed left-4 right-4 bottom-[calc(46vh+22px)] z-[900] flex flex-wrap items-center justify-center gap-x-[12px] gap-y-[8px] px-4 py-[10px] rounded-f-lg text-[10px] shadow-glass md:left-[70px] md:right-auto md:bottom-5 md:justify-start md:flex-nowrap"
+      className="fixed left-[62px] bottom-[22px] z-[900] hidden xl:flex flex-col gap-[8px] px-3 py-3 rounded-f-lg text-[10px] shadow-glass"
       style={{
         background: "rgba(12,16,28,0.62)",
         backdropFilter: "blur(24px)",
@@ -52,26 +52,11 @@ export function Legend() {
         { color: "#ef4444", label: "60–69 Caution" },
         { color: "#a855f7", label: "<60 Avoid" },
       ].map(item => (
-        <div key={item.label} className="flex items-center gap-[5px] text-t-muted whitespace-nowrap">
+        <div key={item.label} className="flex items-center gap-[6px] text-t-muted whitespace-nowrap">
           <div className="w-2 h-2 rounded-full shrink-0" style={{ background: item.color }} />
-          {item.label}
+          <span>{item.label}</span>
         </div>
       ))}
-
-      <div className="hidden md:block w-px h-4 bg-white/5" />
-
-      <div className="flex items-center gap-[5px] text-t-muted whitespace-nowrap">
-        <div
-          className="w-[10px] h-[10px] rounded-full border-2 shrink-0"
-          style={{ borderColor: "rgba(255,255,255,0.15)" }}
-        />
-        Zone
-      </div>
-
-      <div className="flex items-center gap-[5px] text-t-muted whitespace-nowrap">
-        <div className="w-[7px] h-[7px] rounded-full bg-f-blue shrink-0" />
-        Site
-      </div>
     </div>
   );
 }
@@ -88,10 +73,7 @@ interface TrayStats {
 
 export function BottomTray({ stats }: { stats: TrayStats }) {
   return (
-    <div
-      className="hidden md:flex fixed bottom-5 z-[900] justify-center"
-      style={{ right: "410px", left: "200px" }}
-    >
+    <div className="fixed left-1/2 -translate-x-1/2 bottom-[22px] z-[910] hidden xl:flex justify-center max-w-[calc(100vw-40px)]">
       <div
         className="flex items-center gap-5 px-[18px] py-2 rounded-f-lg text-[10px] text-t-muted shadow-glass"
         style={{
@@ -107,7 +89,7 @@ export function BottomTray({ stats }: { stats: TrayStats }) {
           { val: stats.watch, label: "Watch", color: "#f59e0b" },
           { val: stats.avoid, label: "Avoid", color: "#ef4444" },
         ].map(s => (
-          <div key={s.label} className="flex items-center gap-[6px]">
+          <div key={s.label} className="flex items-center gap-[6px] whitespace-nowrap">
             <span className="font-mono font-semibold text-[13px]" style={{ color: s.color }}>
               {s.val}
             </span>
@@ -115,9 +97,9 @@ export function BottomTray({ stats }: { stats: TrayStats }) {
           </div>
         ))}
 
-        <div className="w-px h-4 bg-white/5" />
+        <div className="w-px h-4 bg-white/5 shrink-0" />
 
-        <div className="flex items-center gap-[6px]">
+        <div className="flex items-center gap-[6px] whitespace-nowrap">
           <span className="font-mono font-semibold text-[13px] text-t-primary">{stats.pipeline}</span>
           <span className="text-[9px] uppercase tracking-[0.5px]">Pipeline</span>
         </div>
