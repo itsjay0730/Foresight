@@ -12,6 +12,7 @@ from google import genai
 load_dotenv(override=False)
 
 MODEL_NAME = "gemini-2.5-flash-lite"
+DEBUG_AI = True
 
 DEFAULT_AI_INSIGHTS = {
     "opportunityType": "Unknown Opportunity",
@@ -31,7 +32,14 @@ DEFAULT_AI_INSIGHTS = {
 _ALLOWED_CONFIDENCE = {"Low", "Medium", "High"}
 
 
+def _debug(message: str) -> None:
+    """Print debug logs only when debugging is enabled."""
+    if DEBUG_AI:
+        print(message)
+
+
 def _clean_env_value(value: str | None) -> str:
+    """Clean environment variable values by trimming spaces and quotes."""
     if value is None:
         return ""
 
@@ -47,6 +55,7 @@ def _clean_env_value(value: str | None) -> str:
 
 
 def _get_client():
+    """Create and return a Gemini client using GEMINI_API_KEY."""
     raw_api_key = os.getenv("GEMINI_API_KEY")
     api_key = _clean_env_value(raw_api_key)
 
@@ -55,20 +64,23 @@ def _get_client():
 
     os.environ["GEMINI_API_KEY"] = api_key
 
-    print("[AI DEBUG] Using Gemini 2.5 Flash Lite")
+    _debug(f"[AI DEBUG] Using model: {MODEL_NAME}")
 
     return genai.Client()
 
 
 def _fallback_ai_insights() -> dict[str, Any]:
+    """Return default fallback AI insights."""
     return dict(DEFAULT_AI_INSIGHTS)
 
 
 def _safe_json_dumps(data: Any) -> str:
+    """Convert Python data to JSON safely."""
     return json.dumps(data, ensure_ascii=False, indent=2, default=str)
 
 
 def buildPrompt(plot: dict[str, Any]) -> str:
+    """Build the prompt sent to the Gemini model."""
     plot_json = _safe_json_dumps(plot)
 
     return f"""You are a real estate investment AI.
@@ -120,6 +132,7 @@ Rules:
 
 
 def _extract_first_json_object(text: str) -> str | None:
+    """Extract the first JSON object from raw model output."""
     text = text.strip()
     if not text:
         return None
@@ -143,23 +156,23 @@ def _extract_first_json_object(text: str) -> str | None:
         elif ch == "}":
             depth -= 1
             if depth == 0:
-                return text[start : idx + 1].strip()
+                return text[start:idx + 1].strip()
 
     return None
 
 
 def _sanitize_string_list(value: Any, fallback: list[str]) -> list[str]:
+    """Clean a list of strings and force exactly 3 items."""
     if not isinstance(value, list):
         return fallback
 
-    cleaned = []
+    cleaned: list[str] = []
 
     for item in value:
         if item is None:
             continue
 
         text = str(item).strip()
-
         if text:
             cleaned.append(text)
 
@@ -175,6 +188,7 @@ def _sanitize_string_list(value: Any, fallback: list[str]) -> list[str]:
 
 
 def _sanitize_ai_insights(payload: Any) -> dict[str, Any]:
+    """Validate and normalize AI insight payload."""
     if not isinstance(payload, dict):
         return _fallback_ai_insights()
 
@@ -215,29 +229,32 @@ def _sanitize_ai_insights(payload: Any) -> dict[str, Any]:
     }
 
 
-def generateAIInsights(plot: dict[str, Any], client=None) -> dict[str, Any]:
-    client = client or _get_client()
+def _parse_ai_response(raw_text: str) -> dict[str, Any]:
+    """Parse and sanitize Gemini response text into AI insights."""
+    json_text = _extract_first_json_object(raw_text)
 
+    if not json_text:
+        return _fallback_ai_insights()
+
+    parsed = json.loads(json_text)
+    return _sanitize_ai_insights(parsed)
+
+
+def generateAIInsights(plot: dict[str, Any], client=None) -> dict[str, Any]:
+    """Generate AI insights for one plot."""
+    client = client or _get_client()
     prompt = buildPrompt(plot)
 
     try:
         response = client.models.generate_content(
             model=MODEL_NAME,
-            contents=prompt
+            contents=prompt,
         )
 
         raw_text = getattr(response, "text", "")
+        _debug(f"[AI DEBUG] Response {plot.get('id')}:\n{raw_text}\n")
 
-        print(f"[AI DEBUG] Response {plot.get('id')}:\n{raw_text}\n")
-
-        json_text = _extract_first_json_object(raw_text)
-
-        if not json_text:
-            return _fallback_ai_insights()
-
-        parsed = json.loads(json_text)
-
-        return _sanitize_ai_insights(parsed)
+        return _parse_ai_response(raw_text)
 
     except Exception as exc:
         print(f"[generateAIInsights] Failed for plot {plot.get('id')}: {exc}")
@@ -249,13 +266,11 @@ def generateAIInsightsAll(
     sleep_seconds: float = 0.0,
     limit: int | None = None,
 ) -> list[dict[str, Any]]:
-
+    """Generate AI insights for all plots, optionally with a limit and delay."""
     client = _get_client()
-
     results: list[dict[str, Any]] = []
 
     items = data if limit is None else data[:limit]
-
     total = len(items)
 
     if total == 0:
@@ -265,7 +280,6 @@ def generateAIInsightsAll(
         print(f"[AI] Generating insights {idx}/{total} -> {plot.get('id')}")
 
         enriched_plot = dict(plot)
-
         enriched_plot["ai_insights"] = generateAIInsights(
             enriched_plot,
             client=client,
