@@ -18,6 +18,14 @@ _LAST_OVERPASS_CALL_AT = 0.0
 
 
 def safeOverpassPost(query: str) -> dict[str, Any]:
+    """
+    Send a rate-limited POST request to the Overpass API with retries.
+
+    Features:
+    - waits between calls to avoid spamming the API
+    - retries on failures and 429 rate-limit responses
+    - raises a clear error if all retries fail
+    """
     global _LAST_OVERPASS_CALL_AT
 
     currentTime = time.time()
@@ -45,11 +53,19 @@ def safeOverpassPost(query: str) -> dict[str, Any]:
                 continue
 
             response.raise_for_status()
-            return response.json()
 
-        except Exception as exc:
+            try:
+                return response.json()
+            except ValueError as exc:
+                raise RuntimeError(
+                    f"Overpass returned non-JSON response: {response.text[:200]}"
+                ) from exc
+
+        except requests.RequestException as exc:
             lastError = exc
             backoffTime = OVERPASS_BACKOFF_SECONDS * (retryIndex + 1)
             time.sleep(backoffTime)
 
-    raise RuntimeError(f"Overpass request failed after retries: {lastError}")
+    raise RuntimeError(
+        f"Overpass request failed after {OVERPASS_MAX_RETRIES} retries: {lastError}"
+    )
