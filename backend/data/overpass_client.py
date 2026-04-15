@@ -7,9 +7,9 @@ import requests
 
 from config import (
     OVERPASS_API_URL,
-    OVERPASS_SLEEP_SECONDS,
-    OVERPASS_MAX_RETRIES,
     OVERPASS_BACKOFF_SECONDS,
+    OVERPASS_MAX_RETRIES,
+    OVERPASS_SLEEP_SECONDS,
     REQUEST_TIMEOUT,
 )
 
@@ -20,14 +20,15 @@ _LAST_OVERPASS_CALL_AT = 0.0
 def safeOverpassPost(query: str) -> dict[str, Any]:
     global _LAST_OVERPASS_CALL_AT
 
-    now = time.time()
-    elapsed = now - _LAST_OVERPASS_CALL_AT
-    if elapsed < OVERPASS_SLEEP_SECONDS:
-        time.sleep(OVERPASS_SLEEP_SECONDS - elapsed)
+    currentTime = time.time()
+    timeSinceLastCall = currentTime - _LAST_OVERPASS_CALL_AT
 
-    last_error: Exception | None = None
+    if timeSinceLastCall < OVERPASS_SLEEP_SECONDS:
+        time.sleep(OVERPASS_SLEEP_SECONDS - timeSinceLastCall)
 
-    for attempt in range(OVERPASS_MAX_RETRIES):
+    lastError: Exception | None = None
+
+    for retryIndex in range(OVERPASS_MAX_RETRIES):
         try:
             response = requests.post(
                 OVERPASS_API_URL,
@@ -39,16 +40,16 @@ def safeOverpassPost(query: str) -> dict[str, Any]:
             _LAST_OVERPASS_CALL_AT = time.time()
 
             if response.status_code == 429:
-                wait_time = OVERPASS_BACKOFF_SECONDS * (attempt + 1)
-                time.sleep(wait_time)
+                backoffTime = OVERPASS_BACKOFF_SECONDS * (retryIndex + 1)
+                time.sleep(backoffTime)
                 continue
 
             response.raise_for_status()
             return response.json()
 
         except Exception as exc:
-            last_error = exc
-            wait_time = OVERPASS_BACKOFF_SECONDS * (attempt + 1)
-            time.sleep(wait_time)
+            lastError = exc
+            backoffTime = OVERPASS_BACKOFF_SECONDS * (retryIndex + 1)
+            time.sleep(backoffTime)
 
-    raise RuntimeError(f"Overpass request failed after retries: {last_error}")
+    raise RuntimeError(f"Overpass request failed after retries: {lastError}")
