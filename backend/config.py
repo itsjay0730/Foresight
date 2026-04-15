@@ -1,30 +1,33 @@
 import os
 from pathlib import Path
 
-from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
 # -----------------------------
 # Base project paths
 # -----------------------------
-BACKEND_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent
+BACKEND_DIR = BASE_DIR
 OUTPUT_DIR = BACKEND_DIR / "output"
 OUTPUT_DIR.mkdir(exist_ok=True)
+
 
 # -----------------------------
 # General settings
 # -----------------------------
 REQUEST_TIMEOUT = 20
-PIPELINE_LIMIT = 1 # matches the 100-plot dataset shown in the map
+PIPELINE_LIMIT = 1  # matches the 100-plot dataset shown in the map
 
 # Search radius per feature type (in miles)
-SEARCH_RADIUS_CRIME_MILES   = 0.5
+SEARCH_RADIUS_CRIME_MILES = 0.5
 SEARCH_RADIUS_TRANSIT_MILES = 0.25
-SEARCH_RADIUS_PERMIT_MILES  = 0.25
+SEARCH_RADIUS_PERMIT_MILES = 0.25
+SEARCH_RADIUS_AMENITIES_MILES = 0.5
 
 OVERPASS_SLEEP_SECONDS = 3.0
 OVERPASS_MAX_RETRIES = 4
 OVERPASS_BACKOFF_SECONDS = 5.0
+
+
 # -----------------------------
 # API endpoints
 # -----------------------------
@@ -60,9 +63,47 @@ CTA_STOPS_API = os.getenv(
     "https://data.cityofchicago.org/resource/qs84-j7wh.json",
 )
 
-COOK_COUNTY_ASSESSED_VALUES_API = "https://datacatalog.cookcountyil.gov/resource/uzyt-m557.json"
-COOK_COUNTY_RESIDENTIAL_IMPROVEMENTS_API = "https://datacatalog.cookcountyil.gov/resource/x54s-btds.json"
-COOK_COUNTY_CONDO_CHARACTERISTICS_API = "https://datacatalog.cookcountyil.gov/resource/3r7i-mrz4.json"
+COOK_COUNTY_RESIDENTIAL_IMPROVEMENTS_API = os.getenv(
+    "COOK_COUNTY_RESIDENTIAL_IMPROVEMENTS_API",
+    "https://datacatalog.cookcountyil.gov/resource/x54s-btds.json",
+)
+
+COOK_COUNTY_CONDO_CHARACTERISTICS_API = os.getenv(
+    "COOK_COUNTY_CONDO_CHARACTERISTICS_API",
+    "https://datacatalog.cookcountyil.gov/resource/3r7i-mrz4.json",
+)
+
+COOK_COUNTY_PARCEL_SALES_API = os.getenv(
+    "COOK_COUNTY_PARCEL_SALES_API",
+    "https://datacatalog.cookcountyil.gov/resource/wvhk-k5uv.json",
+)
+
+COOK_COUNTY_ASSESSED_VALUES_API = os.getenv(
+    "COOK_COUNTY_ASSESSED_VALUES_API",
+    "https://datacatalog.cookcountyil.gov/resource/uzyt-m557.json",
+)
+
+COOK_COUNTY_PARCEL_ADDRESSES_API = os.getenv(
+    "COOK_COUNTY_PARCEL_ADDRESSES_API",
+    "https://datacatalog.cookcountyil.gov/resource/3723-97qp.json",
+)
+
+CHICAGO_SCHOOL_LOCATIONS_API = os.getenv(
+    "CHICAGO_SCHOOL_LOCATIONS_API",
+    "https://data.cityofchicago.org/resource/mv87-m4mi.json",
+)
+
+CHICAGO_SCHOOL_PROGRESS_API = os.getenv(
+    "CHICAGO_SCHOOL_PROGRESS_API",
+    "https://data.cityofchicago.org/resource/2dn2-x66j.json",
+)
+
+OVERPASS_API_URL = os.getenv(
+    "OVERPASS_API_URL",
+    "https://overpass-api.de/api/interpreter",
+)
+
+
 # -----------------------------
 # Census / ACS endpoints
 # -----------------------------
@@ -81,49 +122,24 @@ CENSUS_ACS_2019_API = os.getenv(
     "https://api.census.gov/data/2019/acs/acs5",
 )
 
-# Chicago community area demographics (Socrata)
 CHICAGO_ACS_COMMUNITY_AREA_API = os.getenv(
     "CHICAGO_ACS_COMMUNITY_AREA_API",
     "https://data.cityofchicago.org/resource/kn9c-c2s2.json",
 )
-COOK_COUNTY_PARCEL_SALES_API = os.getenv(
-    "COOK_COUNTY_PARCEL_SALES_API",
-    "https://datacatalog.cookcountyil.gov/resource/wvhk-k5uv.json",
-)
 
-COOK_COUNTY_ASSESSED_VALUES_API = os.getenv(
-    "COOK_COUNTY_ASSESSED_VALUES_API",
-    "https://datacatalog.cookcountyil.gov/resource/uzyt-m557.json",
-)
-
-COOK_COUNTY_PARCEL_ADDRESSES_API = os.getenv(
-    "COOK_COUNTY_PARCEL_ADDRESSES_API",
-    "https://datacatalog.cookcountyil.gov/resource/3723-97qp.json",
-)
-CHICAGO_SCHOOL_LOCATIONS_API = os.getenv(
-    "CHICAGO_SCHOOL_LOCATIONS_API",
-    "https://data.cityofchicago.org/resource/mv87-m4mi.json",
-)
-
-CHICAGO_SCHOOL_PROGRESS_API = os.getenv(
-    "CHICAGO_SCHOOL_PROGRESS_API",
-    "https://data.cityofchicago.org/resource/2dn2-x66j.json",
-
-)
-OVERPASS_API_URL = "https://overpass-api.de/api/interpreter"
-SEARCH_RADIUS_AMENITIES_MILES = 0.5
 
 # -----------------------------
 # API keys / tokens
 # -----------------------------
 SOCRATA_APP_TOKEN = os.getenv("SOCRATA_APP_TOKEN", "")
-CENSUS_API_KEY    = os.getenv("CENSUS_API_KEY", "")
+CENSUS_API_KEY = os.getenv("CENSUS_API_KEY", "")
+
 
 # -----------------------------
 # Output files
 # -----------------------------
-RAW_PLOTS_FILE      = OUTPUT_DIR / "raw_plots.json"
+RAW_PLOTS_FILE = OUTPUT_DIR / "raw_plots.json"
 ENRICHED_PLOTS_FILE = OUTPUT_DIR / "enriched_plots.json"
-FINAL_PLOTS_FILE    = OUTPUT_DIR / "final_plots.json"
-FINAL_PLOTS_CSV     = OUTPUT_DIR / "final_plots.csv"
-PREDICTIONS_FILE    = OUTPUT_DIR / "predicted_plots.json"
+FINAL_PLOTS_FILE = OUTPUT_DIR / "final_plots.json"
+FINAL_PLOTS_CSV = OUTPUT_DIR / "final_plots.csv"
+PREDICTIONS_FILE = OUTPUT_DIR / "predicted_plots.json"
