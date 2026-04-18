@@ -15,10 +15,10 @@ METRO_SALES_CSV = ZILLOW_DIR / "Metro_sales_count_now_uc_sfrcondo_month.csv"
 METRO_ZORI_CSV = ZILLOW_DIR / "Metro_zori_uc_sfrcondomfr_sm_month.csv"
 ZIP_ZORI_CSV = ZILLOW_DIR / "Zip_zori_uc_sfrcondomfr_sm_month.csv"
 
-CHICAGO_REGION_CANDIDATES = {
+CHICAGO_REGION_CANDIDATES = (
     "Chicago, IL",
     "Chicago-Naperville-Elgin, IL-IN-WI",
-}
+)
 
 
 def _emptyHousingMarket() -> dict[str, Any]:
@@ -55,7 +55,7 @@ def _loadCsv(path: Path) -> pd.DataFrame | None:
     return _loadCsvCached(str(path.resolve()))
 
 
-@lru_cache(maxsize=8)
+@lru_cache(maxsize=16)
 def _getDateColumnsCached(columnsTuple: tuple[str, ...]) -> tuple[str, ...]:
     dateCols: list[str] = []
 
@@ -66,11 +66,11 @@ def _getDateColumnsCached(columnsTuple: tuple[str, ...]) -> tuple[str, ...]:
         except Exception:
             continue
 
-    return tuple(sorted(dateCols, key=lambda c: pd.to_datetime(c)))
+    return tuple(sorted(dateCols, key=pd.to_datetime))
 
 
 def _getDateColumns(df: pd.DataFrame) -> list[str]:
-    return list(_getDateColumnsCached(tuple(str(c) for c in df.columns)))
+    return list(_getDateColumnsCached(tuple(str(col) for col in df.columns)))
 
 
 def _toFloat(value: Any) -> float | None:
@@ -82,7 +82,26 @@ def _toFloat(value: Any) -> float | None:
         return None
 
 
-def _buildHistory(row: pd.Series, dateCols: list[str], limit: int = 24) -> list[dict[str, Any]]:
+def _normalizeZip(value: Any) -> str:
+    if value is None:
+        return ""
+
+    zipCode = str(value).strip()
+    if not zipCode or zipCode.lower() == "unknown":
+        return ""
+
+    # preserve leading zeros when possible
+    if zipCode.endswith(".0"):
+        zipCode = zipCode[:-2]
+
+    return zipCode.zfill(5) if zipCode.isdigit() and len(zipCode) <= 5 else zipCode
+
+
+def _buildHistory(
+    row: pd.Series,
+    dateCols: list[str],
+    limit: int = 24,
+) -> list[dict[str, Any]]:
     history: list[dict[str, Any]] = []
 
     for col in dateCols[-limit:]:
@@ -140,9 +159,9 @@ def _findChicagoMetroRow(df: pd.DataFrame) -> pd.Series | None:
         if not match.empty:
             return match.iloc[0]
 
-    match = df[regionNames.str.contains("Chicago", case=False, na=False)]
-    if not match.empty:
-        return match.iloc[0]
+    fallback = df[regionNames.str.contains("Chicago", case=False, na=False)]
+    if not fallback.empty:
+        return fallback.iloc[0]
 
     print("[fetchHousingMarket] No Chicago metro row found")
     return None
@@ -153,7 +172,8 @@ def _findZipRow(df: pd.DataFrame, zipCode: str) -> pd.Series | None:
         print("[fetchHousingMarket] RegionName column missing for ZIP file")
         return None
 
-    match = df[df["RegionName"].astype(str).str.strip() == zipCode]
+    regionNames = df["RegionName"].astype(str).str.strip()
+    match = df[regionNames == zipCode]
     if not match.empty:
         return match.iloc[0]
 
@@ -174,58 +194,47 @@ def _extractSeriesInfoFromRow(
 
     latest = _latestValue(row, dateCols)
     prior = _valueOneYearAgo(row, dateCols)
-    growth = _growth1y(latest, prior)
-    history = _buildHistory(row, dateCols)
 
-    latestRounded = round(latest, 2) if latest is not None else None
-    return latestRounded, growth, history
+    return (
+        round(latest, 2) if latest is not None else None,
+        _growth1y(latest, prior),
+        _buildHistory(row, dateCols),
+    )
 
 
 def fetchHousingMarket(plot: dict[str, Any]) -> dict[str, Any]:
-    empty = _emptyHousingMarket()
-
-    zipCode = str(plot.get("zip", "")).strip()
-    if not zipCode or zipCode == "Unknown":
-        zipCode = ""
+    result = _emptyHousingMarket()
+    zipCode = _normalizeZip(plot.get("zip"))
 
     metroSalesDf = _loadCsv(METRO_SALES_CSV)
     metroRentDf = _loadCsv(METRO_ZORI_CSV)
     zipRentDf = _loadCsv(ZIP_ZORI_CSV)
 
-    zipRentLatest, zipRentGrowth1y, zipRentHistory = (None, None, [])
-    metroRentLatest, metroRentGrowth1y, metroRentHistory = (None, None, [])
-    salesLatest, salesGrowth1y, salesHistory = (None, None, [])
-
     if zipRentDf is not None and zipCode:
         zipRow = _findZipRow(zipRentDf, zipCode)
-        zipRentLatest, zipRentGrowth1y, zipRentHistory = _extractSeriesInfoFromRow(
-            zipRow, zipRentDf
-        )
+        (
+            result["zip_rent_index_latest"],
+            result["zip_rent_growth_1y"],
+            result["zip_rent_history"],
+        ) = _extractSeriesInfoFromRow(zipRow, zipRentDf)
 
     if metroRentDf is not None:
         metroRow = _findChicagoMetroRow(metroRentDf)
-        metroRentLatest, metroRentGrowth1y, metroRentHistory = _extractSeriesInfoFromRow(
-            metroRow, metroRentDf
-        )
+        (
+            result["metro_rent_index_latest"],
+            result["metro_rent_growth_1y"],
+            result["metro_rent_history"],
+        ) = _extractSeriesInfoFromRow(metroRow, metroRentDf)
 
     if metroSalesDf is not None:
         metroSalesRow = _findChicagoMetroRow(metroSalesDf)
-        salesLatest, salesGrowth1y, salesHistory = _extractSeriesInfoFromRow(
-            metroSalesRow, metroSalesDf
-        )
+        (
+            result["sales_count_latest"],
+            result["sales_count_growth_1y"],
+            result["sales_count_history"],
+        ) = _extractSeriesInfoFromRow(metroSalesRow, metroSalesDf)
 
-    return {
-        "market_scope": "zip_plus_metro",
-        "zip_rent_index_latest": zipRentLatest,
-        "zip_rent_growth_1y": zipRentGrowth1y,
-        "zip_rent_history": zipRentHistory,
-        "metro_rent_index_latest": metroRentLatest,
-        "metro_rent_growth_1y": metroRentGrowth1y,
-        "metro_rent_history": metroRentHistory,
-        "sales_count_latest": salesLatest,
-        "sales_count_growth_1y": salesGrowth1y,
-        "sales_count_history": salesHistory,
-    }
+    return result
 
 
 if __name__ == "__main__":
