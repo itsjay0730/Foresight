@@ -9,42 +9,81 @@ from utils import safeFloat
 
 MILES_TO_METERS = 1609.34
 
+POI_CONFIG = {
+    "school_poi_count_nearby": ("amenity", "school"),
+    "hospital_poi_count_nearby": ("amenity", "hospital"),
+    "university_poi_count_nearby": ("amenity", "university"),
+    "office_poi_count_nearby": ("office", None),
+    "park_poi_count_nearby": ("leisure", "park"),
+}
+
+POI_WEIGHTS = {
+    "school_poi_count_nearby": 1.0,
+    "hospital_poi_count_nearby": 1.4,
+    "university_poi_count_nearby": 1.2,
+    "office_poi_count_nearby": 0.8,
+    "park_poi_count_nearby": 1.0,
+}
+
+
+def _emptyPoiResponse() -> dict[str, Any]:
+    return {
+        "school_poi_count_nearby": 0,
+        "hospital_poi_count_nearby": 0,
+        "university_poi_count_nearby": 0,
+        "office_poi_count_nearby": 0,
+        "park_poi_count_nearby": 0,
+        "poi_density_score": 0.0,
+    }
+
 
 def _milesToMeters(miles: float) -> int:
     return int(miles * MILES_TO_METERS)
 
 
 def _buildOverpassQuery(lat: float, lng: float, radiusMeters: int) -> str:
+    parts: list[str] = []
+
+    for key, value in POI_CONFIG.values():
+        if value is None:
+            parts.extend(
+                [
+                    f'node["{key}"](around:{radiusMeters},{lat},{lng});',
+                    f'way["{key}"](around:{radiusMeters},{lat},{lng});',
+                    f'relation["{key}"](around:{radiusMeters},{lat},{lng});',
+                ]
+            )
+        else:
+            parts.extend(
+                [
+                    f'node["{key}"="{value}"](around:{radiusMeters},{lat},{lng});',
+                    f'way["{key}"="{value}"](around:{radiusMeters},{lat},{lng});',
+                    f'relation["{key}"="{value}"](around:{radiusMeters},{lat},{lng});',
+                ]
+            )
+
+    joinedParts = "\n      ".join(parts)
+
     return f"""
     [out:json][timeout:25];
     (
-      node["amenity"="school"](around:{radiusMeters},{lat},{lng});
-      way["amenity"="school"](around:{radiusMeters},{lat},{lng});
-      relation["amenity"="school"](around:{radiusMeters},{lat},{lng});
-
-      node["amenity"="hospital"](around:{radiusMeters},{lat},{lng});
-      way["amenity"="hospital"](around:{radiusMeters},{lat},{lng});
-      relation["amenity"="hospital"](around:{radiusMeters},{lat},{lng});
-
-      node["amenity"="university"](around:{radiusMeters},{lat},{lng});
-      way["amenity"="university"](around:{radiusMeters},{lat},{lng});
-      relation["amenity"="university"](around:{radiusMeters},{lat},{lng});
-
-      node["office"](around:{radiusMeters},{lat},{lng});
-      way["office"](around:{radiusMeters},{lat},{lng});
-      relation["office"](around:{radiusMeters},{lat},{lng});
-
-      node["leisure"="park"](around:{radiusMeters},{lat},{lng});
-      way["leisure"="park"](around:{radiusMeters},{lat},{lng});
-      relation["leisure"="park"](around:{radiusMeters},{lat},{lng});
+      {joinedParts}
     );
     out tags center;
     """
 
 
-def _countAmenity(elements: list[dict[str, Any]], key: str, value: str | None = None) -> int:
+def _uniqueElementKey(element: dict[str, Any]) -> tuple[Any, Any]:
+    return (element.get("type"), element.get("id"))
+
+
+def _countAmenity(
+    elements: list[dict[str, Any]],
+    key: str,
+    value: str | None = None,
+) -> int:
     count = 0
-    seen = set()
+    seen: set[tuple[Any, Any]] = set()
 
     for element in elements:
         tags = element.get("tags", {}) or {}
@@ -55,7 +94,7 @@ def _countAmenity(elements: list[dict[str, Any]], key: str, value: str | None = 
         if value is not None and tags.get(key) != value:
             continue
 
-        uniqueKey = (element.get("type"), element.get("id"))
+        uniqueKey = _uniqueElementKey(element)
         if uniqueKey in seen:
             continue
 
@@ -65,32 +104,17 @@ def _countAmenity(elements: list[dict[str, Any]], key: str, value: str | None = 
     return count
 
 
-def _buildPoiDensityScore(
-    schools: int,
-    hospitals: int,
-    universities: int,
-    offices: int,
-    parks: int,
-) -> float:
-    raw = (
-        schools * 1.0
-        + hospitals * 1.4
-        + universities * 1.2
-        + offices * 0.8
-        + parks * 1.0
-    )
+def _buildPoiDensityScore(counts: dict[str, int]) -> float:
+    raw = 0.0
+
+    for metricName, weight in POI_WEIGHTS.items():
+        raw += counts.get(metricName, 0) * weight
+
     return round(min(raw / 25.0, 1.0), 4)
 
 
 def fetchPOI(plot: dict[str, Any]) -> dict[str, Any]:
-    empty = {
-        "school_poi_count_nearby": 0,
-        "hospital_poi_count_nearby": 0,
-        "university_poi_count_nearby": 0,
-        "office_poi_count_nearby": 0,
-        "park_poi_count_nearby": 0,
-        "poi_density_score": 0.0,
-    }
+    empty = _emptyPoiResponse()
 
     lat = safeFloat(plot.get("lat"))
     lng = safeFloat(plot.get("lng"))
@@ -103,27 +127,16 @@ def fetchPOI(plot: dict[str, Any]) -> dict[str, Any]:
 
     try:
         payload = safeOverpassPost(query)
-        elements = payload.get("elements", []) or []
+        elements = payload.get("elements", []) if isinstance(payload, dict) else []
+        elements = elements or []
 
-        schoolCount = _countAmenity(elements, "amenity", "school")
-        hospitalCount = _countAmenity(elements, "amenity", "hospital")
-        universityCount = _countAmenity(elements, "amenity", "university")
-        officeCount = _countAmenity(elements, "office")
-        parkCount = _countAmenity(elements, "leisure", "park")
+        counts: dict[str, int] = {}
+        for metricName, (key, value) in POI_CONFIG.items():
+            counts[metricName] = _countAmenity(elements, key, value)
 
         return {
-            "school_poi_count_nearby": schoolCount,
-            "hospital_poi_count_nearby": hospitalCount,
-            "university_poi_count_nearby": universityCount,
-            "office_poi_count_nearby": officeCount,
-            "park_poi_count_nearby": parkCount,
-            "poi_density_score": _buildPoiDensityScore(
-                schoolCount,
-                hospitalCount,
-                universityCount,
-                officeCount,
-                parkCount,
-            ),
+            **counts,
+            "poi_density_score": _buildPoiDensityScore(counts),
         }
 
     except Exception as exc:
