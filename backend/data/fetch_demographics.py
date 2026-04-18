@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from functools import lru_cache
 from typing import Any
 
 from config import CHICAGO_ACS_COMMUNITY_AREA_API
@@ -17,51 +18,8 @@ NEIGHBORHOOD_ALIASES = {
 }
 
 
-def _normalizeName(value: Any) -> str:
-    if value is None:
-        return ""
-
-    normalized = str(value).strip().upper()
-    normalized = " ".join(normalized.split())
-    return NEIGHBORHOOD_ALIASES.get(normalized, normalized)
-
-
-def _findCommunityRow(neighborhoodName: str) -> dict[str, Any] | None:
-    response = safeGet(CHICAGO_ACS_COMMUNITY_AREA_API, params={"$limit": 200})
-
-    if not response:
-        print("[fetchDemographics] API returned empty or None")
-        return None
-
-    targetName = _normalizeName(neighborhoodName)
-
-    for row in response:
-        communityName = _normalizeName(row.get("community_area_name"))
-        if communityName == targetName:
-            return row
-
-    availableNames = [
-        _normalizeName(item.get("community_area_name", ""))
-        for item in response
-    ]
-    print(
-        f"[fetchDemographics] No match for '{targetName}'. Available: {availableNames[:10]}..."
-    )
-    return None
-
-
-def _normalizePct(value: float | None) -> float | None:
-    if value is None:
-        return None
-
-    if value > 1:
-        return round(value / 100, 4)
-
-    return value
-
-
-def fetchDemographics(plot: dict[str, Any]) -> dict[str, Any]:
-    defaultResponse = {
+def _defaultResponse() -> dict[str, Any]:
+    return {
         "current_population": None,
         "population_growth_1y": None,
         "population_growth_3y": None,
@@ -80,6 +38,81 @@ def fetchDemographics(plot: dict[str, Any]) -> dict[str, Any]:
         "poverty_rate": None,
     }
 
+
+def _normalizeName(value: Any) -> str:
+    if value is None:
+        return ""
+
+    normalized = str(value).strip().upper()
+    normalized = " ".join(normalized.split())
+    return NEIGHBORHOOD_ALIASES.get(normalized, normalized)
+
+
+def _normalizePct(value: float | None) -> float | None:
+    if value is None:
+        return None
+
+    if value > 1:
+        return round(value / 100, 4)
+
+    return round(value, 4)
+
+
+@lru_cache(maxsize=1)
+def _getCommunityRows() -> list[dict[str, Any]]:
+    params = {
+        "$select": ",".join(
+            [
+                "community_area_name",
+                "per_capita_income_",
+                "percent_aged_under_18_or_over_64",
+                "percent_aged_16_unemployed",
+                "hardship_index",
+                "percent_households_below_poverty",
+            ]
+        ),
+        "$limit": 200,
+    }
+
+    response = safeGet(CHICAGO_ACS_COMMUNITY_AREA_API, params=params)
+    if not isinstance(response, list):
+        print("[fetchDemographics] API returned non-list response")
+        return []
+
+    return response
+
+
+@lru_cache(maxsize=1)
+def _getCommunityLookup() -> dict[str, dict[str, Any]]:
+    rows = _getCommunityRows()
+    lookup: dict[str, dict[str, Any]] = {}
+
+    for row in rows:
+        name = _normalizeName(row.get("community_area_name"))
+        if name:
+            lookup[name] = row
+
+    return lookup
+
+
+def _findCommunityRow(neighborhoodName: str) -> dict[str, Any] | None:
+    targetName = _normalizeName(neighborhoodName)
+    lookup = _getCommunityLookup()
+
+    matchedRow = lookup.get(targetName)
+    if matchedRow is not None:
+        return matchedRow
+
+    availableNames = list(lookup.keys())
+    print(
+        f"[fetchDemographics] No match for '{targetName}'. Available: {availableNames[:10]}..."
+    )
+    return None
+
+
+def fetchDemographics(plot: dict[str, Any]) -> dict[str, Any]:
+    defaultResponse = _defaultResponse()
+
     neighborhoodName = plot.get("neighborhood")
     if not neighborhoodName or _normalizeName(neighborhoodName) == "UNKNOWN":
         return defaultResponse
@@ -89,7 +122,7 @@ def fetchDemographics(plot: dict[str, Any]) -> dict[str, Any]:
         if matchedRow is None:
             return defaultResponse
 
-        demographics = {
+        return {
             "current_population": None,
             "population_growth_1y": None,
             "population_growth_3y": None,
@@ -113,8 +146,6 @@ def fetchDemographics(plot: dict[str, Any]) -> dict[str, Any]:
                 safeFloat(matchedRow.get("percent_households_below_poverty"))
             ),
         }
-
-        return demographics
 
     except Exception as exc:
         print(f"[fetchDemographics] Failed for neighborhood {neighborhoodName}: {exc}")
