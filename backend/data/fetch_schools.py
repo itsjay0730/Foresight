@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from functools import lru_cache
 from typing import Any
 
 from config import (
@@ -9,8 +10,21 @@ from config import (
 from utils import haversineMiles, safeFloat, safeGet
 
 
+def _emptySchoolResponse() -> dict[str, Any]:
+    return {
+        "average_school_rating_nearby": None,
+        "elementary_school_rating_avg": None,
+        "high_school_rating_avg": None,
+        "school_count_nearby": 0,
+    }
+
+
+def _normalizeRowKeys(row: dict[str, Any]) -> dict[str, Any]:
+    return {str(key).lower(): value for key, value in row.items()}
+
+
 def _findValue(row: dict[str, Any], candidates: list[str]) -> Any:
-    lowerMap = {str(key).lower(): value for key, value in row.items()}
+    lowerMap = _normalizeRowKeys(row)
 
     for candidate in candidates:
         if candidate.lower() in lowerMap:
@@ -21,7 +35,9 @@ def _findValue(row: dict[str, Any], candidates: list[str]) -> Any:
 
 def _extractLatLng(row: dict[str, Any]) -> tuple[float | None, float | None]:
     lat = safeFloat(_findValue(row, ["school_latitude", "latitude", "lat"]))
-    lng = safeFloat(_findValue(row, ["school_longitude", "longitude", "lng", "long", "lon"]))
+    lng = safeFloat(
+        _findValue(row, ["school_longitude", "longitude", "lng", "long", "lon"])
+    )
 
     if lat is None or lng is None:
         location = _findValue(row, ["location", "geolocation", "the_geom"])
@@ -58,13 +74,6 @@ def _extractSchoolType(row: dict[str, Any]) -> str:
 
 
 def _parseRatingValue(row: dict[str, Any]) -> float | None:
-    """
-    Build a practical school rating from available CPS progress fields.
-    Priority:
-    1. student_attainment_rating text
-    2. culture_climate_rating text
-    3. creative_school_certification text
-    """
     attainment = str(_findValue(row, ["student_attainment_rating"]) or "").strip().upper()
     culture = str(_findValue(row, ["culture_climate_rating"]) or "").strip().upper()
     creative = str(_findValue(row, ["creative_school_certification"]) or "").strip().upper()
@@ -112,8 +121,22 @@ def _parseRatingValue(row: dict[str, Any]) -> float | None:
     return round(sum(scores) / len(scores), 2)
 
 
+@lru_cache(maxsize=1)
+def _loadSchoolLocationRows() -> list[dict[str, Any]]:
+    rows = safeGet(CHICAGO_SCHOOL_LOCATIONS_API, params={"$limit": 3000})
+    if not isinstance(rows, list):
+        print("[fetchSchools] School locations API returned non-list response")
+        return []
+    return rows
+
+
+@lru_cache(maxsize=1)
 def _loadProgressRatingsBySchoolId() -> dict[str, float]:
     rows = safeGet(CHICAGO_SCHOOL_PROGRESS_API, params={"$limit": 3000})
+    if not isinstance(rows, list):
+        print("[fetchSchools] School progress API returned non-list response")
+        return {}
+
     ratings: dict[str, float] = {}
 
     for row in rows:
@@ -126,6 +149,12 @@ def _loadProgressRatingsBySchoolId() -> dict[str, float]:
             ratings[schoolId] = rating
 
     return ratings
+
+
+def _avg(values: list[float]) -> float | None:
+    if not values:
+        return None
+    return round(sum(values) / len(values), 2)
 
 
 def fetchSchools(
@@ -146,18 +175,13 @@ def fetchSchools(
     lat = safeFloat(plot.get("lat"))
     lng = safeFloat(plot.get("lng"))
 
-    empty = {
-        "average_school_rating_nearby": None,
-        "elementary_school_rating_avg": None,
-        "high_school_rating_avg": None,
-        "school_count_nearby": 0,
-    }
+    empty = _emptySchoolResponse()
 
     if lat is None or lng is None:
         return empty
 
     try:
-        locationRows = safeGet(CHICAGO_SCHOOL_LOCATIONS_API, params={"$limit": 3000})
+        locationRows = _loadSchoolLocationRows()
         progressRatings = _loadProgressRatingsBySchoolId()
 
         allRatings: list[float] = []
@@ -190,15 +214,10 @@ def fetchSchools(
             elif schoolType == "high":
                 highSchoolRatings.append(rating)
 
-        def avg(values: list[float]) -> float | None:
-            if not values:
-                return None
-            return round(sum(values) / len(values), 2)
-
         return {
-            "average_school_rating_nearby": avg(allRatings),
-            "elementary_school_rating_avg": avg(elementaryRatings),
-            "high_school_rating_avg": avg(highSchoolRatings),
+            "average_school_rating_nearby": _avg(allRatings),
+            "elementary_school_rating_avg": _avg(elementaryRatings),
+            "high_school_rating_avg": _avg(highSchoolRatings),
             "school_count_nearby": schoolCount,
         }
 
