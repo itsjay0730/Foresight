@@ -6,16 +6,52 @@ from typing import Any
 from config import CHICAGO_CRIME_API, SEARCH_RADIUS_CRIME_MILES
 from utils import haversineMiles, safeFloat, safeGet
 
+VIOLENT_CRIME_TYPES = {
+    "HOMICIDE",
+    "ROBBERY",
+    "BATTERY",
+    "ASSAULT",
+    "CRIM SEXUAL ASSAULT",
+    "KIDNAPPING",
+}
 
-def _fetchCrimeWindow(
+
+def _buildBoundingBox(
     lat: float,
     lng: float,
+    radiusMiles: float,
+) -> tuple[float, float, float, float]:
+    """
+    Return a rough bounding box:
+    (minLat, maxLat, minLng, maxLng)
+    """
+    milesPerLatDegree = 69.0
+    latOffset = radiusMiles / milesPerLatDegree
+
+    # avoid divide-by-zero near poles
+    milesPerLngDegree = max(1e-6, 69.0 * abs(__import__("math").cos(__import__("math").radians(lat))))
+    lngOffset = radiusMiles / milesPerLngDegree
+
+    return (
+        lat - latOffset,
+        lat + latOffset,
+        lng - lngOffset,
+        lng + lngOffset,
+    )
+
+
+def _fetchCrimeWindow(
     daysBackStart: int,
     daysBackEnd: int,
+    minLat: float,
+    maxLat: float,
+    minLng: float,
+    maxLng: float,
     limit: int = 2000,
 ) -> list[dict[str, Any]]:
     """
     Fetch crime records in a recent time window.
+
     Example:
     daysBackStart=30, daysBackEnd=0 -> last 30 days
     daysBackStart=60, daysBackEnd=30 -> previous 30-day period
@@ -24,18 +60,26 @@ def _fetchCrimeWindow(
     startDt = now - timedelta(days=daysBackStart)
     endDt = now - timedelta(days=daysBackEnd)
 
+    startStr = startDt.strftime("%Y-%m-%dT%H:%M:%S")
+    endStr = endDt.strftime("%Y-%m-%dT%H:%M:%S")
+
     params = {
         "$select": "id,date,latitude,longitude,primary_type",
         "$where": (
-            f"date >= '{startDt.strftime('%Y-%m-%dT%H:%M:%S')}' "
-            f"AND date < '{endDt.strftime('%Y-%m-%dT%H:%M:%S')}' "
+            f"date >= '{startStr}' "
+            f"AND date < '{endStr}' "
             f"AND latitude IS NOT NULL "
-            f"AND longitude IS NOT NULL"
+            f"AND longitude IS NOT NULL "
+            f"AND latitude >= {minLat} "
+            f"AND latitude <= {maxLat} "
+            f"AND longitude >= {minLng} "
+            f"AND longitude <= {maxLng}"
         ),
         "$limit": limit,
     }
 
-    return safeGet(CHICAGO_CRIME_API, params=params)
+    result = safeGet(CHICAGO_CRIME_API, params=params)
+    return result if isinstance(result, list) else []
 
 
 def _countNearbyCrimes(
@@ -49,15 +93,6 @@ def _countNearbyCrimes(
     - nearby total crime count
     - nearby violent crime count
     """
-    violentTypes = {
-        "HOMICIDE",
-        "ROBBERY",
-        "BATTERY",
-        "ASSAULT",
-        "CRIM SEXUAL ASSAULT",
-        "KIDNAPPING",
-    }
-
     totalCount = 0
     violentCount = 0
 
@@ -70,7 +105,7 @@ def _countNearbyCrimes(
         distance = haversineMiles(lat, lng, crimeLat, crimeLng)
         if distance <= radiusMiles:
             totalCount += 1
-            if str(crime.get("primary_type", "")).upper() in violentTypes:
+            if str(crime.get("primary_type", "")).upper() in VIOLENT_CRIME_TYPES:
                 violentCount += 1
 
     return totalCount, violentCount
@@ -83,7 +118,7 @@ def fetchCrime(
     """
     Fetch nearby crime metrics for a plot.
 
-    Returns a consistent structure:
+    Returns:
     {
         "crime_trend": float | None,
         "crime_count_nearby": int,
@@ -101,8 +136,24 @@ def fetchCrime(
         }
 
     try:
-        recentCrimes = _fetchCrimeWindow(lat, lng, 30, 0)
-        previousCrimes = _fetchCrimeWindow(lat, lng, 60, 30)
+        minLat, maxLat, minLng, maxLng = _buildBoundingBox(lat, lng, radiusMiles)
+
+        recentCrimes = _fetchCrimeWindow(
+            daysBackStart=30,
+            daysBackEnd=0,
+            minLat=minLat,
+            maxLat=maxLat,
+            minLng=minLng,
+            maxLng=maxLng,
+        )
+        previousCrimes = _fetchCrimeWindow(
+            daysBackStart=60,
+            daysBackEnd=30,
+            minLat=minLat,
+            maxLat=maxLat,
+            minLng=minLng,
+            maxLng=maxLng,
+        )
 
         recentCount, recentViolent = _countNearbyCrimes(
             recentCrimes, lat, lng, radiusMiles
